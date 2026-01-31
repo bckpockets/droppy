@@ -25,6 +25,7 @@ import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.ClientToolbar;
 import net.runelite.client.ui.NavigationButton;
+import okhttp3.OkHttpClient;
 
 @Slf4j
 @PluginDescriptor(
@@ -36,7 +37,6 @@ public class DroppyPlugin extends Plugin
 {
     /**
      * Script ID fired when a collection log page is drawn/rendered.
-     * This is the primary hook for reading collection log data from the widget.
      */
     private static final int COLLECTION_DRAW_LIST_SCRIPT_ID = 2731;
 
@@ -69,6 +69,9 @@ public class DroppyPlugin extends Plugin
     @Inject
     private ItemManager itemManager;
 
+    @Inject
+    private OkHttpClient okHttpClient;
+
     private WikiDropFetcher wikiDropFetcher;
     private PlayerDataManager playerDataManager;
     private CollectionLogManager collectionLogManager;
@@ -81,9 +84,9 @@ public class DroppyPlugin extends Plugin
     {
         log.info("Droppy plugin started");
 
-        wikiDropFetcher = new WikiDropFetcher();
+        wikiDropFetcher = new WikiDropFetcher(okHttpClient);
         playerDataManager = new PlayerDataManager(configManager);
-        killCountManager = new KillCountManager(playerDataManager);
+        killCountManager = new KillCountManager(playerDataManager, configManager);
         collectionLogManager = new CollectionLogManager(client, itemManager, playerDataManager);
 
         // Load data if already logged in
@@ -92,7 +95,8 @@ public class DroppyPlugin extends Plugin
             playerDataManager.loadPlayerData();
         }
 
-        panel = new DroppyPanel(config, wikiDropFetcher, playerDataManager, itemManager);
+        panel = new DroppyPanel(config, wikiDropFetcher, playerDataManager,
+            killCountManager, itemManager);
 
         BufferedImage icon = createPluginIcon();
 
@@ -163,14 +167,12 @@ public class DroppyPlugin extends Plugin
     /**
      * Fires after script 2731 (COLLECTION_DRAW_LIST) executes.
      * This is the primary mechanism to scrape collection log data.
-     * Fires every time the player navigates to a new page in the collection log.
      */
     @Subscribe
     public void onScriptPostFired(ScriptPostFired event)
     {
         if (event.getScriptId() == COLLECTION_DRAW_LIST_SCRIPT_ID)
         {
-            // Use invokeLater to ensure widget state is fully updated
             clientThread.invokeLater(() ->
             {
                 collectionLogManager.onCollectionLogPageRendered();
@@ -235,7 +237,7 @@ public class DroppyPlugin extends Plugin
 
         String message = event.getMessage();
 
-        // KC from chat (secondary source -- collection log widget is primary)
+        // KC from chat (secondary source)
         if (config.trackKcFromChat())
         {
             String monsterName = killCountManager.handleChatMessage(message);
@@ -249,8 +251,7 @@ public class DroppyPlugin extends Plugin
             }
         }
 
-        // Collection log notification from chat (catches new drops in real-time
-        // before the player opens the collection log widget)
+        // Collection log notification from chat
         if (config.autoDetectCollectionLog())
         {
             handleCollectionLogChatMessage(message);
@@ -259,8 +260,6 @@ public class DroppyPlugin extends Plugin
 
     /**
      * Handles "New item added to your collection log" chat messages.
-     * This provides real-time detection of new drops before the player
-     * opens the collection log. The widget scrape will confirm/correct later.
      */
     private void handleCollectionLogChatMessage(String message)
     {

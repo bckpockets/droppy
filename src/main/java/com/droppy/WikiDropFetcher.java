@@ -1,14 +1,10 @@
 package com.droppy;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,32 +13,33 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lombok.extern.slf4j.Slf4j;
+import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * Fetches monster drop tables from the OSRS Wiki API and parses drop rates.
+ * Uses OkHttpClient provided by RuneLite's dependency injection.
  */
 @Slf4j
 public class WikiDropFetcher
 {
-    private static final String WIKI_API_URL = "https://oldschool.runescape.wiki/api.php";
-    private static final String USER_AGENT = "Droppy RuneLite Plugin - Drop Chance Calculator";
+    private static final String WIKI_API_BASE = "https://oldschool.runescape.wiki/api.php";
+    private static final String USER_AGENT = "Droppy RuneLite Plugin - Drop Chance Calculator (https://github.com/droppy)";
 
-    // Cache of fetched monster data
+    private final OkHttpClient httpClient;
     private final Map<String, MonsterDropData> cache = new ConcurrentHashMap<>();
 
-    // Pattern to match DropsLine templates in wiki markup
-    // {{DropsLine|name=Item|quantity=1|rarity=1/512|raritynotes=...}}
     private static final Pattern DROPS_LINE_PATTERN = Pattern.compile(
         "\\{\\{DropsLine\\s*\\|([^}]+)\\}\\}",
         Pattern.CASE_INSENSITIVE
     );
 
-    // Pattern to parse rarity fractions like 1/512, 3/256, etc.
     private static final Pattern FRACTION_PATTERN = Pattern.compile(
         "(\\d+(?:\\.\\d+)?)\\s*/\\s*(\\d+(?:\\.\\d+)?)"
     );
 
-    // Known rarity keywords mapped to approximate rates
     private static final Map<String, Double> RARITY_KEYWORDS = new HashMap<>();
 
     static
@@ -54,9 +51,11 @@ public class WikiDropFetcher
         RARITY_KEYWORDS.put("very rare", 1.0 / 512.0);
     }
 
-    /**
-     * Fetches drop data for a monster. Uses cache if available and not stale.
-     */
+    public WikiDropFetcher(OkHttpClient httpClient)
+    {
+        this.httpClient = httpClient;
+    }
+
     public MonsterDropData fetchMonsterDrops(String monsterName)
     {
         String normalizedName = normalizeName(monsterName);
@@ -90,80 +89,104 @@ public class WikiDropFetcher
         catch (Exception e)
         {
             log.error("Error fetching drops for {}: {}", monsterName, e.getMessage());
-            return cached; // Return stale cache if available
+            return cached;
         }
     }
 
-    /**
-     * Fetches the raw wikitext for a given page from the OSRS Wiki API.
-     */
-    private String fetchWikiText(String pageName) throws Exception
+    private String fetchWikiText(String pageName) throws IOException
     {
-        String encodedPage = URLEncoder.encode(pageName, StandardCharsets.UTF_8.toString());
-        String urlStr = WIKI_API_URL
-            + "?action=parse"
-            + "&page=" + encodedPage
-            + "&prop=wikitext"
-            + "&format=json";
+        HttpUrl url = HttpUrl.parse(WIKI_API_BASE).newBuilder()
+            .addQueryParameter("action", "parse")
+            .addQueryParameter("page", pageName)
+            .addQueryParameter("prop", "wikitext")
+            .addQueryParameter("format", "json")
+            .build();
 
-        URL url = new URL(urlStr);
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setRequestMethod("GET");
-        conn.setRequestProperty("User-Agent", USER_AGENT);
-        conn.setConnectTimeout(10_000);
-        conn.setReadTimeout(10_000);
+        Request request = new Request.Builder()
+            .url(url)
+            .header("User-Agent", USER_AGENT)
+            .build();
 
-        int responseCode = conn.getResponseCode();
-        if (responseCode != 200)
+        try (Response response = httpClient.newCall(request).execute())
         {
-            log.warn("Wiki API returned status {} for page {}", responseCode, pageName);
-            return null;
-        }
-
-        StringBuilder response = new StringBuilder();
-        try (BufferedReader reader = new BufferedReader(
-            new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8)))
-        {
-            String line;
-            while ((line = reader.readLine()) != null)
+            if (!response.isSuccessful() || response.body() == null)
             {
-                response.append(line);
+                log.warn("Wiki API returned status {} for page {}", response.code(), pageName);
+                return null;
+            }
+
+            String body = response.body().string();
+            JsonObject json = JsonParser.parseString(body).getAsJsonObject();
+
+            if (json.has("error"))
+            {
+                log.warn("Wiki API error for {}: {}", pageName,
+                    json.getAsJsonObject("error").get("info").getAsString());
+                return null;
+            }
+
+            JsonObject parse = json.getAsJsonObject("parse");
+            if (parse == null)
+            {
+                return null;
+            }
+
+            JsonObject wikitext = parse.getAsJsonObject("wikitext");
+            if (wikitext == null)
+            {
+                return null;
+            }
+
+            JsonElement content = wikitext.get("*");
+            return content != null ? content.getAsString() : null;
+        }
+    }
+
+    public List<String> searchMonsters(String query)
+    {
+        List<String> results = new ArrayList<>();
+
+        try
+        {
+            HttpUrl url = HttpUrl.parse(WIKI_API_BASE).newBuilder()
+                .addQueryParameter("action", "opensearch")
+                .addQueryParameter("search", query)
+                .addQueryParameter("limit", "10")
+                .addQueryParameter("namespace", "0")
+                .addQueryParameter("format", "json")
+                .build();
+
+            Request request = new Request.Builder()
+                .url(url)
+                .header("User-Agent", USER_AGENT)
+                .build();
+
+            try (Response response = httpClient.newCall(request).execute())
+            {
+                if (!response.isSuccessful() || response.body() == null)
+                {
+                    return results;
+                }
+
+                JsonArray arr = JsonParser.parseString(response.body().string()).getAsJsonArray();
+                if (arr.size() >= 2)
+                {
+                    JsonArray names = arr.get(1).getAsJsonArray();
+                    for (JsonElement el : names)
+                    {
+                        results.add(el.getAsString());
+                    }
+                }
             }
         }
-
-        // Parse JSON to extract wikitext
-        JsonObject json = JsonParser.parseString(response.toString()).getAsJsonObject();
-        if (json.has("error"))
+        catch (Exception e)
         {
-            log.warn("Wiki API error for page {}: {}", pageName,
-                json.getAsJsonObject("error").get("info").getAsString());
-            return null;
+            log.error("Error searching monsters: {}", e.getMessage());
         }
 
-        JsonObject parse = json.getAsJsonObject("parse");
-        if (parse == null)
-        {
-            return null;
-        }
-
-        JsonObject wikitext = parse.getAsJsonObject("wikitext");
-        if (wikitext == null)
-        {
-            return null;
-        }
-
-        JsonElement content = wikitext.get("*");
-        if (content == null)
-        {
-            return null;
-        }
-
-        return content.getAsString();
+        return results;
     }
 
-    /**
-     * Parses DropsLine templates from wiki markup to extract drop entries.
-     */
     private List<DropEntry> parseDropsFromWikiText(String wikiText)
     {
         List<DropEntry> drops = new ArrayList<>();
@@ -183,13 +206,7 @@ public class WikiDropFetcher
             }
 
             double dropRate = parseRarity(rarity);
-            if (dropRate <= 0)
-            {
-                continue;
-            }
-
-            // Skip "always" drops (bones, ashes, etc.) - not interesting for collection log
-            if (dropRate >= 1.0)
+            if (dropRate <= 0 || dropRate >= 1.0)
             {
                 continue;
             }
@@ -212,13 +229,9 @@ public class WikiDropFetcher
         return drops;
     }
 
-    /**
-     * Parses template parameters from a DropsLine string like "name=Item|quantity=1|rarity=1/512"
-     */
     private Map<String, String> parseTemplateParams(String paramString)
     {
         Map<String, String> params = new HashMap<>();
-        // Split on | but not inside nested templates {{ }}
         int depth = 0;
         StringBuilder current = new StringBuilder();
 
@@ -265,10 +278,6 @@ public class WikiDropFetcher
         }
     }
 
-    /**
-     * Parses a rarity string into a decimal drop rate.
-     * Handles fractions (1/512), keywords (Rare), and special formats.
-     */
     private double parseRarity(String rarity)
     {
         if (rarity == null || rarity.isEmpty())
@@ -277,12 +286,11 @@ public class WikiDropFetcher
         }
 
         String cleaned = rarity.trim()
-            .replaceAll("<!--.*?-->", "")  // Remove HTML comments
-            .replaceAll("\\{\\{.*?\\}\\}", "")  // Remove nested templates
-            .replaceAll("~", "")  // Remove approximate symbols
+            .replaceAll("<!--.*?-->", "")
+            .replaceAll("\\{\\{.*?\\}\\}", "")
+            .replaceAll("~", "")
             .trim();
 
-        // Check for fraction format: X/Y
         Matcher fractionMatcher = FRACTION_PATTERN.matcher(cleaned);
         if (fractionMatcher.find())
         {
@@ -294,7 +302,6 @@ public class WikiDropFetcher
             }
         }
 
-        // Check for keyword rarity
         String lower = cleaned.toLowerCase();
         for (Map.Entry<String, Double> entry : RARITY_KEYWORDS.entrySet())
         {
@@ -307,10 +314,6 @@ public class WikiDropFetcher
         return -1;
     }
 
-    /**
-     * Normalizes a monster name for wiki lookup.
-     * Capitalizes first letter of each word, replaces spaces with underscores for URL.
-     */
     private String normalizeName(String name)
     {
         if (name == null || name.isEmpty())
@@ -318,7 +321,6 @@ public class WikiDropFetcher
             return name;
         }
 
-        // Capitalize first letter of each word
         String[] words = name.trim().split("\\s+");
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < words.length; i++)
@@ -339,70 +341,8 @@ public class WikiDropFetcher
         return sb.toString();
     }
 
-    /**
-     * Clears the cache entirely.
-     */
     public void clearCache()
     {
         cache.clear();
-    }
-
-    /**
-     * Searches for monsters matching a query by checking the wiki for search results.
-     */
-    public List<String> searchMonsters(String query)
-    {
-        List<String> results = new ArrayList<>();
-
-        try
-        {
-            String encoded = URLEncoder.encode(query, StandardCharsets.UTF_8.toString());
-            String urlStr = WIKI_API_URL
-                + "?action=opensearch"
-                + "&search=" + encoded
-                + "&limit=10"
-                + "&namespace=0"
-                + "&format=json";
-
-            URL url = new URL(urlStr);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
-            conn.setRequestProperty("User-Agent", USER_AGENT);
-            conn.setConnectTimeout(5_000);
-            conn.setReadTimeout(5_000);
-
-            if (conn.getResponseCode() != 200)
-            {
-                return results;
-            }
-
-            StringBuilder response = new StringBuilder();
-            try (BufferedReader reader = new BufferedReader(
-                new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8)))
-            {
-                String line;
-                while ((line = reader.readLine()) != null)
-                {
-                    response.append(line);
-                }
-            }
-
-            // opensearch returns: [query, [results], [descriptions], [urls]]
-            com.google.gson.JsonArray arr = JsonParser.parseString(response.toString()).getAsJsonArray();
-            if (arr.size() >= 2)
-            {
-                com.google.gson.JsonArray names = arr.get(1).getAsJsonArray();
-                for (JsonElement el : names)
-                {
-                    results.add(el.getAsString());
-                }
-            }
-        }
-        catch (Exception e)
-        {
-            log.error("Error searching monsters: {}", e.getMessage());
-        }
-
-        return results;
     }
 }

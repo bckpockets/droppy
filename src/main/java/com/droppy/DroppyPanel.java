@@ -5,7 +5,6 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -47,6 +46,7 @@ public class DroppyPanel extends PluginPanel
     private static final Color VERY_HIGH_CHANCE_COLOR = new Color(255, 80, 80);
     private static final Color TAB_ACTIVE_COLOR = new Color(70, 130, 230);
     private static final Color TAB_INACTIVE_COLOR = new Color(60, 60, 60);
+    private static final Color INFO_COLOR = new Color(100, 200, 255);
 
     private static final String CURRENT_TAB = "CURRENT";
     private static final String SEARCH_TAB = "SEARCH";
@@ -54,6 +54,7 @@ public class DroppyPanel extends PluginPanel
     private final DroppyConfig config;
     private final WikiDropFetcher wikiDropFetcher;
     private final PlayerDataManager playerDataManager;
+    private final KillCountManager killCountManager;
     private final ItemManager itemManager;
 
     // Tab buttons
@@ -82,11 +83,13 @@ public class DroppyPanel extends PluginPanel
     private String searchedMonster;
 
     public DroppyPanel(DroppyConfig config, WikiDropFetcher wikiDropFetcher,
-                       PlayerDataManager playerDataManager, ItemManager itemManager)
+                       PlayerDataManager playerDataManager,
+                       KillCountManager killCountManager, ItemManager itemManager)
     {
         this.config = config;
         this.wikiDropFetcher = wikiDropFetcher;
         this.playerDataManager = playerDataManager;
+        this.killCountManager = killCountManager;
         this.itemManager = itemManager;
 
         setLayout(new BorderLayout());
@@ -143,9 +146,9 @@ public class DroppyPanel extends PluginPanel
         topPanel.add(tabBar);
 
         // Sync status bar
-        syncStatusLabel = new JLabel("Open collection log in-game to sync data");
+        syncStatusLabel = new JLabel("KC auto-loaded. Open collection log to sync items.");
         syncStatusLabel.setFont(FontManager.getRunescapeSmallFont());
-        syncStatusLabel.setForeground(HIGH_CHANCE_COLOR);
+        syncStatusLabel.setForeground(INFO_COLOR);
         syncStatusLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         syncStatusLabel.setBorder(new EmptyBorder(4, 10, 4, 10));
         topPanel.add(syncStatusLabel);
@@ -390,7 +393,6 @@ public class DroppyPanel extends PluginPanel
     {
         if (currentFightMonster != null)
         {
-            setCurrentMonster(null); // reset so re-entry works
             String name = currentFightMonster;
             currentFightMonster = null;
             setCurrentMonster(name);
@@ -515,7 +517,8 @@ public class DroppyPanel extends PluginPanel
 
         titleLabel.setText(data.getMonsterName());
 
-        int totalKc = playerDataManager.getKillCount(monsterName);
+        // Use KillCountManager to check multiple sources (our data + chat-commands)
+        int totalKc = killCountManager.getKillCount(monsterName);
         int kcSinceDrop = playerDataManager.getKcSinceLastDrop(monsterName);
         if (totalKc > 0)
         {
@@ -593,7 +596,6 @@ public class DroppyPanel extends PluginPanel
             if (itemImage != null)
             {
                 iconLabel.setIcon(new ImageIcon(itemImage));
-                // When async image loads, update the icon
                 itemImage.onLoaded(() ->
                 {
                     iconLabel.setIcon(new ImageIcon(itemImage));
@@ -604,7 +606,6 @@ public class DroppyPanel extends PluginPanel
         }
         else
         {
-            // Placeholder: colored square with first letter
             BufferedImage placeholder = new BufferedImage(32, 32, BufferedImage.TYPE_INT_ARGB);
             java.awt.Graphics2D g = placeholder.createGraphics();
             g.setColor(new Color(60, 60, 60));
@@ -699,7 +700,7 @@ public class DroppyPanel extends PluginPanel
         SwingUtilities.invokeLater(() ->
         {
             syncStatusLabel.setText("Collection log open - browse pages to sync");
-            syncStatusLabel.setForeground(new Color(100, 200, 255));
+            syncStatusLabel.setForeground(INFO_COLOR);
         });
     }
 

@@ -1,42 +1,17 @@
 package com.droppy;
 
+import lombok.Value;
+
 /**
  * Represents a single drop from a monster's drop table.
  */
+@Value
 public class DropEntry
 {
-    private final String itemName;
-    private final double dropRate;
-    private final int itemId;
-    private final boolean isCollectionLog;
-
-    public DropEntry(String itemName, double dropRate, int itemId, boolean isCollectionLog)
-    {
-        this.itemName = itemName;
-        this.dropRate = dropRate;
-        this.itemId = itemId;
-        this.isCollectionLog = isCollectionLog;
-    }
-
-    public String getItemName()
-    {
-        return itemName;
-    }
-
-    public double getDropRate()
-    {
-        return dropRate;
-    }
-
-    public int getItemId()
-    {
-        return itemId;
-    }
-
-    public boolean isCollectionLog()
-    {
-        return isCollectionLog;
-    }
+    String itemName;
+    double dropRate;
+    int itemId;
+    boolean collectionLog;
 
     @Override
     public String toString()

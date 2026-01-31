@@ -3,13 +3,15 @@ package com.droppy;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lombok.extern.slf4j.Slf4j;
+import net.runelite.client.config.ConfigManager;
 
 /**
  * Tracks kill counts from multiple sources:
  *
  * 1. Collection log widget header (primary, authoritative) -- read by CollectionLogManager
- * 2. Chat messages ("Your X kill count is: Y") -- secondary/real-time fallback
- * 3. NPC loot events -- increment-based fallback for monsters without KC messages
+ * 2. Chat messages ("Your X kill count is: Y") -- secondary/real-time
+ * 3. Chat-commands plugin stored data ("killcount" config group) -- passive bootstrap
+ * 4. NPC loot events -- increment-based fallback for monsters without KC messages
  *
  * All KC data is persisted through PlayerDataManager.
  */
@@ -40,14 +42,85 @@ public class KillCountManager
         Pattern.CASE_INSENSITIVE
     );
 
-    private final PlayerDataManager playerDataManager;
+    /**
+     * The chat-commands plugin stores KC under this config group.
+     * Key format: bossname (lowercase), value: int KC.
+     * This is read passively to bootstrap KC data without requiring
+     * the player to receive chat messages first.
+     */
+    private static final String CHAT_COMMANDS_KC_GROUP = "killcount";
 
-    // Track the last monster name extracted from a KC message for linking to collection log drops
+    private final PlayerDataManager playerDataManager;
+    private final ConfigManager configManager;
+
+    // Track the last monster name extracted from a KC message
     private String lastKcMonster;
 
-    public KillCountManager(PlayerDataManager playerDataManager)
+    public KillCountManager(PlayerDataManager playerDataManager, ConfigManager configManager)
     {
         this.playerDataManager = playerDataManager;
+        this.configManager = configManager;
+    }
+
+    /**
+     * Gets the kill count for a monster, checking multiple sources in priority order:
+     * 1. PlayerDataManager (our own stored data from widget scrape, chat, loot)
+     * 2. Chat-commands plugin config ("killcount" RSProfile group)
+     *
+     * If KC is found from chat-commands but not in our data, it's imported
+     * into PlayerDataManager for future use.
+     */
+    public int getKillCount(String monsterName)
+    {
+        // First check our own stored data
+        int ourKc = playerDataManager.getKillCount(monsterName);
+        if (ourKc > 0)
+        {
+            return ourKc;
+        }
+
+        // Fall back to chat-commands plugin stored KC
+        int chatCmdKc = readFromChatCommands(monsterName);
+        if (chatCmdKc > 0)
+        {
+            // Import into our data so we have it cached and can track deltas
+            playerDataManager.setKillCount(monsterName, chatCmdKc);
+            log.debug("Imported KC from chat-commands for {}: {}", monsterName, chatCmdKc);
+            return chatCmdKc;
+        }
+
+        return 0;
+    }
+
+    /**
+     * Reads KC from the RuneLite chat-commands plugin RSProfile config.
+     * The chat-commands plugin stores KC whenever a player receives a
+     * "Your X kill count is: Y" message or uses the !kc command.
+     * Key is the boss name in lowercase.
+     */
+    private int readFromChatCommands(String monsterName)
+    {
+        if (monsterName == null || monsterName.isEmpty())
+        {
+            return 0;
+        }
+
+        try
+        {
+            String key = monsterName.toLowerCase().trim();
+            Integer kc = configManager.getRSProfileConfiguration(
+                CHAT_COMMANDS_KC_GROUP, key, int.class);
+            if (kc != null && kc > 0)
+            {
+                return kc;
+            }
+        }
+        catch (Exception e)
+        {
+            log.debug("Could not read chat-commands KC for {}: {}", monsterName, e.getMessage());
+        }
+
+        return 0;
     }
 
     /**
@@ -121,8 +194,7 @@ public class KillCountManager
         lastKcMonster = npcName;
 
         // If we have no KC data at all for this monster, start counting from loot
-        // Otherwise, the chat message or collection log will provide the authoritative count
-        int existingKc = playerDataManager.getKillCount(npcName);
+        int existingKc = getKillCount(npcName);
         if (existingKc == 0)
         {
             playerDataManager.incrementKillCount(npcName);
