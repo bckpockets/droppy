@@ -2,12 +2,15 @@ package com.droppy;
 
 import com.google.inject.Provides;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.inject.Inject;
+import javax.swing.SwingUtilities;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.ChatMessageType;
 import net.runelite.api.Client;
@@ -19,6 +22,11 @@ import net.runelite.api.events.InteractingChanged;
 import net.runelite.api.events.ScriptPostFired;
 import net.runelite.api.events.WidgetLoaded;
 import net.runelite.client.callback.ClientThread;
+import net.runelite.client.chat.ChatColorType;
+import net.runelite.client.chat.ChatCommandManager;
+import net.runelite.client.chat.ChatMessageBuilder;
+import net.runelite.client.chat.ChatMessageManager;
+import net.runelite.client.chat.QueuedMessage;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.NpcLootReceived;
@@ -43,6 +51,7 @@ public class DroppyPlugin extends Plugin
 {
     private static final int COLLECTION_DRAW_LIST_SCRIPT_ID = 2731;
     private static final int COLLECTION_LOG_GROUP_ID = 621;
+    private static final String DRY_COMMAND = "!dry";
 
     // "New item added to your collection log: Tanzanite fang"
     private static final Pattern COLLECTION_LOG_PATTERN = Pattern.compile(
@@ -70,6 +79,12 @@ public class DroppyPlugin extends Plugin
 
     @Inject
     private OkHttpClient okHttpClient;
+
+    @Inject
+    private ChatCommandManager chatCommandManager;
+
+    @Inject
+    private ChatMessageManager chatMessageManager;
 
     private WikiDropFetcher wikiDropFetcher;
     private PlayerDataManager playerDataManager;
@@ -106,12 +121,14 @@ public class DroppyPlugin extends Plugin
             .build();
 
         clientToolbar.addNavigation(navButton);
+        chatCommandManager.registerCommandAsync(DRY_COMMAND, this::dryLookup);
     }
 
     @Override
     protected void shutDown() throws Exception
     {
         log.info("Droppy plugin stopped");
+        chatCommandManager.unregisterCommand(DRY_COMMAND);
         clientToolbar.removeNavigation(navButton);
         playerDataManager.savePlayerData();
         wikiDropFetcher.clearCache();
@@ -369,6 +386,122 @@ public class DroppyPlugin extends Plugin
         {
             panel.refreshSearch();
         }
+    }
+
+    // ==================== !DRY CHAT COMMAND ====================
+
+    /**
+     * Handles the !dry command. Runs async (network call may be needed).
+     *
+     * Usage:
+     *   !dry zulrah     -- shows dry rates for Zulrah
+     *   !dry             -- shows dry rates for the last killed monster
+     *
+     * Replaces the chat message with a summary visible to other players,
+     * then queues game messages with per-item details visible only to you.
+     */
+    private void dryLookup(ChatMessage chatMessage, String message)
+    {
+        String monsterName = message.substring(DRY_COMMAND.length()).trim();
+
+        if (monsterName.isEmpty())
+        {
+            monsterName = killCountManager.getLastKcMonster();
+            if (monsterName == null || monsterName.isEmpty())
+            {
+                return;
+            }
+        }
+
+        MonsterDropData data = wikiDropFetcher.fetchMonsterDrops(monsterName);
+        if (data == null || data.getDrops().isEmpty())
+        {
+            return;
+        }
+
+        String displayName = data.getMonsterName();
+        int totalKc = killCountManager.getKillCount(displayName);
+
+        List<String> obtainedNames = new ArrayList<>();
+        List<DropEntry> unobtained = new ArrayList<>();
+
+        for (DropEntry drop : data.getDrops())
+        {
+            if (playerDataManager.hasItem(drop.getItemName()))
+            {
+                obtainedNames.add(drop.getItemName());
+            }
+            else
+            {
+                unobtained.add(drop);
+            }
+        }
+
+        int totalItems = obtainedNames.size() + unobtained.size();
+
+        // Summary line (replaces the !dry message, visible to other players)
+        String response = new ChatMessageBuilder()
+            .append(ChatColorType.HIGHLIGHT)
+            .append(displayName)
+            .append(ChatColorType.NORMAL)
+            .append(" — ")
+            .append(ChatColorType.HIGHLIGHT)
+            .append(String.format("%,d", totalKc) + " kc")
+            .append(ChatColorType.NORMAL)
+            .append(" — " + obtainedNames.size() + "/" + totalItems + " items obtained")
+            .build();
+
+        clientThread.invokeLater(() ->
+        {
+            chatMessage.getMessageNode().setRuneLiteFormatMessage(response);
+            client.refreshChat();
+        });
+
+        // Detail messages (game messages, visible only to the player)
+        if (!obtainedNames.isEmpty())
+        {
+            String obtainedMsg = new ChatMessageBuilder()
+                .append(ChatColorType.HIGHLIGHT)
+                .append("Obtained: ")
+                .append(ChatColorType.NORMAL)
+                .append(String.join(", ", obtainedNames))
+                .build();
+
+            chatMessageManager.queue(QueuedMessage.builder()
+                .type(ChatMessageType.GAMEMESSAGE)
+                .runeLiteFormattedMessage(obtainedMsg)
+                .build());
+        }
+
+        for (DropEntry drop : unobtained)
+        {
+            int kc = playerDataManager.getKcSinceLastDrop(displayName, drop.getItemName());
+            double chance = DropChanceCalculator.calculateChance(drop.getDropRate(), kc);
+
+            String rateStr = drop.getRarityDisplay() != null
+                ? drop.getRarityDisplay()
+                : DropChanceCalculator.formatDropRate(drop.getDropRate());
+
+            String itemMsg = new ChatMessageBuilder()
+                .append(ChatColorType.HIGHLIGHT)
+                .append(drop.getItemName())
+                .append(ChatColorType.NORMAL)
+                .append(" (" + rateStr + ") — ")
+                .append(String.format("%,d", kc) + " kc — ")
+                .append(ChatColorType.HIGHLIGHT)
+                .append(DropChanceCalculator.formatPercent(chance))
+                .append(ChatColorType.NORMAL)
+                .append(" chance")
+                .build();
+
+            chatMessageManager.queue(QueuedMessage.builder()
+                .type(ChatMessageType.GAMEMESSAGE)
+                .runeLiteFormattedMessage(itemMsg)
+                .build());
+        }
+
+        // Also update the side panel to show this monster
+        SwingUtilities.invokeLater(() -> panel.setCurrentMonster(displayName));
     }
 
     // ==================== HELPERS ====================
