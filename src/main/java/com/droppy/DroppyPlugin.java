@@ -28,6 +28,7 @@ import net.runelite.client.game.ItemStack;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.plugins.loottracker.LootReceived;
+import net.runelite.http.api.loottracker.LootRecordType;
 import net.runelite.client.ui.ClientToolbar;
 import net.runelite.client.ui.NavigationButton;
 import okhttp3.OkHttpClient;
@@ -223,13 +224,12 @@ public class DroppyPlugin extends Plugin
 
     /**
      * Fires when the loot tracker plugin processes any loot event.
-     * This covers broader sources beyond NPC kills: raids, Barrows,
-     * clue scrolls, Tempoross, pickpockets, etc.
+     * Covers sources beyond NPC kills: raids, Barrows, clue scrolls,
+     * Tempoross, pickpockets, etc.
      *
-     * For NPC kills, this fires AFTER NpcLootReceived. The KC increment
-     * in handleLootReceived is safe to call twice -- it just adds 1 each
-     * time, and the chat-based KC (which is authoritative) will correct
-     * any drift when the player receives a KC message.
+     * NPC kills are already KC-incremented by onNpcLootReceived, so we
+     * skip the increment here for LootRecordType.NPC to avoid double-counting.
+     * Cross-referencing and panel updates are idempotent and safe to repeat.
      */
     @Subscribe
     public void onLootReceived(LootReceived event)
@@ -240,11 +240,17 @@ public class DroppyPlugin extends Plugin
             return;
         }
 
-        killCountManager.handleLootReceived(name);
+        // Only increment KC for non-NPC sources; NPC kills handled by onNpcLootReceived
+        if (event.getType() != LootRecordType.NPC)
+        {
+            killCountManager.handleLootReceived(name);
+        }
+
+        // Cross-referencing is idempotent -- safe to run for all loot sources
         checkForCollectionLogDrops(name, event.getItems());
         panel.setCurrentMonster(name);
 
-        log.debug("Loot received (loot tracker): {}", name);
+        log.debug("Loot received (loot tracker): {} type={}", name, event.getType());
     }
 
     /**
