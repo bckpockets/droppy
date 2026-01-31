@@ -18,10 +18,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-/**
- * Fetches monster drop tables from the OSRS Wiki API and parses drop rates.
- * Uses OkHttpClient provided by RuneLite's dependency injection.
- */
 @Slf4j
 public class WikiDropFetcher
 {
@@ -225,7 +221,7 @@ public class WikiDropFetcher
                 }
             }
 
-            drops.add(new DropEntry(name.trim(), dropRate, itemId, true, rarityDisplay));
+            drops.add(new DropEntry(name.trim(), dropRate, itemId, rarityDisplay));
         }
 
         return drops;
@@ -316,11 +312,7 @@ public class WikiDropFetcher
         return -1;
     }
 
-    /**
-     * Builds a human-readable rarity string from the wiki rarity field.
-     * Preserves the original fraction (e.g. "3/128") rather than collapsing
-     * to "1/X" form, so the display matches the wiki.
-     */
+    // Keeps original wiki fractions like "3/128" instead of collapsing to "1/43".
     private String formatRarityDisplay(String rarity, double dropRate)
     {
         if (rarity == null || rarity.isEmpty())
@@ -341,7 +333,6 @@ public class WikiDropFetcher
             String numStr = fractionMatcher.group(1);
             String denStr = fractionMatcher.group(2);
 
-            // Format as integers if they are whole numbers
             try
             {
                 double num = Double.parseDouble(numStr);
@@ -358,7 +349,6 @@ public class WikiDropFetcher
             return numStr + "/" + denStr;
         }
 
-        // Keyword rarity -- compute fraction from the rate
         long denom = Math.round(1.0 / dropRate);
         return "1/" + String.format("%,d", denom);
     }
@@ -390,11 +380,7 @@ public class WikiDropFetcher
         return sb.toString();
     }
 
-    /**
-     * Returns cached drop data for a monster without triggering a fetch.
-     * Used for real-time cross-referencing of loot items against the drop table.
-     * Returns null if data isn't cached or is stale.
-     */
+    // Returns cached data without triggering a fetch. Null if not cached or stale.
     public MonsterDropData getCachedData(String monsterName)
     {
         String normalizedName = normalizeName(monsterName);

@@ -3,25 +3,13 @@ package com.droppy;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.config.ConfigManager;
 
-/**
- * Manages persistence of player-specific data including kill counts,
- * collection log items obtained, and kill counts since last drop.
- *
- * Uses RSProfile configuration so data is tied to the RuneScape account,
- * not just the RuneLite profile.
- *
- * Data sources (in priority order):
- * 1. Collection log widget scrape (authoritative for obtained items + KC)
- * 2. Chat messages (real-time KC updates)
- * 3. Loot events (fallback KC for monsters without chat KC)
- */
 @Slf4j
 public class PlayerDataManager
 {
@@ -31,32 +19,30 @@ public class PlayerDataManager
     private static final String LAST_DROP_KC_KEY = "lastDropKc";
     private static final String OBTAINED_KEY = "obtainedItems";
     private static final String CLOG_SYNCED_KEY = "clogSyncedPages";
+    private static final String CLOG_ITEMS_KEY = "clogItems";
 
     private final ConfigManager configManager;
     private final Gson gson = new Gson();
 
-    // In-memory caches
-    private final Map<String, Integer> killCounts = new HashMap<>();
-    // Monster-level: KC since any collection log drop from this monster
-    private final Map<String, Integer> kcSinceLastDrop = new HashMap<>();
-    // Per-item: KC at which each item was last obtained (used to calculate
-    // per-item KC-since-drop dynamically as currentKC - lastDropKc)
-    private final Map<String, Integer> lastDropKc = new HashMap<>();
-    private final Set<String> obtainedItems = new HashSet<>();
-    // Tracks which collection log pages have been synced from the widget
-    private final Set<String> syncedPages = new HashSet<>();
+    private final Map<String, Integer> killCounts = new ConcurrentHashMap<>();
+    private final Map<String, Integer> kcSinceLastDrop = new ConcurrentHashMap<>();
+    // Per-item: KC snapshot when item was last obtained.
+    // Dry streak = currentKC - lastDropKc[monster_item]
+    private final Map<String, Integer> lastDropKc = new ConcurrentHashMap<>();
+    private final Set<String> obtainedItems = ConcurrentHashMap.newKeySet();
+    private final Set<String> syncedPages = ConcurrentHashMap.newKeySet();
+    // All item names we've seen on collection log pages (obtained or not).
+    // Used to know which items are actually clog items vs regular drops.
+    private final Set<String> clogItems = ConcurrentHashMap.newKeySet();
 
-    private boolean loaded = false;
-    private boolean dirty = false;
+    private volatile boolean loaded = false;
+    private volatile boolean dirty = false;
 
     public PlayerDataManager(ConfigManager configManager)
     {
         this.configManager = configManager;
     }
 
-    /**
-     * Loads data for the current RSProfile.
-     */
     public void loadPlayerData()
     {
         killCounts.clear();
@@ -64,12 +50,14 @@ public class PlayerDataManager
         lastDropKc.clear();
         obtainedItems.clear();
         syncedPages.clear();
+        clogItems.clear();
 
         loadMap(KC_KEY, killCounts);
         loadMap(KC_SINCE_DROP_KEY, kcSinceLastDrop);
         loadMap(LAST_DROP_KC_KEY, lastDropKc);
         loadSet(OBTAINED_KEY, obtainedItems);
         loadSet(CLOG_SYNCED_KEY, syncedPages);
+        loadSet(CLOG_ITEMS_KEY, clogItems);
 
         loaded = true;
         dirty = false;
@@ -78,9 +66,6 @@ public class PlayerDataManager
             killCounts.size(), obtainedItems.size(), syncedPages.size());
     }
 
-    /**
-     * Saves all data for the current RSProfile.
-     */
     public void savePlayerData()
     {
         if (!loaded || !dirty)
@@ -95,6 +80,7 @@ public class PlayerDataManager
             configManager.setRSProfileConfiguration(CONFIG_GROUP, LAST_DROP_KC_KEY, gson.toJson(lastDropKc));
             configManager.setRSProfileConfiguration(CONFIG_GROUP, OBTAINED_KEY, gson.toJson(obtainedItems));
             configManager.setRSProfileConfiguration(CONFIG_GROUP, CLOG_SYNCED_KEY, gson.toJson(syncedPages));
+            configManager.setRSProfileConfiguration(CONFIG_GROUP, CLOG_ITEMS_KEY, gson.toJson(clogItems));
             dirty = false;
         }
         catch (Exception e)
@@ -103,41 +89,29 @@ public class PlayerDataManager
         }
     }
 
-    // ==================== KILL COUNT ====================
+    // --- Kill count ---
 
-    /**
-     * Sets the total KC for a monster. Also updates KC-since-last-drop.
-     * Called by CollectionLogManager (from widget) and KillCountManager (from chat).
-     */
+    // Sets total KC and bumps since-last-drop counter by the delta.
     public void setKillCount(String monsterName, int kc)
     {
         String key = normalize(monsterName);
         int previousKc = killCounts.getOrDefault(key, 0);
         killCounts.put(key, kc);
 
-        // If KC went up, increment the since-last-drop counter by the delta
         int delta = kc - previousKc;
         if (delta > 0)
         {
-            int currentSince = kcSinceLastDrop.getOrDefault(key, 0);
-            kcSinceLastDrop.put(key, currentSince + delta);
+            kcSinceLastDrop.merge(key, delta, Integer::sum);
         }
-        else if (previousKc == 0)
+        else if (previousKc == 0 && !kcSinceLastDrop.containsKey(key))
         {
-            // First time seeing KC -- use full KC as since-drop baseline
-            // unless we already have a since-drop value (from collection log scrape)
-            if (!kcSinceLastDrop.containsKey(key))
-            {
-                kcSinceLastDrop.put(key, kc);
-            }
+            // First time seeing this monster -- use full KC as baseline
+            kcSinceLastDrop.put(key, kc);
         }
 
         dirty = true;
     }
 
-    /**
-     * Increments KC by 1. Used for loot-event-based tracking.
-     */
     public void incrementKillCount(String monsterName)
     {
         String key = normalize(monsterName);
@@ -151,23 +125,13 @@ public class PlayerDataManager
         return killCounts.getOrDefault(normalize(monsterName), 0);
     }
 
-    /**
-     * Gets KC since last drop for a monster (monster-level).
-     */
     public int getKcSinceLastDrop(String monsterName)
     {
         return kcSinceLastDrop.getOrDefault(normalize(monsterName), 0);
     }
 
-    /**
-     * Gets KC since last drop for a specific item from a monster.
-     *
-     * If the item has been obtained before, calculates dynamically:
-     *   currentKC - kcAtWhichItemWasLastObtained
-     *
-     * If the item has never been obtained, falls back to total KC
-     * (all kills count toward the probability of getting this item).
-     */
+    // Per-item dry streak: currentKC minus KC when item was last obtained.
+    // Falls back to total KC if item was never obtained.
     public int getKcSinceLastDrop(String monsterName, String itemName)
     {
         String monsterKey = normalize(monsterName);
@@ -180,20 +144,13 @@ public class PlayerDataManager
             return Math.max(0, currentKc - dropKc);
         }
 
-        // Never obtained this item -- use total KC
         return killCounts.getOrDefault(monsterKey, 0);
     }
 
-    // ==================== COLLECTION LOG ====================
+    // --- Collection log ---
 
-    /**
-     * Records an item as obtained from a specific monster.
-     * Snapshots the current KC for per-item tracking and resets the
-     * monster-level since-drop counter.
-     *
-     * Called by: loot cross-referencing, chat message detection,
-     * and collection log widget scrape.
-     */
+    // Records an item as obtained, snapshots current KC for per-item tracking,
+    // and resets monster-level since-drop counter.
     public void recordCollectionLogItem(String itemName, String monsterName)
     {
         String normalItem = normalize(itemName);
@@ -202,35 +159,20 @@ public class PlayerDataManager
         if (monsterName != null && !monsterName.isEmpty())
         {
             String monsterKey = normalize(monsterName);
-
-            // Snapshot the current KC for this monster+item.
-            // Per-item KC-since-drop is then calculated dynamically:
-            //   getKcSinceLastDrop(monster, item) = currentKC - lastDropKc
-            // This correctly tracks KC after reset without needing
-            // to increment per-item counters on every kill.
             String itemKey = monsterKey + "_" + normalItem;
             int currentKc = killCounts.getOrDefault(monsterKey, 0);
             lastDropKc.put(itemKey, currentKc);
-
-            // Reset monster-level since-drop counter (any drop from this monster)
             kcSinceLastDrop.put(monsterKey, 0);
         }
 
         dirty = true;
     }
 
-    /**
-     * Called by CollectionLogManager when an item is confirmed NOT obtained
-     * from the widget (opacity > 0). Only removes if the data came from
-     * a widget scrape (authoritative), not from chat.
-     *
-     * This corrects stale data if a player was incorrectly marked as having an item.
-     */
+    // Widget says item isn't obtained. Only correct our data for already-synced
+    // pages so we don't accidentally remove items detected via chat.
     public void markItemNotObtained(String itemName, String monsterName)
     {
         String normalItem = normalize(itemName);
-        // Only remove if we've synced this page before -- this prevents
-        // removing items that were correctly detected via chat from a different page
         if (syncedPages.contains(normalize(monsterName)))
         {
             if (obtainedItems.remove(normalItem))
@@ -241,21 +183,30 @@ public class PlayerDataManager
         }
     }
 
-    /**
-     * Marks a collection log page as synced from the widget.
-     */
     public void markPageSynced(String pageName)
     {
         syncedPages.add(normalize(pageName));
         dirty = true;
     }
 
-    /**
-     * Checks if a page has been synced from the collection log widget.
-     */
     public boolean isPageSynced(String pageName)
     {
         return syncedPages.contains(normalize(pageName));
+    }
+
+    // Track an item as being a collection log item (seen on a clog page).
+    public void addClogItem(String itemName)
+    {
+        if (clogItems.add(normalize(itemName)))
+        {
+            dirty = true;
+        }
+    }
+
+    // Whether we've seen this item on a collection log page.
+    public boolean isClogItem(String itemName)
+    {
+        return clogItems.contains(normalize(itemName));
     }
 
     public boolean hasItem(String itemName)
@@ -268,23 +219,17 @@ public class PlayerDataManager
         return new HashSet<>(obtainedItems);
     }
 
-    /**
-     * Gets all tracked monster names.
-     */
     public Set<String> getTrackedMonsters()
     {
         return new HashSet<>(killCounts.keySet());
     }
 
-    /**
-     * Returns how many collection log pages have been synced from the widget.
-     */
     public int getSyncedPageCount()
     {
         return syncedPages.size();
     }
 
-    // ==================== HELPERS ====================
+    // --- Helpers ---
 
     private String normalize(String name)
     {

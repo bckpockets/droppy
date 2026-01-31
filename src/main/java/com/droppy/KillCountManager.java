@@ -7,17 +7,11 @@ import java.util.regex.Pattern;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.config.ConfigManager;
 
-/**
- * Tracks kill counts from multiple sources (in priority order):
- *
- * 1. Our own stored data (from collection log widget, chat messages, loot events)
- * 2. Chat-commands plugin config ("killcount" RSProfile group) -- passive
- * 3. Loot tracker plugin config ("loottracker" RSProfile group) -- "kills with loot" fallback
- * 4. NPC loot events -- increment-based fallback for untracked monsters
- *
- * After the initial collection log flip-through establishes baseline KC,
- * forward tracking happens via loot events and chat messages.
- */
+// Tracks KC from multiple sources:
+// 1. Our own stored data (clog widget, chat, loot events)
+// 2. Chat-commands plugin config ("killcount" RSProfile group)
+// 3. Loot tracker plugin config ("loottracker" RSProfile group)
+// 4. NPC loot events (increment-based fallback)
 @Slf4j
 public class KillCountManager
 {
@@ -48,12 +42,8 @@ public class KillCountManager
     private static final String CHAT_COMMANDS_KC_GROUP = "killcount";
     private static final String LOOT_TRACKER_GROUP = "loottracker";
 
-    /**
-     * Window in milliseconds during which a loot event is considered
-     * part of the same kill as a preceding chat KC message.
-     * KC chat messages and loot events for the same kill typically
-     * fire within 1-2 game ticks (~600-1200ms).
-     */
+    // Chat KC and loot events for the same kill fire within ~1-2 ticks.
+    // This window prevents double-counting.
     private static final long CHAT_KC_DEDUP_WINDOW_MS = 2000;
 
     private final PlayerDataManager playerDataManager;
@@ -61,9 +51,8 @@ public class KillCountManager
 
     private String lastKcMonster;
 
-    // Dedup state: when a chat KC message authoritatively sets the KC,
-    // we record it here so the subsequent loot event for the SAME kill
-    // doesn't double-increment.
+    // Dedup: when chat sets KC authoritatively, record it so the loot
+    // event for the same kill doesn't double-increment.
     private String chatKcMonster;
     private long chatKcTimestamp;
 
@@ -73,24 +62,16 @@ public class KillCountManager
         this.configManager = configManager;
     }
 
-    /**
-     * Gets the kill count for a monster, checking multiple sources:
-     * 1. PlayerDataManager (our own stored data)
-     * 2. Chat-commands plugin config (true KC from game messages)
-     * 3. Loot tracker plugin config (kills-with-loot, approximate)
-     *
-     * If KC is found from an external source, it's imported into our data.
-     */
+    // Checks our data first, then chat-commands plugin, then loot tracker.
+    // Imports from external sources if found.
     public int getKillCount(String monsterName)
     {
-        // First check our own stored data
         int ourKc = playerDataManager.getKillCount(monsterName);
         if (ourKc > 0)
         {
             return ourKc;
         }
 
-        // Fall back to chat-commands plugin (true KC)
         int chatCmdKc = readFromChatCommands(monsterName);
         if (chatCmdKc > 0)
         {
@@ -99,7 +80,6 @@ public class KillCountManager
             return chatCmdKc;
         }
 
-        // Fall back to loot tracker (kills-with-loot, not true KC but better than 0)
         int lootTrackerKc = readFromLootTracker(monsterName);
         if (lootTrackerKc > 0)
         {
@@ -111,9 +91,6 @@ public class KillCountManager
         return 0;
     }
 
-    /**
-     * Reads KC from the chat-commands plugin RSProfile config.
-     */
     private int readFromChatCommands(String monsterName)
     {
         if (monsterName == null || monsterName.isEmpty())
@@ -139,15 +116,10 @@ public class KillCountManager
         return 0;
     }
 
-    /**
-     * Reads KC from the loot tracker plugin RSProfile config.
-     * The loot tracker stores data as JSON under keys like "drops_NPC_Zulrah"
-     * and "drops_EVENT_Chambers of Xeric". The "kills" field represents
-     * kills where loot was received (not exact KC, but a useful approximation).
-     */
+    // Loot tracker stores JSON like {"type":"NPC","name":"Zulrah","kills":150,"drops":[...]}
+    // "kills" = kills with loot, not exact KC, but better than 0.
     private int readFromLootTracker(String monsterName)
     {
-        // Try NPC kills first, then event-based (raids, etc.)
         int kc = readLootTrackerEntry("drops_NPC_" + monsterName);
         if (kc > 0)
         {
@@ -157,10 +129,6 @@ public class KillCountManager
         return readLootTrackerEntry("drops_EVENT_" + monsterName);
     }
 
-    /**
-     * Reads a single loot tracker config entry and extracts the kills count.
-     * The loot tracker stores JSON: {"type":"NPC","name":"Zulrah","kills":150,"drops":[...]}
-     */
     private int readLootTrackerEntry(String key)
     {
         try
@@ -189,10 +157,7 @@ public class KillCountManager
         return 0;
     }
 
-    /**
-     * Attempts to parse a KC update from a chat message.
-     * Returns the monster name if a KC was parsed, null otherwise.
-     */
+    // Parses KC from chat. Returns monster name if parsed, null otherwise.
     public String handleChatMessage(String message)
     {
         message = message.replaceAll("<[^>]+>", "").trim();
@@ -242,39 +207,28 @@ public class KillCountManager
             lastKcMonster = monsterName;
             playerDataManager.setKillCount(monsterName, kc);
 
-            // Mark that chat just set KC for this monster, so the loot event
-            // for this same kill doesn't increment on top of it
+            // Flag so the loot event for this same kill doesn't double-count
             chatKcMonster = monsterName;
             chatKcTimestamp = System.currentTimeMillis();
 
-            log.debug("KC from chat (authoritative): {} = {}", monsterName, kc);
+            log.debug("KC from chat: {} = {}", monsterName, kc);
             return monsterName;
         }
 
         return null;
     }
 
-    /**
-     * Called when loot is received from any source (NPC kill, raid, event).
-     * Increments KC by 1 for forward tracking, unless a chat KC message
-     * already set the authoritative count for this same kill.
-     *
-     * The dedup works regardless of event ordering:
-     * - Chat first, then loot: flag is set, loot skips increment
-     * - Loot first, then chat: loot increments, chat overwrites with authoritative value
-     */
+    // Increments KC from loot event. Skips if chat already set it for this kill.
     public void handleLootReceived(String sourceName)
     {
         lastKcMonster = sourceName;
 
-        // If a chat KC message just set the authoritative KC for this same
-        // monster within the dedup window, skip the increment to avoid
-        // counting this kill twice (chat already included it)
+        // Skip increment if chat just set KC for this monster (dedup)
         if (sourceName.equalsIgnoreCase(chatKcMonster)
             && System.currentTimeMillis() - chatKcTimestamp < CHAT_KC_DEDUP_WINDOW_MS)
         {
             chatKcMonster = null;
-            log.debug("KC increment skipped for {} (chat KC already set)", sourceName);
+            log.debug("KC increment skipped for {} (chat already set)", sourceName);
             return;
         }
 

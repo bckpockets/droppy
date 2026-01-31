@@ -42,7 +42,7 @@ import okhttp3.OkHttpClient;
 @Slf4j
 @PluginDescriptor(
     name = "Droppy",
-    description = "Calculates the probability of receiving collection log drops based on your current kill count",
+    description = "Shows your % chance of getting collection log drops based on KC",
     tags = {"drop", "chance", "probability", "collection", "log", "kc", "calculator", "wiki"}
 )
 public class DroppyPlugin extends Plugin
@@ -51,7 +51,6 @@ public class DroppyPlugin extends Plugin
     private static final int COLLECTION_LOG_GROUP_ID = 621;
     private static final String DRY_COMMAND = "!dry";
 
-    // "New item added to your collection log: Tanzanite fang"
     private static final Pattern COLLECTION_LOG_PATTERN = Pattern.compile(
         "New item added to your collection log: (.+)",
         Pattern.CASE_INSENSITIVE
@@ -135,8 +134,6 @@ public class DroppyPlugin extends Plugin
         return configManager.getConfig(DroppyConfig.class);
     }
 
-    // ==================== GAME STATE EVENTS ====================
-
     @Subscribe
     public void onGameStateChanged(GameStateChanged event)
     {
@@ -156,23 +153,17 @@ public class DroppyPlugin extends Plugin
         playerDataManager.loadPlayerData();
     }
 
-    // ==================== COLLECTION LOG WIDGET EVENTS ====================
-
     @Subscribe
     public void onWidgetLoaded(WidgetLoaded event)
     {
         if (event.getGroupId() == COLLECTION_LOG_GROUP_ID)
         {
             log.debug("Collection log interface opened");
-            panel.onCollectionLogOpened();
+            SwingUtilities.invokeLater(() -> panel.onCollectionLogOpened());
         }
     }
 
-    /**
-     * Fires after script 2731 (COLLECTION_DRAW_LIST) executes.
-     * This is the primary mechanism to scrape collection log data
-     * during the initial flip-through.
-     */
+    // Script 2731 = collection log page rendered
     @Subscribe
     public void onScriptPostFired(ScriptPostFired event)
     {
@@ -181,17 +172,12 @@ public class DroppyPlugin extends Plugin
             clientThread.invokeLater(() ->
             {
                 collectionLogManager.onCollectionLogPageRendered();
-                panel.onCollectionLogSynced(playerDataManager.getSyncedPageCount());
+                int syncedCount = playerDataManager.getSyncedPageCount();
+                SwingUtilities.invokeLater(() -> panel.onCollectionLogSynced(syncedCount));
             });
         }
     }
 
-    // ==================== COMBAT & LOOT EVENTS ====================
-
-    /**
-     * Detects when the player starts attacking an NPC.
-     * Updates the panel to show that monster's drop table.
-     */
     @Subscribe
     public void onInteractingChanged(InteractingChanged event)
     {
@@ -207,17 +193,11 @@ public class DroppyPlugin extends Plugin
             if (npcName != null && !npcName.isEmpty())
             {
                 killCountManager.setLastKcMonster(npcName);
-                panel.setCurrentMonster(npcName);
+                SwingUtilities.invokeLater(() -> panel.setCurrentMonster(npcName));
             }
         }
     }
 
-    /**
-     * Fires when loot is received from an NPC kill.
-     * This is our primary forward-tracking mechanism for NPC kills:
-     * increments KC and cross-references received items against the
-     * wiki drop table to detect collection log drops in real-time.
-     */
     @Subscribe
     public void onNpcLootReceived(NpcLootReceived event)
     {
@@ -229,20 +209,13 @@ public class DroppyPlugin extends Plugin
 
         killCountManager.handleLootReceived(npcName);
         checkForCollectionLogDrops(npcName, event.getItems());
-        panel.setCurrentMonster(npcName);
+        SwingUtilities.invokeLater(() -> panel.setCurrentMonster(npcName));
 
         log.debug("Loot received from NPC: {}", npcName);
     }
 
-    /**
-     * Fires when the loot tracker plugin processes any loot event.
-     * Covers sources beyond NPC kills: raids, Barrows, clue scrolls,
-     * Tempoross, pickpockets, etc.
-     *
-     * NPC kills are already KC-incremented by onNpcLootReceived, so we
-     * skip the increment here for LootRecordType.NPC to avoid double-counting.
-     * Cross-referencing and panel updates are idempotent and safe to repeat.
-     */
+    // Covers non-NPC sources: raids, Barrows, clues, Tempoross, etc.
+    // NPC KC is already handled by onNpcLootReceived so skip increment here.
     @Subscribe
     public void onLootReceived(LootReceived event)
     {
@@ -252,28 +225,19 @@ public class DroppyPlugin extends Plugin
             return;
         }
 
-        // Only increment KC for non-NPC sources; NPC kills handled by onNpcLootReceived
         if (event.getType() != LootRecordType.NPC)
         {
             killCountManager.handleLootReceived(name);
         }
 
-        // Cross-referencing is idempotent -- safe to run for all loot sources
         checkForCollectionLogDrops(name, event.getItems());
-        panel.setCurrentMonster(name);
+        SwingUtilities.invokeLater(() -> panel.setCurrentMonster(name));
 
         log.debug("Loot received (loot tracker): {} type={}", name, event.getType());
     }
 
-    /**
-     * Cross-references received loot items against the cached wiki drop table.
-     * If a received item matches a collection log entry that the player
-     * doesn't have yet, records it as obtained immediately.
-     *
-     * This provides real-time drop detection without waiting for the
-     * "New item added to your collection log" chat message (which can
-     * be missed if chat is filtered or scrolled).
-     */
+    // Cross-references loot against cached wiki drop table. Only marks items
+    // as obtained if we know they're actual clog items (from widget scrape).
     private void checkForCollectionLogDrops(String monsterName, Collection<ItemStack> items)
     {
         MonsterDropData dropData = wikiDropFetcher.getCachedData(monsterName);
@@ -282,7 +246,6 @@ public class DroppyPlugin extends Plugin
             return;
         }
 
-        // Collect all received item IDs for quick lookup
         Set<Integer> receivedIds = new HashSet<>();
         for (ItemStack item : items)
         {
@@ -293,7 +256,7 @@ public class DroppyPlugin extends Plugin
         for (DropEntry drop : dropData.getDrops())
         {
             if (drop.getItemId() > 0
-                && drop.isCollectionLog()
+                && playerDataManager.isClogItem(drop.getItemName())
                 && receivedIds.contains(drop.getItemId())
                 && !playerDataManager.hasItem(drop.getItemName()))
             {
@@ -307,16 +270,16 @@ public class DroppyPlugin extends Plugin
         if (anyNew)
         {
             playerDataManager.savePlayerData();
-            // Refresh panels to show the newly obtained item
-            panel.refreshCurrentForMonster(monsterName);
-            if (monsterName.equalsIgnoreCase(panel.getSearchedMonster()))
+            SwingUtilities.invokeLater(() ->
             {
-                panel.refreshSearch();
-            }
+                panel.refreshCurrentForMonster(monsterName);
+                if (monsterName.equalsIgnoreCase(panel.getSearchedMonster()))
+                {
+                    panel.refreshSearch();
+                }
+            });
         }
     }
-
-    // ==================== CHAT MESSAGE EVENTS ====================
 
     @Subscribe
     public void onChatMessage(ChatMessage event)
@@ -329,32 +292,28 @@ public class DroppyPlugin extends Plugin
 
         String message = event.getMessage();
 
-        // KC from chat (authoritative -- overrides loot-based tracking)
         if (config.trackKcFromChat())
         {
             String monsterName = killCountManager.handleChatMessage(message);
             if (monsterName != null)
             {
-                panel.refreshCurrentForMonster(monsterName);
-                if (monsterName.equalsIgnoreCase(panel.getSearchedMonster()))
+                SwingUtilities.invokeLater(() ->
                 {
-                    panel.refreshSearch();
-                }
+                    panel.refreshCurrentForMonster(monsterName);
+                    if (monsterName.equalsIgnoreCase(panel.getSearchedMonster()))
+                    {
+                        panel.refreshSearch();
+                    }
+                });
             }
         }
 
-        // Collection log notification from chat
         if (config.autoDetectCollectionLog())
         {
             handleCollectionLogChatMessage(message);
         }
     }
 
-    /**
-     * Handles "New item added to your collection log" chat messages.
-     * This is a secondary detection mechanism alongside the loot
-     * cross-referencing in checkForCollectionLogDrops.
-     */
     private void handleCollectionLogChatMessage(String message)
     {
         String cleaned = message.replaceAll("<[^>]+>", "").trim();
@@ -376,26 +335,17 @@ public class DroppyPlugin extends Plugin
         playerDataManager.recordCollectionLogItem(itemName, lastMonster);
         playerDataManager.savePlayerData();
 
-        panel.refreshCurrentForMonster(lastMonster);
-        if (lastMonster != null && lastMonster.equalsIgnoreCase(panel.getSearchedMonster()))
+        SwingUtilities.invokeLater(() ->
         {
-            panel.refreshSearch();
-        }
+            panel.refreshCurrentForMonster(lastMonster);
+            if (lastMonster != null && lastMonster.equalsIgnoreCase(panel.getSearchedMonster()))
+            {
+                panel.refreshSearch();
+            }
+        });
     }
 
-    // ==================== !DRY CHAT COMMAND ====================
-
-    /**
-     * Handles the !dry command. Runs async (network call may be needed).
-     *
-     * Usage:
-     *   !dry zulrah     -- shows dry rates for Zulrah
-     *   !dry             -- shows dry rates for the last killed monster
-     *
-     * Replaces the chat message with full details: total KC, obtained
-     * items, and per-item dry rates for unobtained items. The entire
-     * response is visible to other players via the replacement message.
-     */
+    // !dry command handler (runs async via registerCommandAsync)
     private void dryLookup(ChatMessage chatMessage, String message)
     {
         String monsterName = message.substring(DRY_COMMAND.length()).trim();
@@ -444,10 +394,8 @@ public class DroppyPlugin extends Plugin
 
         int totalItems = obtainedNames.size() + dryParts.size();
 
-        // Build a single comprehensive response visible to everyone
         ChatMessageBuilder builder = new ChatMessageBuilder();
 
-        // Header: monster name + KC + item count
         builder.append(ChatColorType.HIGHLIGHT)
             .append(displayName)
             .append(ChatColorType.NORMAL)
@@ -457,7 +405,6 @@ public class DroppyPlugin extends Plugin
             .append(ChatColorType.NORMAL)
             .append(" — " + obtainedNames.size() + "/" + totalItems + " obtained");
 
-        // Obtained items
         if (!obtainedNames.isEmpty())
         {
             builder.append(" | ")
@@ -467,7 +414,6 @@ public class DroppyPlugin extends Plugin
                 .append(String.join(", ", obtainedNames));
         }
 
-        // Dry rates for unobtained items
         if (!dryParts.isEmpty())
         {
             builder.append(" | ")
@@ -479,17 +425,15 @@ public class DroppyPlugin extends Plugin
 
         String response = builder.build();
 
+        String finalDisplayName = displayName;
         clientThread.invokeLater(() ->
         {
             chatMessage.getMessageNode().setRuneLiteFormatMessage(response);
             client.refreshChat();
         });
 
-        // Also update the side panel to show this monster
-        SwingUtilities.invokeLater(() -> panel.setCurrentMonster(displayName));
+        SwingUtilities.invokeLater(() -> panel.setCurrentMonster(finalDisplayName));
     }
-
-    // ==================== HELPERS ====================
 
     private BufferedImage createPluginIcon()
     {

@@ -57,23 +57,21 @@ public class DroppyPanel extends PluginPanel
     private final KillCountManager killCountManager;
     private final ItemManager itemManager;
 
-    // Tab buttons
     private JButton currentTabBtn;
     private JButton searchTabBtn;
     private CardLayout cardLayout;
     private JPanel cardPanel;
 
-    // Sync status
     private JLabel syncStatusLabel;
 
-    // Current tab components
+    // Current tab
     private JPanel currentDropsPanel;
     private JLabel currentMonsterTitle;
     private JLabel currentKcLabel;
     private JLabel currentStatusLabel;
     private String currentFightMonster;
 
-    // Search tab components
+    // Search tab
     private JTextField searchField;
     private JPanel searchResultsPanel;
     private JPanel searchDropsPanel;
@@ -101,12 +99,11 @@ public class DroppyPanel extends PluginPanel
 
     private void buildPanel()
     {
-        // ===== Top: Title + Tabs =====
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.Y_AXIS));
         topPanel.setBackground(HEADER_COLOR);
 
-        // Title bar
+        // Title
         JPanel titleBar = new JPanel(new BorderLayout());
         titleBar.setBackground(HEADER_COLOR);
         titleBar.setBorder(new EmptyBorder(10, 10, 6, 10));
@@ -122,7 +119,7 @@ public class DroppyPanel extends PluginPanel
         titleBar.add(subtitleLabel, BorderLayout.EAST);
         topPanel.add(titleBar);
 
-        // Tab bar
+        // Tabs
         JPanel tabBar = new JPanel(new GridBagLayout());
         tabBar.setBackground(HEADER_COLOR);
         tabBar.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -145,7 +142,6 @@ public class DroppyPanel extends PluginPanel
 
         topPanel.add(tabBar);
 
-        // Sync status bar
         syncStatusLabel = new JLabel("Flip through collection log to sync, then tracking is live");
         syncStatusLabel.setFont(FontManager.getRunescapeSmallFont());
         syncStatusLabel.setForeground(INFO_COLOR);
@@ -155,7 +151,6 @@ public class DroppyPanel extends PluginPanel
 
         add(topPanel, BorderLayout.NORTH);
 
-        // ===== Card layout for the two tab contents =====
         cardLayout = new CardLayout();
         cardPanel = new JPanel(cardLayout);
         cardPanel.setBackground(BACKGROUND_COLOR);
@@ -168,14 +163,11 @@ public class DroppyPanel extends PluginPanel
         cardLayout.show(cardPanel, CURRENT_TAB);
     }
 
-    // ======================= CURRENT TAB =======================
-
     private JPanel buildCurrentTab()
     {
         JPanel panel = new JPanel(new BorderLayout());
         panel.setBackground(BACKGROUND_COLOR);
 
-        // Monster header
         JPanel headerPanel = new JPanel();
         headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.Y_AXIS));
         headerPanel.setBackground(HEADER_COLOR);
@@ -195,7 +187,6 @@ public class DroppyPanel extends PluginPanel
 
         panel.add(headerPanel, BorderLayout.NORTH);
 
-        // Drops list
         currentDropsPanel = new JPanel();
         currentDropsPanel.setLayout(new BoxLayout(currentDropsPanel, BoxLayout.Y_AXIS));
         currentDropsPanel.setBackground(BACKGROUND_COLOR);
@@ -207,7 +198,6 @@ public class DroppyPanel extends PluginPanel
         scrollPane.getViewport().setBackground(BACKGROUND_COLOR);
         panel.add(scrollPane, BorderLayout.CENTER);
 
-        // Status
         currentStatusLabel = new JLabel("Kill a monster to see drop chances", SwingConstants.CENTER);
         currentStatusLabel.setFont(FontManager.getRunescapeSmallFont());
         currentStatusLabel.setForeground(ColorScheme.LIGHT_GRAY_COLOR);
@@ -217,14 +207,11 @@ public class DroppyPanel extends PluginPanel
         return panel;
     }
 
-    // ======================= SEARCH TAB =======================
-
     private JPanel buildSearchTab()
     {
         JPanel panel = new JPanel(new BorderLayout());
         panel.setBackground(BACKGROUND_COLOR);
 
-        // Search header with field + results
         JPanel searchHeader = new JPanel();
         searchHeader.setLayout(new BoxLayout(searchHeader, BoxLayout.Y_AXIS));
         searchHeader.setBackground(HEADER_COLOR);
@@ -272,14 +259,12 @@ public class DroppyPanel extends PluginPanel
         });
         searchHeader.add(searchField);
 
-        // Autocomplete results
         searchResultsPanel = new JPanel();
         searchResultsPanel.setLayout(new BoxLayout(searchResultsPanel, BoxLayout.Y_AXIS));
         searchResultsPanel.setBackground(ITEM_BG_COLOR);
         searchResultsPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
         searchHeader.add(searchResultsPanel);
 
-        // Monster title/kc below search
         searchHeader.add(Box.createVerticalStrut(6));
 
         searchMonsterTitle = new JLabel("");
@@ -296,7 +281,6 @@ public class DroppyPanel extends PluginPanel
 
         panel.add(searchHeader, BorderLayout.NORTH);
 
-        // Drops list
         searchDropsPanel = new JPanel();
         searchDropsPanel.setLayout(new BoxLayout(searchDropsPanel, BoxLayout.Y_AXIS));
         searchDropsPanel.setBackground(BACKGROUND_COLOR);
@@ -308,7 +292,6 @@ public class DroppyPanel extends PluginPanel
         scrollPane.getViewport().setBackground(BACKGROUND_COLOR);
         panel.add(scrollPane, BorderLayout.CENTER);
 
-        // Status
         searchStatusLabel = new JLabel("Search for any monster above", SwingConstants.CENTER);
         searchStatusLabel.setFont(FontManager.getRunescapeSmallFont());
         searchStatusLabel.setForeground(ColorScheme.LIGHT_GRAY_COLOR);
@@ -317,8 +300,6 @@ public class DroppyPanel extends PluginPanel
 
         return panel;
     }
-
-    // ======================= TAB SWITCHING =======================
 
     private void switchTab(String tab)
     {
@@ -354,12 +335,7 @@ public class DroppyPanel extends PluginPanel
         }
     }
 
-    // ======================= CURRENT TAB LOGIC =======================
-
-    /**
-     * Called by the plugin when the player kills / is fighting a monster.
-     * Automatically loads drop data and switches to the Current tab.
-     */
+    // Called when player attacks or gets loot from a monster.
     public void setCurrentMonster(String monsterName)
     {
         if (monsterName == null || monsterName.equals(currentFightMonster))
@@ -374,7 +350,6 @@ public class DroppyPanel extends PluginPanel
         currentDropsPanel.revalidate();
         currentDropsPanel.repaint();
 
-        // Auto-switch to Current tab
         switchTab(CURRENT_TAB);
 
         new Thread(() ->
@@ -386,9 +361,6 @@ public class DroppyPanel extends PluginPanel
         }).start();
     }
 
-    /**
-     * Refreshes the Current tab with latest KC data.
-     */
     public void refreshCurrent()
     {
         if (currentFightMonster != null)
@@ -399,9 +371,6 @@ public class DroppyPanel extends PluginPanel
         }
     }
 
-    /**
-     * Force-refreshes the current tab for the given monster (e.g. after KC update).
-     */
     public void refreshCurrentForMonster(String monsterName)
     {
         if (monsterName != null && monsterName.equalsIgnoreCase(currentFightMonster))
@@ -415,8 +384,6 @@ public class DroppyPanel extends PluginPanel
     {
         return currentFightMonster;
     }
-
-    // ======================= SEARCH TAB LOGIC =======================
 
     private void performSearch(String query)
     {
@@ -493,12 +460,6 @@ public class DroppyPanel extends PluginPanel
         return searchedMonster;
     }
 
-    // ======================= SHARED DROP RENDERING =======================
-
-    /**
-     * Populates a drops panel with item entries for a given monster.
-     * Used by both the Current and Search tabs.
-     */
     private void populateDrops(String monsterName, MonsterDropData data,
                                JPanel dropsPanel, JLabel titleLabel,
                                JLabel kcLabel, JLabel statusLabel)
@@ -517,7 +478,6 @@ public class DroppyPanel extends PluginPanel
 
         titleLabel.setText(data.getMonsterName());
 
-        // Use KillCountManager to check multiple sources (our data + chat-commands)
         int totalKc = killCountManager.getKillCount(monsterName);
         int kcSinceDrop = playerDataManager.getKcSinceLastDrop(monsterName);
         if (totalKc > 0)
@@ -549,9 +509,6 @@ public class DroppyPanel extends PluginPanel
         dropsPanel.repaint();
     }
 
-    /**
-     * Creates a single drop item row with icon, name, drop rate, percentage bar.
-     */
     private JPanel createDropRow(String monsterName, DropEntry drop)
     {
         boolean obtained = playerDataManager.hasItem(drop.getItemName());
@@ -559,7 +516,6 @@ public class DroppyPanel extends PluginPanel
         double chance = DropChanceCalculator.calculateChance(drop.getDropRate(), kc);
         String chanceStr = DropChanceCalculator.formatPercent(chance);
 
-        // Color based on chance
         Color chanceColor;
         if (obtained)
         {
@@ -578,13 +534,12 @@ public class DroppyPanel extends PluginPanel
             chanceColor = new Color(70, 130, 230);
         }
 
-        // Main row panel
         JPanel row = new JPanel(new BorderLayout(6, 0));
         row.setBackground(ITEM_BG_COLOR);
         row.setBorder(new EmptyBorder(5, 6, 5, 6));
         row.setMaximumSize(new Dimension(Integer.MAX_VALUE, 56));
 
-        // ---- Left: Item icon (36x36) ----
+        // Item icon
         JLabel iconLabel = new JLabel();
         iconLabel.setPreferredSize(new Dimension(36, 36));
         iconLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -620,12 +575,11 @@ public class DroppyPanel extends PluginPanel
 
         row.add(iconLabel, BorderLayout.WEST);
 
-        // ---- Center: Name + rate + progress bar ----
+        // Name + rate + progress bar
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
         centerPanel.setOpaque(false);
 
-        // Top line: item name
         JLabel nameLabel = new JLabel();
         nameLabel.setFont(FontManager.getRunescapeSmallFont().deriveFont(Font.BOLD));
         nameLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -641,7 +595,6 @@ public class DroppyPanel extends PluginPanel
         }
         centerPanel.add(nameLabel);
 
-        // Middle line: rate + kc info
         String rateText = drop.getRarityDisplay() != null
             ? drop.getRarityDisplay()
             : DropChanceCalculator.formatDropRate(drop.getDropRate());
@@ -654,7 +607,6 @@ public class DroppyPanel extends PluginPanel
         infoLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         centerPanel.add(infoLabel);
 
-        // Bottom line: progress bar
         JPanel barPanel = new JPanel(new BorderLayout(4, 0));
         barPanel.setOpaque(false);
         barPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -673,7 +625,7 @@ public class DroppyPanel extends PluginPanel
 
         row.add(centerPanel, BorderLayout.CENTER);
 
-        // ---- Right: Big percentage ----
+        // Percentage
         JLabel pctLabel = new JLabel(chanceStr);
         pctLabel.setFont(FontManager.getRunescapeBoldFont().deriveFont(14f));
         pctLabel.setForeground(chanceColor);
@@ -682,7 +634,6 @@ public class DroppyPanel extends PluginPanel
         pctLabel.setPreferredSize(new Dimension(58, 36));
         row.add(pctLabel, BorderLayout.EAST);
 
-        // Hover
         row.addMouseListener(new java.awt.event.MouseAdapter()
         {
             public void mouseEntered(java.awt.event.MouseEvent e) { row.setBackground(ITEM_BG_HOVER); }
@@ -692,11 +643,6 @@ public class DroppyPanel extends PluginPanel
         return row;
     }
 
-    // ======================= COLLECTION LOG SYNC STATUS =======================
-
-    /**
-     * Called when the collection log interface is opened in-game.
-     */
     public void onCollectionLogOpened()
     {
         SwingUtilities.invokeLater(() ->
@@ -706,9 +652,6 @@ public class DroppyPanel extends PluginPanel
         });
     }
 
-    /**
-     * Called after a collection log page is scraped from the widget.
-     */
     public void onCollectionLogSynced(int totalSyncedPages)
     {
         SwingUtilities.invokeLater(() ->
@@ -716,7 +659,6 @@ public class DroppyPanel extends PluginPanel
             syncStatusLabel.setText("Synced " + totalSyncedPages + " pages - tracking drops live");
             syncStatusLabel.setForeground(OBTAINED_COLOR);
 
-            // Refresh displayed data since obtained items / KC may have changed
             if (currentFightMonster != null)
             {
                 String monster = currentFightMonster;

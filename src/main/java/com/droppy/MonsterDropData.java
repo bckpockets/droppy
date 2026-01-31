@@ -3,9 +3,6 @@ package com.droppy;
 import java.util.List;
 import lombok.Getter;
 
-/**
- * Holds all drop data for a specific monster including its drops and wiki page name.
- */
 @Getter
 public class MonsterDropData
 {
