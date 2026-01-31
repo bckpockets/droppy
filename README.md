@@ -19,7 +19,7 @@ by **bckpockets(SIP YE)**
 
 ## getting the prereqs
 
-you need java, git, and gradle. if you already have all three skip to the next section
+you need java and git. gradle is bundled with the repo so you don't need to install it separately
 
 ### java 11 or higher (JDK not JRE)
 
@@ -55,32 +55,6 @@ brew install git
 ```
 or just type `git` in terminal -- macOS will ask if you want to install developer tools, say yes
 
-### gradle
-
-**windows:**
-
-easiest way if you have scoop:
-```
-scoop install gradle
-```
-
-otherwise:
-1. go to https://gradle.org/releases/
-2. download the latest binary-only zip
-3. unzip it somewhere like `C:\gradle`
-4. add `C:\gradle\bin` to your system PATH (search "environment variables" in start menu, edit PATH, add it)
-5. close/reopen terminal
-
-**mac:**
-```
-brew install gradle
-```
-
-**check it worked:**
-```
-gradle --version
-```
-
 ---
 
 ## building the plugin
@@ -91,7 +65,6 @@ open command prompt or powershell, then:
 ```
 git clone https://github.com/bckpockets/droppy.git
 cd droppy
-gradle wrapper
 .\gradlew.bat build
 ```
 
@@ -101,7 +74,6 @@ open terminal, then:
 ```
 git clone https://github.com/bckpockets/droppy.git
 cd droppy
-gradle wrapper
 ./gradlew build
 ```
 
@@ -194,7 +166,7 @@ runelite settings > Droppy:
 
 ## if something isn't working
 
-**build says "gradlew is not recognized"** -- you forgot to run `gradle wrapper` first. that generates the wrapper scripts
+**build says "gradlew is not recognized"** -- make sure you're in the droppy folder. in powershell use `.\gradlew.bat build` (with the `.\` prefix)
 
 **build fails** -- run `java -version`. needs to be 11+. if you just installed java, close and reopen your terminal
 
