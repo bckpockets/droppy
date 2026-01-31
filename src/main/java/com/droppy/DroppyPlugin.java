@@ -25,8 +25,6 @@ import net.runelite.client.callback.ClientThread;
 import net.runelite.client.chat.ChatColorType;
 import net.runelite.client.chat.ChatCommandManager;
 import net.runelite.client.chat.ChatMessageBuilder;
-import net.runelite.client.chat.ChatMessageManager;
-import net.runelite.client.chat.QueuedMessage;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.NpcLootReceived;
@@ -82,9 +80,6 @@ public class DroppyPlugin extends Plugin
 
     @Inject
     private ChatCommandManager chatCommandManager;
-
-    @Inject
-    private ChatMessageManager chatMessageManager;
 
     private WikiDropFetcher wikiDropFetcher;
     private PlayerDataManager playerDataManager;
@@ -397,8 +392,9 @@ public class DroppyPlugin extends Plugin
      *   !dry zulrah     -- shows dry rates for Zulrah
      *   !dry             -- shows dry rates for the last killed monster
      *
-     * Replaces the chat message with a summary visible to other players,
-     * then queues game messages with per-item details visible only to you.
+     * Replaces the chat message with full details: total KC, obtained
+     * items, and per-item dry rates for unobtained items. The entire
+     * response is visible to other players via the replacement message.
      */
     private void dryLookup(ChatMessage chatMessage, String message)
     {
@@ -423,7 +419,7 @@ public class DroppyPlugin extends Plugin
         int totalKc = killCountManager.getKillCount(displayName);
 
         List<String> obtainedNames = new ArrayList<>();
-        List<DropEntry> unobtained = new ArrayList<>();
+        List<String> dryParts = new ArrayList<>();
 
         for (DropEntry drop : data.getDrops())
         {
@@ -433,72 +429,61 @@ public class DroppyPlugin extends Plugin
             }
             else
             {
-                unobtained.add(drop);
+                int kc = playerDataManager.getKcSinceLastDrop(displayName, drop.getItemName());
+                double chance = DropChanceCalculator.calculateChance(drop.getDropRate(), kc);
+
+                String rateStr = drop.getRarityDisplay() != null
+                    ? drop.getRarityDisplay()
+                    : DropChanceCalculator.formatDropRate(drop.getDropRate());
+
+                dryParts.add(drop.getItemName() + " (" + rateStr + ") "
+                    + String.format("%,d", kc) + " kc "
+                    + DropChanceCalculator.formatPercent(chance));
             }
         }
 
-        int totalItems = obtainedNames.size() + unobtained.size();
+        int totalItems = obtainedNames.size() + dryParts.size();
 
-        // Summary line (replaces the !dry message, visible to other players)
-        String response = new ChatMessageBuilder()
-            .append(ChatColorType.HIGHLIGHT)
+        // Build a single comprehensive response visible to everyone
+        ChatMessageBuilder builder = new ChatMessageBuilder();
+
+        // Header: monster name + KC + item count
+        builder.append(ChatColorType.HIGHLIGHT)
             .append(displayName)
             .append(ChatColorType.NORMAL)
             .append(" — ")
             .append(ChatColorType.HIGHLIGHT)
             .append(String.format("%,d", totalKc) + " kc")
             .append(ChatColorType.NORMAL)
-            .append(" — " + obtainedNames.size() + "/" + totalItems + " items obtained")
-            .build();
+            .append(" — " + obtainedNames.size() + "/" + totalItems + " obtained");
+
+        // Obtained items
+        if (!obtainedNames.isEmpty())
+        {
+            builder.append(" | ")
+                .append(ChatColorType.HIGHLIGHT)
+                .append("Got: ")
+                .append(ChatColorType.NORMAL)
+                .append(String.join(", ", obtainedNames));
+        }
+
+        // Dry rates for unobtained items
+        if (!dryParts.isEmpty())
+        {
+            builder.append(" | ")
+                .append(ChatColorType.HIGHLIGHT)
+                .append("Dry: ")
+                .append(ChatColorType.NORMAL)
+                .append(String.join(" | ", dryParts));
+        }
+
+        String response = builder.build();
 
         clientThread.invokeLater(() ->
         {
             chatMessage.getMessageNode().setRuneLiteFormatMessage(response);
             client.refreshChat();
         });
-
-        // Detail messages (game messages, visible only to the player)
-        if (!obtainedNames.isEmpty())
-        {
-            String obtainedMsg = new ChatMessageBuilder()
-                .append(ChatColorType.HIGHLIGHT)
-                .append("Obtained: ")
-                .append(ChatColorType.NORMAL)
-                .append(String.join(", ", obtainedNames))
-                .build();
-
-            chatMessageManager.queue(QueuedMessage.builder()
-                .type(ChatMessageType.GAMEMESSAGE)
-                .runeLiteFormattedMessage(obtainedMsg)
-                .build());
-        }
-
-        for (DropEntry drop : unobtained)
-        {
-            int kc = playerDataManager.getKcSinceLastDrop(displayName, drop.getItemName());
-            double chance = DropChanceCalculator.calculateChance(drop.getDropRate(), kc);
-
-            String rateStr = drop.getRarityDisplay() != null
-                ? drop.getRarityDisplay()
-                : DropChanceCalculator.formatDropRate(drop.getDropRate());
-
-            String itemMsg = new ChatMessageBuilder()
-                .append(ChatColorType.HIGHLIGHT)
-                .append(drop.getItemName())
-                .append(ChatColorType.NORMAL)
-                .append(" (" + rateStr + ") — ")
-                .append(String.format("%,d", kc) + " kc — ")
-                .append(ChatColorType.HIGHLIGHT)
-                .append(DropChanceCalculator.formatPercent(chance))
-                .append(ChatColorType.NORMAL)
-                .append(" chance")
-                .build();
-
-            chatMessageManager.queue(QueuedMessage.builder()
-                .type(ChatMessageType.GAMEMESSAGE)
-                .runeLiteFormattedMessage(itemMsg)
-                .build());
-        }
 
         // Also update the side panel to show this monster
         SwingUtilities.invokeLater(() -> panel.setCurrentMonster(displayName));
