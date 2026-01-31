@@ -92,7 +92,7 @@ open command prompt or powershell, then:
 git clone https://github.com/bckpockets/droppy.git
 cd droppy
 gradle wrapper
-gradlew.bat build
+.\gradlew.bat build
 ```
 
 ### mac
