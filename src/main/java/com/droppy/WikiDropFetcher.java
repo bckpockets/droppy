@@ -211,6 +211,8 @@ public class WikiDropFetcher
                 continue;
             }
 
+            String rarityDisplay = formatRarityDisplay(rarity, dropRate);
+
             int itemId = -1;
             if (paramMap.containsKey("id"))
             {
@@ -223,7 +225,7 @@ public class WikiDropFetcher
                 }
             }
 
-            drops.add(new DropEntry(name.trim(), dropRate, itemId, true));
+            drops.add(new DropEntry(name.trim(), dropRate, itemId, true, rarityDisplay));
         }
 
         return drops;
@@ -312,6 +314,53 @@ public class WikiDropFetcher
         }
 
         return -1;
+    }
+
+    /**
+     * Builds a human-readable rarity string from the wiki rarity field.
+     * Preserves the original fraction (e.g. "3/128") rather than collapsing
+     * to "1/X" form, so the display matches the wiki.
+     */
+    private String formatRarityDisplay(String rarity, double dropRate)
+    {
+        if (rarity == null || rarity.isEmpty())
+        {
+            long denom = Math.round(1.0 / dropRate);
+            return "1/" + String.format("%,d", denom);
+        }
+
+        String cleaned = rarity.trim()
+            .replaceAll("<!--.*?-->", "")
+            .replaceAll("\\{\\{.*?\\}\\}", "")
+            .replaceAll("~", "")
+            .trim();
+
+        Matcher fractionMatcher = FRACTION_PATTERN.matcher(cleaned);
+        if (fractionMatcher.find())
+        {
+            String numStr = fractionMatcher.group(1);
+            String denStr = fractionMatcher.group(2);
+
+            // Format as integers if they are whole numbers
+            try
+            {
+                double num = Double.parseDouble(numStr);
+                double den = Double.parseDouble(denStr);
+                if (num == Math.floor(num) && den == Math.floor(den))
+                {
+                    return String.format("%,d", (long) num) + "/" + String.format("%,d", (long) den);
+                }
+            }
+            catch (NumberFormatException ignored)
+            {
+            }
+
+            return numStr + "/" + denStr;
+        }
+
+        // Keyword rarity -- compute fraction from the rate
+        long denom = Math.round(1.0 / dropRate);
+        return "1/" + String.format("%,d", denom);
     }
 
     private String normalizeName(String name)

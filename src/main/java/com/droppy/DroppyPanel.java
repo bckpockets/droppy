@@ -642,7 +642,9 @@ public class DroppyPanel extends PluginPanel
         centerPanel.add(nameLabel);
 
         // Middle line: rate + kc info
-        String rateText = DropChanceCalculator.formatDropRate(drop.getDropRate());
+        String rateText = drop.getRarityDisplay() != null
+            ? drop.getRarityDisplay()
+            : DropChanceCalculator.formatDropRate(drop.getDropRate());
         String kcText = kc > 0
             ? " \u2022 " + String.format("%,d", kc) + " kc"
             : "";

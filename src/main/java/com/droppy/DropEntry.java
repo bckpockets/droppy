@@ -12,10 +12,15 @@ public class DropEntry
     double dropRate;
     int itemId;
     boolean collectionLog;
+    /**
+     * Human-readable rarity string from the wiki (e.g. "3/128", "1/512").
+     * Preserves the original fraction rather than collapsing to 1/X form.
+     */
+    String rarityDisplay;
 
     @Override
     public String toString()
     {
-        return itemName + " (1/" + (dropRate > 0 ? Math.round(1.0 / dropRate) : "?") + ")";
+        return itemName + " (" + (rarityDisplay != null ? rarityDisplay : "?") + ")";
     }
 }
