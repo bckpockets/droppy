@@ -38,6 +38,13 @@ public class WikiDropFetcher
 
     private static final Map<String, Double> RARITY_KEYWORDS = new HashMap<>();
 
+    // In-game source name -> wiki page with the actual drop table.
+    // Only needed when the loot event name doesn't match the wiki page.
+    private static final Map<String, String> PAGE_ALIASES = new HashMap<>();
+
+    // Subpages to try when the main page has no {{DropsLine}} entries
+    private static final String[] SUBPAGE_SUFFIXES = {"/Loot", "/Rewards"};
+
     static
     {
         RARITY_KEYWORDS.put("always", 1.0);
@@ -45,6 +52,26 @@ public class WikiDropFetcher
         RARITY_KEYWORDS.put("uncommon", 1.0 / 64.0);
         RARITY_KEYWORDS.put("rare", 1.0 / 128.0);
         RARITY_KEYWORDS.put("very rare", 1.0 / 512.0);
+
+        // Raids - loot tables are on subpages
+        PAGE_ALIASES.put("chambers of xeric", "Chambers of Xeric");
+        PAGE_ALIASES.put("chambers of xeric: challenge mode", "Chambers of Xeric");
+        PAGE_ALIASES.put("theatre of blood", "Theatre of Blood");
+        PAGE_ALIASES.put("theatre of blood: hard mode", "Theatre of Blood");
+        PAGE_ALIASES.put("tombs of amascut", "Tombs of Amascut");
+        PAGE_ALIASES.put("tombs of amascut: expert mode", "Tombs of Amascut");
+
+        // Gauntlet
+        PAGE_ALIASES.put("the gauntlet", "The Gauntlet");
+        PAGE_ALIASES.put("the corrupted gauntlet", "The Gauntlet");
+
+        // Clue scrolls
+        PAGE_ALIASES.put("clue scroll (beginner)", "Reward casket (beginner)");
+        PAGE_ALIASES.put("clue scroll (easy)", "Reward casket (easy)");
+        PAGE_ALIASES.put("clue scroll (medium)", "Reward casket (medium)");
+        PAGE_ALIASES.put("clue scroll (hard)", "Reward casket (hard)");
+        PAGE_ALIASES.put("clue scroll (elite)", "Reward casket (elite)");
+        PAGE_ALIASES.put("clue scroll (master)", "Reward casket (master)");
     }
 
     public WikiDropFetcher(OkHttpClient httpClient)
@@ -64,21 +91,32 @@ public class WikiDropFetcher
 
         try
         {
-            String wikiText = fetchWikiText(normalizedName);
-            if (wikiText == null || wikiText.isEmpty())
-            {
-                log.warn("No wiki text found for monster: {}", monsterName);
-                return null;
-            }
+            // Check aliases first (e.g. "Clue Scroll (Hard)" -> "Reward casket (hard)")
+            String alias = PAGE_ALIASES.get(monsterName.toLowerCase().trim());
+            String pageName = alias != null ? alias : normalizedName;
 
-            List<DropEntry> drops = parseDropsFromWikiText(wikiText);
+            List<DropEntry> drops = tryFetchDrops(pageName);
+
+            // If main page had no drops, try subpages like /Loot, /Rewards
             if (drops.isEmpty())
             {
-                log.warn("No drops parsed for monster: {}", monsterName);
+                for (String suffix : SUBPAGE_SUFFIXES)
+                {
+                    drops = tryFetchDrops(pageName + suffix);
+                    if (!drops.isEmpty())
+                    {
+                        break;
+                    }
+                }
+            }
+
+            if (drops.isEmpty())
+            {
+                log.warn("No drops found for: {} (tried {} and subpages)", monsterName, pageName);
                 return null;
             }
 
-            MonsterDropData data = new MonsterDropData(monsterName, normalizedName, drops);
+            MonsterDropData data = new MonsterDropData(monsterName, pageName, drops);
             cache.put(normalizedName, data);
             return data;
         }
@@ -86,6 +124,25 @@ public class WikiDropFetcher
         {
             log.error("Error fetching drops for {}: {}", monsterName, e.getMessage());
             return cached;
+        }
+    }
+
+    private List<DropEntry> tryFetchDrops(String pageName)
+    {
+        try
+        {
+            String wikiText = fetchWikiText(pageName);
+            if (wikiText == null || wikiText.isEmpty())
+            {
+                return List.of();
+            }
+            List<DropEntry> drops = parseDropsFromWikiText(wikiText);
+            return drops;
+        }
+        catch (Exception e)
+        {
+            log.debug("No drops on page {}: {}", pageName, e.getMessage());
+            return List.of();
         }
     }
 

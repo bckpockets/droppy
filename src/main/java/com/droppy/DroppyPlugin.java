@@ -368,23 +368,52 @@ public class DroppyPlugin extends Plugin
         String displayName = data.getMonsterName();
         int totalKc = killCountManager.getKillCount(displayName);
 
-        List<String> obtainedNames = new ArrayList<>();
+        // Only show collection log items if the page has been synced.
+        // If not synced, fall back to rare drops (1/50+) to avoid spamming
+        // common junk like bones and coins.
+        boolean pageSynced = playerDataManager.isPageSynced(displayName);
+
+        List<String> obtainedParts = new ArrayList<>();
         List<String> dryParts = new ArrayList<>();
 
         for (DropEntry drop : data.getDrops())
         {
+            boolean isClog = playerDataManager.isClogItem(drop.getItemName());
+            boolean isRare = drop.getDropRate() <= (1.0 / 50.0);
+
+            // Skip items that aren't clog-relevant
+            if (pageSynced && !isClog)
+            {
+                continue;
+            }
+            if (!pageSynced && !isRare)
+            {
+                continue;
+            }
+
+            String rateStr = drop.getRarityDisplay() != null
+                ? drop.getRarityDisplay()
+                : DropChanceCalculator.formatDropRate(drop.getDropRate());
+
             if (playerDataManager.hasItem(drop.getItemName()))
             {
-                obtainedNames.add(drop.getItemName());
+                int dropKc = playerDataManager.getItemDropKc(displayName, drop.getItemName());
+                if (dropKc > 0)
+                {
+                    double chanceAtDrop = DropChanceCalculator.calculateChance(drop.getDropRate(), dropKc);
+                    obtainedParts.add(drop.getItemName() + " " + rateStr
+                        + " at " + String.format("%,d", dropKc) + " kc "
+                        + DropChanceCalculator.formatPercent(chanceAtDrop));
+                }
+                else
+                {
+                    obtainedParts.add(drop.getItemName());
+                }
             }
             else
             {
                 int kc = playerDataManager.getKcSinceLastDrop(displayName, drop.getItemName());
                 double chance = DropChanceCalculator.calculateChance(drop.getDropRate(), kc);
-
-                String rateStr = drop.getRarityDisplay() != null
-                    ? drop.getRarityDisplay()
-                    : DropChanceCalculator.formatDropRate(drop.getDropRate());
 
                 dryParts.add(drop.getItemName() + " " + rateStr
                     + " — " + String.format("%,d", kc) + " dry "
@@ -394,7 +423,7 @@ public class DroppyPlugin extends Plugin
 
         ChatMessageBuilder builder = new ChatMessageBuilder();
 
-        int total = obtainedNames.size() + dryParts.size();
+        int total = obtainedParts.size() + dryParts.size();
 
         builder.append(ChatColorType.HIGHLIGHT)
             .append(displayName)
@@ -403,16 +432,17 @@ public class DroppyPlugin extends Plugin
             .append(ChatColorType.HIGHLIGHT)
             .append(String.format("%,d", totalKc) + " kc")
             .append(ChatColorType.NORMAL)
-            .append(" (" + obtainedNames.size() + "/" + total + " logged)");
+            .append(" (" + obtainedParts.size() + "/" + total + " logged)");
 
-        if (!obtainedNames.isEmpty())
+        if (!obtainedParts.isEmpty())
         {
             builder.append(" | ")
                 .append(ChatColorType.NORMAL)
-                .append("Got: " + String.join(", ", obtainedNames));
+                .append("Got: ")
+                .append(String.join(", ", obtainedParts));
         }
 
-        if (dryParts.isEmpty())
+        if (dryParts.isEmpty() && !obtainedParts.isEmpty())
         {
             builder.append(" — all items logged, you're done!");
         }

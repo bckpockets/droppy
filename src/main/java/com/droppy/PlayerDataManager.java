@@ -147,6 +147,14 @@ public class PlayerDataManager
         return killCounts.getOrDefault(monsterKey, 0);
     }
 
+    // KC at which an item was obtained (absolute). Returns -1 if unknown.
+    public int getItemDropKc(String monsterName, String itemName)
+    {
+        String itemKey = normalize(monsterName) + "_" + normalize(itemName);
+        Integer dropKc = lastDropKc.get(itemKey);
+        return dropKc != null ? dropKc : -1;
+    }
+
     // --- Collection log ---
 
     // Records an item as obtained, snapshots current KC for per-item tracking,
