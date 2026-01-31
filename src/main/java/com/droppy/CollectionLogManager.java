@@ -147,7 +147,7 @@ public class CollectionLogManager
             if (obtained)
             {
                 obtainedCount++;
-                playerDataManager.recordCollectionLogItem(itemName, pageTitle);
+                playerDataManager.markItemObtainedFromSync(itemName);
                 log.debug("  Obtained: {} (id={})", itemName, itemId);
             }
             else

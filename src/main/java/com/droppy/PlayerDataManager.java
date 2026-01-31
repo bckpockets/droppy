@@ -157,8 +157,8 @@ public class PlayerDataManager
 
     // --- Collection log ---
 
-    // Records an item as obtained, snapshots current KC for per-item tracking,
-    // and resets monster-level since-drop counter.
+    // Real-time drop: marks obtained, snapshots current KC, resets since-drop counter.
+    // Use this when we KNOW the drop just happened (chat message, loot event).
     public void recordCollectionLogItem(String itemName, String monsterName)
     {
         String normalItem = normalize(itemName);
@@ -173,6 +173,14 @@ public class PlayerDataManager
             kcSinceLastDrop.put(monsterKey, 0);
         }
 
+        dirty = true;
+    }
+
+    // Widget sync: just marks obtained. We don't know when these items actually
+    // dropped so we don't fake a KC snapshot.
+    public void markItemObtainedFromSync(String itemName)
+    {
+        obtainedItems.add(normalize(itemName));
         dirty = true;
     }
 
