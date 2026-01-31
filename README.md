@@ -138,7 +138,7 @@ RuneLite settings > Droppy:
 
 **Plugin doesn't show up in RuneLite** -- double check the jar path exists. Run `dir build\libs` (Windows) or `ls build/libs` (Mac) to see what the jar is actually called.
 
-**No KC showing** -- KC gets picked up from the game's kill count chat message. Do one kill so the game prints your KC. Or use the Search tab to look up rates without needing KC.
+**No KC showing** -- KC tracks automatically from loot drops (like loot logger). It also imports existing KC from the loot tracker and chat-commands plugins if you already have data there. If it's still at 0, do one kill and it'll start counting. Or use the Search tab to look up rates without needing KC.
 
 **Items not marked as obtained** -- you need to open your collection log to that monster's page at least once so Droppy can read it.
 
