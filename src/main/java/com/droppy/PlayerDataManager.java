@@ -12,26 +12,37 @@ import net.runelite.client.config.ConfigManager;
 
 /**
  * Manages persistence of player-specific data including kill counts,
- * collection log items obtained, and kill counts since last collection log drop.
+ * collection log items obtained, and kill counts since last drop.
  *
- * Data is stored per-player using RuneLite's ConfigManager.
+ * Uses RSProfile configuration so data is tied to the RuneScape account,
+ * not just the RuneLite profile.
+ *
+ * Data sources (in priority order):
+ * 1. Collection log widget scrape (authoritative for obtained items + KC)
+ * 2. Chat messages (real-time KC updates)
+ * 3. Loot events (fallback KC for monsters without chat KC)
  */
 @Slf4j
 public class PlayerDataManager
 {
     private static final String CONFIG_GROUP = "droppy";
-    private static final String KC_KEY_PREFIX = "kc_";
-    private static final String KC_SINCE_DROP_PREFIX = "kcSinceDrop_";
-    private static final String COLLECTION_LOG_KEY = "collectionLog_";
+    private static final String KC_KEY = "killCounts";
+    private static final String KC_SINCE_DROP_KEY = "kcSinceDrop";
+    private static final String OBTAINED_KEY = "obtainedItems";
+    private static final String CLOG_SYNCED_KEY = "clogSyncedPages";
 
     private final ConfigManager configManager;
     private final Gson gson = new Gson();
 
     // In-memory caches
-    private String currentPlayerName;
     private final Map<String, Integer> killCounts = new HashMap<>();
     private final Map<String, Integer> kcSinceLastDrop = new HashMap<>();
     private final Set<String> obtainedItems = new HashSet<>();
+    // Tracks which collection log pages have been synced from the widget
+    private final Set<String> syncedPages = new HashSet<>();
+
+    private boolean loaded = false;
+    private boolean dirty = false;
 
     public PlayerDataManager(ConfigManager configManager)
     {
@@ -39,191 +50,191 @@ public class PlayerDataManager
     }
 
     /**
-     * Loads data for a specific player.
+     * Loads data for the current RSProfile.
      */
-    public void loadPlayerData(String playerName)
+    public void loadPlayerData()
     {
-        if (playerName == null || playerName.isEmpty())
-        {
-            return;
-        }
-
-        this.currentPlayerName = playerName.toLowerCase().trim();
         killCounts.clear();
         kcSinceLastDrop.clear();
         obtainedItems.clear();
+        syncedPages.clear();
 
-        // Load kill counts
-        String kcJson = configManager.getConfiguration(CONFIG_GROUP, KC_KEY_PREFIX + currentPlayerName);
-        if (kcJson != null && !kcJson.isEmpty())
-        {
-            try
-            {
-                Type type = new TypeToken<Map<String, Integer>>(){}.getType();
-                Map<String, Integer> loaded = gson.fromJson(kcJson, type);
-                if (loaded != null)
-                {
-                    killCounts.putAll(loaded);
-                }
-            }
-            catch (Exception e)
-            {
-                log.warn("Failed to load kill counts for {}: {}", currentPlayerName, e.getMessage());
-            }
-        }
+        loadMap(KC_KEY, killCounts);
+        loadMap(KC_SINCE_DROP_KEY, kcSinceLastDrop);
+        loadSet(OBTAINED_KEY, obtainedItems);
+        loadSet(CLOG_SYNCED_KEY, syncedPages);
 
-        // Load KC since last drop
-        String kcSinceJson = configManager.getConfiguration(CONFIG_GROUP, KC_SINCE_DROP_PREFIX + currentPlayerName);
-        if (kcSinceJson != null && !kcSinceJson.isEmpty())
-        {
-            try
-            {
-                Type type = new TypeToken<Map<String, Integer>>(){}.getType();
-                Map<String, Integer> loaded = gson.fromJson(kcSinceJson, type);
-                if (loaded != null)
-                {
-                    kcSinceLastDrop.putAll(loaded);
-                }
-            }
-            catch (Exception e)
-            {
-                log.warn("Failed to load kc-since-drop for {}: {}", currentPlayerName, e.getMessage());
-            }
-        }
+        loaded = true;
+        dirty = false;
 
-        // Load collection log items
-        String clJson = configManager.getConfiguration(CONFIG_GROUP, COLLECTION_LOG_KEY + currentPlayerName);
-        if (clJson != null && !clJson.isEmpty())
-        {
-            try
-            {
-                Type type = new TypeToken<Set<String>>(){}.getType();
-                Set<String> loaded = gson.fromJson(clJson, type);
-                if (loaded != null)
-                {
-                    obtainedItems.addAll(loaded);
-                }
-            }
-            catch (Exception e)
-            {
-                log.warn("Failed to load collection log for {}: {}", currentPlayerName, e.getMessage());
-            }
-        }
-
-        log.debug("Loaded data for {}: {} kc entries, {} obtained items",
-            currentPlayerName, killCounts.size(), obtainedItems.size());
+        log.debug("Loaded player data: {} kc entries, {} obtained items, {} synced pages",
+            killCounts.size(), obtainedItems.size(), syncedPages.size());
     }
 
     /**
-     * Saves all data for the current player.
+     * Saves all data for the current RSProfile.
      */
     public void savePlayerData()
     {
-        if (currentPlayerName == null)
+        if (!loaded || !dirty)
         {
             return;
         }
 
         try
         {
-            configManager.setConfiguration(CONFIG_GROUP,
-                KC_KEY_PREFIX + currentPlayerName, gson.toJson(killCounts));
-            configManager.setConfiguration(CONFIG_GROUP,
-                KC_SINCE_DROP_PREFIX + currentPlayerName, gson.toJson(kcSinceLastDrop));
-            configManager.setConfiguration(CONFIG_GROUP,
-                COLLECTION_LOG_KEY + currentPlayerName, gson.toJson(obtainedItems));
+            configManager.setRSProfileConfiguration(CONFIG_GROUP, KC_KEY, gson.toJson(killCounts));
+            configManager.setRSProfileConfiguration(CONFIG_GROUP, KC_SINCE_DROP_KEY, gson.toJson(kcSinceLastDrop));
+            configManager.setRSProfileConfiguration(CONFIG_GROUP, OBTAINED_KEY, gson.toJson(obtainedItems));
+            configManager.setRSProfileConfiguration(CONFIG_GROUP, CLOG_SYNCED_KEY, gson.toJson(syncedPages));
+            dirty = false;
         }
         catch (Exception e)
         {
-            log.error("Failed to save player data for {}: {}", currentPlayerName, e.getMessage());
+            log.error("Failed to save player data: {}", e.getMessage());
         }
     }
 
+    // ==================== KILL COUNT ====================
+
     /**
-     * Updates the total kill count for a monster.
-     * Also increments the KC-since-last-drop counter for that monster.
+     * Sets the total KC for a monster. Also updates KC-since-last-drop.
+     * Called by CollectionLogManager (from widget) and KillCountManager (from chat).
      */
     public void setKillCount(String monsterName, int kc)
     {
-        String key = monsterName.toLowerCase().trim();
+        String key = normalize(monsterName);
         int previousKc = killCounts.getOrDefault(key, 0);
         killCounts.put(key, kc);
 
-        // Calculate how many new kills were added
+        // If KC went up, increment the since-last-drop counter by the delta
         int delta = kc - previousKc;
         if (delta > 0)
         {
             int currentSince = kcSinceLastDrop.getOrDefault(key, 0);
             kcSinceLastDrop.put(key, currentSince + delta);
         }
+        else if (previousKc == 0)
+        {
+            // First time seeing KC -- use full KC as since-drop baseline
+            // unless we already have a since-drop value (from collection log scrape)
+            if (!kcSinceLastDrop.containsKey(key))
+            {
+                kcSinceLastDrop.put(key, kc);
+            }
+        }
 
-        savePlayerData();
+        dirty = true;
     }
 
     /**
-     * Gets the total kill count for a monster.
+     * Increments KC by 1. Used for loot-event-based tracking.
      */
+    public void incrementKillCount(String monsterName)
+    {
+        String key = normalize(monsterName);
+        killCounts.merge(key, 1, Integer::sum);
+        kcSinceLastDrop.merge(key, 1, Integer::sum);
+        dirty = true;
+    }
+
     public int getKillCount(String monsterName)
     {
-        return killCounts.getOrDefault(monsterName.toLowerCase().trim(), 0);
+        return killCounts.getOrDefault(normalize(monsterName), 0);
     }
 
     /**
-     * Gets the KC since the last collection log drop for a monster.
-     * This is the value used for probability calculations.
+     * Gets KC since last drop for a monster (monster-level).
      */
     public int getKcSinceLastDrop(String monsterName)
     {
-        return kcSinceLastDrop.getOrDefault(monsterName.toLowerCase().trim(), 0);
+        return kcSinceLastDrop.getOrDefault(normalize(monsterName), 0);
     }
 
     /**
-     * Gets the KC since last drop for a specific item from a specific monster.
-     * Uses the monster-level counter as a simpler approach.
+     * Gets KC since last drop for a specific item from a monster.
+     * Falls back to monster-level KC if no per-item tracking exists.
      */
     public int getKcSinceLastDrop(String monsterName, String itemName)
     {
-        // We track at monster level. For per-item tracking, use itemKey
-        String itemKey = (monsterName + "_" + itemName).toLowerCase().trim();
+        String itemKey = normalize(monsterName) + "_" + normalize(itemName);
         Integer perItem = kcSinceLastDrop.get(itemKey);
         if (perItem != null)
         {
             return perItem;
         }
-        // Fall back to monster-level KC
-        return kcSinceLastDrop.getOrDefault(monsterName.toLowerCase().trim(), 0);
+        return kcSinceLastDrop.getOrDefault(normalize(monsterName), 0);
     }
 
+    // ==================== COLLECTION LOG ====================
+
     /**
-     * Records that a collection log item was obtained.
-     * Resets the KC-since-last-drop counter for that monster's specific item.
+     * Records an item as obtained from a specific monster.
+     * Resets the per-item KC-since-drop counter.
+     * Called by CollectionLogManager (widget scrape) and chat message detection.
      */
     public void recordCollectionLogItem(String itemName, String monsterName)
     {
-        obtainedItems.add(itemName.toLowerCase().trim());
+        String normalItem = normalize(itemName);
+        boolean isNew = obtainedItems.add(normalItem);
 
         if (monsterName != null && !monsterName.isEmpty())
         {
-            // Reset per-item KC counter
-            String itemKey = (monsterName + "_" + itemName).toLowerCase().trim();
-            kcSinceLastDrop.put(itemKey, 0);
+            // Reset per-item KC counter when item is newly obtained
+            if (isNew)
+            {
+                String itemKey = normalize(monsterName) + "_" + normalItem;
+                kcSinceLastDrop.put(itemKey, 0);
+            }
         }
 
-        savePlayerData();
-        log.debug("Recorded collection log item: {} from {}", itemName, monsterName);
+        dirty = true;
     }
 
     /**
-     * Checks if a collection log item has been obtained.
+     * Called by CollectionLogManager when an item is confirmed NOT obtained
+     * from the widget (opacity > 0). Only removes if the data came from
+     * a widget scrape (authoritative), not from chat.
+     *
+     * This corrects stale data if a player was incorrectly marked as having an item.
      */
+    public void markItemNotObtained(String itemName, String monsterName)
+    {
+        String normalItem = normalize(itemName);
+        // Only remove if we've synced this page before -- this prevents
+        // removing items that were correctly detected via chat from a different page
+        if (syncedPages.contains(normalize(monsterName)))
+        {
+            if (obtainedItems.remove(normalItem))
+            {
+                dirty = true;
+                log.debug("Corrected: {} marked as not obtained (from widget)", itemName);
+            }
+        }
+    }
+
+    /**
+     * Marks a collection log page as synced from the widget.
+     */
+    public void markPageSynced(String pageName)
+    {
+        syncedPages.add(normalize(pageName));
+        dirty = true;
+    }
+
+    /**
+     * Checks if a page has been synced from the collection log widget.
+     */
+    public boolean isPageSynced(String pageName)
+    {
+        return syncedPages.contains(normalize(pageName));
+    }
+
     public boolean hasItem(String itemName)
     {
-        return obtainedItems.contains(itemName.toLowerCase().trim());
+        return obtainedItems.contains(normalize(itemName));
     }
 
-    /**
-     * Gets the set of all obtained item names.
-     */
     public Set<String> getObtainedItems()
     {
         return new HashSet<>(obtainedItems);
@@ -238,22 +249,59 @@ public class PlayerDataManager
     }
 
     /**
-     * Increments the KC for a monster by 1. Used when detecting kills via loot events.
+     * Returns how many collection log pages have been synced from the widget.
      */
-    public void incrementKillCount(String monsterName)
+    public int getSyncedPageCount()
     {
-        String key = monsterName.toLowerCase().trim();
-        int current = killCounts.getOrDefault(key, 0);
-        killCounts.put(key, current + 1);
-
-        int currentSince = kcSinceLastDrop.getOrDefault(key, 0);
-        kcSinceLastDrop.put(key, currentSince + 1);
-
-        savePlayerData();
+        return syncedPages.size();
     }
 
-    public String getCurrentPlayerName()
+    // ==================== HELPERS ====================
+
+    private String normalize(String name)
     {
-        return currentPlayerName;
+        return name == null ? "" : name.toLowerCase().trim();
+    }
+
+    private void loadMap(String key, Map<String, Integer> target)
+    {
+        String json = configManager.getRSProfileConfiguration(CONFIG_GROUP, key);
+        if (json != null && !json.isEmpty())
+        {
+            try
+            {
+                Type type = new TypeToken<Map<String, Integer>>(){}.getType();
+                Map<String, Integer> loaded = gson.fromJson(json, type);
+                if (loaded != null)
+                {
+                    target.putAll(loaded);
+                }
+            }
+            catch (Exception e)
+            {
+                log.warn("Failed to load {}: {}", key, e.getMessage());
+            }
+        }
+    }
+
+    private void loadSet(String key, Set<String> target)
+    {
+        String json = configManager.getRSProfileConfiguration(CONFIG_GROUP, key);
+        if (json != null && !json.isEmpty())
+        {
+            try
+            {
+                Type type = new TypeToken<Set<String>>(){}.getType();
+                Set<String> loaded = gson.fromJson(json, type);
+                if (loaded != null)
+                {
+                    target.addAll(loaded);
+                }
+            }
+            catch (Exception e)
+            {
+                log.warn("Failed to load {}: {}", key, e.getMessage());
+            }
+        }
     }
 }

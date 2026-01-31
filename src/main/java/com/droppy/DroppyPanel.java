@@ -62,6 +62,9 @@ public class DroppyPanel extends PluginPanel
     private CardLayout cardLayout;
     private JPanel cardPanel;
 
+    // Sync status
+    private JLabel syncStatusLabel;
+
     // Current tab components
     private JPanel currentDropsPanel;
     private JLabel currentMonsterTitle;
@@ -138,6 +141,15 @@ public class DroppyPanel extends PluginPanel
         tabBar.add(searchTabBtn, tabGbc);
 
         topPanel.add(tabBar);
+
+        // Sync status bar
+        syncStatusLabel = new JLabel("Open collection log in-game to sync data");
+        syncStatusLabel.setFont(FontManager.getRunescapeSmallFont());
+        syncStatusLabel.setForeground(HIGH_CHANCE_COLOR);
+        syncStatusLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        syncStatusLabel.setBorder(new EmptyBorder(4, 10, 4, 10));
+        topPanel.add(syncStatusLabel);
+
         add(topPanel, BorderLayout.NORTH);
 
         // ===== Card layout for the two tab contents =====
@@ -675,5 +687,43 @@ public class DroppyPanel extends PluginPanel
         });
 
         return row;
+    }
+
+    // ======================= COLLECTION LOG SYNC STATUS =======================
+
+    /**
+     * Called when the collection log interface is opened in-game.
+     */
+    public void onCollectionLogOpened()
+    {
+        SwingUtilities.invokeLater(() ->
+        {
+            syncStatusLabel.setText("Collection log open - browse pages to sync");
+            syncStatusLabel.setForeground(new Color(100, 200, 255));
+        });
+    }
+
+    /**
+     * Called after a collection log page is scraped from the widget.
+     */
+    public void onCollectionLogSynced(int totalSyncedPages)
+    {
+        SwingUtilities.invokeLater(() ->
+        {
+            syncStatusLabel.setText("Synced " + totalSyncedPages + " collection log pages");
+            syncStatusLabel.setForeground(OBTAINED_COLOR);
+
+            // Refresh displayed data since obtained items / KC may have changed
+            if (currentFightMonster != null)
+            {
+                String monster = currentFightMonster;
+                currentFightMonster = null;
+                setCurrentMonster(monster);
+            }
+            if (searchedMonster != null)
+            {
+                loadSearchMonster(searchedMonster);
+            }
+        });
     }
 }

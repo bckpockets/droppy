@@ -13,10 +13,13 @@ import net.runelite.api.NPC;
 import net.runelite.api.events.ChatMessage;
 import net.runelite.api.events.GameStateChanged;
 import net.runelite.api.events.InteractingChanged;
+import net.runelite.api.events.ScriptPostFired;
+import net.runelite.api.events.WidgetLoaded;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.NpcLootReceived;
+import net.runelite.client.events.ProfileChanged;
 import net.runelite.client.game.ItemManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
@@ -31,17 +34,16 @@ import net.runelite.client.ui.NavigationButton;
 )
 public class DroppyPlugin extends Plugin
 {
-    // "Your Zulrah kill count is: 150."
-    private static final Pattern KC_PATTERN = Pattern.compile(
-        "Your (.+?) kill count is: ([\\d,]+)",
-        Pattern.CASE_INSENSITIVE
-    );
+    /**
+     * Script ID fired when a collection log page is drawn/rendered.
+     * This is the primary hook for reading collection log data from the widget.
+     */
+    private static final int COLLECTION_DRAW_LIST_SCRIPT_ID = 2731;
 
-    // "Your Chambers of Xeric count is: 50."
-    private static final Pattern KC_PATTERN_ALT = Pattern.compile(
-        "Your (.+?) count is: ([\\d,]+)",
-        Pattern.CASE_INSENSITIVE
-    );
+    /**
+     * The collection log interface group ID.
+     */
+    private static final int COLLECTION_LOG_GROUP_ID = 621;
 
     // "New item added to your collection log: Tanzanite fang"
     private static final Pattern COLLECTION_LOG_PATTERN = Pattern.compile(
@@ -69,9 +71,10 @@ public class DroppyPlugin extends Plugin
 
     private WikiDropFetcher wikiDropFetcher;
     private PlayerDataManager playerDataManager;
+    private CollectionLogManager collectionLogManager;
+    private KillCountManager killCountManager;
     private DroppyPanel panel;
     private NavigationButton navButton;
-    private String lastKilledMonster;
 
     @Override
     protected void startUp() throws Exception
@@ -80,6 +83,14 @@ public class DroppyPlugin extends Plugin
 
         wikiDropFetcher = new WikiDropFetcher();
         playerDataManager = new PlayerDataManager(configManager);
+        killCountManager = new KillCountManager(playerDataManager);
+        collectionLogManager = new CollectionLogManager(client, itemManager, playerDataManager);
+
+        // Load data if already logged in
+        if (client.getGameState() == GameState.LOGGED_IN)
+        {
+            playerDataManager.loadPlayerData();
+        }
 
         panel = new DroppyPanel(config, wikiDropFetcher, playerDataManager, itemManager);
 
@@ -110,20 +121,14 @@ public class DroppyPlugin extends Plugin
         return configManager.getConfig(DroppyConfig.class);
     }
 
+    // ==================== GAME STATE EVENTS ====================
+
     @Subscribe
     public void onGameStateChanged(GameStateChanged event)
     {
         if (event.getGameState() == GameState.LOGGED_IN)
         {
-            clientThread.invokeLater(() ->
-            {
-                if (client.getLocalPlayer() != null && client.getLocalPlayer().getName() != null)
-                {
-                    String playerName = client.getLocalPlayer().getName();
-                    playerDataManager.loadPlayerData(playerName);
-                    log.debug("Loaded data for player: {}", playerName);
-                }
-            });
+            playerDataManager.loadPlayerData();
         }
         else if (event.getGameState() == GameState.LOGIN_SCREEN)
         {
@@ -132,7 +137,52 @@ public class DroppyPlugin extends Plugin
     }
 
     /**
-     * Detects when the player starts attacking an NPC and updates the Current tab.
+     * Handles RSProfile changes (account switches).
+     */
+    @Subscribe
+    public void onProfileChanged(ProfileChanged event)
+    {
+        playerDataManager.loadPlayerData();
+    }
+
+    // ==================== COLLECTION LOG WIDGET EVENTS ====================
+
+    /**
+     * Fires when the collection log interface (group 621) is loaded.
+     */
+    @Subscribe
+    public void onWidgetLoaded(WidgetLoaded event)
+    {
+        if (event.getGroupId() == COLLECTION_LOG_GROUP_ID)
+        {
+            log.debug("Collection log interface opened");
+            panel.onCollectionLogOpened();
+        }
+    }
+
+    /**
+     * Fires after script 2731 (COLLECTION_DRAW_LIST) executes.
+     * This is the primary mechanism to scrape collection log data.
+     * Fires every time the player navigates to a new page in the collection log.
+     */
+    @Subscribe
+    public void onScriptPostFired(ScriptPostFired event)
+    {
+        if (event.getScriptId() == COLLECTION_DRAW_LIST_SCRIPT_ID)
+        {
+            // Use invokeLater to ensure widget state is fully updated
+            clientThread.invokeLater(() ->
+            {
+                collectionLogManager.onCollectionLogPageRendered();
+                panel.onCollectionLogSynced(playerDataManager.getSyncedPageCount());
+            });
+        }
+    }
+
+    // ==================== COMBAT & LOOT EVENTS ====================
+
+    /**
+     * Detects when the player starts attacking an NPC.
      */
     @Subscribe
     public void onInteractingChanged(InteractingChanged event)
@@ -148,11 +198,31 @@ public class DroppyPlugin extends Plugin
             String npcName = npc.getName();
             if (npcName != null && !npcName.isEmpty())
             {
-                lastKilledMonster = npcName;
+                killCountManager.setLastKcMonster(npcName);
                 panel.setCurrentMonster(npcName);
             }
         }
     }
+
+    /**
+     * Fires when loot is received from an NPC.
+     */
+    @Subscribe
+    public void onNpcLootReceived(NpcLootReceived event)
+    {
+        String npcName = event.getNpc().getName();
+        if (npcName == null)
+        {
+            return;
+        }
+
+        killCountManager.handleLootReceived(npcName);
+        panel.setCurrentMonster(npcName);
+
+        log.debug("Loot received from: {}", npcName);
+    }
+
+    // ==================== CHAT MESSAGE EVENTS ====================
 
     @Subscribe
     public void onChatMessage(ChatMessage event)
@@ -163,59 +233,39 @@ public class DroppyPlugin extends Plugin
             return;
         }
 
-        String message = event.getMessage().replaceAll("<[^>]+>", "").trim();
+        String message = event.getMessage();
 
+        // KC from chat (secondary source -- collection log widget is primary)
         if (config.trackKcFromChat())
         {
-            handleKillCountMessage(message);
+            String monsterName = killCountManager.handleChatMessage(message);
+            if (monsterName != null)
+            {
+                panel.refreshCurrentForMonster(monsterName);
+                if (monsterName.equalsIgnoreCase(panel.getSearchedMonster()))
+                {
+                    panel.refreshSearch();
+                }
+            }
         }
 
+        // Collection log notification from chat (catches new drops in real-time
+        // before the player opens the collection log widget)
         if (config.autoDetectCollectionLog())
         {
-            handleCollectionLogMessage(message);
+            handleCollectionLogChatMessage(message);
         }
     }
 
-    private void handleKillCountMessage(String message)
+    /**
+     * Handles "New item added to your collection log" chat messages.
+     * This provides real-time detection of new drops before the player
+     * opens the collection log. The widget scrape will confirm/correct later.
+     */
+    private void handleCollectionLogChatMessage(String message)
     {
-        Matcher matcher = KC_PATTERN.matcher(message);
-        if (!matcher.find())
-        {
-            matcher = KC_PATTERN_ALT.matcher(message);
-            if (!matcher.find())
-            {
-                return;
-            }
-        }
-
-        String monsterName = matcher.group(1).trim();
-        String kcStr = matcher.group(2).replace(",", "");
-
-        try
-        {
-            int kc = Integer.parseInt(kcStr);
-            lastKilledMonster = monsterName;
-            playerDataManager.setKillCount(monsterName, kc);
-            log.debug("Updated KC for {}: {}", monsterName, kc);
-
-            // Refresh the Current tab if it's showing this monster
-            panel.refreshCurrentForMonster(monsterName);
-
-            // Also refresh Search tab if it's showing this monster
-            if (monsterName.equalsIgnoreCase(panel.getSearchedMonster()))
-            {
-                panel.refreshSearch();
-            }
-        }
-        catch (NumberFormatException e)
-        {
-            log.warn("Failed to parse KC from message: {}", message);
-        }
-    }
-
-    private void handleCollectionLogMessage(String message)
-    {
-        Matcher matcher = COLLECTION_LOG_PATTERN.matcher(message);
+        String cleaned = message.replaceAll("<[^>]+>", "").trim();
+        Matcher matcher = COLLECTION_LOG_PATTERN.matcher(cleaned);
         if (!matcher.find())
         {
             return;
@@ -227,34 +277,21 @@ public class DroppyPlugin extends Plugin
             itemName = itemName.substring(0, itemName.length() - 1).trim();
         }
 
-        log.debug("Collection log item detected: {} (last monster: {})", itemName, lastKilledMonster);
+        String lastMonster = killCountManager.getLastKcMonster();
+        log.debug("Collection log item from chat: {} (monster: {})", itemName, lastMonster);
 
-        playerDataManager.recordCollectionLogItem(itemName, lastKilledMonster);
+        playerDataManager.recordCollectionLogItem(itemName, lastMonster);
+        playerDataManager.savePlayerData();
 
-        // Refresh both tabs
-        panel.refreshCurrentForMonster(lastKilledMonster);
-        if (lastKilledMonster != null && lastKilledMonster.equalsIgnoreCase(panel.getSearchedMonster()))
+        // Refresh panels
+        panel.refreshCurrentForMonster(lastMonster);
+        if (lastMonster != null && lastMonster.equalsIgnoreCase(panel.getSearchedMonster()))
         {
             panel.refreshSearch();
         }
     }
 
-    @Subscribe
-    public void onNpcLootReceived(NpcLootReceived event)
-    {
-        String npcName = event.getNpc().getName();
-        if (npcName == null)
-        {
-            return;
-        }
-
-        lastKilledMonster = npcName;
-
-        // Ensure Current tab is showing this monster
-        panel.setCurrentMonster(npcName);
-
-        log.debug("Loot received from: {}", npcName);
-    }
+    // ==================== HELPERS ====================
 
     private BufferedImage createPluginIcon()
     {
