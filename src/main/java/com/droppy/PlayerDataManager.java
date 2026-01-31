@@ -28,6 +28,7 @@ public class PlayerDataManager
     private static final String CONFIG_GROUP = "droppy";
     private static final String KC_KEY = "killCounts";
     private static final String KC_SINCE_DROP_KEY = "kcSinceDrop";
+    private static final String LAST_DROP_KC_KEY = "lastDropKc";
     private static final String OBTAINED_KEY = "obtainedItems";
     private static final String CLOG_SYNCED_KEY = "clogSyncedPages";
 
@@ -36,7 +37,11 @@ public class PlayerDataManager
 
     // In-memory caches
     private final Map<String, Integer> killCounts = new HashMap<>();
+    // Monster-level: KC since any collection log drop from this monster
     private final Map<String, Integer> kcSinceLastDrop = new HashMap<>();
+    // Per-item: KC at which each item was last obtained (used to calculate
+    // per-item KC-since-drop dynamically as currentKC - lastDropKc)
+    private final Map<String, Integer> lastDropKc = new HashMap<>();
     private final Set<String> obtainedItems = new HashSet<>();
     // Tracks which collection log pages have been synced from the widget
     private final Set<String> syncedPages = new HashSet<>();
@@ -56,11 +61,13 @@ public class PlayerDataManager
     {
         killCounts.clear();
         kcSinceLastDrop.clear();
+        lastDropKc.clear();
         obtainedItems.clear();
         syncedPages.clear();
 
         loadMap(KC_KEY, killCounts);
         loadMap(KC_SINCE_DROP_KEY, kcSinceLastDrop);
+        loadMap(LAST_DROP_KC_KEY, lastDropKc);
         loadSet(OBTAINED_KEY, obtainedItems);
         loadSet(CLOG_SYNCED_KEY, syncedPages);
 
@@ -85,6 +92,7 @@ public class PlayerDataManager
         {
             configManager.setRSProfileConfiguration(CONFIG_GROUP, KC_KEY, gson.toJson(killCounts));
             configManager.setRSProfileConfiguration(CONFIG_GROUP, KC_SINCE_DROP_KEY, gson.toJson(kcSinceLastDrop));
+            configManager.setRSProfileConfiguration(CONFIG_GROUP, LAST_DROP_KC_KEY, gson.toJson(lastDropKc));
             configManager.setRSProfileConfiguration(CONFIG_GROUP, OBTAINED_KEY, gson.toJson(obtainedItems));
             configManager.setRSProfileConfiguration(CONFIG_GROUP, CLOG_SYNCED_KEY, gson.toJson(syncedPages));
             dirty = false;
@@ -153,39 +161,59 @@ public class PlayerDataManager
 
     /**
      * Gets KC since last drop for a specific item from a monster.
-     * Falls back to monster-level KC if no per-item tracking exists.
+     *
+     * If the item has been obtained before, calculates dynamically:
+     *   currentKC - kcAtWhichItemWasLastObtained
+     *
+     * If the item has never been obtained, falls back to total KC
+     * (all kills count toward the probability of getting this item).
      */
     public int getKcSinceLastDrop(String monsterName, String itemName)
     {
-        String itemKey = normalize(monsterName) + "_" + normalize(itemName);
-        Integer perItem = kcSinceLastDrop.get(itemKey);
-        if (perItem != null)
+        String monsterKey = normalize(monsterName);
+        String itemKey = monsterKey + "_" + normalize(itemName);
+
+        Integer dropKc = lastDropKc.get(itemKey);
+        if (dropKc != null)
         {
-            return perItem;
+            int currentKc = killCounts.getOrDefault(monsterKey, 0);
+            return Math.max(0, currentKc - dropKc);
         }
-        return kcSinceLastDrop.getOrDefault(normalize(monsterName), 0);
+
+        // Never obtained this item -- use total KC
+        return killCounts.getOrDefault(monsterKey, 0);
     }
 
     // ==================== COLLECTION LOG ====================
 
     /**
      * Records an item as obtained from a specific monster.
-     * Resets the per-item KC-since-drop counter.
-     * Called by CollectionLogManager (widget scrape) and chat message detection.
+     * Snapshots the current KC for per-item tracking and resets the
+     * monster-level since-drop counter.
+     *
+     * Called by: loot cross-referencing, chat message detection,
+     * and collection log widget scrape.
      */
     public void recordCollectionLogItem(String itemName, String monsterName)
     {
         String normalItem = normalize(itemName);
-        boolean isNew = obtainedItems.add(normalItem);
+        obtainedItems.add(normalItem);
 
         if (monsterName != null && !monsterName.isEmpty())
         {
-            // Reset per-item KC counter when item is newly obtained
-            if (isNew)
-            {
-                String itemKey = normalize(monsterName) + "_" + normalItem;
-                kcSinceLastDrop.put(itemKey, 0);
-            }
+            String monsterKey = normalize(monsterName);
+
+            // Snapshot the current KC for this monster+item.
+            // Per-item KC-since-drop is then calculated dynamically:
+            //   getKcSinceLastDrop(monster, item) = currentKC - lastDropKc
+            // This correctly tracks KC after reset without needing
+            // to increment per-item counters on every kill.
+            String itemKey = monsterKey + "_" + normalItem;
+            int currentKc = killCounts.getOrDefault(monsterKey, 0);
+            lastDropKc.put(itemKey, currentKc);
+
+            // Reset monster-level since-drop counter (any drop from this monster)
+            kcSinceLastDrop.put(monsterKey, 0);
         }
 
         dirty = true;
