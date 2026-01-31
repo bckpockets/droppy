@@ -368,16 +368,14 @@ public class DroppyPlugin extends Plugin
         String displayName = data.getMonsterName();
         int totalKc = killCountManager.getKillCount(displayName);
 
-        int obtained = 0;
-        int total = 0;
+        List<String> obtainedNames = new ArrayList<>();
         List<String> dryParts = new ArrayList<>();
 
         for (DropEntry drop : data.getDrops())
         {
-            total++;
             if (playerDataManager.hasItem(drop.getItemName()))
             {
-                obtained++;
+                obtainedNames.add(drop.getItemName());
             }
             else
             {
@@ -396,6 +394,8 @@ public class DroppyPlugin extends Plugin
 
         ChatMessageBuilder builder = new ChatMessageBuilder();
 
+        int total = obtainedNames.size() + dryParts.size();
+
         builder.append(ChatColorType.HIGHLIGHT)
             .append(displayName)
             .append(ChatColorType.NORMAL)
@@ -403,7 +403,14 @@ public class DroppyPlugin extends Plugin
             .append(ChatColorType.HIGHLIGHT)
             .append(String.format("%,d", totalKc) + " kc")
             .append(ChatColorType.NORMAL)
-            .append(" (" + obtained + "/" + total + " logged)");
+            .append(" (" + obtainedNames.size() + "/" + total + " logged)");
+
+        if (!obtainedNames.isEmpty())
+        {
+            builder.append(" | ")
+                .append(ChatColorType.NORMAL)
+                .append("Got: " + String.join(", ", obtainedNames));
+        }
 
         if (dryParts.isEmpty())
         {
