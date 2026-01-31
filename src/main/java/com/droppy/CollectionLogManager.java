@@ -1,12 +1,9 @@
 package com.droppy;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
-import net.runelite.api.gameval.InterfaceID;
 import net.runelite.api.widgets.Widget;
 import net.runelite.client.game.ItemManager;
 
@@ -171,7 +168,6 @@ public class CollectionLogManager
         }
 
         Set<String> obtainedOnPage = new HashSet<>();
-        Map<Integer, String> itemIdToName = new HashMap<>();
 
         for (Widget itemWidget : itemWidgets)
         {
@@ -182,17 +178,11 @@ public class CollectionLogManager
             }
 
             // Get item name from the game cache
-            String itemName = itemManager.getItemComposition(itemId).getMembersName();
-            if (itemName == null || itemName.isEmpty() || itemName.equals("null"))
-            {
-                itemName = itemManager.getItemComposition(itemId).getName();
-            }
+            String itemName = itemManager.getItemComposition(itemId).getName();
             if (itemName == null || itemName.isEmpty())
             {
                 continue;
             }
-
-            itemIdToName.put(itemId, itemName);
 
             // opacity == 0 means the item IS obtained
             boolean obtained = itemWidget.getOpacity() == 0;
