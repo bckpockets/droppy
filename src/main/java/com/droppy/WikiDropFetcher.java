@@ -341,6 +341,18 @@ public class WikiDropFetcher
         return sb.toString();
     }
 
+    /**
+     * Returns cached drop data for a monster without triggering a fetch.
+     * Used for real-time cross-referencing of loot items against the drop table.
+     * Returns null if data isn't cached or is stale.
+     */
+    public MonsterDropData getCachedData(String monsterName)
+    {
+        String normalizedName = normalizeName(monsterName);
+        MonsterDropData cached = cache.get(normalizedName);
+        return (cached != null && !cached.isStale()) ? cached : null;
+    }
+
     public void clearCache()
     {
         cache.clear();

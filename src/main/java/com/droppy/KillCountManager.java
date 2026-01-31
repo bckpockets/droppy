@@ -1,19 +1,22 @@
 package com.droppy;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.config.ConfigManager;
 
 /**
- * Tracks kill counts from multiple sources:
+ * Tracks kill counts from multiple sources (in priority order):
  *
- * 1. Collection log widget header (primary, authoritative) -- read by CollectionLogManager
- * 2. Chat messages ("Your X kill count is: Y") -- secondary/real-time
- * 3. Chat-commands plugin stored data ("killcount" config group) -- passive bootstrap
- * 4. NPC loot events -- increment-based fallback for monsters without KC messages
+ * 1. Our own stored data (from collection log widget, chat messages, loot events)
+ * 2. Chat-commands plugin config ("killcount" RSProfile group) -- passive
+ * 3. Loot tracker plugin config ("loottracker" RSProfile group) -- "kills with loot" fallback
+ * 4. NPC loot events -- increment-based fallback for untracked monsters
  *
- * All KC data is persisted through PlayerDataManager.
+ * After the initial collection log flip-through establishes baseline KC,
+ * forward tracking happens via loot events and chat messages.
  */
 @Slf4j
 public class KillCountManager
@@ -42,18 +45,12 @@ public class KillCountManager
         Pattern.CASE_INSENSITIVE
     );
 
-    /**
-     * The chat-commands plugin stores KC under this config group.
-     * Key format: bossname (lowercase), value: int KC.
-     * This is read passively to bootstrap KC data without requiring
-     * the player to receive chat messages first.
-     */
     private static final String CHAT_COMMANDS_KC_GROUP = "killcount";
+    private static final String LOOT_TRACKER_GROUP = "loottracker";
 
     private final PlayerDataManager playerDataManager;
     private final ConfigManager configManager;
 
-    // Track the last monster name extracted from a KC message
     private String lastKcMonster;
 
     public KillCountManager(PlayerDataManager playerDataManager, ConfigManager configManager)
@@ -63,12 +60,12 @@ public class KillCountManager
     }
 
     /**
-     * Gets the kill count for a monster, checking multiple sources in priority order:
-     * 1. PlayerDataManager (our own stored data from widget scrape, chat, loot)
-     * 2. Chat-commands plugin config ("killcount" RSProfile group)
+     * Gets the kill count for a monster, checking multiple sources:
+     * 1. PlayerDataManager (our own stored data)
+     * 2. Chat-commands plugin config (true KC from game messages)
+     * 3. Loot tracker plugin config (kills-with-loot, approximate)
      *
-     * If KC is found from chat-commands but not in our data, it's imported
-     * into PlayerDataManager for future use.
+     * If KC is found from an external source, it's imported into our data.
      */
     public int getKillCount(String monsterName)
     {
@@ -79,24 +76,29 @@ public class KillCountManager
             return ourKc;
         }
 
-        // Fall back to chat-commands plugin stored KC
+        // Fall back to chat-commands plugin (true KC)
         int chatCmdKc = readFromChatCommands(monsterName);
         if (chatCmdKc > 0)
         {
-            // Import into our data so we have it cached and can track deltas
             playerDataManager.setKillCount(monsterName, chatCmdKc);
             log.debug("Imported KC from chat-commands for {}: {}", monsterName, chatCmdKc);
             return chatCmdKc;
+        }
+
+        // Fall back to loot tracker (kills-with-loot, not true KC but better than 0)
+        int lootTrackerKc = readFromLootTracker(monsterName);
+        if (lootTrackerKc > 0)
+        {
+            playerDataManager.setKillCount(monsterName, lootTrackerKc);
+            log.debug("Imported KC from loot tracker for {}: {}", monsterName, lootTrackerKc);
+            return lootTrackerKc;
         }
 
         return 0;
     }
 
     /**
-     * Reads KC from the RuneLite chat-commands plugin RSProfile config.
-     * The chat-commands plugin stores KC whenever a player receives a
-     * "Your X kill count is: Y" message or uses the !kc command.
-     * Key is the boss name in lowercase.
+     * Reads KC from the chat-commands plugin RSProfile config.
      */
     private int readFromChatCommands(String monsterName)
     {
@@ -124,18 +126,66 @@ public class KillCountManager
     }
 
     /**
+     * Reads KC from the loot tracker plugin RSProfile config.
+     * The loot tracker stores data as JSON under keys like "drops_NPC_Zulrah"
+     * and "drops_EVENT_Chambers of Xeric". The "kills" field represents
+     * kills where loot was received (not exact KC, but a useful approximation).
+     */
+    private int readFromLootTracker(String monsterName)
+    {
+        // Try NPC kills first, then event-based (raids, etc.)
+        int kc = readLootTrackerEntry("drops_NPC_" + monsterName);
+        if (kc > 0)
+        {
+            return kc;
+        }
+
+        return readLootTrackerEntry("drops_EVENT_" + monsterName);
+    }
+
+    /**
+     * Reads a single loot tracker config entry and extracts the kills count.
+     * The loot tracker stores JSON: {"type":"NPC","name":"Zulrah","kills":150,"drops":[...]}
+     */
+    private int readLootTrackerEntry(String key)
+    {
+        try
+        {
+            String json = configManager.getRSProfileConfiguration(LOOT_TRACKER_GROUP, key);
+            if (json == null || json.isEmpty())
+            {
+                return 0;
+            }
+
+            JsonObject data = JsonParser.parseString(json).getAsJsonObject();
+            if (data.has("kills"))
+            {
+                int kills = data.get("kills").getAsInt();
+                if (kills > 0)
+                {
+                    return kills;
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            log.debug("Could not read loot tracker entry {}: {}", key, e.getMessage());
+        }
+
+        return 0;
+    }
+
+    /**
      * Attempts to parse a KC update from a chat message.
      * Returns the monster name if a KC was parsed, null otherwise.
      */
     public String handleChatMessage(String message)
     {
-        // Strip HTML tags
         message = message.replaceAll("<[^>]+>", "").trim();
 
         String monsterName = null;
         int kc = -1;
 
-        // Try each pattern in order of specificity
         Matcher matcher = KC_PATTERN.matcher(message);
         if (matcher.find())
         {
@@ -185,26 +235,17 @@ public class KillCountManager
     }
 
     /**
-     * Called when loot is received from an NPC.
-     * Only increments KC if we don't already have a chat-based KC
-     * for this monster (to avoid double-counting).
+     * Called when loot is received from any source (NPC kill, raid, event).
+     * Increments KC by 1 for forward tracking.
      */
-    public void handleLootReceived(String npcName)
+    public void handleLootReceived(String sourceName)
     {
-        lastKcMonster = npcName;
-
-        // If we have no KC data at all for this monster, start counting from loot
-        int existingKc = getKillCount(npcName);
-        if (existingKc == 0)
-        {
-            playerDataManager.incrementKillCount(npcName);
-            log.debug("KC from loot (new monster): {} = 1", npcName);
-        }
+        lastKcMonster = sourceName;
+        playerDataManager.incrementKillCount(sourceName);
+        log.debug("KC incremented from loot: {} = {}", sourceName,
+            playerDataManager.getKillCount(sourceName));
     }
 
-    /**
-     * Gets the last monster name that had a KC update.
-     */
     public String getLastKcMonster()
     {
         return lastKcMonster;

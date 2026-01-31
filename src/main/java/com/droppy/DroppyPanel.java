@@ -146,7 +146,7 @@ public class DroppyPanel extends PluginPanel
         topPanel.add(tabBar);
 
         // Sync status bar
-        syncStatusLabel = new JLabel("KC auto-loaded. Open collection log to sync items.");
+        syncStatusLabel = new JLabel("Flip through collection log to sync, then tracking is live");
         syncStatusLabel.setFont(FontManager.getRunescapeSmallFont());
         syncStatusLabel.setForeground(INFO_COLOR);
         syncStatusLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -711,7 +711,7 @@ public class DroppyPanel extends PluginPanel
     {
         SwingUtilities.invokeLater(() ->
         {
-            syncStatusLabel.setText("Synced " + totalSyncedPages + " collection log pages");
+            syncStatusLabel.setText("Synced " + totalSyncedPages + " pages - tracking drops live");
             syncStatusLabel.setForeground(OBTAINED_COLOR);
 
             // Refresh displayed data since obtained items / KC may have changed
