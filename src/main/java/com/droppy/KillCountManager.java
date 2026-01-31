@@ -48,10 +48,24 @@ public class KillCountManager
     private static final String CHAT_COMMANDS_KC_GROUP = "killcount";
     private static final String LOOT_TRACKER_GROUP = "loottracker";
 
+    /**
+     * Window in milliseconds during which a loot event is considered
+     * part of the same kill as a preceding chat KC message.
+     * KC chat messages and loot events for the same kill typically
+     * fire within 1-2 game ticks (~600-1200ms).
+     */
+    private static final long CHAT_KC_DEDUP_WINDOW_MS = 2000;
+
     private final PlayerDataManager playerDataManager;
     private final ConfigManager configManager;
 
     private String lastKcMonster;
+
+    // Dedup state: when a chat KC message authoritatively sets the KC,
+    // we record it here so the subsequent loot event for the SAME kill
+    // doesn't double-increment.
+    private String chatKcMonster;
+    private long chatKcTimestamp;
 
     public KillCountManager(PlayerDataManager playerDataManager, ConfigManager configManager)
     {
@@ -227,7 +241,13 @@ public class KillCountManager
         {
             lastKcMonster = monsterName;
             playerDataManager.setKillCount(monsterName, kc);
-            log.debug("KC from chat: {} = {}", monsterName, kc);
+
+            // Mark that chat just set KC for this monster, so the loot event
+            // for this same kill doesn't increment on top of it
+            chatKcMonster = monsterName;
+            chatKcTimestamp = System.currentTimeMillis();
+
+            log.debug("KC from chat (authoritative): {} = {}", monsterName, kc);
             return monsterName;
         }
 
@@ -236,11 +256,28 @@ public class KillCountManager
 
     /**
      * Called when loot is received from any source (NPC kill, raid, event).
-     * Increments KC by 1 for forward tracking.
+     * Increments KC by 1 for forward tracking, unless a chat KC message
+     * already set the authoritative count for this same kill.
+     *
+     * The dedup works regardless of event ordering:
+     * - Chat first, then loot: flag is set, loot skips increment
+     * - Loot first, then chat: loot increments, chat overwrites with authoritative value
      */
     public void handleLootReceived(String sourceName)
     {
         lastKcMonster = sourceName;
+
+        // If a chat KC message just set the authoritative KC for this same
+        // monster within the dedup window, skip the increment to avoid
+        // counting this kill twice (chat already included it)
+        if (sourceName.equalsIgnoreCase(chatKcMonster)
+            && System.currentTimeMillis() - chatKcTimestamp < CHAT_KC_DEDUP_WINDOW_MS)
+        {
+            chatKcMonster = null;
+            log.debug("KC increment skipped for {} (chat KC already set)", sourceName);
+            return;
+        }
+
         playerDataManager.incrementKillCount(sourceName);
         log.debug("KC incremented from loot: {} = {}", sourceName,
             playerDataManager.getKillCount(sourceName));
