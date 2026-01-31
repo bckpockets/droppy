@@ -368,14 +368,16 @@ public class DroppyPlugin extends Plugin
         String displayName = data.getMonsterName();
         int totalKc = killCountManager.getKillCount(displayName);
 
-        List<String> obtainedNames = new ArrayList<>();
+        int obtained = 0;
+        int total = 0;
         List<String> dryParts = new ArrayList<>();
 
         for (DropEntry drop : data.getDrops())
         {
+            total++;
             if (playerDataManager.hasItem(drop.getItemName()))
             {
-                obtainedNames.add(drop.getItemName());
+                obtained++;
             }
             else
             {
@@ -386,13 +388,11 @@ public class DroppyPlugin extends Plugin
                     ? drop.getRarityDisplay()
                     : DropChanceCalculator.formatDropRate(drop.getDropRate());
 
-                dryParts.add(drop.getItemName() + " (" + rateStr + ") "
-                    + String.format("%,d", kc) + " kc "
+                dryParts.add(drop.getItemName() + " " + rateStr
+                    + " — " + String.format("%,d", kc) + " dry "
                     + DropChanceCalculator.formatPercent(chance));
             }
         }
-
-        int totalItems = obtainedNames.size() + dryParts.size();
 
         ChatMessageBuilder builder = new ChatMessageBuilder();
 
@@ -403,24 +403,20 @@ public class DroppyPlugin extends Plugin
             .append(ChatColorType.HIGHLIGHT)
             .append(String.format("%,d", totalKc) + " kc")
             .append(ChatColorType.NORMAL)
-            .append(" — " + obtainedNames.size() + "/" + totalItems + " obtained");
+            .append(" (" + obtained + "/" + total + " logged)");
 
-        if (!obtainedNames.isEmpty())
+        if (dryParts.isEmpty())
         {
-            builder.append(" | ")
-                .append(ChatColorType.HIGHLIGHT)
-                .append("Got: ")
-                .append(ChatColorType.NORMAL)
-                .append(String.join(", ", obtainedNames));
+            builder.append(" — all items logged, you're done!");
         }
-
-        if (!dryParts.isEmpty())
+        else
         {
-            builder.append(" | ")
-                .append(ChatColorType.HIGHLIGHT)
-                .append("Dry: ")
-                .append(ChatColorType.NORMAL)
-                .append(String.join(" | ", dryParts));
+            for (String part : dryParts)
+            {
+                builder.append(" | ")
+                    .append(ChatColorType.HIGHLIGHT)
+                    .append(part);
+            }
         }
 
         String response = builder.build();
