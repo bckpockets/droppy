@@ -1,60 +1,93 @@
 # Droppy
 
-Drop chance calculator for Old School RuneScape. Shows your probability of getting collection log drops based on your kill count, using real drop rates from the OSRS Wiki.
+Shows you how dry (or lucky) you are on collection log drops. Pulls rates from the OSRS Wiki, tracks your KC, reads your clog, does the math for you.
 
-Built by **bckpockets(SIP YE)**
-
----
-
-## What it does
-
-- Side panel with your current monster's drop table and per-item % chance
-- Pulls drop rates straight from the OSRS Wiki
-- Syncs with your collection log so it knows what you have and what you're dry on
-- Tracks per-item KC (not just overall KC -- knows how many kills since you last got each specific item)
-- `!dry` chat command to flex your dry streaks (or lack thereof) to your friends
-- Search tab to look up any monster's drops without fighting it
+by **bckpockets(SIP YE)**
 
 ---
 
-## Getting set up
+## what it does
 
-You need three things installed before building:
+- side panel shows every drop for whatever you're fighting + your % chance of having gotten each one by now
+- reads your collection log so it knows what you have vs what you're still missing
+- per-item KC tracking -- not just "kills since any drop" but "kills since you last got THIS specific item"
+- works for bosses, raids, minigames, gauntlet, clues, basically anything in the clog
+- `!dry` chat command so you can show your clan how cooked you are (or flex your spoon luck)
+- search tab to look up any monster without needing to go fight it
 
-### Java 11+
+---
 
-You need the JDK (development kit), not just the JRE.
+## getting the prereqs
 
-- **Windows**: Download from https://adoptium.net/temurin/releases/ -- pick the `.msi` installer for Windows x64, JDK 11 or higher. Run the installer, make sure "Set JAVA_HOME" is checked.
-- **Mac**: `brew install openjdk@11` or download from the same Adoptium link above. Pick the `.pkg` for macOS.
+you need java, git, and gradle. if you already have all three skip to the next section
 
-Check it's working:
+### java 11 or higher (JDK not JRE)
+
+**windows:**
+1. go to https://adoptium.net/temurin/releases/
+2. pick Windows, x64, JDK, version 11 or higher
+3. download the `.msi` installer
+4. run it -- when it asks, check the box that says "Set JAVA_HOME variable"
+5. close and reopen your terminal after installing
+
+**mac:**
+```
+brew install openjdk@11
+```
+or grab the `.pkg` from the same adoptium link
+
+**check it worked:**
 ```
 java -version
 ```
-Should say 11 or higher.
+should say `openjdk version "11.x.x"` or higher. if it still shows an old version or says not found, you probably need to close/reopen your terminal or fix your PATH
 
-### Git
+### git
 
-- **Windows**: https://git-scm.com/download/win -- run the installer, defaults are fine
-- **Mac**: `brew install git` or just type `git` in terminal and macOS will prompt you to install dev tools
+**windows:**
+1. go to https://git-scm.com/download/win
+2. download and run the installer
+3. just click through with the defaults, they're all fine
 
-### Gradle
+**mac:**
+```
+brew install git
+```
+or just type `git` in terminal -- macOS will ask if you want to install developer tools, say yes
 
-- **Windows**: Easiest way is `scoop install gradle` if you use scoop. Otherwise download from https://gradle.org/install/ and add it to your PATH.
-- **Mac**: `brew install gradle`
+### gradle
 
-Check it's working:
+**windows:**
+
+easiest way if you have scoop:
+```
+scoop install gradle
+```
+
+otherwise:
+1. go to https://gradle.org/releases/
+2. download the latest binary-only zip
+3. unzip it somewhere like `C:\gradle`
+4. add `C:\gradle\bin` to your system PATH (search "environment variables" in start menu, edit PATH, add it)
+5. close/reopen terminal
+
+**mac:**
+```
+brew install gradle
+```
+
+**check it worked:**
 ```
 gradle --version
 ```
 
 ---
 
-## Building and running
+## building the plugin
 
-### Windows
+### windows
 
+open command prompt or powershell, then:
 ```
 git clone https://github.com/bckpockets/droppy.git
 cd droppy
@@ -62,13 +95,9 @@ gradle wrapper
 gradlew.bat build
 ```
 
-Then run RuneLite with the plugin loaded:
-```
-java -jar "%USERPROFILE%\.runelite\launcher.jar" --developer-mode --sideload-external-plugin="build\libs\droppy-1.0.0.jar"
-```
+### mac
 
-### Mac
-
+open terminal, then:
 ```
 git clone https://github.com/bckpockets/droppy.git
 cd droppy
@@ -76,70 +105,103 @@ gradle wrapper
 ./gradlew build
 ```
 
-Then run RuneLite with the plugin loaded:
+if everything worked you should see `BUILD SUCCESSFUL` and your jar will be at `build/libs/droppy-1.0.0.jar`
+
+---
+
+## loading it into runelite
+
+you need runelite installed normally from https://runelite.net first
+
+### windows
+```
+java -jar "%USERPROFILE%\.runelite\launcher.jar" --developer-mode --sideload-external-plugin="build\libs\droppy-1.0.0.jar"
+```
+
+### mac
 ```
 java -jar ~/.runelite/launcher.jar --developer-mode --sideload-external-plugin=build/libs/droppy-1.0.0.jar
 ```
 
-If the launcher path is wrong, poke around wherever you installed RuneLite. On Mac it might be under `/Applications/RuneLite.app/Contents/Resources/`.
+if it can't find the launcher jar, look in wherever you installed runelite. on mac check `/Applications/RuneLite.app/Contents/Resources/`
+
+runelite will open with the plugin loaded. you should see **Droppy** in the side panel (right edge, little % icon)
 
 ---
 
-## How to use it
+## using the plugin
 
-### First things first -- sync your collection log
+### step 1: sync your collection log
 
-Before Droppy can track what you have and don't have, it needs to read your collection log.
+this is the important part. droppy needs to read your clog to know what you have
 
-1. Log in and open your collection log (the green book icon)
-2. Click through the boss/monster pages you want to track -- Zulrah, Vorkath, whatever you're grinding
-3. The status bar at the top of the Droppy panel will update as pages sync
+1. log in to your account
+2. open your collection log (green book icon)
+3. click through the pages you care about -- zulrah, vorkath, cox, whatever you're grinding
+4. watch the status bar at the top of the droppy panel, it'll say "Synced X pages" as you go
 
-You only have to do this once per monster. After that it saves to your RuneLite profile and picks up new drops automatically.
+you only gotta do this once per source. it saves to your runelite profile. after that, new drops get picked up automatically when you get them
 
-### Then go wild
+### step 2: go kill stuff
 
-**Current tab** -- just start fighting stuff. The panel auto-switches to show whatever you're killing with the full drop table, your KC, and your % chance for each item.
+just play normally. when you attack something or get loot the panel auto-switches to show that monster's drop table with:
+- every drop + its wiki rate (original fractions like 3/128, not collapsed to 1/43)
+- your % chance of having gotten each item by now based on your KC
+- green checkmarks on stuff you already have
+- progress bars that fill up as you go more dry
 
-**Search tab** -- type any monster name and hit enter. Good for checking rates on stuff you're not currently fighting.
+KC tracks automatically from loot drops, same way loot logger works. it also pulls in any existing KC you have from the loot tracker or chat-commands plugins so you don't start from zero
 
-**!dry command** -- type `!dry zulrah` (or any monster) in chat. Everyone in the chat sees something like:
+### step 3: flex on your clan
 
+type `!dry` followed by a monster name in any chat:
 ```
-Zulrah — 1,583 kc — 5/7 obtained | Got: Tanzanite fang, Magic fang, Serpentine visage, Uncut onyx, Magma mutagen | Dry: Jar of swamp (1/3,000) 1,583 kc 41% | Pet snakeling (1/4,000) 800 kc 18%
+!dry zulrah
 ```
 
-### Reading the panel
+everyone sees something like:
+```
+Zulrah — 1,583 kc (5/7 logged) | Got: Tanzanite fang 1/512 at 230 kc 36%, Magic fang 1/512 at 890 kc 82% | Pet snakeling 1/4,000 — 800 dry 18%
+```
 
-Each item row shows:
-- Icon and name (green check if you have it)
-- Drop rate as the original wiki fraction (3/128, not 1/43)
-- How many kills since you last got that item
-- Progress bar and % chance
+obtained items show what KC you got them at and the % you were at (so people can see if you spooned). dry items show how many kills without it and the expected %
 
-**Colors**: blue = normal, yellow = above your threshold, red = 90%+ (you're cooked), green = obtained
+works for bosses, raids, minigames, gauntlet, clues -- anything with a drop table on the wiki
 
-### Settings
+just `!dry` with no monster name uses whatever you killed last
 
-RuneLite settings > Droppy:
-- Show only unobtained items
-- Highlight threshold (default 50%)
+### the search tab
+
+don't feel like fighting something to see the rates? switch to the search tab and type any monster name. autocomplete kicks in after 2 characters
+
+### colors
+
+- **blue** = normal
+- **yellow** = above your highlight threshold (configurable)
+- **red** = 90%+ chance, you're properly dry
+- **green** = you got it
+
+### settings
+
+runelite settings > Droppy:
+- show only unobtained items (hides stuff you already have)
+- highlight threshold % (default 50)
 - KC milestones
-- Auto-switch panel on combat
-- Toggle drop rate display
+- auto-switch panel when you start fighting
+- show/hide drop rates
 
 ---
 
-## Troubleshooting
+## if something isn't working
 
-**"gradlew is not recognized"** -- you need to run `gradle wrapper` first to generate the wrapper scripts
+**build says "gradlew is not recognized"** -- you forgot to run `gradle wrapper` first. that generates the wrapper scripts
 
-**Build fails with Java errors** -- make sure `java -version` says 11+. If you have multiple Java versions, set JAVA_HOME to the right one.
+**build fails** -- run `java -version`. needs to be 11+. if you just installed java, close and reopen your terminal
 
-**Plugin doesn't show up in RuneLite** -- double check the jar path exists. Run `dir build\libs` (Windows) or `ls build/libs` (Mac) to see what the jar is actually called.
+**plugin not in the side panel** -- make sure the jar path in the sideload flag actually points to a file. run `dir build\libs` (windows) or `ls build/libs` (mac) to check
 
-**No KC showing** -- KC tracks automatically from loot drops (like loot logger). It also imports existing KC from the loot tracker and chat-commands plugins if you already have data there. If it's still at 0, do one kill and it'll start counting. Or use the Search tab to look up rates without needing KC.
+**KC stuck at 0** -- KC picks up from loot events automatically. just do a kill. if you have existing KC from loot tracker or chat-commands plugins it'll import that too
 
-**Items not marked as obtained** -- you need to open your collection log to that monster's page at least once so Droppy can read it.
+**items showing as not obtained even though you have them** -- open your collection log to that monster's page. droppy needs to read the clog widget at least once per source to know what you have
 
-**Widget IDs changed after a game update** -- Jagex sometimes changes internal widget IDs on Wednesday updates, which can break collection log reading. If the clog sync stops working after an update, check for a plugin update.
+**clog sync stopped working after a wednesday update** -- jagex sometimes changes widget IDs. check if there's a plugin update
