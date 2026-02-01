@@ -1,5 +1,6 @@
 package com.droppy;
 
+import com.google.gson.Gson;
 import com.google.inject.Provides;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -80,6 +81,9 @@ public class DroppyPlugin extends Plugin
     @Inject
     private ChatCommandManager chatCommandManager;
 
+    @Inject
+    private Gson gson;
+
     private WikiDropFetcher wikiDropFetcher;
     private PlayerDataManager playerDataManager;
     private CollectionLogManager collectionLogManager;
@@ -93,7 +97,7 @@ public class DroppyPlugin extends Plugin
         log.info("Droppy plugin started");
 
         wikiDropFetcher = new WikiDropFetcher(okHttpClient);
-        playerDataManager = new PlayerDataManager(configManager);
+        playerDataManager = new PlayerDataManager(configManager, gson);
         killCountManager = new KillCountManager(playerDataManager, configManager);
         collectionLogManager = new CollectionLogManager(client, itemManager, playerDataManager);
 

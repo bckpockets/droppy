@@ -22,7 +22,7 @@ public class PlayerDataManager
     private static final String CLOG_ITEMS_KEY = "clogItems";
 
     private final ConfigManager configManager;
-    private final Gson gson = new Gson();
+    private final Gson gson;
 
     private final Map<String, Integer> killCounts = new ConcurrentHashMap<>();
     private final Map<String, Integer> kcSinceLastDrop = new ConcurrentHashMap<>();
@@ -38,9 +38,10 @@ public class PlayerDataManager
     private volatile boolean loaded = false;
     private volatile boolean dirty = false;
 
-    public PlayerDataManager(ConfigManager configManager)
+    public PlayerDataManager(ConfigManager configManager, Gson gson)
     {
         this.configManager = configManager;
+        this.gson = gson;
     }
 
     public void loadPlayerData()
