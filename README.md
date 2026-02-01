@@ -17,90 +17,6 @@ by **bckpockets(SIP YE)**
 
 ---
 
-## getting the prereqs
-
-you need java and git. gradle is bundled with the repo so you don't need to install it separately
-
-### java 11 or higher (JDK not JRE)
-
-**windows:**
-1. go to https://adoptium.net/temurin/releases/
-2. pick Windows, x64, JDK, version 11 or higher
-3. download the `.msi` installer
-4. run it -- when it asks, check the box that says "Set JAVA_HOME variable"
-5. close and reopen your terminal after installing
-
-**mac:**
-```
-brew install openjdk@11
-```
-or grab the `.pkg` from the same adoptium link
-
-**check it worked:**
-```
-java -version
-```
-should say `openjdk version "11.x.x"` or higher. if it still shows an old version or says not found, you probably need to close/reopen your terminal or fix your PATH
-
-### git
-
-**windows:**
-1. go to https://git-scm.com/download/win
-2. download and run the installer
-3. just click through with the defaults, they're all fine
-
-**mac:**
-```
-brew install git
-```
-or just type `git` in terminal -- macOS will ask if you want to install developer tools, say yes
-
----
-
-## building the plugin
-
-### windows
-
-open command prompt or powershell, then:
-```
-git clone https://github.com/bckpockets/droppy.git
-cd droppy
-.\gradlew.bat build
-```
-
-### mac
-
-open terminal, then:
-```
-git clone https://github.com/bckpockets/droppy.git
-cd droppy
-./gradlew build
-```
-
-if everything worked you should see `BUILD SUCCESSFUL` and your jar will be at `build/libs/droppy-1.0.0.jar`
-
----
-
-## running it in runelite
-
-the build includes a test launcher that boots a full runelite client with droppy loaded. no need to mess with the jagex launcher or sideload flags
-
-### windows
-```
-.\gradlew.bat runClient
-```
-
-### mac
-```
-./gradlew runClient
-```
-
-this opens a standalone runelite window with the plugin already active. log in with your account and you're good to go. you should see **Droppy** in the side panel (right edge, little % icon)
-
-note: this runs a separate runelite instance from your normal one. your existing runelite settings/plugins won't carry over to this test client, but that's fine for testing
-
----
-
 ## using the plugin
 
 ### step 1: sync your collection log
@@ -165,12 +81,6 @@ runelite settings > Droppy:
 ---
 
 ## if something isn't working
-
-**build says "gradlew is not recognized"** -- make sure you're in the droppy folder. in powershell use `.\gradlew.bat build` (with the `.\` prefix)
-
-**build fails** -- run `java -version`. needs to be 11+. if you just installed java, close and reopen your terminal
-
-**plugin not in the side panel** -- make sure the jar path in the sideload flag actually points to a file. run `dir build\libs` (windows) or `ls build/libs` (mac) to check
 
 **KC stuck at 0** -- KC picks up from loot events automatically. just do a kill. if you have existing KC from loot tracker or chat-commands plugins it'll import that too
 
