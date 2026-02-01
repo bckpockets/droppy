@@ -169,7 +169,7 @@ public class WikiDropFetcher
             }
 
             String body = response.body().string();
-            JsonObject json = JsonParser.parseString(body).getAsJsonObject();
+            JsonObject json = new JsonParser().parse(body).getAsJsonObject();
 
             if (json.has("error"))
             {
@@ -221,7 +221,7 @@ public class WikiDropFetcher
                     return results;
                 }
 
-                JsonArray arr = JsonParser.parseString(response.body().string()).getAsJsonArray();
+                JsonArray arr = new JsonParser().parse(response.body().string()).getAsJsonArray();
                 if (arr.size() >= 2)
                 {
                     JsonArray names = arr.get(1).getAsJsonArray();

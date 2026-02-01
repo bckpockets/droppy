@@ -139,7 +139,7 @@ public class KillCountManager
                 return 0;
             }
 
-            JsonObject data = JsonParser.parseString(json).getAsJsonObject();
+            JsonObject data = new JsonParser().parse(json).getAsJsonObject();
             if (data.has("kills"))
             {
                 int kills = data.get("kills").getAsInt();
