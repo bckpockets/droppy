@@ -81,23 +81,23 @@ if everything worked you should see `BUILD SUCCESSFUL` and your jar will be at `
 
 ---
 
-## loading it into runelite
+## running it in runelite
 
-you need runelite installed normally from https://runelite.net first
+the build includes a test launcher that boots a full runelite client with droppy loaded. no need to mess with the jagex launcher or sideload flags
 
 ### windows
 ```
-java -jar "%USERPROFILE%\.runelite\launcher.jar" --developer-mode --sideload-external-plugin="build\libs\droppy-1.0.0.jar"
+.\gradlew.bat runClient
 ```
 
 ### mac
 ```
-java -jar ~/.runelite/launcher.jar --developer-mode --sideload-external-plugin=build/libs/droppy-1.0.0.jar
+./gradlew runClient
 ```
 
-if it can't find the launcher jar, look in wherever you installed runelite. on mac check `/Applications/RuneLite.app/Contents/Resources/`
+this opens a standalone runelite window with the plugin already active. log in with your account and you're good to go. you should see **Droppy** in the side panel (right edge, little % icon)
 
-runelite will open with the plugin loaded. you should see **Droppy** in the side panel (right edge, little % icon)
+note: this runs a separate runelite instance from your normal one. your existing runelite settings/plugins won't carry over to this test client, but that's fine for testing
 
 ---
 
