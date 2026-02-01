@@ -8,6 +8,6 @@ public class DroppyPluginTest
 	public static void main(String[] args) throws Exception
 	{
 		ExternalPluginManager.loadBuiltin(DroppyPlugin.class);
-		RuneLite.main(args);
+		RuneLite.main(new String[]{"--developer-mode"});
 	}
 }
