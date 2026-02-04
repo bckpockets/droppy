@@ -211,6 +211,21 @@ public class PlayerDataManager
         return syncedPages.contains(normalize(pageName));
     }
 
+    // Fuzzy match for synced pages - handles singular/plural differences
+    public boolean isPageSyncedFuzzy(String pageName)
+    {
+        String norm = normalize(pageName);
+        for (String page : syncedPages)
+        {
+            String pageNorm = normalize(page);
+            if (norm.equals(pageNorm)) return true;
+            if (norm.equals(pageNorm + "s") || pageNorm.equals(norm + "s")) return true;
+            if (norm.equals(pageNorm + "es") || pageNorm.equals(norm + "es")) return true;
+            if (pageNorm.contains(norm) || norm.contains(pageNorm)) return true;
+        }
+        return false;
+    }
+
     // Track an item as being a collection log item (seen on a clog page).
     public void addClogItem(String itemName, int itemId)
     {

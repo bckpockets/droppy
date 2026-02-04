@@ -375,7 +375,7 @@ public class DroppyPlugin extends Plugin
         // Only show collection log items if the page has been synced.
         // If not synced, fall back to rare drops (1/50+) to avoid spamming
         // common junk like bones and coins.
-        boolean pageSynced = playerDataManager.isPageSynced(displayName);
+        boolean pageSynced = playerDataManager.isPageSyncedFuzzy(displayName);
 
         List<String> obtainedParts = new ArrayList<>();
         List<String> dryParts = new ArrayList<>();
