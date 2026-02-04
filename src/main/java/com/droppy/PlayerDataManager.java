@@ -32,8 +32,8 @@ public class PlayerDataManager
     private final Set<String> obtainedItems = ConcurrentHashMap.newKeySet();
     private final Set<String> syncedPages = ConcurrentHashMap.newKeySet();
     // All item names we've seen on collection log pages (obtained or not).
-    // Used to know which items are actually clog items vs regular drops.
-    private final Set<String> clogItems = ConcurrentHashMap.newKeySet();
+    // Maps normalized item name -> item ID for displaying icons.
+    private final Map<String, Integer> clogItems = new ConcurrentHashMap<>();
 
     private volatile boolean loaded = false;
     private volatile boolean dirty = false;
@@ -58,7 +58,7 @@ public class PlayerDataManager
         loadMap(LAST_DROP_KC_KEY, lastDropKc);
         loadSet(OBTAINED_KEY, obtainedItems);
         loadSet(CLOG_SYNCED_KEY, syncedPages);
-        loadSet(CLOG_ITEMS_KEY, clogItems);
+        loadMap(CLOG_ITEMS_KEY, clogItems);
 
         loaded = true;
         dirty = false;
@@ -212,10 +212,12 @@ public class PlayerDataManager
     }
 
     // Track an item as being a collection log item (seen on a clog page).
-    public void addClogItem(String itemName)
+    public void addClogItem(String itemName, int itemId)
     {
-        if (clogItems.add(normalize(itemName)))
+        String key = normalize(itemName);
+        if (!clogItems.containsKey(key))
         {
+            clogItems.put(key, itemId);
             dirty = true;
         }
     }
@@ -223,7 +225,13 @@ public class PlayerDataManager
     // Whether we've seen this item on a collection log page.
     public boolean isClogItem(String itemName)
     {
-        return clogItems.contains(normalize(itemName));
+        return clogItems.containsKey(normalize(itemName));
+    }
+
+    // Get the item ID for a clog item, or -1 if not found.
+    public int getClogItemId(String itemName)
+    {
+        return clogItems.getOrDefault(normalize(itemName), -1);
     }
 
     public boolean hasItem(String itemName)
@@ -244,6 +252,11 @@ public class PlayerDataManager
     public int getSyncedPageCount()
     {
         return syncedPages.size();
+    }
+
+    public Set<String> getSyncedPages()
+    {
+        return new HashSet<>(syncedPages);
     }
 
     // --- Helpers ---

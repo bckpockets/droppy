@@ -139,8 +139,8 @@ public class CollectionLogManager
                 continue;
             }
 
-            // Track every item on this page as a known clog item
-            playerDataManager.addClogItem(itemName);
+            // Track every item on this page as a known clog item with its ID
+            playerDataManager.addClogItem(itemName, itemId);
 
             boolean obtained = itemWidget.getOpacity() == 0;
 
