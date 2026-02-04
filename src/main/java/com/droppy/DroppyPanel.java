@@ -383,12 +383,19 @@ public class DroppyPanel extends PluginPanel
         }
         else if (unsyncedMonsters.isEmpty())
         {
-            JLabel allSyncedLabel = new JLabel("\u2713 All " + syncedPages.size() + " pages synced!", SwingConstants.CENTER);
-            allSyncedLabel.setFont(FontManager.getRunescapeBoldFont());
-            allSyncedLabel.setForeground(OBTAINED_COLOR);
-            allSyncedLabel.setBorder(new EmptyBorder(20, 10, 10, 10));
-            allSyncedLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-            syncListPanel.add(allSyncedLabel);
+            JLabel syncedLabel = new JLabel(syncedPages.size() + " pages synced", SwingConstants.CENTER);
+            syncedLabel.setFont(FontManager.getRunescapeBoldFont());
+            syncedLabel.setForeground(OBTAINED_COLOR);
+            syncedLabel.setBorder(new EmptyBorder(20, 10, 4, 10));
+            syncedLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+            syncListPanel.add(syncedLabel);
+
+            JLabel hintLabel = new JLabel("Kill more monsters to track them here", SwingConstants.CENTER);
+            hintLabel.setFont(FontManager.getRunescapeSmallFont());
+            hintLabel.setForeground(ColorScheme.LIGHT_GRAY_COLOR);
+            hintLabel.setBorder(new EmptyBorder(0, 10, 10, 10));
+            hintLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+            syncListPanel.add(hintLabel);
         }
         else
         {
