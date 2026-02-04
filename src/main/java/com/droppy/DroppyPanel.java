@@ -152,7 +152,7 @@ public class DroppyPanel extends PluginPanel
         titleLabel.setForeground(Color.WHITE);
         titleBar.add(titleLabel, BorderLayout.WEST);
 
-        JLabel subtitleLabel = new JLabel("Drop % Calculator");
+        JLabel subtitleLabel = new JLabel("Are you dry or lucky?");
         subtitleLabel.setFont(FontManager.getRunescapeSmallFont());
         subtitleLabel.setForeground(ColorScheme.LIGHT_GRAY_COLOR);
         titleBar.add(subtitleLabel, BorderLayout.EAST);
@@ -562,40 +562,51 @@ public class DroppyPanel extends PluginPanel
 
     private void performSearch(String query)
     {
-        new Thread(() ->
+        String queryLower = query.toLowerCase();
+        java.util.List<String> results = new java.util.ArrayList<>();
+
+        // Search collection log pages
+        for (String page : ALL_CLOG_PAGES)
         {
-            List<String> results = wikiDropFetcher.searchMonsters(query);
-            SwingUtilities.invokeLater(() ->
+            if (page.toLowerCase().contains(queryLower))
             {
-                searchResultsPanel.removeAll();
-                for (String result : results)
-                {
-                    JButton btn = new JButton(result);
-                    btn.setMaximumSize(new Dimension(Integer.MAX_VALUE, 25));
-                    btn.setAlignmentX(Component.LEFT_ALIGNMENT);
-                    btn.setBackground(ITEM_BG_COLOR);
-                    btn.setForeground(Color.WHITE);
-                    btn.setBorderPainted(false);
-                    btn.setFocusPainted(false);
-                    btn.setHorizontalAlignment(SwingConstants.LEFT);
-                    btn.setFont(FontManager.getRunescapeSmallFont());
-                    btn.addActionListener(e ->
-                    {
-                        searchField.setText(result);
-                        clearSearchResults();
-                        loadSearchMonster(result);
-                    });
-                    btn.addMouseListener(new java.awt.event.MouseAdapter()
-                    {
-                        public void mouseEntered(java.awt.event.MouseEvent evt) { btn.setBackground(ITEM_BG_HOVER); }
-                        public void mouseExited(java.awt.event.MouseEvent evt) { btn.setBackground(ITEM_BG_COLOR); }
-                    });
-                    searchResultsPanel.add(btn);
-                }
-                searchResultsPanel.revalidate();
-                searchResultsPanel.repaint();
+                results.add(page);
+            }
+        }
+
+        // Limit results
+        if (results.size() > 10)
+        {
+            results = results.subList(0, 10);
+        }
+
+        searchResultsPanel.removeAll();
+        for (String result : results)
+        {
+            JButton btn = new JButton(result);
+            btn.setMaximumSize(new Dimension(Integer.MAX_VALUE, 25));
+            btn.setAlignmentX(Component.LEFT_ALIGNMENT);
+            btn.setBackground(ITEM_BG_COLOR);
+            btn.setForeground(Color.WHITE);
+            btn.setBorderPainted(false);
+            btn.setFocusPainted(false);
+            btn.setHorizontalAlignment(SwingConstants.LEFT);
+            btn.setFont(FontManager.getRunescapeSmallFont());
+            btn.addActionListener(e ->
+            {
+                searchField.setText(result);
+                clearSearchResults();
+                loadSearchMonster(result);
             });
-        }).start();
+            btn.addMouseListener(new java.awt.event.MouseAdapter()
+            {
+                public void mouseEntered(java.awt.event.MouseEvent evt) { btn.setBackground(ITEM_BG_HOVER); }
+                public void mouseExited(java.awt.event.MouseEvent evt) { btn.setBackground(ITEM_BG_COLOR); }
+            });
+            searchResultsPanel.add(btn);
+        }
+        searchResultsPanel.revalidate();
+        searchResultsPanel.repaint();
     }
 
     private void clearSearchResults()
@@ -725,7 +736,7 @@ public class DroppyPanel extends PluginPanel
         JPanel row = new JPanel(new BorderLayout(4, 0));
         row.setBackground(ITEM_BG_COLOR);
         row.setBorder(new EmptyBorder(4, 4, 4, 4));
-        row.setMaximumSize(new Dimension(Integer.MAX_VALUE, 52));
+        row.setMaximumSize(new Dimension(Integer.MAX_VALUE, 70));
 
         // Item icon - prefer wiki ID, fallback to clog-scraped ID
         JLabel iconLabel = new JLabel();
@@ -804,34 +815,27 @@ public class DroppyPanel extends PluginPanel
         infoLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         centerPanel.add(infoLabel);
 
-        JPanel barPanel = new JPanel(new BorderLayout(2, 0));
-        barPanel.setOpaque(false);
-        barPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        barPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 10));
-
+        // Progress bar - full width
         JProgressBar bar = new JProgressBar(0, 10000);
         bar.setValue((int) (chance * 10000));
         bar.setStringPainted(false);
-        bar.setPreferredSize(new Dimension(0, 6));
+        bar.setPreferredSize(new Dimension(0, 8));
+        bar.setMaximumSize(new Dimension(Integer.MAX_VALUE, 8));
         bar.setBackground(new Color(30, 30, 30));
         bar.setForeground(chanceColor);
-        barPanel.add(bar, BorderLayout.CENTER);
+        bar.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        centerPanel.add(Box.createVerticalStrut(1));
-        centerPanel.add(barPanel);
+        centerPanel.add(Box.createVerticalStrut(2));
+        centerPanel.add(bar);
 
-        row.add(centerPanel, BorderLayout.CENTER);
-
-        // Percentage
+        // Percentage below the bar
         JLabel pctLabel = new JLabel(chanceStr);
         pctLabel.setFont(FontManager.getRunescapeSmallFont().deriveFont(Font.BOLD));
         pctLabel.setForeground(chanceColor);
-        pctLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-        pctLabel.setVerticalAlignment(SwingConstants.CENTER);
-        Dimension pctSize = new Dimension(48, 32);
-        pctLabel.setPreferredSize(pctSize);
-        pctLabel.setMinimumSize(pctSize);
-        row.add(pctLabel, BorderLayout.EAST);
+        pctLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        centerPanel.add(pctLabel);
+
+        row.add(centerPanel, BorderLayout.CENTER);
 
         row.addMouseListener(new java.awt.event.MouseAdapter()
         {

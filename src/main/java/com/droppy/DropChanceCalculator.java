@@ -31,17 +31,17 @@ public class DropChanceCalculator
 
         double percent = probability * 100.0;
 
-        if (percent < 0.1)
+        if (percent < 0.01)
         {
-            return "<0.1%";
+            return "<0.01%";
         }
 
-        // Use 1 decimal for >= 10%, 2 decimals for smaller
+        // Full precision
         if (percent >= 10.0)
         {
-            return String.format("%.1f%%", percent);
+            return String.format("%.2f%%", percent);
         }
-        return String.format("%.2f%%", percent);
+        return String.format("%.4f%%", percent);
     }
 
     // n = log(1 - P) / log(1 - r)
