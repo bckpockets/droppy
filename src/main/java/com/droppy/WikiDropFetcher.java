@@ -369,7 +369,8 @@ public class WikiDropFetcher
         return -1;
     }
 
-    // Keeps original wiki fractions like "3/128" instead of collapsing to "1/43".
+    // Format drop rate for display. For complex wiki fractions (like 499/250000),
+    // simplify to 1/X format if numerator is high.
     private String formatRarityDisplay(String rarity, double dropRate)
     {
         if (rarity == null || rarity.isEmpty())
@@ -396,7 +397,18 @@ public class WikiDropFetcher
                 double den = Double.parseDouble(denStr);
                 if (num == Math.floor(num) && den == Math.floor(den))
                 {
-                    return String.format("%,d", (long) num) + "/" + String.format("%,d", (long) den);
+                    long n = (long) num;
+                    long d = (long) den;
+
+                    // If numerator is small (1-10), keep original format
+                    if (n <= 10)
+                    {
+                        return String.format("%,d", n) + "/" + String.format("%,d", d);
+                    }
+
+                    // For large numerators (complex wiki calculations), simplify to 1/X
+                    long simpleDenom = Math.round(1.0 / dropRate);
+                    return "1/" + String.format("%,d", simpleDenom);
                 }
             }
             catch (NumberFormatException ignored)
