@@ -22,20 +22,25 @@ public class DropChanceCalculator
     {
         if (probability <= 0)
         {
-            return "0.00%";
+            return "0%";
         }
         if (probability >= 1.0)
         {
-            return "99.99%";
+            return "100%";
         }
 
         double percent = probability * 100.0;
 
-        if (percent < 0.01)
+        if (percent < 0.1)
         {
-            return "<0.01%";
+            return "<0.1%";
         }
 
+        // Use 1 decimal for >= 10%, 2 decimals for smaller
+        if (percent >= 10.0)
+        {
+            return String.format("%.1f%%", percent);
+        }
         return String.format("%.2f%%", percent);
     }
 
