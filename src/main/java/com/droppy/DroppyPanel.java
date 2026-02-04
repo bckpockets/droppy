@@ -525,8 +525,6 @@ public class DroppyPanel extends PluginPanel
         currentDropsPanel.revalidate();
         currentDropsPanel.repaint();
 
-        switchTab(CURRENT_TAB);
-
         new Thread(() ->
         {
             MonsterDropData data = wikiDropFetcher.fetchMonsterDrops(monsterName);
