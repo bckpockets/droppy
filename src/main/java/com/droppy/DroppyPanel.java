@@ -50,6 +50,7 @@ public class DroppyPanel extends PluginPanel
 
     private static final String CURRENT_TAB = "CURRENT";
     private static final String SEARCH_TAB = "SEARCH";
+    private static final String SYNC_TAB = "SYNC";
 
     private final DroppyConfig config;
     private final WikiDropFetcher wikiDropFetcher;
@@ -59,10 +60,14 @@ public class DroppyPanel extends PluginPanel
 
     private JButton currentTabBtn;
     private JButton searchTabBtn;
+    private JButton syncTabBtn;
     private CardLayout cardLayout;
     private JPanel cardPanel;
 
     private JLabel syncStatusLabel;
+
+    // Sync tab
+    private JPanel syncListPanel;
 
     // Current tab
     private JPanel currentDropsPanel;
@@ -126,7 +131,7 @@ public class DroppyPanel extends PluginPanel
 
         GridBagConstraints tabGbc = new GridBagConstraints();
         tabGbc.fill = GridBagConstraints.HORIZONTAL;
-        tabGbc.weightx = 0.5;
+        tabGbc.weightx = 0.33;
         tabGbc.gridy = 0;
         tabGbc.insets = new Insets(0, 0, 0, 0);
 
@@ -139,6 +144,14 @@ public class DroppyPanel extends PluginPanel
         searchTabBtn.addActionListener(e -> switchTab(SEARCH_TAB));
         tabGbc.gridx = 1;
         tabBar.add(searchTabBtn, tabGbc);
+
+        syncTabBtn = createTabButton("Sync", false);
+        syncTabBtn.addActionListener(e -> {
+            refreshSyncTab();
+            switchTab(SYNC_TAB);
+        });
+        tabGbc.gridx = 2;
+        tabBar.add(syncTabBtn, tabGbc);
 
         topPanel.add(tabBar);
 
@@ -157,6 +170,7 @@ public class DroppyPanel extends PluginPanel
 
         cardPanel.add(buildCurrentTab(), CURRENT_TAB);
         cardPanel.add(buildSearchTab(), SEARCH_TAB);
+        cardPanel.add(buildSyncTab(), SYNC_TAB);
 
         add(cardPanel, BorderLayout.CENTER);
 
@@ -301,12 +315,154 @@ public class DroppyPanel extends PluginPanel
         return panel;
     }
 
+    private JPanel buildSyncTab()
+    {
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.setBackground(BACKGROUND_COLOR);
+
+        JPanel headerPanel = new JPanel();
+        headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.Y_AXIS));
+        headerPanel.setBackground(HEADER_COLOR);
+        headerPanel.setBorder(new EmptyBorder(8, 10, 8, 10));
+
+        JLabel titleLabel = new JLabel("Collection Log Sync Status");
+        titleLabel.setFont(FontManager.getRunescapeBoldFont().deriveFont(14f));
+        titleLabel.setForeground(Color.WHITE);
+        titleLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        headerPanel.add(titleLabel);
+
+        JLabel helpLabel = new JLabel("Open clog pages in-game to sync them");
+        helpLabel.setFont(FontManager.getRunescapeSmallFont());
+        helpLabel.setForeground(ColorScheme.LIGHT_GRAY_COLOR);
+        helpLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        headerPanel.add(helpLabel);
+
+        panel.add(headerPanel, BorderLayout.NORTH);
+
+        syncListPanel = new JPanel();
+        syncListPanel.setLayout(new BoxLayout(syncListPanel, BoxLayout.Y_AXIS));
+        syncListPanel.setBackground(BACKGROUND_COLOR);
+
+        JScrollPane scrollPane = new JScrollPane(syncListPanel);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setBorder(null);
+        scrollPane.getViewport().setBackground(BACKGROUND_COLOR);
+        panel.add(scrollPane, BorderLayout.CENTER);
+
+        return panel;
+    }
+
+    private void refreshSyncTab()
+    {
+        syncListPanel.removeAll();
+
+        java.util.Set<String> syncedPages = playerDataManager.getSyncedPages();
+        java.util.Set<String> trackedMonsters = playerDataManager.getTrackedMonsters();
+
+        // Section: Needs Sync (tracked but not synced)
+        java.util.List<String> needsSync = new java.util.ArrayList<>();
+        for (String monster : trackedMonsters)
+        {
+            boolean found = false;
+            for (String page : syncedPages)
+            {
+                if (page.equalsIgnoreCase(monster))
+                {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found)
+            {
+                needsSync.add(monster);
+            }
+        }
+
+        if (!needsSync.isEmpty())
+        {
+            JLabel needsSyncLabel = new JLabel("  Needs Sync (" + needsSync.size() + ")");
+            needsSyncLabel.setFont(FontManager.getRunescapeSmallFont().deriveFont(Font.BOLD));
+            needsSyncLabel.setForeground(HIGH_CHANCE_COLOR);
+            needsSyncLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+            needsSyncLabel.setBorder(new EmptyBorder(6, 4, 4, 4));
+            syncListPanel.add(needsSyncLabel);
+
+            java.util.Collections.sort(needsSync, String.CASE_INSENSITIVE_ORDER);
+            for (String monster : needsSync)
+            {
+                JPanel row = createSyncRow(monster, false);
+                syncListPanel.add(row);
+            }
+        }
+
+        // Section: Synced pages
+        if (!syncedPages.isEmpty())
+        {
+            JLabel syncedLabel = new JLabel("  Synced (" + syncedPages.size() + ")");
+            syncedLabel.setFont(FontManager.getRunescapeSmallFont().deriveFont(Font.BOLD));
+            syncedLabel.setForeground(OBTAINED_COLOR);
+            syncedLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+            syncedLabel.setBorder(new EmptyBorder(10, 4, 4, 4));
+            syncListPanel.add(syncedLabel);
+
+            java.util.List<String> sortedPages = new java.util.ArrayList<>(syncedPages);
+            java.util.Collections.sort(sortedPages, String.CASE_INSENSITIVE_ORDER);
+            for (String page : sortedPages)
+            {
+                JPanel row = createSyncRow(page, true);
+                syncListPanel.add(row);
+            }
+        }
+
+        if (needsSync.isEmpty() && syncedPages.isEmpty())
+        {
+            JLabel emptyLabel = new JLabel("No data yet - kill monsters and open your clog", SwingConstants.CENTER);
+            emptyLabel.setFont(FontManager.getRunescapeSmallFont());
+            emptyLabel.setForeground(ColorScheme.LIGHT_GRAY_COLOR);
+            emptyLabel.setBorder(new EmptyBorder(20, 10, 10, 10));
+            emptyLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+            syncListPanel.add(emptyLabel);
+        }
+
+        syncListPanel.revalidate();
+        syncListPanel.repaint();
+    }
+
+    private JPanel createSyncRow(String name, boolean synced)
+    {
+        JPanel row = new JPanel(new BorderLayout(6, 0));
+        row.setBackground(ITEM_BG_COLOR);
+        row.setBorder(new EmptyBorder(4, 8, 4, 8));
+        row.setMaximumSize(new Dimension(Integer.MAX_VALUE, 28));
+
+        String icon = synced ? "\u2713 " : "\u26A0 ";
+        JLabel label = new JLabel(icon + name);
+        label.setFont(FontManager.getRunescapeSmallFont());
+        label.setForeground(synced ? OBTAINED_COLOR : HIGH_CHANCE_COLOR);
+        row.add(label, BorderLayout.WEST);
+
+        if (!synced)
+        {
+            int kc = playerDataManager.getKillCount(name);
+            if (kc > 0)
+            {
+                JLabel kcLabel = new JLabel(String.format("%,d kc", kc));
+                kcLabel.setFont(FontManager.getRunescapeSmallFont());
+                kcLabel.setForeground(ColorScheme.LIGHT_GRAY_COLOR);
+                row.add(kcLabel, BorderLayout.EAST);
+            }
+        }
+
+        return row;
+    }
+
     private void switchTab(String tab)
     {
         cardLayout.show(cardPanel, tab);
-        boolean isCurrent = CURRENT_TAB.equals(tab);
-        styleTabButton(currentTabBtn, isCurrent);
-        styleTabButton(searchTabBtn, !isCurrent);
+        styleTabButton(currentTabBtn, CURRENT_TAB.equals(tab));
+        styleTabButton(searchTabBtn, SEARCH_TAB.equals(tab));
+        styleTabButton(syncTabBtn, SYNC_TAB.equals(tab));
     }
 
     private JButton createTabButton(String text, boolean active)
@@ -688,6 +844,9 @@ public class DroppyPanel extends PluginPanel
             {
                 loadSearchMonster(searchedMonster);
             }
+
+            // Refresh sync tab if visible
+            refreshSyncTab();
         });
     }
 }
