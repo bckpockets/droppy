@@ -562,40 +562,51 @@ public class DroppyPanel extends PluginPanel
 
     private void performSearch(String query)
     {
-        new Thread(() ->
+        String queryLower = query.toLowerCase();
+        java.util.List<String> results = new java.util.ArrayList<>();
+
+        // Search collection log pages
+        for (String page : ALL_CLOG_PAGES)
         {
-            List<String> results = wikiDropFetcher.searchMonsters(query);
-            SwingUtilities.invokeLater(() ->
+            if (page.toLowerCase().contains(queryLower))
             {
-                searchResultsPanel.removeAll();
-                for (String result : results)
-                {
-                    JButton btn = new JButton(result);
-                    btn.setMaximumSize(new Dimension(Integer.MAX_VALUE, 25));
-                    btn.setAlignmentX(Component.LEFT_ALIGNMENT);
-                    btn.setBackground(ITEM_BG_COLOR);
-                    btn.setForeground(Color.WHITE);
-                    btn.setBorderPainted(false);
-                    btn.setFocusPainted(false);
-                    btn.setHorizontalAlignment(SwingConstants.LEFT);
-                    btn.setFont(FontManager.getRunescapeSmallFont());
-                    btn.addActionListener(e ->
-                    {
-                        searchField.setText(result);
-                        clearSearchResults();
-                        loadSearchMonster(result);
-                    });
-                    btn.addMouseListener(new java.awt.event.MouseAdapter()
-                    {
-                        public void mouseEntered(java.awt.event.MouseEvent evt) { btn.setBackground(ITEM_BG_HOVER); }
-                        public void mouseExited(java.awt.event.MouseEvent evt) { btn.setBackground(ITEM_BG_COLOR); }
-                    });
-                    searchResultsPanel.add(btn);
-                }
-                searchResultsPanel.revalidate();
-                searchResultsPanel.repaint();
+                results.add(page);
+            }
+        }
+
+        // Limit results
+        if (results.size() > 10)
+        {
+            results = results.subList(0, 10);
+        }
+
+        searchResultsPanel.removeAll();
+        for (String result : results)
+        {
+            JButton btn = new JButton(result);
+            btn.setMaximumSize(new Dimension(Integer.MAX_VALUE, 25));
+            btn.setAlignmentX(Component.LEFT_ALIGNMENT);
+            btn.setBackground(ITEM_BG_COLOR);
+            btn.setForeground(Color.WHITE);
+            btn.setBorderPainted(false);
+            btn.setFocusPainted(false);
+            btn.setHorizontalAlignment(SwingConstants.LEFT);
+            btn.setFont(FontManager.getRunescapeSmallFont());
+            btn.addActionListener(e ->
+            {
+                searchField.setText(result);
+                clearSearchResults();
+                loadSearchMonster(result);
             });
-        }).start();
+            btn.addMouseListener(new java.awt.event.MouseAdapter()
+            {
+                public void mouseEntered(java.awt.event.MouseEvent evt) { btn.setBackground(ITEM_BG_HOVER); }
+                public void mouseExited(java.awt.event.MouseEvent evt) { btn.setBackground(ITEM_BG_COLOR); }
+            });
+            searchResultsPanel.add(btn);
+        }
+        searchResultsPanel.revalidate();
+        searchResultsPanel.repaint();
     }
 
     private void clearSearchResults()
