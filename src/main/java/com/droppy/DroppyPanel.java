@@ -36,17 +36,18 @@ import net.runelite.client.util.AsyncBufferedImage;
 @Slf4j
 public class DroppyPanel extends PluginPanel
 {
+    // Use RuneLite's standard color scheme
     private static final Color BACKGROUND_COLOR = ColorScheme.DARK_GRAY_COLOR;
-    private static final Color HEADER_COLOR = new Color(30, 30, 30);
-    private static final Color ITEM_BG_COLOR = new Color(45, 45, 45);
-    private static final Color ITEM_BG_HOVER = new Color(55, 55, 55);
-    private static final Color OBTAINED_COLOR = new Color(0, 180, 0);
-    private static final Color HIGH_CHANCE_COLOR = new Color(255, 200, 0);
-    private static final Color LOW_CHANCE_COLOR = new Color(180, 180, 180);
-    private static final Color VERY_HIGH_CHANCE_COLOR = new Color(255, 80, 80);
-    private static final Color TAB_ACTIVE_COLOR = new Color(70, 130, 230);
-    private static final Color TAB_INACTIVE_COLOR = new Color(60, 60, 60);
-    private static final Color INFO_COLOR = new Color(100, 200, 255);
+    private static final Color HEADER_COLOR = ColorScheme.DARKER_GRAY_COLOR;
+    private static final Color ITEM_BG_COLOR = ColorScheme.DARKER_GRAY_COLOR;
+    private static final Color ITEM_BG_HOVER = ColorScheme.DARK_GRAY_HOVER_COLOR;
+    private static final Color OBTAINED_COLOR = ColorScheme.PROGRESS_COMPLETE_COLOR;
+    private static final Color HIGH_CHANCE_COLOR = ColorScheme.PROGRESS_INPROGRESS_COLOR;
+    private static final Color LOW_CHANCE_COLOR = ColorScheme.LIGHT_GRAY_COLOR;
+    private static final Color VERY_HIGH_CHANCE_COLOR = ColorScheme.PROGRESS_ERROR_COLOR;
+    private static final Color TAB_ACTIVE_COLOR = ColorScheme.BRAND_ORANGE;
+    private static final Color TAB_INACTIVE_COLOR = ColorScheme.DARKER_GRAY_COLOR;
+    private static final Color INFO_COLOR = ColorScheme.LIGHT_GRAY_COLOR;
 
     private static final String CURRENT_TAB = "CURRENT";
     private static final String SEARCH_TAB = "SEARCH";
@@ -360,62 +361,25 @@ public class DroppyPanel extends PluginPanel
         java.util.Set<String> syncedPages = playerDataManager.getSyncedPages();
         java.util.Set<String> trackedMonsters = playerDataManager.getTrackedMonsters();
 
-        // Section: Needs Sync (tracked but not synced)
-        java.util.List<String> needsSync = new java.util.ArrayList<>();
+        // Build combined list: all synced pages + unsynced tracked monsters
+        java.util.Map<String, Boolean> allEntries = new java.util.TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+
+        // Add all synced pages as synced
+        for (String page : syncedPages)
+        {
+            allEntries.put(page, true);
+        }
+
+        // Add tracked monsters, checking if they match any synced page
         for (String monster : trackedMonsters)
         {
-            boolean found = false;
-            for (String page : syncedPages)
+            if (!isSynced(monster, syncedPages))
             {
-                if (page.equalsIgnoreCase(monster))
-                {
-                    found = true;
-                    break;
-                }
-            }
-            if (!found)
-            {
-                needsSync.add(monster);
+                allEntries.put(monster, false);
             }
         }
 
-        if (!needsSync.isEmpty())
-        {
-            JLabel needsSyncLabel = new JLabel("  Needs Sync (" + needsSync.size() + ")");
-            needsSyncLabel.setFont(FontManager.getRunescapeSmallFont().deriveFont(Font.BOLD));
-            needsSyncLabel.setForeground(HIGH_CHANCE_COLOR);
-            needsSyncLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
-            needsSyncLabel.setBorder(new EmptyBorder(6, 4, 4, 4));
-            syncListPanel.add(needsSyncLabel);
-
-            java.util.Collections.sort(needsSync, String.CASE_INSENSITIVE_ORDER);
-            for (String monster : needsSync)
-            {
-                JPanel row = createSyncRow(monster, false);
-                syncListPanel.add(row);
-            }
-        }
-
-        // Section: Synced pages
-        if (!syncedPages.isEmpty())
-        {
-            JLabel syncedLabel = new JLabel("  Synced (" + syncedPages.size() + ")");
-            syncedLabel.setFont(FontManager.getRunescapeSmallFont().deriveFont(Font.BOLD));
-            syncedLabel.setForeground(OBTAINED_COLOR);
-            syncedLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
-            syncedLabel.setBorder(new EmptyBorder(10, 4, 4, 4));
-            syncListPanel.add(syncedLabel);
-
-            java.util.List<String> sortedPages = new java.util.ArrayList<>(syncedPages);
-            java.util.Collections.sort(sortedPages, String.CASE_INSENSITIVE_ORDER);
-            for (String page : sortedPages)
-            {
-                JPanel row = createSyncRow(page, true);
-                syncListPanel.add(row);
-            }
-        }
-
-        if (needsSync.isEmpty() && syncedPages.isEmpty())
+        if (allEntries.isEmpty())
         {
             JLabel emptyLabel = new JLabel("No data yet - kill monsters and open your clog", SwingConstants.CENTER);
             emptyLabel.setFont(FontManager.getRunescapeSmallFont());
@@ -424,9 +388,36 @@ public class DroppyPanel extends PluginPanel
             emptyLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
             syncListPanel.add(emptyLabel);
         }
+        else
+        {
+            // Show all entries in one list, sorted alphabetically
+            for (java.util.Map.Entry<String, Boolean> entry : allEntries.entrySet())
+            {
+                JPanel row = createSyncRow(entry.getKey(), entry.getValue());
+                syncListPanel.add(row);
+            }
+        }
 
         syncListPanel.revalidate();
         syncListPanel.repaint();
+    }
+
+    // Fuzzy match: handles singular/plural, case differences
+    private boolean isSynced(String monster, java.util.Set<String> syncedPages)
+    {
+        String norm = monster.toLowerCase().trim();
+        for (String page : syncedPages)
+        {
+            String pageNorm = page.toLowerCase().trim();
+            // Exact match
+            if (norm.equals(pageNorm)) return true;
+            // Singular/plural: "tormented demon" vs "tormented demons"
+            if (norm.equals(pageNorm + "s") || pageNorm.equals(norm + "s")) return true;
+            if (norm.equals(pageNorm + "es") || pageNorm.equals(norm + "es")) return true;
+            // Contains match for partial names
+            if (pageNorm.contains(norm) || norm.contains(pageNorm)) return true;
+        }
+        return false;
     }
 
     private JPanel createSyncRow(String name, boolean synced)
@@ -700,7 +691,7 @@ public class DroppyPanel extends PluginPanel
         }
         else
         {
-            chanceColor = new Color(70, 130, 230);
+            chanceColor = ColorScheme.LIGHT_GRAY_COLOR;
         }
 
         JPanel row = new JPanel(new BorderLayout(6, 0));
