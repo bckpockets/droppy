@@ -474,17 +474,46 @@ public class DroppyPlugin extends Plugin
 
     private BufferedImage createPluginIcon()
     {
+        // Pixelated sand pile icon (because dry)
         BufferedImage icon = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
-        java.awt.Graphics2D g = icon.createGraphics();
 
-        g.setColor(new java.awt.Color(70, 130, 230));
-        g.fillRoundRect(0, 0, 16, 16, 4, 4);
+        // Sand colors (ARGB)
+        int L = 0xFFEDC9AF;  // light tan
+        int M = 0xFFD2B48C;  // medium tan
+        int D = 0xFFB4966E;  // dark tan
+        int H = 0xFFF5E6D3;  // highlight
 
-        g.setColor(java.awt.Color.WHITE);
-        g.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 11));
-        g.drawString("%", 2, 13);
+        // Pixel art sand pile
+        int[][] px = {
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,H,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,H,L,L,0,0,0,0,0,0,0},
+            {0,0,0,0,0,H,L,L,M,L,0,0,0,0,0,0},
+            {0,0,0,0,H,L,M,L,L,M,L,0,0,0,0,0},
+            {0,0,0,H,L,L,L,M,M,L,L,L,0,0,0,0},
+            {0,0,H,L,M,L,M,L,L,M,L,M,L,0,0,0},
+            {0,H,L,L,L,M,L,M,M,L,M,L,L,L,0,0},
+            {0,L,M,L,M,L,L,L,L,L,L,M,L,M,L,0},
+            {L,L,L,M,L,M,M,L,M,M,M,L,M,L,L,L},
+            {M,L,M,L,L,L,L,M,L,L,L,L,L,M,L,M},
+            {L,M,L,M,M,L,M,L,M,L,M,M,L,L,M,L},
+            {D,L,M,L,L,M,L,M,L,M,L,L,M,L,L,D},
+            {D,D,M,M,L,L,M,L,L,L,M,L,L,M,D,D},
+            {D,D,D,M,M,M,L,M,M,M,L,M,M,D,D,D},
+        };
 
-        g.dispose();
+        for (int y = 0; y < 16; y++)
+        {
+            for (int x = 0; x < 16; x++)
+            {
+                if (px[y][x] != 0)
+                {
+                    icon.setRGB(x, y, px[y][x]);
+                }
+            }
+        }
+
         return icon;
     }
 }
