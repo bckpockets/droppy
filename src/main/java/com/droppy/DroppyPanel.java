@@ -100,8 +100,6 @@ public class DroppyPanel extends PluginPanel
     private CardLayout cardLayout;
     private JPanel cardPanel;
 
-    private JLabel syncStatusLabel;
-
     // Sync tab
     private JPanel syncListPanel;
 
@@ -190,13 +188,6 @@ public class DroppyPanel extends PluginPanel
         tabBar.add(syncTabBtn, tabGbc);
 
         topPanel.add(tabBar);
-
-        syncStatusLabel = new JLabel("Flip through collection log to sync, then tracking is live");
-        syncStatusLabel.setFont(FontManager.getRunescapeSmallFont());
-        syncStatusLabel.setForeground(INFO_COLOR);
-        syncStatusLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        syncStatusLabel.setBorder(new EmptyBorder(4, 10, 4, 10));
-        topPanel.add(syncStatusLabel);
 
         add(topPanel, BorderLayout.NORTH);
 
@@ -816,28 +807,28 @@ public class DroppyPanel extends PluginPanel
         JPanel barPanel = new JPanel(new BorderLayout(2, 0));
         barPanel.setOpaque(false);
         barPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        barPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 12));
+        barPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 10));
 
         JProgressBar bar = new JProgressBar(0, 10000);
         bar.setValue((int) (chance * 10000));
         bar.setStringPainted(false);
-        bar.setPreferredSize(new Dimension(0, 8));
+        bar.setPreferredSize(new Dimension(0, 6));
         bar.setBackground(new Color(30, 30, 30));
         bar.setForeground(chanceColor);
         barPanel.add(bar, BorderLayout.CENTER);
 
-        centerPanel.add(Box.createVerticalStrut(2));
+        centerPanel.add(Box.createVerticalStrut(1));
         centerPanel.add(barPanel);
 
         row.add(centerPanel, BorderLayout.CENTER);
 
         // Percentage
         JLabel pctLabel = new JLabel(chanceStr);
-        pctLabel.setFont(FontManager.getRunescapeBoldFont().deriveFont(12f));
+        pctLabel.setFont(FontManager.getRunescapeSmallFont().deriveFont(Font.BOLD));
         pctLabel.setForeground(chanceColor);
         pctLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         pctLabel.setVerticalAlignment(SwingConstants.CENTER);
-        Dimension pctSize = new Dimension(50, 36);
+        Dimension pctSize = new Dimension(48, 32);
         pctLabel.setPreferredSize(pctSize);
         pctLabel.setMinimumSize(pctSize);
         row.add(pctLabel, BorderLayout.EAST);
@@ -853,20 +844,13 @@ public class DroppyPanel extends PluginPanel
 
     public void onCollectionLogOpened()
     {
-        SwingUtilities.invokeLater(() ->
-        {
-            syncStatusLabel.setText("Collection log open - browse pages to sync");
-            syncStatusLabel.setForeground(INFO_COLOR);
-        });
+        // Sync tab handles this now
     }
 
     public void onCollectionLogSynced(int totalSyncedPages)
     {
         SwingUtilities.invokeLater(() ->
         {
-            syncStatusLabel.setText("Synced " + totalSyncedPages + " pages - tracking drops live");
-            syncStatusLabel.setForeground(OBTAINED_COLOR);
-
             if (currentFightMonster != null)
             {
                 String monster = currentFightMonster;
@@ -878,7 +862,7 @@ public class DroppyPanel extends PluginPanel
                 loadSearchMonster(searchedMonster);
             }
 
-            // Refresh sync tab if visible
+            // Refresh sync tab
             refreshSyncTab();
         });
     }
