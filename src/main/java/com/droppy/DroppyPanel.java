@@ -53,6 +53,41 @@ public class DroppyPanel extends PluginPanel
     private static final String SEARCH_TAB = "SEARCH";
     private static final String SYNC_TAB = "SYNC";
 
+    // All collection log pages in OSRS
+    private static final String[] ALL_CLOG_PAGES = {
+        // Bosses
+        "Abyssal Sire", "Alchemical Hydra", "Amoxliatl", "Araxxor", "Barrows Chests",
+        "Bryophyta", "Callisto and Artio", "Cerberus", "Chaos Elemental", "Chaos Fanatic",
+        "Commander Zilyana", "Corporeal Beast", "Crazy Archaeologist", "Dagannoth Kings",
+        "Deranged Archaeologist", "Duke Sucellus", "General Graardor", "Giant Mole",
+        "Grotesque Guardians", "Hespori", "Hueycoatl", "Kalphite Queen", "King Black Dragon",
+        "Kraken", "Kree'arra", "K'ril Tsutsaroth", "Leviathan", "Mimic", "Nex",
+        "Nightmare", "Obor", "Phantom Muspah", "Royal Titans", "Sarachnis", "Scorpia",
+        "Scurrius", "Skotizo", "Sol Heredit", "Spindel", "The Hueycoatl",
+        "Thermonuclear Smoke Devil", "Tormented Demons", "Vardorvis", "Venenatis and Spindel",
+        "Vet'ion and Calvar'ion", "Vorkath", "Whisperer", "Wintertodt", "Zalcano", "Zulrah",
+        // Raids
+        "Chambers of Xeric", "Theatre of Blood", "Tombs of Amascut",
+        // Clues
+        "Beginner Treasure Trails", "Easy Treasure Trails", "Medium Treasure Trails",
+        "Hard Treasure Trails", "Elite Treasure Trails", "Master Treasure Trails",
+        "Shared Treasure Trail Rewards",
+        // Minigames
+        "Barbarian Assault", "Brimhaven Agility Arena", "Castle Wars", "Creature Creation",
+        "Fishing Trawler", "Gnome Restaurant", "Guardians of the Rift", "Hallowed Sepulchre",
+        "Last Man Standing", "Magic Training Arena", "Mahogany Homes", "Pest Control",
+        "Pyramid Plunder", "Rogues' Den", "Shades of Mort'ton", "Soul Wars",
+        "Tai Bwo Wannai Cleanup", "Temple Trekking", "Tithe Farm", "Trouble Brewing",
+        "Volcanic Mine",
+        // Other
+        "Aerial Fishing", "All Pets", "Champion's Challenge", "Chaos Druids",
+        "Chompy Bird Hunting", "Colosseum", "Cyclopes", "Defenders of Varrock",
+        "Fossil Island Notes", "Glough's Experiments", "Gorak", "Graceful",
+        "Miscellaneous", "Monkey Backpacks", "Motherlode Mine", "My Notes",
+        "Random Events", "Revenants", "Rooftop Agility", "Shayzien Armour",
+        "Shooting Stars", "Skilling Pets", "Slayer", "TzHaar", "Undead Druids"
+    };
+
     private final DroppyConfig config;
     private final WikiDropFetcher wikiDropFetcher;
     private final PlayerDataManager playerDataManager;
@@ -64,8 +99,6 @@ public class DroppyPanel extends PluginPanel
     private JButton syncTabBtn;
     private CardLayout cardLayout;
     private JPanel cardPanel;
-
-    private JLabel syncStatusLabel;
 
     // Sync tab
     private JPanel syncListPanel;
@@ -155,13 +188,6 @@ public class DroppyPanel extends PluginPanel
         tabBar.add(syncTabBtn, tabGbc);
 
         topPanel.add(tabBar);
-
-        syncStatusLabel = new JLabel("Flip through collection log to sync, then tracking is live");
-        syncStatusLabel.setFont(FontManager.getRunescapeSmallFont());
-        syncStatusLabel.setForeground(INFO_COLOR);
-        syncStatusLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        syncStatusLabel.setBorder(new EmptyBorder(4, 10, 4, 10));
-        topPanel.add(syncStatusLabel);
 
         add(topPanel, BorderLayout.NORTH);
 
@@ -359,43 +385,43 @@ public class DroppyPanel extends PluginPanel
         syncListPanel.removeAll();
 
         java.util.Set<String> syncedPages = playerDataManager.getSyncedPages();
-        java.util.Set<String> trackedMonsters = playerDataManager.getTrackedMonsters();
 
-        // Find unsynced tracked monsters only
-        java.util.List<String> unsyncedMonsters = new java.util.ArrayList<>();
-        for (String monster : trackedMonsters)
+        // Find all unsynced clog pages
+        java.util.List<String> unsyncedPages = new java.util.ArrayList<>();
+        for (String page : ALL_CLOG_PAGES)
         {
-            if (!isSynced(monster, syncedPages))
+            if (!isSynced(page, syncedPages))
             {
-                unsyncedMonsters.add(monster);
+                unsyncedPages.add(page);
             }
         }
-        java.util.Collections.sort(unsyncedMonsters, String.CASE_INSENSITIVE_ORDER);
 
-        if (trackedMonsters.isEmpty() && syncedPages.isEmpty())
+        int totalPages = ALL_CLOG_PAGES.length;
+        int syncedCount = totalPages - unsyncedPages.size();
+
+        // Header showing progress
+        JLabel headerLabel = new JLabel(syncedCount + "/" + totalPages + " pages synced", SwingConstants.CENTER);
+        headerLabel.setFont(FontManager.getRunescapeBoldFont());
+        headerLabel.setForeground(syncedCount == totalPages ? OBTAINED_COLOR : ColorScheme.LIGHT_GRAY_COLOR);
+        headerLabel.setBorder(new EmptyBorder(8, 10, 8, 10));
+        headerLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        syncListPanel.add(headerLabel);
+
+        if (unsyncedPages.isEmpty())
         {
-            JLabel emptyLabel = new JLabel("No data yet - kill monsters and open your clog", SwingConstants.CENTER);
-            emptyLabel.setFont(FontManager.getRunescapeSmallFont());
-            emptyLabel.setForeground(ColorScheme.LIGHT_GRAY_COLOR);
-            emptyLabel.setBorder(new EmptyBorder(20, 10, 10, 10));
-            emptyLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-            syncListPanel.add(emptyLabel);
-        }
-        else if (unsyncedMonsters.isEmpty())
-        {
-            JLabel allSyncedLabel = new JLabel("\u2713 All " + syncedPages.size() + " pages synced!", SwingConstants.CENTER);
-            allSyncedLabel.setFont(FontManager.getRunescapeBoldFont());
-            allSyncedLabel.setForeground(OBTAINED_COLOR);
-            allSyncedLabel.setBorder(new EmptyBorder(20, 10, 10, 10));
-            allSyncedLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-            syncListPanel.add(allSyncedLabel);
+            JLabel doneLabel = new JLabel("\u2713 All pages synced!", SwingConstants.CENTER);
+            doneLabel.setFont(FontManager.getRunescapeSmallFont());
+            doneLabel.setForeground(OBTAINED_COLOR);
+            doneLabel.setBorder(new EmptyBorder(10, 10, 10, 10));
+            doneLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+            syncListPanel.add(doneLabel);
         }
         else
         {
-            // Show only unsynced monsters
-            for (String monster : unsyncedMonsters)
+            // Show unsynced pages
+            for (String page : unsyncedPages)
             {
-                JPanel row = createSyncRow(monster, false);
+                JPanel row = createSyncRow(page, false);
                 syncListPanel.add(row);
             }
         }
@@ -781,28 +807,28 @@ public class DroppyPanel extends PluginPanel
         JPanel barPanel = new JPanel(new BorderLayout(2, 0));
         barPanel.setOpaque(false);
         barPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        barPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 12));
+        barPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 10));
 
         JProgressBar bar = new JProgressBar(0, 10000);
         bar.setValue((int) (chance * 10000));
         bar.setStringPainted(false);
-        bar.setPreferredSize(new Dimension(0, 8));
+        bar.setPreferredSize(new Dimension(0, 6));
         bar.setBackground(new Color(30, 30, 30));
         bar.setForeground(chanceColor);
         barPanel.add(bar, BorderLayout.CENTER);
 
-        centerPanel.add(Box.createVerticalStrut(2));
+        centerPanel.add(Box.createVerticalStrut(1));
         centerPanel.add(barPanel);
 
         row.add(centerPanel, BorderLayout.CENTER);
 
         // Percentage
         JLabel pctLabel = new JLabel(chanceStr);
-        pctLabel.setFont(FontManager.getRunescapeBoldFont().deriveFont(12f));
+        pctLabel.setFont(FontManager.getRunescapeSmallFont().deriveFont(Font.BOLD));
         pctLabel.setForeground(chanceColor);
         pctLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         pctLabel.setVerticalAlignment(SwingConstants.CENTER);
-        Dimension pctSize = new Dimension(50, 36);
+        Dimension pctSize = new Dimension(48, 32);
         pctLabel.setPreferredSize(pctSize);
         pctLabel.setMinimumSize(pctSize);
         row.add(pctLabel, BorderLayout.EAST);
@@ -818,20 +844,13 @@ public class DroppyPanel extends PluginPanel
 
     public void onCollectionLogOpened()
     {
-        SwingUtilities.invokeLater(() ->
-        {
-            syncStatusLabel.setText("Collection log open - browse pages to sync");
-            syncStatusLabel.setForeground(INFO_COLOR);
-        });
+        // Sync tab handles this now
     }
 
     public void onCollectionLogSynced(int totalSyncedPages)
     {
         SwingUtilities.invokeLater(() ->
         {
-            syncStatusLabel.setText("Synced " + totalSyncedPages + " pages - tracking drops live");
-            syncStatusLabel.setForeground(OBTAINED_COLOR);
-
             if (currentFightMonster != null)
             {
                 String monster = currentFightMonster;
@@ -843,7 +862,7 @@ public class DroppyPanel extends PluginPanel
                 loadSearchMonster(searchedMonster);
             }
 
-            // Refresh sync tab if visible
+            // Refresh sync tab
             refreshSyncTab();
         });
     }
