@@ -694,14 +694,17 @@ public class DroppyPanel extends PluginPanel
             chanceColor = ColorScheme.LIGHT_GRAY_COLOR;
         }
 
-        JPanel row = new JPanel(new BorderLayout(6, 0));
+        JPanel row = new JPanel(new BorderLayout(4, 0));
         row.setBackground(ITEM_BG_COLOR);
-        row.setBorder(new EmptyBorder(5, 6, 5, 6));
-        row.setMaximumSize(new Dimension(Integer.MAX_VALUE, 56));
+        row.setBorder(new EmptyBorder(4, 4, 4, 4));
+        row.setMaximumSize(new Dimension(Integer.MAX_VALUE, 52));
 
         // Item icon - prefer wiki ID, fallback to clog-scraped ID
         JLabel iconLabel = new JLabel();
-        iconLabel.setPreferredSize(new Dimension(36, 36));
+        Dimension iconSize = new Dimension(32, 32);
+        iconLabel.setPreferredSize(iconSize);
+        iconLabel.setMinimumSize(iconSize);
+        iconLabel.setMaximumSize(iconSize);
         iconLabel.setHorizontalAlignment(SwingConstants.CENTER);
         iconLabel.setVerticalAlignment(SwingConstants.CENTER);
 
@@ -773,15 +776,15 @@ public class DroppyPanel extends PluginPanel
         infoLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         centerPanel.add(infoLabel);
 
-        JPanel barPanel = new JPanel(new BorderLayout(4, 0));
+        JPanel barPanel = new JPanel(new BorderLayout(2, 0));
         barPanel.setOpaque(false);
         barPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        barPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 14));
+        barPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 12));
 
         JProgressBar bar = new JProgressBar(0, 10000);
         bar.setValue((int) (chance * 10000));
         bar.setStringPainted(false);
-        bar.setPreferredSize(new Dimension(0, 10));
+        bar.setPreferredSize(new Dimension(0, 8));
         bar.setBackground(new Color(30, 30, 30));
         bar.setForeground(chanceColor);
         barPanel.add(bar, BorderLayout.CENTER);
@@ -793,11 +796,13 @@ public class DroppyPanel extends PluginPanel
 
         // Percentage
         JLabel pctLabel = new JLabel(chanceStr);
-        pctLabel.setFont(FontManager.getRunescapeBoldFont().deriveFont(14f));
+        pctLabel.setFont(FontManager.getRunescapeBoldFont().deriveFont(12f));
         pctLabel.setForeground(chanceColor);
         pctLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         pctLabel.setVerticalAlignment(SwingConstants.CENTER);
-        pctLabel.setPreferredSize(new Dimension(58, 36));
+        Dimension pctSize = new Dimension(50, 36);
+        pctLabel.setPreferredSize(pctSize);
+        pctLabel.setMinimumSize(pctSize);
         row.add(pctLabel, BorderLayout.EAST);
 
         row.addMouseListener(new java.awt.event.MouseAdapter()
