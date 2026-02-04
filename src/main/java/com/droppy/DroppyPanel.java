@@ -152,7 +152,7 @@ public class DroppyPanel extends PluginPanel
         titleLabel.setForeground(Color.WHITE);
         titleBar.add(titleLabel, BorderLayout.WEST);
 
-        JLabel subtitleLabel = new JLabel("Drop % Calculator");
+        JLabel subtitleLabel = new JLabel("Are you dry or lucky?");
         subtitleLabel.setFont(FontManager.getRunescapeSmallFont());
         subtitleLabel.setForeground(ColorScheme.LIGHT_GRAY_COLOR);
         titleBar.add(subtitleLabel, BorderLayout.EAST);
