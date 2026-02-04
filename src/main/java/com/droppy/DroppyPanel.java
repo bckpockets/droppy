@@ -361,25 +361,18 @@ public class DroppyPanel extends PluginPanel
         java.util.Set<String> syncedPages = playerDataManager.getSyncedPages();
         java.util.Set<String> trackedMonsters = playerDataManager.getTrackedMonsters();
 
-        // Build combined list: all synced pages + unsynced tracked monsters
-        java.util.Map<String, Boolean> allEntries = new java.util.TreeMap<>(String.CASE_INSENSITIVE_ORDER);
-
-        // Add all synced pages as synced
-        for (String page : syncedPages)
-        {
-            allEntries.put(page, true);
-        }
-
-        // Add tracked monsters, checking if they match any synced page
+        // Find unsynced tracked monsters only
+        java.util.List<String> unsyncedMonsters = new java.util.ArrayList<>();
         for (String monster : trackedMonsters)
         {
             if (!isSynced(monster, syncedPages))
             {
-                allEntries.put(monster, false);
+                unsyncedMonsters.add(monster);
             }
         }
+        java.util.Collections.sort(unsyncedMonsters, String.CASE_INSENSITIVE_ORDER);
 
-        if (allEntries.isEmpty())
+        if (trackedMonsters.isEmpty() && syncedPages.isEmpty())
         {
             JLabel emptyLabel = new JLabel("No data yet - kill monsters and open your clog", SwingConstants.CENTER);
             emptyLabel.setFont(FontManager.getRunescapeSmallFont());
@@ -388,12 +381,21 @@ public class DroppyPanel extends PluginPanel
             emptyLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
             syncListPanel.add(emptyLabel);
         }
+        else if (unsyncedMonsters.isEmpty())
+        {
+            JLabel allSyncedLabel = new JLabel("\u2713 All " + syncedPages.size() + " pages synced!", SwingConstants.CENTER);
+            allSyncedLabel.setFont(FontManager.getRunescapeBoldFont());
+            allSyncedLabel.setForeground(OBTAINED_COLOR);
+            allSyncedLabel.setBorder(new EmptyBorder(20, 10, 10, 10));
+            allSyncedLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+            syncListPanel.add(allSyncedLabel);
+        }
         else
         {
-            // Show all entries in one list, sorted alphabetically
-            for (java.util.Map.Entry<String, Boolean> entry : allEntries.entrySet())
+            // Show only unsynced monsters
+            for (String monster : unsyncedMonsters)
             {
-                JPanel row = createSyncRow(entry.getKey(), entry.getValue());
+                JPanel row = createSyncRow(monster, false);
                 syncListPanel.add(row);
             }
         }
