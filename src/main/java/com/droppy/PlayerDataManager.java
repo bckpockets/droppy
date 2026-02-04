@@ -254,6 +254,11 @@ public class PlayerDataManager
         return syncedPages.size();
     }
 
+    public Set<String> getSyncedPages()
+    {
+        return new HashSet<>(syncedPages);
+    }
+
     // --- Helpers ---
 
     private String normalize(String name)
