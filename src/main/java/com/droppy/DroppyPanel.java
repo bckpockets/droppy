@@ -493,6 +493,12 @@ public class DroppyPanel extends PluginPanel
         int count = 0;
         for (DropEntry drop : data.getDrops())
         {
+            // Only show items that are in the collection log
+            if (!playerDataManager.isClogItem(drop.getItemName()))
+            {
+                continue;
+            }
+
             if (config.showOnlyUnobtained() && playerDataManager.hasItem(drop.getItemName()))
             {
                 continue;
@@ -504,7 +510,14 @@ public class DroppyPanel extends PluginPanel
             count++;
         }
 
-        statusLabel.setText(count + " drops loaded");
+        if (count == 0)
+        {
+            statusLabel.setText("Sync collection log to see drops");
+        }
+        else
+        {
+            statusLabel.setText(count + " collection log items");
+        }
         dropsPanel.revalidate();
         dropsPanel.repaint();
     }
@@ -539,15 +552,21 @@ public class DroppyPanel extends PluginPanel
         row.setBorder(new EmptyBorder(5, 6, 5, 6));
         row.setMaximumSize(new Dimension(Integer.MAX_VALUE, 56));
 
-        // Item icon
+        // Item icon - prefer wiki ID, fallback to clog-scraped ID
         JLabel iconLabel = new JLabel();
         iconLabel.setPreferredSize(new Dimension(36, 36));
         iconLabel.setHorizontalAlignment(SwingConstants.CENTER);
         iconLabel.setVerticalAlignment(SwingConstants.CENTER);
 
-        if (drop.getItemId() > 0 && itemManager != null)
+        int itemId = drop.getItemId();
+        if (itemId <= 0)
         {
-            AsyncBufferedImage itemImage = itemManager.getImage(drop.getItemId());
+            itemId = playerDataManager.getClogItemId(drop.getItemName());
+        }
+
+        if (itemId > 0 && itemManager != null)
+        {
+            AsyncBufferedImage itemImage = itemManager.getImage(itemId);
             if (itemImage != null)
             {
                 iconLabel.setIcon(new ImageIcon(itemImage));
