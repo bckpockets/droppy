@@ -361,25 +361,18 @@ public class DroppyPanel extends PluginPanel
         java.util.Set<String> syncedPages = playerDataManager.getSyncedPages();
         java.util.Set<String> trackedMonsters = playerDataManager.getTrackedMonsters();
 
-        // Build combined list: all synced pages + unsynced tracked monsters
-        java.util.Map<String, Boolean> allEntries = new java.util.TreeMap<>(String.CASE_INSENSITIVE_ORDER);
-
-        // Add all synced pages as synced
-        for (String page : syncedPages)
-        {
-            allEntries.put(page, true);
-        }
-
-        // Add tracked monsters, checking if they match any synced page
+        // Find unsynced tracked monsters only
+        java.util.List<String> unsyncedMonsters = new java.util.ArrayList<>();
         for (String monster : trackedMonsters)
         {
             if (!isSynced(monster, syncedPages))
             {
-                allEntries.put(monster, false);
+                unsyncedMonsters.add(monster);
             }
         }
+        java.util.Collections.sort(unsyncedMonsters, String.CASE_INSENSITIVE_ORDER);
 
-        if (allEntries.isEmpty())
+        if (trackedMonsters.isEmpty() && syncedPages.isEmpty())
         {
             JLabel emptyLabel = new JLabel("No data yet - kill monsters and open your clog", SwingConstants.CENTER);
             emptyLabel.setFont(FontManager.getRunescapeSmallFont());
@@ -388,12 +381,21 @@ public class DroppyPanel extends PluginPanel
             emptyLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
             syncListPanel.add(emptyLabel);
         }
+        else if (unsyncedMonsters.isEmpty())
+        {
+            JLabel allSyncedLabel = new JLabel("\u2713 All " + syncedPages.size() + " pages synced!", SwingConstants.CENTER);
+            allSyncedLabel.setFont(FontManager.getRunescapeBoldFont());
+            allSyncedLabel.setForeground(OBTAINED_COLOR);
+            allSyncedLabel.setBorder(new EmptyBorder(20, 10, 10, 10));
+            allSyncedLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+            syncListPanel.add(allSyncedLabel);
+        }
         else
         {
-            // Show all entries in one list, sorted alphabetically
-            for (java.util.Map.Entry<String, Boolean> entry : allEntries.entrySet())
+            // Show only unsynced monsters
+            for (String monster : unsyncedMonsters)
             {
-                JPanel row = createSyncRow(entry.getKey(), entry.getValue());
+                JPanel row = createSyncRow(monster, false);
                 syncListPanel.add(row);
             }
         }
@@ -694,14 +696,17 @@ public class DroppyPanel extends PluginPanel
             chanceColor = ColorScheme.LIGHT_GRAY_COLOR;
         }
 
-        JPanel row = new JPanel(new BorderLayout(6, 0));
+        JPanel row = new JPanel(new BorderLayout(4, 0));
         row.setBackground(ITEM_BG_COLOR);
-        row.setBorder(new EmptyBorder(5, 6, 5, 6));
-        row.setMaximumSize(new Dimension(Integer.MAX_VALUE, 56));
+        row.setBorder(new EmptyBorder(4, 4, 4, 4));
+        row.setMaximumSize(new Dimension(Integer.MAX_VALUE, 52));
 
         // Item icon - prefer wiki ID, fallback to clog-scraped ID
         JLabel iconLabel = new JLabel();
-        iconLabel.setPreferredSize(new Dimension(36, 36));
+        Dimension iconSize = new Dimension(32, 32);
+        iconLabel.setPreferredSize(iconSize);
+        iconLabel.setMinimumSize(iconSize);
+        iconLabel.setMaximumSize(iconSize);
         iconLabel.setHorizontalAlignment(SwingConstants.CENTER);
         iconLabel.setVerticalAlignment(SwingConstants.CENTER);
 
@@ -773,15 +778,15 @@ public class DroppyPanel extends PluginPanel
         infoLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         centerPanel.add(infoLabel);
 
-        JPanel barPanel = new JPanel(new BorderLayout(4, 0));
+        JPanel barPanel = new JPanel(new BorderLayout(2, 0));
         barPanel.setOpaque(false);
         barPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        barPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 14));
+        barPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 12));
 
         JProgressBar bar = new JProgressBar(0, 10000);
         bar.setValue((int) (chance * 10000));
         bar.setStringPainted(false);
-        bar.setPreferredSize(new Dimension(0, 10));
+        bar.setPreferredSize(new Dimension(0, 8));
         bar.setBackground(new Color(30, 30, 30));
         bar.setForeground(chanceColor);
         barPanel.add(bar, BorderLayout.CENTER);
@@ -793,11 +798,13 @@ public class DroppyPanel extends PluginPanel
 
         // Percentage
         JLabel pctLabel = new JLabel(chanceStr);
-        pctLabel.setFont(FontManager.getRunescapeBoldFont().deriveFont(14f));
+        pctLabel.setFont(FontManager.getRunescapeBoldFont().deriveFont(12f));
         pctLabel.setForeground(chanceColor);
         pctLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         pctLabel.setVerticalAlignment(SwingConstants.CENTER);
-        pctLabel.setPreferredSize(new Dimension(58, 36));
+        Dimension pctSize = new Dimension(50, 36);
+        pctLabel.setPreferredSize(pctSize);
+        pctLabel.setMinimumSize(pctSize);
         row.add(pctLabel, BorderLayout.EAST);
 
         row.addMouseListener(new java.awt.event.MouseAdapter()
