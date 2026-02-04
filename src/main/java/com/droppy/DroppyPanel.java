@@ -856,15 +856,29 @@ public class DroppyPanel extends PluginPanel
     {
         SwingUtilities.invokeLater(() ->
         {
+            // Refresh current tab data without switching to it
             if (currentFightMonster != null)
             {
                 String monster = currentFightMonster;
-                currentFightMonster = null;
-                setCurrentMonster(monster);
+                new Thread(() ->
+                {
+                    MonsterDropData data = wikiDropFetcher.fetchMonsterDrops(monster);
+                    SwingUtilities.invokeLater(() -> populateDrops(
+                        monster, data, currentDropsPanel, currentMonsterTitle,
+                        currentKcLabel, currentStatusLabel));
+                }).start();
             }
+            // Refresh search tab data without switching to it
             if (searchedMonster != null)
             {
-                loadSearchMonster(searchedMonster);
+                String monster = searchedMonster;
+                new Thread(() ->
+                {
+                    MonsterDropData data = wikiDropFetcher.fetchMonsterDrops(monster);
+                    SwingUtilities.invokeLater(() -> populateDrops(
+                        monster, data, searchDropsPanel, searchMonsterTitle,
+                        searchKcLabel, searchStatusLabel));
+                }).start();
             }
 
             // Refresh sync tab
