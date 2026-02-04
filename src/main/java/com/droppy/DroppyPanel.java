@@ -827,6 +827,7 @@ public class DroppyPanel extends PluginPanel
 
         centerPanel.add(Box.createVerticalStrut(2));
         centerPanel.add(bar);
+        centerPanel.add(Box.createVerticalStrut(3));
 
         // Percentage below the bar
         JLabel pctLabel = new JLabel(chanceStr);
