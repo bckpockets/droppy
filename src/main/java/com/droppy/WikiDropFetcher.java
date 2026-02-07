@@ -21,8 +21,9 @@ import okhttp3.Response;
 @Slf4j
 public class WikiDropFetcher
 {
+    private static final String STATIC_DATA_BASE = "https://bckpockets.github.io/droppy/";
     private static final String WIKI_API_BASE = "https://oldschool.runescape.wiki/api.php";
-    private static final String USER_AGENT = "Droppy RuneLite Plugin - Drop Chance Calculator (https://github.com/droppy)";
+    private static final String USER_AGENT = "Droppy RuneLite Plugin (https://github.com/bckpockets/droppy)";
 
     private final OkHttpClient httpClient;
     private final Map<String, MonsterDropData> cache = new ConcurrentHashMap<>();
@@ -95,17 +96,24 @@ public class WikiDropFetcher
             String alias = PAGE_ALIASES.get(monsterName.toLowerCase().trim());
             String pageName = alias != null ? alias : normalizedName;
 
-            List<DropEntry> drops = tryFetchDrops(pageName);
+            // Try static JSON first (faster, more reliable)
+            List<DropEntry> drops = tryFetchFromStatic(pageName);
 
-            // If main page had no drops, try subpages like /Loot, /Rewards
+            // Fall back to wiki API if static data unavailable
             if (drops.isEmpty())
             {
-                for (String suffix : SUBPAGE_SUFFIXES)
+                drops = tryFetchDrops(pageName);
+
+                // If main page had no drops, try subpages like /Loot, /Rewards
+                if (drops.isEmpty())
                 {
-                    drops = tryFetchDrops(pageName + suffix);
-                    if (!drops.isEmpty())
+                    for (String suffix : SUBPAGE_SUFFIXES)
                     {
-                        break;
+                        drops = tryFetchDrops(pageName + suffix);
+                        if (!drops.isEmpty())
+                        {
+                            break;
+                        }
                     }
                 }
             }
@@ -125,6 +133,62 @@ public class WikiDropFetcher
             log.error("Error fetching drops for {}: {}", monsterName, e.getMessage());
             return cached;
         }
+    }
+
+    private List<DropEntry> tryFetchFromStatic(String pageName)
+    {
+        try
+        {
+            String filename = normalizeToFilename(pageName);
+            String url = STATIC_DATA_BASE + filename + ".json";
+
+            Request request = new Request.Builder()
+                .url(url)
+                .header("User-Agent", USER_AGENT)
+                .build();
+
+            try (Response response = httpClient.newCall(request).execute())
+            {
+                if (!response.isSuccessful() || response.body() == null)
+                {
+                    return List.of();
+                }
+
+                String body = response.body().string();
+                JsonObject json = new JsonParser().parse(body).getAsJsonObject();
+
+                JsonArray dropsArray = json.getAsJsonArray("drops");
+                if (dropsArray == null)
+                {
+                    return List.of();
+                }
+
+                List<DropEntry> drops = new ArrayList<>();
+                for (JsonElement el : dropsArray)
+                {
+                    JsonObject dropObj = el.getAsJsonObject();
+                    String name = dropObj.get("name").getAsString();
+                    double rate = dropObj.get("rate").getAsDouble();
+                    String rateDisplay = dropObj.get("rateDisplay").getAsString();
+                    int itemId = dropObj.has("itemId") ? dropObj.get("itemId").getAsInt() : -1;
+
+                    drops.add(new DropEntry(name, rate, itemId, rateDisplay));
+                }
+
+                log.debug("Loaded {} drops from static data for {}", drops.size(), pageName);
+                return drops;
+            }
+        }
+        catch (Exception e)
+        {
+            log.debug("Static data not available for {}: {}", pageName, e.getMessage());
+            return List.of();
+        }
+    }
+
+    private String normalizeToFilename(String name)
+    {
+        return name.toLowerCase().replaceAll("[^a-z0-9]+", "_").replaceAll("^_|_$", "");
     }
 
     private List<DropEntry> tryFetchDrops(String pageName)
