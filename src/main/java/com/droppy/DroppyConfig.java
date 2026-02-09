@@ -19,17 +19,6 @@ public interface DroppyConfig extends Config
     }
 
     @ConfigItem(
-        keyName = "showDropRate",
-        name = "Show drop rate",
-        description = "Display the base drop rate alongside the chance percentage",
-        position = 2
-    )
-    default boolean showDropRate()
-    {
-        return true;
-    }
-
-    @ConfigItem(
         keyName = "highlightThreshold",
         name = "Highlight threshold (%)",
         description = "Highlight drops where your chance exceeds this percentage (0 to disable)",

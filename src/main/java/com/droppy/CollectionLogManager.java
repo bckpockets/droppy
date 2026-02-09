@@ -5,8 +5,6 @@ import net.runelite.api.Client;
 import net.runelite.api.widgets.Widget;
 import net.runelite.client.game.ItemManager;
 
-// Scrapes collection log data from the in-game widget (interface 621).
-// Items with opacity == 0 are obtained, opacity > 0 are greyed out.
 @Slf4j
 public class CollectionLogManager
 {
@@ -29,7 +27,6 @@ public class CollectionLogManager
         this.playerDataManager = playerDataManager;
     }
 
-    // Called when script 2731 fires (collection log page rendered).
     public void onCollectionLogPageRendered()
     {
         try
@@ -66,7 +63,6 @@ public class CollectionLogManager
 
         log.debug("Scraping collection log page: {}", pageTitle);
 
-        // Header children: [0] = title, [1] = separator, [2+] = "Kills: 1,234" etc.
         parseKillCounts(pageTitle, headerChildren);
         parseItems(pageTitle);
 
@@ -139,7 +135,6 @@ public class CollectionLogManager
                 continue;
             }
 
-            // Track every item on this page as a known clog item with its ID
             playerDataManager.addClogItem(itemName, itemId);
 
             boolean obtained = itemWidget.getOpacity() == 0;

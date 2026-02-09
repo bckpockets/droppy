@@ -26,13 +26,9 @@ public class PlayerDataManager
 
     private final Map<String, Integer> killCounts = new ConcurrentHashMap<>();
     private final Map<String, Integer> kcSinceLastDrop = new ConcurrentHashMap<>();
-    // Per-item: KC snapshot when item was last obtained.
-    // Dry streak = currentKC - lastDropKc[monster_item]
     private final Map<String, Integer> lastDropKc = new ConcurrentHashMap<>();
     private final Set<String> obtainedItems = ConcurrentHashMap.newKeySet();
     private final Set<String> syncedPages = ConcurrentHashMap.newKeySet();
-    // All item names we've seen on collection log pages (obtained or not).
-    // Maps normalized item name -> item ID for displaying icons.
     private final Map<String, Integer> clogItems = new ConcurrentHashMap<>();
 
     private volatile boolean loaded = false;
@@ -90,9 +86,6 @@ public class PlayerDataManager
         }
     }
 
-    // --- Kill count ---
-
-    // Sets total KC and bumps since-last-drop counter by the delta.
     public void setKillCount(String monsterName, int kc)
     {
         String key = normalize(monsterName);
@@ -106,7 +99,6 @@ public class PlayerDataManager
         }
         else if (previousKc == 0 && !kcSinceLastDrop.containsKey(key))
         {
-            // First time seeing this monster -- use full KC as baseline
             kcSinceLastDrop.put(key, kc);
         }
 
@@ -131,8 +123,6 @@ public class PlayerDataManager
         return kcSinceLastDrop.getOrDefault(normalize(monsterName), 0);
     }
 
-    // Per-item dry streak: currentKC minus KC when item was last obtained.
-    // Falls back to total KC if item was never obtained.
     public int getKcSinceLastDrop(String monsterName, String itemName)
     {
         String monsterKey = normalize(monsterName);
@@ -148,7 +138,6 @@ public class PlayerDataManager
         return killCounts.getOrDefault(monsterKey, 0);
     }
 
-    // KC at which an item was obtained (absolute). Returns -1 if unknown.
     public int getItemDropKc(String monsterName, String itemName)
     {
         String itemKey = normalize(monsterName) + "_" + normalize(itemName);
@@ -156,10 +145,6 @@ public class PlayerDataManager
         return dropKc != null ? dropKc : -1;
     }
 
-    // --- Collection log ---
-
-    // Real-time drop: marks obtained, snapshots current KC, resets since-drop counter.
-    // Use this when we KNOW the drop just happened (chat message, loot event).
     public void recordCollectionLogItem(String itemName, String monsterName)
     {
         String normalItem = normalize(itemName);
@@ -177,16 +162,12 @@ public class PlayerDataManager
         dirty = true;
     }
 
-    // Widget sync: just marks obtained. We don't know when these items actually
-    // dropped so we don't fake a KC snapshot.
     public void markItemObtainedFromSync(String itemName)
     {
         obtainedItems.add(normalize(itemName));
         dirty = true;
     }
 
-    // Widget says item isn't obtained. Only correct our data for already-synced
-    // pages so we don't accidentally remove items detected via chat.
     public void markItemNotObtained(String itemName, String monsterName)
     {
         String normalItem = normalize(itemName);
@@ -211,7 +192,6 @@ public class PlayerDataManager
         return syncedPages.contains(normalize(pageName));
     }
 
-    // Fuzzy match for synced pages - handles singular/plural differences
     public boolean isPageSyncedFuzzy(String pageName)
     {
         String norm = normalize(pageName);
@@ -226,7 +206,6 @@ public class PlayerDataManager
         return false;
     }
 
-    // Track an item as being a collection log item (seen on a clog page).
     public void addClogItem(String itemName, int itemId)
     {
         String key = normalize(itemName);
@@ -237,13 +216,11 @@ public class PlayerDataManager
         }
     }
 
-    // Whether we've seen this item on a collection log page.
     public boolean isClogItem(String itemName)
     {
         return clogItems.containsKey(normalize(itemName));
     }
 
-    // Get the item ID for a clog item, or -1 if not found.
     public int getClogItemId(String itemName)
     {
         return clogItems.getOrDefault(normalize(itemName), -1);
@@ -274,7 +251,6 @@ public class PlayerDataManager
         return new HashSet<>(syncedPages);
     }
 
-    // --- Helpers ---
 
     private String normalize(String name)
     {

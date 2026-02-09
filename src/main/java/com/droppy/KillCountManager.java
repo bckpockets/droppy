@@ -7,11 +7,6 @@ import java.util.regex.Pattern;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.config.ConfigManager;
 
-// Tracks KC from multiple sources:
-// 1. Our own stored data (clog widget, chat, loot events)
-// 2. Chat-commands plugin config ("killcount" RSProfile group)
-// 3. Loot tracker plugin config ("loottracker" RSProfile group)
-// 4. NPC loot events (increment-based fallback)
 @Slf4j
 public class KillCountManager
 {
@@ -42,8 +37,6 @@ public class KillCountManager
     private static final String CHAT_COMMANDS_KC_GROUP = "killcount";
     private static final String LOOT_TRACKER_GROUP = "loottracker";
 
-    // Chat KC and loot events for the same kill fire within ~1-2 ticks.
-    // This window prevents double-counting.
     private static final long CHAT_KC_DEDUP_WINDOW_MS = 2000;
 
     private final PlayerDataManager playerDataManager;
@@ -51,8 +44,6 @@ public class KillCountManager
 
     private String lastKcMonster;
 
-    // Dedup: when chat sets KC authoritatively, record it so the loot
-    // event for the same kill doesn't double-increment.
     private String chatKcMonster;
     private long chatKcTimestamp;
 
@@ -62,8 +53,6 @@ public class KillCountManager
         this.configManager = configManager;
     }
 
-    // Checks our data first, then chat-commands plugin, then loot tracker.
-    // Imports from external sources if found.
     public int getKillCount(String monsterName)
     {
         int ourKc = playerDataManager.getKillCount(monsterName);
@@ -116,8 +105,6 @@ public class KillCountManager
         return 0;
     }
 
-    // Loot tracker stores JSON like {"type":"NPC","name":"Zulrah","kills":150,"drops":[...]}
-    // "kills" = kills with loot, not exact KC, but better than 0.
     private int readFromLootTracker(String monsterName)
     {
         int kc = readLootTrackerEntry("drops_NPC_" + monsterName);
@@ -139,6 +126,7 @@ public class KillCountManager
                 return 0;
             }
 
+            @SuppressWarnings("deprecation")
             JsonObject data = new JsonParser().parse(json).getAsJsonObject();
             if (data.has("kills"))
             {
@@ -157,7 +145,6 @@ public class KillCountManager
         return 0;
     }
 
-    // Parses KC from chat. Returns monster name if parsed, null otherwise.
     public String handleChatMessage(String message)
     {
         message = message.replaceAll("<[^>]+>", "").trim();
@@ -207,7 +194,6 @@ public class KillCountManager
             lastKcMonster = monsterName;
             playerDataManager.setKillCount(monsterName, kc);
 
-            // Flag so the loot event for this same kill doesn't double-count
             chatKcMonster = monsterName;
             chatKcTimestamp = System.currentTimeMillis();
 
@@ -218,12 +204,10 @@ public class KillCountManager
         return null;
     }
 
-    // Increments KC from loot event. Skips if chat already set it for this kill.
     public void handleLootReceived(String sourceName)
     {
         lastKcMonster = sourceName;
 
-        // Skip increment if chat just set KC for this monster (dedup)
         if (sourceName.equalsIgnoreCase(chatKcMonster)
             && System.currentTimeMillis() - chatKcTimestamp < CHAT_KC_DEDUP_WINDOW_MS)
         {

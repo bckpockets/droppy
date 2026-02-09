@@ -1,0 +1,4878 @@
+{
+  "monsters": {
+    "Abyssal Sire": {
+      "monsterName": "Abyssal Sire",
+      "wikiPage": "Abyssal Sire",
+      "drops": [
+        {
+          "itemName": "Unsired",
+          "dropRate": 0.01,
+          "itemId": -1,
+          "rarityDisplay": "1/100"
+        }
+      ]
+    },
+    "Alchemical Hydra": {
+      "monsterName": "Alchemical Hydra",
+      "wikiPage": "Alchemical Hydra",
+      "drops": [
+        {
+          "itemName": "Hydra\u0027s eye",
+          "dropRate": 0.0055248618784530384,
+          "itemId": -1,
+          "rarityDisplay": "1/181"
+        },
+        {
+          "itemName": "Hydra\u0027s fang",
+          "dropRate": 0.0055248618784530384,
+          "itemId": -1,
+          "rarityDisplay": "1/181"
+        },
+        {
+          "itemName": "Hydra\u0027s heart",
+          "dropRate": 0.0055248618784530384,
+          "itemId": -1,
+          "rarityDisplay": "1/181"
+        },
+        {
+          "itemName": "Hydra tail",
+          "dropRate": 0.001949317738791423,
+          "itemId": 22988,
+          "rarityDisplay": "1/513"
+        },
+        {
+          "itemName": "Hydra leather",
+          "dropRate": 0.0019455252918287938,
+          "itemId": 22983,
+          "rarityDisplay": "1/514"
+        },
+        {
+          "itemName": "Hydra\u0027s claw",
+          "dropRate": 9.99000999000999E-4,
+          "itemId": 22966,
+          "rarityDisplay": "1/1,001"
+        },
+        {
+          "itemName": "Dragon thrownaxe",
+          "dropRate": 5.0E-4,
+          "itemId": 20849,
+          "rarityDisplay": "1/2,000"
+        },
+        {
+          "itemName": "Dragon knife",
+          "dropRate": 4.997501249375312E-4,
+          "itemId": 22804,
+          "rarityDisplay": "1/2,001"
+        },
+        {
+          "itemName": "Alchemical hydra heads",
+          "dropRate": 0.00390625,
+          "itemId": -1,
+          "rarityDisplay": "1/256"
+        },
+        {
+          "itemName": "Jar of chemicals",
+          "dropRate": 5.0E-4,
+          "itemId": 23064,
+          "rarityDisplay": "1/2,000"
+        },
+        {
+          "itemName": "Ikkle hydra",
+          "dropRate": 3.333333333333333E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/3,000"
+        }
+      ]
+    },
+    "Amoxliatl": {
+      "monsterName": "Amoxliatl",
+      "wikiPage": "Amoxliatl",
+      "drops": [
+        {
+          "itemName": "Frozen tear",
+          "dropRate": 0.6,
+          "itemId": 29895,
+          "rarityDisplay": "6/10"
+        },
+        {
+          "itemName": "Pendant of ates (inert)",
+          "dropRate": 0.04,
+          "itemId": -1,
+          "rarityDisplay": "1/25"
+        },
+        {
+          "itemName": "Glacial temotli",
+          "dropRate": 0.01,
+          "itemId": 29889,
+          "rarityDisplay": "1/100"
+        },
+        {
+          "itemName": "Moxi",
+          "dropRate": 3.333333333333333E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/3,000"
+        }
+      ]
+    },
+    "Araxxor": {
+      "monsterName": "Araxxor",
+      "wikiPage": "Araxxor",
+      "drops": [
+        {
+          "itemName": "Noxious pommel",
+          "dropRate": 0.005,
+          "itemId": -1,
+          "rarityDisplay": "1/200"
+        },
+        {
+          "itemName": "Noxious point",
+          "dropRate": 0.005,
+          "itemId": -1,
+          "rarityDisplay": "1/200"
+        },
+        {
+          "itemName": "Noxious blade",
+          "dropRate": 0.005,
+          "itemId": -1,
+          "rarityDisplay": "1/200"
+        },
+        {
+          "itemName": "Araxyte fang",
+          "dropRate": 0.0016666666666666668,
+          "itemId": -1,
+          "rarityDisplay": "1/600"
+        },
+        {
+          "itemName": "Araxyte venom sack",
+          "dropRate": 0.0625,
+          "itemId": 29784,
+          "rarityDisplay": "1/16"
+        },
+        {
+          "itemName": "Spider cave teleport",
+          "dropRate": 0.06956521739130435,
+          "itemId": 29782,
+          "rarityDisplay": "8/115"
+        },
+        {
+          "itemName": "Araxyte head",
+          "dropRate": 0.004,
+          "itemId": -1,
+          "rarityDisplay": "1/250"
+        },
+        {
+          "itemName": "Jar of venom",
+          "dropRate": 6.666666666666666E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/1,500"
+        },
+        {
+          "itemName": "Nid",
+          "dropRate": 3.333333333333333E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/3,000"
+        }
+      ]
+    },
+    "Barrows Chests": {
+      "monsterName": "Barrows Chests",
+      "wikiPage": "Chest (Barrows)",
+      "drops": [
+        {
+          "itemName": "Ahrim\u0027s hood",
+          "dropRate": 4.084967320261438E-4,
+          "itemId": 4708,
+          "rarityDisplay": "1/2,448"
+        },
+        {
+          "itemName": "Ahrim\u0027s robetop",
+          "dropRate": 4.084967320261438E-4,
+          "itemId": 4712,
+          "rarityDisplay": "1/2,448"
+        },
+        {
+          "itemName": "Ahrim\u0027s robeskirt",
+          "dropRate": 4.084967320261438E-4,
+          "itemId": 4714,
+          "rarityDisplay": "1/2,448"
+        },
+        {
+          "itemName": "Ahrim\u0027s staff",
+          "dropRate": 4.084967320261438E-4,
+          "itemId": 4710,
+          "rarityDisplay": "1/2,448"
+        },
+        {
+          "itemName": "Dharok\u0027s helm",
+          "dropRate": 4.084967320261438E-4,
+          "itemId": 4716,
+          "rarityDisplay": "1/2,448"
+        },
+        {
+          "itemName": "Dharok\u0027s platebody",
+          "dropRate": 4.084967320261438E-4,
+          "itemId": 4720,
+          "rarityDisplay": "1/2,448"
+        },
+        {
+          "itemName": "Dharok\u0027s platelegs",
+          "dropRate": 4.084967320261438E-4,
+          "itemId": 4722,
+          "rarityDisplay": "1/2,448"
+        },
+        {
+          "itemName": "Dharok\u0027s greataxe",
+          "dropRate": 4.084967320261438E-4,
+          "itemId": 4718,
+          "rarityDisplay": "1/2,448"
+        },
+        {
+          "itemName": "Guthan\u0027s helm",
+          "dropRate": 4.084967320261438E-4,
+          "itemId": 4724,
+          "rarityDisplay": "1/2,448"
+        },
+        {
+          "itemName": "Guthan\u0027s platebody",
+          "dropRate": 4.084967320261438E-4,
+          "itemId": 4728,
+          "rarityDisplay": "1/2,448"
+        },
+        {
+          "itemName": "Guthan\u0027s chainskirt",
+          "dropRate": 4.084967320261438E-4,
+          "itemId": 4730,
+          "rarityDisplay": "1/2,448"
+        },
+        {
+          "itemName": "Guthan\u0027s warspear",
+          "dropRate": 4.084967320261438E-4,
+          "itemId": 4726,
+          "rarityDisplay": "1/2,448"
+        },
+        {
+          "itemName": "Karil\u0027s coif",
+          "dropRate": 4.084967320261438E-4,
+          "itemId": 4732,
+          "rarityDisplay": "1/2,448"
+        },
+        {
+          "itemName": "Karil\u0027s leathertop",
+          "dropRate": 4.084967320261438E-4,
+          "itemId": 4736,
+          "rarityDisplay": "1/2,448"
+        },
+        {
+          "itemName": "Karil\u0027s leatherskirt",
+          "dropRate": 4.084967320261438E-4,
+          "itemId": 4738,
+          "rarityDisplay": "1/2,448"
+        },
+        {
+          "itemName": "Karil\u0027s crossbow",
+          "dropRate": 4.084967320261438E-4,
+          "itemId": 4734,
+          "rarityDisplay": "1/2,448"
+        },
+        {
+          "itemName": "Torag\u0027s helm",
+          "dropRate": 4.084967320261438E-4,
+          "itemId": 4745,
+          "rarityDisplay": "1/2,448"
+        },
+        {
+          "itemName": "Torag\u0027s platebody",
+          "dropRate": 4.084967320261438E-4,
+          "itemId": 4749,
+          "rarityDisplay": "1/2,448"
+        },
+        {
+          "itemName": "Torag\u0027s platelegs",
+          "dropRate": 4.084967320261438E-4,
+          "itemId": 4751,
+          "rarityDisplay": "1/2,448"
+        },
+        {
+          "itemName": "Torag\u0027s hammers",
+          "dropRate": 4.084967320261438E-4,
+          "itemId": 4747,
+          "rarityDisplay": "1/2,448"
+        },
+        {
+          "itemName": "Verac\u0027s helm",
+          "dropRate": 4.084967320261438E-4,
+          "itemId": 4753,
+          "rarityDisplay": "1/2,448"
+        },
+        {
+          "itemName": "Verac\u0027s brassard",
+          "dropRate": 4.084967320261438E-4,
+          "itemId": 4757,
+          "rarityDisplay": "1/2,448"
+        },
+        {
+          "itemName": "Verac\u0027s plateskirt",
+          "dropRate": 4.084967320261438E-4,
+          "itemId": 4759,
+          "rarityDisplay": "1/2,448"
+        },
+        {
+          "itemName": "Verac\u0027s flail",
+          "dropRate": 4.084967320261438E-4,
+          "itemId": 4755,
+          "rarityDisplay": "1/2,448"
+        },
+        {
+          "itemName": "Bolt rack",
+          "dropRate": 0.12351778656126482,
+          "itemId": 4740,
+          "rarityDisplay": "1/8"
+        }
+      ]
+    },
+    "Callisto": {
+      "monsterName": "Callisto",
+      "wikiPage": "Callisto",
+      "drops": [
+        {
+          "itemName": "Claws of callisto",
+          "dropRate": 0.00510204081632653,
+          "itemId": 27667,
+          "rarityDisplay": "1/196"
+        },
+        {
+          "itemName": "Dragon 2h sword",
+          "dropRate": 0.00390625,
+          "itemId": 7158,
+          "rarityDisplay": "1/256"
+        },
+        {
+          "itemName": "Dragon pickaxe",
+          "dropRate": 0.00390625,
+          "itemId": 11920,
+          "rarityDisplay": "1/256"
+        },
+        {
+          "itemName": "Voidwaker hilt",
+          "dropRate": 0.002777777777777778,
+          "itemId": 27681,
+          "rarityDisplay": "1/360"
+        },
+        {
+          "itemName": "Tyrannical ring",
+          "dropRate": 0.001953125,
+          "itemId": 12603,
+          "rarityDisplay": "1/512"
+        },
+        {
+          "itemName": "Callisto cub",
+          "dropRate": 6.666666666666666E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/1,500"
+        }
+      ]
+    },
+    "Artio": {
+      "monsterName": "Artio",
+      "wikiPage": "Artio",
+      "drops": [
+        {
+          "itemName": "Dragon 2h sword",
+          "dropRate": 0.002793296089385475,
+          "itemId": 7158,
+          "rarityDisplay": "1/358"
+        },
+        {
+          "itemName": "Dragon pickaxe",
+          "dropRate": 0.002793296089385475,
+          "itemId": 11920,
+          "rarityDisplay": "1/358"
+        },
+        {
+          "itemName": "Claws of callisto",
+          "dropRate": 0.0016181229773462784,
+          "itemId": 27667,
+          "rarityDisplay": "1/618"
+        },
+        {
+          "itemName": "Tyrannical ring",
+          "dropRate": 0.0013966480446927375,
+          "itemId": 12603,
+          "rarityDisplay": "1/716"
+        },
+        {
+          "itemName": "Voidwaker hilt",
+          "dropRate": 0.0010964912280701754,
+          "itemId": 27681,
+          "rarityDisplay": "1/912"
+        },
+        {
+          "itemName": "Callisto cub",
+          "dropRate": 3.5714285714285714E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/2,800"
+        }
+      ]
+    },
+    "Callisto And Artio": {
+      "monsterName": "Callisto and Artio",
+      "wikiPage": "Callisto and Artio",
+      "drops": [
+        {
+          "itemName": "Claws of callisto",
+          "dropRate": 0.00510204081632653,
+          "itemId": 27667,
+          "rarityDisplay": "1/196"
+        },
+        {
+          "itemName": "Dragon 2h sword",
+          "dropRate": 0.00390625,
+          "itemId": 7158,
+          "rarityDisplay": "1/256"
+        },
+        {
+          "itemName": "Dragon pickaxe",
+          "dropRate": 0.00390625,
+          "itemId": 11920,
+          "rarityDisplay": "1/256"
+        },
+        {
+          "itemName": "Voidwaker hilt",
+          "dropRate": 0.002777777777777778,
+          "itemId": 27681,
+          "rarityDisplay": "1/360"
+        },
+        {
+          "itemName": "Tyrannical ring",
+          "dropRate": 0.001953125,
+          "itemId": 12603,
+          "rarityDisplay": "1/512"
+        },
+        {
+          "itemName": "Callisto cub",
+          "dropRate": 6.666666666666666E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/1,500"
+        }
+      ]
+    },
+    "Cerberus": {
+      "monsterName": "Cerberus",
+      "wikiPage": "Cerberus",
+      "drops": [
+        {
+          "itemName": "Primordial crystal",
+          "dropRate": 0.0019230769230769232,
+          "itemId": 13231,
+          "rarityDisplay": "1/520"
+        },
+        {
+          "itemName": "Pegasian crystal",
+          "dropRate": 0.0019230769230769232,
+          "itemId": 13229,
+          "rarityDisplay": "1/520"
+        },
+        {
+          "itemName": "Eternal crystal",
+          "dropRate": 0.0019230769230769232,
+          "itemId": 13227,
+          "rarityDisplay": "1/520"
+        },
+        {
+          "itemName": "Smouldering stone",
+          "dropRate": 0.0019230769230769232,
+          "itemId": 13233,
+          "rarityDisplay": "1/520"
+        },
+        {
+          "itemName": "Key master teleport",
+          "dropRate": 0.015384615384615385,
+          "itemId": 13249,
+          "rarityDisplay": "2/130"
+        },
+        {
+          "itemName": "Jar of souls",
+          "dropRate": 5.0E-4,
+          "itemId": 13245,
+          "rarityDisplay": "1/2,000"
+        },
+        {
+          "itemName": "Hellpuppy",
+          "dropRate": 3.333333333333333E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/3,000"
+        }
+      ]
+    },
+    "Chaos Elemental": {
+      "monsterName": "Chaos Elemental",
+      "wikiPage": "Chaos Elemental",
+      "drops": [
+        {
+          "itemName": "Dragon pickaxe",
+          "dropRate": 0.00390625,
+          "itemId": 11920,
+          "rarityDisplay": "1/256"
+        },
+        {
+          "itemName": "Dragon 2h sword",
+          "dropRate": 0.015625,
+          "itemId": 7158,
+          "rarityDisplay": "2/128"
+        },
+        {
+          "itemName": "Pet chaos elemental",
+          "dropRate": 0.0033333333333333335,
+          "itemId": -1,
+          "rarityDisplay": "1/300"
+        }
+      ]
+    },
+    "Chaos Fanatic": {
+      "monsterName": "Chaos Fanatic",
+      "wikiPage": "Chaos Fanatic",
+      "drops": [
+        {
+          "itemName": "Odium shard 1",
+          "dropRate": 0.00390625,
+          "itemId": 11928,
+          "rarityDisplay": "1/256"
+        },
+        {
+          "itemName": "Malediction shard 1",
+          "dropRate": 0.00390625,
+          "itemId": 11931,
+          "rarityDisplay": "1/256"
+        },
+        {
+          "itemName": "Pet chaos elemental",
+          "dropRate": 0.001,
+          "itemId": -1,
+          "rarityDisplay": "1/1,000"
+        }
+      ]
+    },
+    "Commander Zilyana": {
+      "monsterName": "Commander Zilyana",
+      "wikiPage": "Commander Zilyana",
+      "drops": [
+        {
+          "itemName": "Saradomin sword",
+          "dropRate": 0.007874015748031496,
+          "itemId": 11838,
+          "rarityDisplay": "1/127"
+        },
+        {
+          "itemName": "Saradomin\u0027s light",
+          "dropRate": 0.003937007874015748,
+          "itemId": 13256,
+          "rarityDisplay": "1/254"
+        },
+        {
+          "itemName": "Armadyl crossbow",
+          "dropRate": 0.001968503937007874,
+          "itemId": 11785,
+          "rarityDisplay": "1/508"
+        },
+        {
+          "itemName": "Saradomin hilt",
+          "dropRate": 0.001968503937007874,
+          "itemId": 11814,
+          "rarityDisplay": "1/508"
+        },
+        {
+          "itemName": "Godsword shard 1",
+          "dropRate": 0.0013123359580052493,
+          "itemId": 11818,
+          "rarityDisplay": "1/762"
+        },
+        {
+          "itemName": "Godsword shard 2",
+          "dropRate": 0.0013123359580052493,
+          "itemId": 11820,
+          "rarityDisplay": "1/762"
+        },
+        {
+          "itemName": "Godsword shard 3",
+          "dropRate": 0.0013123359580052493,
+          "itemId": 11822,
+          "rarityDisplay": "1/762"
+        },
+        {
+          "itemName": "Pet zilyana",
+          "dropRate": 2.0E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/5,000"
+        }
+      ]
+    },
+    "Corporeal Beast": {
+      "monsterName": "Corporeal Beast",
+      "wikiPage": "Corporeal Beast",
+      "drops": [
+        {
+          "itemName": "Spirit shield",
+          "dropRate": 0.015625,
+          "itemId": 12829,
+          "rarityDisplay": "8/512"
+        },
+        {
+          "itemName": "Holy elixir",
+          "dropRate": 0.005859375,
+          "itemId": 12833,
+          "rarityDisplay": "3/512"
+        },
+        {
+          "itemName": "Jar of spirits",
+          "dropRate": 0.001,
+          "itemId": 25521,
+          "rarityDisplay": "1/1,000"
+        },
+        {
+          "itemName": "Pet dark core",
+          "dropRate": 2.0E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/5,000"
+        }
+      ]
+    },
+    "Crazy Archaeologist": {
+      "monsterName": "Crazy Archaeologist",
+      "wikiPage": "Crazy archaeologist",
+      "drops": [
+        {
+          "itemName": "Odium shard 2",
+          "dropRate": 0.00390625,
+          "itemId": 11929,
+          "rarityDisplay": "1/256"
+        },
+        {
+          "itemName": "Malediction shard 2",
+          "dropRate": 0.00390625,
+          "itemId": 11932,
+          "rarityDisplay": "1/256"
+        },
+        {
+          "itemName": "Fedora",
+          "dropRate": 0.0078125,
+          "itemId": 11990,
+          "rarityDisplay": "1/128"
+        }
+      ]
+    },
+    "Dagannoth Rex": {
+      "monsterName": "Dagannoth Rex",
+      "wikiPage": "Dagannoth Rex",
+      "drops": [
+        {
+          "itemName": "Dragon axe",
+          "dropRate": 0.0078125,
+          "itemId": 6739,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Berserker ring",
+          "dropRate": 0.0078125,
+          "itemId": 6737,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Warrior ring",
+          "dropRate": 0.0078125,
+          "itemId": 6735,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Pet dagannoth rex",
+          "dropRate": 2.0E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/5,000"
+        }
+      ]
+    },
+    "Dagannoth Prime": {
+      "monsterName": "Dagannoth Prime",
+      "wikiPage": "Dagannoth Prime",
+      "drops": [
+        {
+          "itemName": "Mud battlestaff",
+          "dropRate": 0.0078125,
+          "itemId": 6562,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Dragon axe",
+          "dropRate": 0.0078125,
+          "itemId": 6739,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Seers ring",
+          "dropRate": 0.0078125,
+          "itemId": 6731,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Pet dagannoth prime",
+          "dropRate": 2.0E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/5,000"
+        }
+      ]
+    },
+    "Dagannoth Supreme": {
+      "monsterName": "Dagannoth Supreme",
+      "wikiPage": "Dagannoth Supreme",
+      "drops": [
+        {
+          "itemName": "Seercull",
+          "dropRate": 0.0078125,
+          "itemId": 6724,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Dragon axe",
+          "dropRate": 0.0078125,
+          "itemId": 6739,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Archers ring",
+          "dropRate": 0.0078125,
+          "itemId": 6733,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Pet dagannoth supreme",
+          "dropRate": 2.0E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/5,000"
+        }
+      ]
+    },
+    "Dagannoth Kings": {
+      "monsterName": "Dagannoth Kings",
+      "wikiPage": "Dagannoth Kings",
+      "drops": [
+        {
+          "itemName": "Dragon axe",
+          "dropRate": 0.0078125,
+          "itemId": 6739,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Berserker ring",
+          "dropRate": 0.0078125,
+          "itemId": 6737,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Warrior ring",
+          "dropRate": 0.0078125,
+          "itemId": 6735,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Pet dagannoth rex",
+          "dropRate": 2.0E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/5,000"
+        },
+        {
+          "itemName": "Mud battlestaff",
+          "dropRate": 0.0078125,
+          "itemId": 6562,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Seers ring",
+          "dropRate": 0.0078125,
+          "itemId": 6731,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Pet dagannoth prime",
+          "dropRate": 2.0E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/5,000"
+        },
+        {
+          "itemName": "Seercull",
+          "dropRate": 0.0078125,
+          "itemId": 6724,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Archers ring",
+          "dropRate": 0.0078125,
+          "itemId": 6733,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Pet dagannoth supreme",
+          "dropRate": 2.0E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/5,000"
+        }
+      ]
+    },
+    "Deranged Archaeologist": {
+      "monsterName": "Deranged Archaeologist",
+      "wikiPage": "Deranged archaeologist",
+      "drops": [
+        {
+          "itemName": "Steel ring",
+          "dropRate": 0.022900763358778626,
+          "itemId": 30895,
+          "rarityDisplay": "3/131"
+        }
+      ]
+    },
+    "Duke Sucellus": {
+      "monsterName": "Duke Sucellus",
+      "wikiPage": "Duke Sucellus",
+      "drops": [
+        {
+          "itemName": "Magus vestige",
+          "dropRate": 0.001388888888888889,
+          "itemId": -1,
+          "rarityDisplay": "1/720"
+        },
+        {
+          "itemName": "Chromium ingot",
+          "dropRate": 0.004166666666666667,
+          "itemId": 28276,
+          "rarityDisplay": "3/720"
+        },
+        {
+          "itemName": "Eye of the duke",
+          "dropRate": 0.001388888888888889,
+          "itemId": -1,
+          "rarityDisplay": "1/720"
+        },
+        {
+          "itemName": "Virtus mask",
+          "dropRate": 4.62962962962963E-4,
+          "itemId": 26241,
+          "rarityDisplay": "1/2,160"
+        },
+        {
+          "itemName": "Virtus robe top",
+          "dropRate": 4.62962962962963E-4,
+          "itemId": 26243,
+          "rarityDisplay": "1/2,160"
+        },
+        {
+          "itemName": "Virtus robe bottom",
+          "dropRate": 4.62962962962963E-4,
+          "itemId": 26245,
+          "rarityDisplay": "1/2,160"
+        },
+        {
+          "itemName": "Frozen tablet",
+          "dropRate": 0.03875968992248062,
+          "itemId": -1,
+          "rarityDisplay": "1/25.8"
+        },
+        {
+          "itemName": "Awakener\u0027s orb",
+          "dropRate": 0.020618556701030927,
+          "itemId": 28334,
+          "rarityDisplay": "1/48.5"
+        },
+        {
+          "itemName": "Ice quartz",
+          "dropRate": 0.00484027105517909,
+          "itemId": -1,
+          "rarityDisplay": "1/206.6"
+        },
+        {
+          "itemName": "Baron",
+          "dropRate": 4.0E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/2,500"
+        }
+      ]
+    },
+    "General Graardor": {
+      "monsterName": "General Graardor",
+      "wikiPage": "General Graardor",
+      "drops": [
+        {
+          "itemName": "Bandos chestplate",
+          "dropRate": 0.0026246719160104987,
+          "itemId": 11832,
+          "rarityDisplay": "1/381"
+        },
+        {
+          "itemName": "Bandos tassets",
+          "dropRate": 0.0026246719160104987,
+          "itemId": 11834,
+          "rarityDisplay": "1/381"
+        },
+        {
+          "itemName": "Bandos boots",
+          "dropRate": 0.0026246719160104987,
+          "itemId": 11836,
+          "rarityDisplay": "1/381"
+        },
+        {
+          "itemName": "Bandos hilt",
+          "dropRate": 0.001968503937007874,
+          "itemId": 11812,
+          "rarityDisplay": "1/508"
+        },
+        {
+          "itemName": "Godsword shard 1",
+          "dropRate": 0.0013123359580052493,
+          "itemId": 11818,
+          "rarityDisplay": "1/762"
+        },
+        {
+          "itemName": "Godsword shard 2",
+          "dropRate": 0.0013123359580052493,
+          "itemId": 11820,
+          "rarityDisplay": "1/762"
+        },
+        {
+          "itemName": "Godsword shard 3",
+          "dropRate": 0.0013123359580052493,
+          "itemId": 11822,
+          "rarityDisplay": "1/762"
+        },
+        {
+          "itemName": "Pet general graardor",
+          "dropRate": 2.0E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/5,000"
+        }
+      ]
+    },
+    "Giant Mole": {
+      "monsterName": "Giant Mole",
+      "wikiPage": "Giant Mole",
+      "drops": [
+        {
+          "itemName": "Baby mole",
+          "dropRate": 3.333333333333333E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/3,000"
+        }
+      ]
+    },
+    "Grotesque Guardians": {
+      "monsterName": "Grotesque Guardians",
+      "wikiPage": "Grotesque Guardians",
+      "drops": [
+        {
+          "itemName": "Granite gloves",
+          "dropRate": 0.002,
+          "itemId": 21736,
+          "rarityDisplay": "1/500"
+        },
+        {
+          "itemName": "Granite ring",
+          "dropRate": 0.002,
+          "itemId": 21739,
+          "rarityDisplay": "1/500"
+        },
+        {
+          "itemName": "Granite hammer",
+          "dropRate": 0.0013333333333333333,
+          "itemId": 21742,
+          "rarityDisplay": "1/750"
+        },
+        {
+          "itemName": "Black tourmaline core",
+          "dropRate": 0.001,
+          "itemId": 21730,
+          "rarityDisplay": "1/1,000"
+        },
+        {
+          "itemName": "Noon",
+          "dropRate": 3.333333333333333E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/3,000"
+        },
+        {
+          "itemName": "Jar of stone",
+          "dropRate": 2.0E-4,
+          "itemId": 21745,
+          "rarityDisplay": "1/5,000"
+        }
+      ]
+    },
+    "Hespori": {
+      "monsterName": "Hespori",
+      "wikiPage": "Hespori",
+      "drops": [
+        {
+          "itemName": "Attas seed",
+          "dropRate": 0.3333333333333333,
+          "itemId": -1,
+          "rarityDisplay": "1/3"
+        },
+        {
+          "itemName": "Iasor seed",
+          "dropRate": 0.3333333333333333,
+          "itemId": -1,
+          "rarityDisplay": "1/3"
+        },
+        {
+          "itemName": "Kronos seed",
+          "dropRate": 0.3333333333333333,
+          "itemId": -1,
+          "rarityDisplay": "1/3"
+        },
+        {
+          "itemName": "Bottomless compost bucket",
+          "dropRate": 0.02857142857142857,
+          "itemId": 22994,
+          "rarityDisplay": "1/35"
+        }
+      ]
+    },
+    "Hueycoatl": {
+      "monsterName": "Hueycoatl",
+      "wikiPage": "The Hueycoatl",
+      "drops": [
+        {
+          "itemName": "Dragon hunter wand",
+          "dropRate": 0.009523809523809525,
+          "itemId": 30070,
+          "rarityDisplay": "1/105"
+        },
+        {
+          "itemName": "Hueycoatl hide",
+          "dropRate": 0.03492063492063492,
+          "itemId": 30085,
+          "rarityDisplay": "1/29"
+        },
+        {
+          "itemName": "Tome of earth (empty)",
+          "dropRate": 0.011111111111111112,
+          "itemId": 30066,
+          "rarityDisplay": "1/90"
+        },
+        {
+          "itemName": "Huasca seed",
+          "dropRate": 0.029411764705882353,
+          "itemId": 30088,
+          "rarityDisplay": "2/68"
+        },
+        {
+          "itemName": "Soiled page",
+          "dropRate": 0.07352941176470588,
+          "itemId": 30068,
+          "rarityDisplay": "5/68"
+        },
+        {
+          "itemName": "Huberte",
+          "dropRate": 0.0025,
+          "itemId": -1,
+          "rarityDisplay": "1/400"
+        }
+      ]
+    },
+    "Kalphite Queen": {
+      "monsterName": "Kalphite Queen",
+      "wikiPage": "Kalphite Queen",
+      "drops": [
+        {
+          "itemName": "Kq head",
+          "dropRate": 0.0078125,
+          "itemId": -1,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Dragon chainbody",
+          "dropRate": 0.0078125,
+          "itemId": 3140,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Dragon 2h sword",
+          "dropRate": 0.00390625,
+          "itemId": 7158,
+          "rarityDisplay": "1/256"
+        },
+        {
+          "itemName": "Dragon pickaxe",
+          "dropRate": 0.0025,
+          "itemId": 11920,
+          "rarityDisplay": "1/400"
+        },
+        {
+          "itemName": "Jar of sand",
+          "dropRate": 5.0E-4,
+          "itemId": 12885,
+          "rarityDisplay": "1/2,000"
+        },
+        {
+          "itemName": "Kalphite princess",
+          "dropRate": 3.333333333333333E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/3,000"
+        }
+      ]
+    },
+    "King Black Dragon": {
+      "monsterName": "King Black Dragon",
+      "wikiPage": "King Black Dragon",
+      "drops": [
+        {
+          "itemName": "Dragon pickaxe",
+          "dropRate": 0.001,
+          "itemId": 11920,
+          "rarityDisplay": "1/1,000"
+        },
+        {
+          "itemName": "Kbd heads",
+          "dropRate": 0.0078125,
+          "itemId": -1,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Prince black dragon",
+          "dropRate": 3.333333333333333E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/3,000"
+        },
+        {
+          "itemName": "Draconic visage",
+          "dropRate": 2.0E-4,
+          "itemId": 11286,
+          "rarityDisplay": "1/5,000"
+        }
+      ]
+    },
+    "Kraken": {
+      "monsterName": "Kraken",
+      "wikiPage": "Kraken",
+      "drops": [
+        {
+          "itemName": "Kraken tentacle",
+          "dropRate": 0.0025,
+          "itemId": 12004,
+          "rarityDisplay": "1/400"
+        },
+        {
+          "itemName": "Jar of dirt",
+          "dropRate": 0.001,
+          "itemId": 12007,
+          "rarityDisplay": "1/1,000"
+        },
+        {
+          "itemName": "Pet kraken",
+          "dropRate": 3.333333333333333E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/3,000"
+        }
+      ]
+    },
+    "Kree\u0027arra": {
+      "monsterName": "Kree\u0027arra",
+      "wikiPage": "Kree\u0027arra",
+      "drops": [
+        {
+          "itemName": "Armadyl helmet",
+          "dropRate": 0.0026246719160104987,
+          "itemId": 11826,
+          "rarityDisplay": "1/381"
+        },
+        {
+          "itemName": "Armadyl chestplate",
+          "dropRate": 0.0026246719160104987,
+          "itemId": 11828,
+          "rarityDisplay": "1/381"
+        },
+        {
+          "itemName": "Armadyl chainskirt",
+          "dropRate": 0.0026246719160104987,
+          "itemId": 11830,
+          "rarityDisplay": "1/381"
+        },
+        {
+          "itemName": "Armadyl hilt",
+          "dropRate": 0.001968503937007874,
+          "itemId": 11810,
+          "rarityDisplay": "1/508"
+        },
+        {
+          "itemName": "Godsword shard 1",
+          "dropRate": 0.0013123359580052493,
+          "itemId": 11818,
+          "rarityDisplay": "1/762"
+        },
+        {
+          "itemName": "Godsword shard 2",
+          "dropRate": 0.0013123359580052493,
+          "itemId": 11820,
+          "rarityDisplay": "1/762"
+        },
+        {
+          "itemName": "Godsword shard 3",
+          "dropRate": 0.0013123359580052493,
+          "itemId": 11822,
+          "rarityDisplay": "1/762"
+        },
+        {
+          "itemName": "Pet kree\u0027arra",
+          "dropRate": 2.0E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/5,000"
+        }
+      ]
+    },
+    "K\u0027ril Tsutsaroth": {
+      "monsterName": "K\u0027ril Tsutsaroth",
+      "wikiPage": "K\u0027ril Tsutsaroth",
+      "drops": [
+        {
+          "itemName": "Steam battlestaff",
+          "dropRate": 0.007874015748031496,
+          "itemId": 11787,
+          "rarityDisplay": "1/127"
+        },
+        {
+          "itemName": "Zamorakian spear",
+          "dropRate": 0.007874015748031496,
+          "itemId": 11824,
+          "rarityDisplay": "1/127"
+        },
+        {
+          "itemName": "Staff of the dead",
+          "dropRate": 0.001968503937007874,
+          "itemId": 11791,
+          "rarityDisplay": "1/508"
+        },
+        {
+          "itemName": "Zamorak hilt",
+          "dropRate": 0.001968503937007874,
+          "itemId": 11816,
+          "rarityDisplay": "1/508"
+        },
+        {
+          "itemName": "Godsword shard 1",
+          "dropRate": 0.0013123359580052493,
+          "itemId": 11818,
+          "rarityDisplay": "1/762"
+        },
+        {
+          "itemName": "Godsword shard 2",
+          "dropRate": 0.0013123359580052493,
+          "itemId": 11820,
+          "rarityDisplay": "1/762"
+        },
+        {
+          "itemName": "Godsword shard 3",
+          "dropRate": 0.0013123359580052493,
+          "itemId": 11822,
+          "rarityDisplay": "1/762"
+        },
+        {
+          "itemName": "Pet k\u0027ril tsutsaroth",
+          "dropRate": 2.0E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/5,000"
+        }
+      ]
+    },
+    "Leviathan": {
+      "monsterName": "Leviathan",
+      "wikiPage": "The Leviathan",
+      "drops": [
+        {
+          "itemName": "Venator vestige",
+          "dropRate": 0.0013020833333333333,
+          "itemId": -1,
+          "rarityDisplay": "1/768"
+        },
+        {
+          "itemName": "Chromium ingot",
+          "dropRate": 0.00390625,
+          "itemId": 28276,
+          "rarityDisplay": "3/768"
+        },
+        {
+          "itemName": "Leviathan\u0027s lure",
+          "dropRate": 0.0013020833333333333,
+          "itemId": -1,
+          "rarityDisplay": "1/768"
+        },
+        {
+          "itemName": "Virtus mask",
+          "dropRate": 4.3402777777777775E-4,
+          "itemId": 26241,
+          "rarityDisplay": "1/2,304"
+        },
+        {
+          "itemName": "Virtus robe top",
+          "dropRate": 4.3402777777777775E-4,
+          "itemId": 26243,
+          "rarityDisplay": "1/2,304"
+        },
+        {
+          "itemName": "Virtus robe bottom",
+          "dropRate": 4.3402777777777775E-4,
+          "itemId": 26245,
+          "rarityDisplay": "1/2,304"
+        },
+        {
+          "itemName": "Scarred tablet",
+          "dropRate": 0.03875968992248062,
+          "itemId": -1,
+          "rarityDisplay": "1/25.8"
+        },
+        {
+          "itemName": "Awakener\u0027s orb",
+          "dropRate": 0.018656716417910446,
+          "itemId": 28334,
+          "rarityDisplay": "1/53.6"
+        },
+        {
+          "itemName": "Smoke quartz",
+          "dropRate": 0.0048543689320388345,
+          "itemId": -1,
+          "rarityDisplay": "1/206"
+        },
+        {
+          "itemName": "Lil\u0027viathan",
+          "dropRate": 4.0E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/2,500"
+        }
+      ]
+    },
+    "Mimic": {
+      "monsterName": "Mimic",
+      "wikiPage": "The Mimic",
+      "drops": [
+        {
+          "itemName": "Ring of 3rd age",
+          "dropRate": 0.024,
+          "itemId": 23185,
+          "rarityDisplay": "6/250"
+        },
+        {
+          "itemName": "3rd age full helmet",
+          "dropRate": 1.7391304347826088E-4,
+          "itemId": 10350,
+          "rarityDisplay": "1/5,750"
+        },
+        {
+          "itemName": "3rd age platebody",
+          "dropRate": 1.7391304347826088E-4,
+          "itemId": 10348,
+          "rarityDisplay": "1/5,750"
+        },
+        {
+          "itemName": "3rd age platelegs",
+          "dropRate": 1.7391304347826088E-4,
+          "itemId": 10346,
+          "rarityDisplay": "1/5,750"
+        },
+        {
+          "itemName": "3rd age plateskirt",
+          "dropRate": 1.7391304347826088E-4,
+          "itemId": 23242,
+          "rarityDisplay": "1/5,750"
+        },
+        {
+          "itemName": "3rd age kiteshield",
+          "dropRate": 1.7391304347826088E-4,
+          "itemId": 10352,
+          "rarityDisplay": "1/5,750"
+        },
+        {
+          "itemName": "3rd age range coif",
+          "dropRate": 1.7391304347826088E-4,
+          "itemId": 10334,
+          "rarityDisplay": "1/5,750"
+        },
+        {
+          "itemName": "3rd age range top",
+          "dropRate": 1.7391304347826088E-4,
+          "itemId": 10330,
+          "rarityDisplay": "1/5,750"
+        },
+        {
+          "itemName": "3rd age range legs",
+          "dropRate": 1.7391304347826088E-4,
+          "itemId": 10332,
+          "rarityDisplay": "1/5,750"
+        },
+        {
+          "itemName": "3rd age vambraces",
+          "dropRate": 1.7391304347826088E-4,
+          "itemId": 10336,
+          "rarityDisplay": "1/5,750"
+        },
+        {
+          "itemName": "3rd age mage hat",
+          "dropRate": 1.7391304347826088E-4,
+          "itemId": 10342,
+          "rarityDisplay": "1/5,750"
+        },
+        {
+          "itemName": "3rd age robe top",
+          "dropRate": 1.7391304347826088E-4,
+          "itemId": 10338,
+          "rarityDisplay": "1/5,750"
+        },
+        {
+          "itemName": "3rd age robe",
+          "dropRate": 1.7391304347826088E-4,
+          "itemId": 10340,
+          "rarityDisplay": "1/5,750"
+        },
+        {
+          "itemName": "3rd age amulet",
+          "dropRate": 1.7391304347826088E-4,
+          "itemId": 10344,
+          "rarityDisplay": "1/5,750"
+        },
+        {
+          "itemName": "3rd age longsword",
+          "dropRate": 1.7391304347826088E-4,
+          "itemId": 12426,
+          "rarityDisplay": "1/5,750"
+        },
+        {
+          "itemName": "3rd age bow",
+          "dropRate": 1.7391304347826088E-4,
+          "itemId": 12424,
+          "rarityDisplay": "1/5,750"
+        },
+        {
+          "itemName": "3rd age wand",
+          "dropRate": 1.7391304347826088E-4,
+          "itemId": 12422,
+          "rarityDisplay": "1/5,750"
+        },
+        {
+          "itemName": "3rd age cloak",
+          "dropRate": 1.7391304347826088E-4,
+          "itemId": 12437,
+          "rarityDisplay": "1/5,750"
+        },
+        {
+          "itemName": "3rd age druidic robe top",
+          "dropRate": 1.7391304347826088E-4,
+          "itemId": 23336,
+          "rarityDisplay": "1/5,750"
+        },
+        {
+          "itemName": "3rd age druidic robe bottoms",
+          "dropRate": 1.7391304347826088E-4,
+          "itemId": 23339,
+          "rarityDisplay": "1/5,750"
+        },
+        {
+          "itemName": "3rd age druidic cloak",
+          "dropRate": 1.7391304347826088E-4,
+          "itemId": 23345,
+          "rarityDisplay": "1/5,750"
+        },
+        {
+          "itemName": "3rd age druidic staff",
+          "dropRate": 1.7391304347826088E-4,
+          "itemId": 23342,
+          "rarityDisplay": "1/5,750"
+        },
+        {
+          "itemName": "3rd age pickaxe",
+          "dropRate": 1.7391304347826088E-4,
+          "itemId": 20014,
+          "rarityDisplay": "1/5,750"
+        },
+        {
+          "itemName": "3rd age axe",
+          "dropRate": 1.7391304347826088E-4,
+          "itemId": 20011,
+          "rarityDisplay": "1/5,750"
+        },
+        {
+          "itemName": "Death rune",
+          "dropRate": 0.1944,
+          "itemId": 560,
+          "rarityDisplay": "1/5"
+        },
+        {
+          "itemName": "Blood rune",
+          "dropRate": 0.1944,
+          "itemId": 565,
+          "rarityDisplay": "1/5"
+        },
+        {
+          "itemName": "Grimy ranarr weed",
+          "dropRate": 0.1944,
+          "itemId": 207,
+          "rarityDisplay": "1/5"
+        },
+        {
+          "itemName": "Wine of zamorak",
+          "dropRate": 0.1944,
+          "itemId": 245,
+          "rarityDisplay": "1/5"
+        },
+        {
+          "itemName": "Raw manta ray",
+          "dropRate": 0.1944,
+          "itemId": 389,
+          "rarityDisplay": "1/5"
+        }
+      ]
+    },
+    "Nex": {
+      "monsterName": "Nex",
+      "wikiPage": "Nex",
+      "drops": [
+        {
+          "itemName": "Ancient hilt",
+          "dropRate": 0.001937984496124031,
+          "itemId": 26370,
+          "rarityDisplay": "1/516"
+        },
+        {
+          "itemName": "Nihil horn",
+          "dropRate": 0.003875968992248062,
+          "itemId": 26372,
+          "rarityDisplay": "1/258"
+        },
+        {
+          "itemName": "Torva full helm (damaged)",
+          "dropRate": 0.003875968992248062,
+          "itemId": 26376,
+          "rarityDisplay": "1/258"
+        },
+        {
+          "itemName": "Torva platebody (damaged)",
+          "dropRate": 0.003875968992248062,
+          "itemId": 26378,
+          "rarityDisplay": "1/258"
+        },
+        {
+          "itemName": "Torva platelegs (damaged)",
+          "dropRate": 0.003875968992248062,
+          "itemId": 26380,
+          "rarityDisplay": "1/258"
+        },
+        {
+          "itemName": "Zaryte vambraces",
+          "dropRate": 0.005813953488372093,
+          "itemId": 26235,
+          "rarityDisplay": "1/172"
+        },
+        {
+          "itemName": "Nihil shard",
+          "dropRate": 0.06097560975609756,
+          "itemId": 26231,
+          "rarityDisplay": "5/82"
+        },
+        {
+          "itemName": "Nexling",
+          "dropRate": 0.002,
+          "itemId": -1,
+          "rarityDisplay": "1/500"
+        }
+      ]
+    },
+    "Nightmare": {
+      "monsterName": "Nightmare",
+      "wikiPage": "The Nightmare",
+      "drops": [
+        {
+          "itemName": "Nightmare staff",
+          "dropRate": 0.0033333333333333335,
+          "itemId": 24422,
+          "rarityDisplay": "1/300"
+        },
+        {
+          "itemName": "Inquisitor\u0027s great helm",
+          "dropRate": 0.002380952380952381,
+          "itemId": 24419,
+          "rarityDisplay": "1/420"
+        },
+        {
+          "itemName": "Inquisitor\u0027s hauberk",
+          "dropRate": 0.002380952380952381,
+          "itemId": 24420,
+          "rarityDisplay": "1/420"
+        },
+        {
+          "itemName": "Inquisitor\u0027s plateskirt",
+          "dropRate": 0.002380952380952381,
+          "itemId": 24421,
+          "rarityDisplay": "1/420"
+        },
+        {
+          "itemName": "Inquisitor\u0027s mace",
+          "dropRate": 0.0013333333333333333,
+          "itemId": 24417,
+          "rarityDisplay": "1/750"
+        },
+        {
+          "itemName": "Eldritch orb",
+          "dropRate": 0.0010416666666666667,
+          "itemId": 24517,
+          "rarityDisplay": "1/960"
+        },
+        {
+          "itemName": "Harmonised orb",
+          "dropRate": 0.0010416666666666667,
+          "itemId": 24511,
+          "rarityDisplay": "1/960"
+        },
+        {
+          "itemName": "Volatile orb",
+          "dropRate": 0.0010416666666666667,
+          "itemId": 24514,
+          "rarityDisplay": "1/960"
+        },
+        {
+          "itemName": "Little nightmare",
+          "dropRate": 0.00125,
+          "itemId": -1,
+          "rarityDisplay": "1/800"
+        },
+        {
+          "itemName": "Jar of dreams",
+          "dropRate": 5.263157894736842E-4,
+          "itemId": 24495,
+          "rarityDisplay": "1/1,900"
+        }
+      ]
+    },
+    "Phantom Muspah": {
+      "monsterName": "Phantom Muspah",
+      "wikiPage": "Phantom Muspah",
+      "drops": [
+        {
+          "itemName": "Ancient essence",
+          "dropRate": 0.6,
+          "itemId": 27616,
+          "rarityDisplay": "1/2"
+        },
+        {
+          "itemName": "Frozen cache",
+          "dropRate": 0.04,
+          "itemId": -1,
+          "rarityDisplay": "4/100"
+        },
+        {
+          "itemName": "Ancient icon",
+          "dropRate": 0.02,
+          "itemId": -1,
+          "rarityDisplay": "2/100"
+        },
+        {
+          "itemName": "Venator shard",
+          "dropRate": 0.01,
+          "itemId": 27614,
+          "rarityDisplay": "1/100"
+        },
+        {
+          "itemName": "Muphin",
+          "dropRate": 4.0E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/2,500"
+        }
+      ]
+    },
+    "Branda The Fire Queen": {
+      "monsterName": "Branda the Fire Queen",
+      "wikiPage": "Branda the Fire Queen",
+      "drops": [
+        {
+          "itemName": "Fire element staff crown",
+          "dropRate": 0.013333333333333334,
+          "itemId": 30631,
+          "rarityDisplay": "1/75"
+        },
+        {
+          "itemName": "Mystic vigour prayer scroll",
+          "dropRate": 0.013333333333333334,
+          "itemId": -1,
+          "rarityDisplay": "1/75"
+        },
+        {
+          "itemName": "Desiccated page",
+          "dropRate": 0.03636363636363636,
+          "itemId": -1,
+          "rarityDisplay": "2/55"
+        },
+        {
+          "itemName": "Bran",
+          "dropRate": 3.333333333333333E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/3,000"
+        }
+      ]
+    },
+    "Eldric The Ice King": {
+      "monsterName": "Eldric the Ice King",
+      "wikiPage": "Eldric the Ice King",
+      "drops": [
+        {
+          "itemName": "Ice element staff crown",
+          "dropRate": 0.013333333333333334,
+          "itemId": 30628,
+          "rarityDisplay": "1/75"
+        },
+        {
+          "itemName": "Deadeye prayer scroll",
+          "dropRate": 0.013333333333333334,
+          "itemId": -1,
+          "rarityDisplay": "1/75"
+        },
+        {
+          "itemName": "Desiccated page",
+          "dropRate": 0.03571428571428571,
+          "itemId": -1,
+          "rarityDisplay": "2/56"
+        },
+        {
+          "itemName": "Bran",
+          "dropRate": 3.333333333333333E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/3,000"
+        }
+      ]
+    },
+    "Royal Titans": {
+      "monsterName": "Royal Titans",
+      "wikiPage": "Royal Titans",
+      "drops": [
+        {
+          "itemName": "Fire element staff crown",
+          "dropRate": 0.013333333333333334,
+          "itemId": 30631,
+          "rarityDisplay": "1/75"
+        },
+        {
+          "itemName": "Mystic vigour prayer scroll",
+          "dropRate": 0.013333333333333334,
+          "itemId": -1,
+          "rarityDisplay": "1/75"
+        },
+        {
+          "itemName": "Desiccated page",
+          "dropRate": 0.03636363636363636,
+          "itemId": -1,
+          "rarityDisplay": "2/55"
+        },
+        {
+          "itemName": "Bran",
+          "dropRate": 3.333333333333333E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/3,000"
+        },
+        {
+          "itemName": "Ice element staff crown",
+          "dropRate": 0.013333333333333334,
+          "itemId": 30628,
+          "rarityDisplay": "1/75"
+        },
+        {
+          "itemName": "Deadeye prayer scroll",
+          "dropRate": 0.013333333333333334,
+          "itemId": -1,
+          "rarityDisplay": "1/75"
+        }
+      ]
+    },
+    "Sarachnis": {
+      "monsterName": "Sarachnis",
+      "wikiPage": "Sarachnis",
+      "drops": [
+        {
+          "itemName": "Sarachnis cudgel",
+          "dropRate": 0.0026041666666666665,
+          "itemId": 23528,
+          "rarityDisplay": "1/384"
+        },
+        {
+          "itemName": "Giant egg sac(full)",
+          "dropRate": 0.05,
+          "itemId": 23517,
+          "rarityDisplay": "1/20"
+        },
+        {
+          "itemName": "Jar of eyes",
+          "dropRate": 5.0E-4,
+          "itemId": 23525,
+          "rarityDisplay": "1/2,000"
+        },
+        {
+          "itemName": "Sraracha",
+          "dropRate": 3.333333333333333E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/3,000"
+        }
+      ]
+    },
+    "Scorpia": {
+      "monsterName": "Scorpia",
+      "wikiPage": "Scorpia",
+      "drops": [
+        {
+          "itemName": "Odium shard 3",
+          "dropRate": 0.00390625,
+          "itemId": 11930,
+          "rarityDisplay": "1/256"
+        },
+        {
+          "itemName": "Malediction shard 3",
+          "dropRate": 0.00390625,
+          "itemId": 11933,
+          "rarityDisplay": "1/256"
+        },
+        {
+          "itemName": "Dragon 2h sword",
+          "dropRate": 0.0078125,
+          "itemId": 7158,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Scorpia\u0027s offspring",
+          "dropRate": 4.960932655339203E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/2015.75"
+        }
+      ]
+    },
+    "Scurrius": {
+      "monsterName": "Scurrius",
+      "wikiPage": "Scurrius",
+      "drops": [
+        {
+          "itemName": "Scurrius\u0027 spine",
+          "dropRate": 0.030303030303030304,
+          "itemId": -1,
+          "rarityDisplay": "1/33"
+        },
+        {
+          "itemName": "Scurry",
+          "dropRate": 3.333333333333333E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/3,000"
+        }
+      ]
+    },
+    "Skotizo": {
+      "monsterName": "Skotizo",
+      "wikiPage": "Skotizo",
+      "drops": [
+        {
+          "itemName": "Ancient shard",
+          "dropRate": 0.75,
+          "itemId": -1,
+          "rarityDisplay": "1/1"
+        },
+        {
+          "itemName": "Uncut onyx",
+          "dropRate": 0.001,
+          "itemId": 6571,
+          "rarityDisplay": "1/1,000"
+        },
+        {
+          "itemName": "Dark claw",
+          "dropRate": 0.04,
+          "itemId": -1,
+          "rarityDisplay": "1/25"
+        },
+        {
+          "itemName": "Skotos",
+          "dropRate": 0.015384615384615385,
+          "itemId": -1,
+          "rarityDisplay": "1/65"
+        },
+        {
+          "itemName": "Dark totem",
+          "dropRate": 0.0078125,
+          "itemId": -1,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Jar of darkness",
+          "dropRate": 0.005,
+          "itemId": 19701,
+          "rarityDisplay": "1/200"
+        }
+      ]
+    },
+    "Sol Heredit": {
+      "monsterName": "Sol Heredit",
+      "wikiPage": "Rewards Chest (Fortis Colosseum)",
+      "drops": [
+        {
+          "itemName": "Sunfire splinters",
+          "dropRate": 0.14285714285714285,
+          "itemId": 28924,
+          "rarityDisplay": "1/7"
+        },
+        {
+          "itemName": "Echo crystal",
+          "dropRate": 0.002903225806451613,
+          "itemId": 28942,
+          "rarityDisplay": "1/344"
+        },
+        {
+          "itemName": "Sunfire fanatic helm",
+          "dropRate": 0.0016129032258064516,
+          "itemId": 28933,
+          "rarityDisplay": "1/620"
+        },
+        {
+          "itemName": "Sunfire fanatic cuirass",
+          "dropRate": 0.0016129032258064516,
+          "itemId": 28936,
+          "rarityDisplay": "1/620"
+        },
+        {
+          "itemName": "Sunfire fanatic chausses",
+          "dropRate": 0.0016129032258064516,
+          "itemId": 28939,
+          "rarityDisplay": "1/620"
+        },
+        {
+          "itemName": "Tonalztics of ralos (uncharged)",
+          "dropRate": 7.621951219512195E-4,
+          "itemId": 28919,
+          "rarityDisplay": "1/1,312"
+        },
+        {
+          "itemName": "Smol heredit",
+          "dropRate": 0.005,
+          "itemId": -1,
+          "rarityDisplay": "1/200"
+        },
+        {
+          "itemName": "Uncut onyx",
+          "dropRate": 0.022916666666666665,
+          "itemId": 6571,
+          "rarityDisplay": "1/44"
+        }
+      ]
+    },
+    "Spindel": {
+      "monsterName": "Spindel",
+      "wikiPage": "Spindel",
+      "drops": [
+        {
+          "itemName": "Dragon 2h sword",
+          "dropRate": 0.002793296089385475,
+          "itemId": 7158,
+          "rarityDisplay": "1/358"
+        },
+        {
+          "itemName": "Dragon pickaxe",
+          "dropRate": 0.002793296089385475,
+          "itemId": 11920,
+          "rarityDisplay": "1/358"
+        },
+        {
+          "itemName": "Fangs of venenatis",
+          "dropRate": 0.0016181229773462784,
+          "itemId": 27670,
+          "rarityDisplay": "1/618"
+        },
+        {
+          "itemName": "Treasonous ring",
+          "dropRate": 0.0013966480446927375,
+          "itemId": 12605,
+          "rarityDisplay": "1/716"
+        },
+        {
+          "itemName": "Voidwaker gem",
+          "dropRate": 0.0010964912280701754,
+          "itemId": 27687,
+          "rarityDisplay": "1/912"
+        },
+        {
+          "itemName": "Venenatis spiderling",
+          "dropRate": 3.5714285714285714E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/2,800"
+        }
+      ]
+    },
+    "The Hueycoatl": {
+      "monsterName": "The Hueycoatl",
+      "wikiPage": "The Hueycoatl",
+      "drops": [
+        {
+          "itemName": "Dragon hunter wand",
+          "dropRate": 0.009523809523809525,
+          "itemId": 30070,
+          "rarityDisplay": "1/105"
+        },
+        {
+          "itemName": "Hueycoatl hide",
+          "dropRate": 0.03492063492063492,
+          "itemId": 30085,
+          "rarityDisplay": "1/29"
+        },
+        {
+          "itemName": "Tome of earth (empty)",
+          "dropRate": 0.011111111111111112,
+          "itemId": 30066,
+          "rarityDisplay": "1/90"
+        },
+        {
+          "itemName": "Huasca seed",
+          "dropRate": 0.029411764705882353,
+          "itemId": 30088,
+          "rarityDisplay": "2/68"
+        },
+        {
+          "itemName": "Soiled page",
+          "dropRate": 0.07352941176470588,
+          "itemId": 30068,
+          "rarityDisplay": "5/68"
+        },
+        {
+          "itemName": "Huberte",
+          "dropRate": 0.0025,
+          "itemId": -1,
+          "rarityDisplay": "1/400"
+        }
+      ]
+    },
+    "Thermonuclear Smoke Devil": {
+      "monsterName": "Thermonuclear Smoke Devil",
+      "wikiPage": "Thermonuclear smoke devil",
+      "drops": [
+        {
+          "itemName": "Occult necklace",
+          "dropRate": 0.002857142857142857,
+          "itemId": 12002,
+          "rarityDisplay": "1/350"
+        },
+        {
+          "itemName": "Smoke battlestaff",
+          "dropRate": 0.001953125,
+          "itemId": 11998,
+          "rarityDisplay": "1/512"
+        },
+        {
+          "itemName": "Dragon chainbody",
+          "dropRate": 5.0E-4,
+          "itemId": 3140,
+          "rarityDisplay": "1/2,000"
+        },
+        {
+          "itemName": "Jar of smoke",
+          "dropRate": 5.0E-4,
+          "itemId": 25524,
+          "rarityDisplay": "1/2,000"
+        },
+        {
+          "itemName": "Pet smoke devil",
+          "dropRate": 3.333333333333333E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/3,000"
+        }
+      ]
+    },
+    "Tormented Demons": {
+      "monsterName": "Tormented Demons",
+      "wikiPage": "Tormented demon",
+      "drops": [
+        {
+          "itemName": "Burning claw",
+          "dropRate": 0.001996,
+          "itemId": 29574,
+          "rarityDisplay": "1/501"
+        },
+        {
+          "itemName": "Tormented synapse",
+          "dropRate": 0.002,
+          "itemId": 29580,
+          "rarityDisplay": "1/500"
+        },
+        {
+          "itemName": "Guthixian temple teleport",
+          "dropRate": 0.08333333333333333,
+          "itemId": 29684,
+          "rarityDisplay": "1/12"
+        }
+      ]
+    },
+    "Vardorvis": {
+      "monsterName": "Vardorvis",
+      "wikiPage": "Vardorvis",
+      "drops": [
+        {
+          "itemName": "Ultor vestige",
+          "dropRate": 9.191176470588235E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/1,088"
+        },
+        {
+          "itemName": "Chromium ingot",
+          "dropRate": 0.0027573529411764708,
+          "itemId": 28276,
+          "rarityDisplay": "3/1,088"
+        },
+        {
+          "itemName": "Executioner\u0027s axe head",
+          "dropRate": 9.191176470588235E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/1,088"
+        },
+        {
+          "itemName": "Virtus mask",
+          "dropRate": 3.0637254901960784E-4,
+          "itemId": 26241,
+          "rarityDisplay": "1/3,264"
+        },
+        {
+          "itemName": "Virtus robe top",
+          "dropRate": 3.0637254901960784E-4,
+          "itemId": 26243,
+          "rarityDisplay": "1/3,264"
+        },
+        {
+          "itemName": "Virtus robe bottom",
+          "dropRate": 3.0637254901960784E-4,
+          "itemId": 26245,
+          "rarityDisplay": "1/3,264"
+        },
+        {
+          "itemName": "Strangled tablet",
+          "dropRate": 0.0392156862745098,
+          "itemId": -1,
+          "rarityDisplay": "1/25.5"
+        },
+        {
+          "itemName": "Awakener\u0027s orb",
+          "dropRate": 0.01240694789081886,
+          "itemId": 28334,
+          "rarityDisplay": "1/80.6"
+        },
+        {
+          "itemName": "Blood quartz",
+          "dropRate": 0.004901960784313725,
+          "itemId": -1,
+          "rarityDisplay": "1/204"
+        },
+        {
+          "itemName": "Butch",
+          "dropRate": 3.333333333333333E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/3,000"
+        }
+      ]
+    },
+    "Venenatis": {
+      "monsterName": "Venenatis",
+      "wikiPage": "Venenatis",
+      "drops": [
+        {
+          "itemName": "Fangs of venenatis",
+          "dropRate": 0.00510204081632653,
+          "itemId": 27670,
+          "rarityDisplay": "1/196"
+        },
+        {
+          "itemName": "Dragon 2h sword",
+          "dropRate": 0.00390625,
+          "itemId": 7158,
+          "rarityDisplay": "1/256"
+        },
+        {
+          "itemName": "Dragon pickaxe",
+          "dropRate": 0.00390625,
+          "itemId": 11920,
+          "rarityDisplay": "1/256"
+        },
+        {
+          "itemName": "Voidwaker gem",
+          "dropRate": 0.002777777777777778,
+          "itemId": 27687,
+          "rarityDisplay": "1/360"
+        },
+        {
+          "itemName": "Treasonous ring",
+          "dropRate": 0.001953125,
+          "itemId": 12605,
+          "rarityDisplay": "1/512"
+        },
+        {
+          "itemName": "Venenatis spiderling",
+          "dropRate": 6.666666666666666E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/1,500"
+        }
+      ]
+    },
+    "Venenatis And Spindel": {
+      "monsterName": "Venenatis and Spindel",
+      "wikiPage": "Venenatis and Spindel",
+      "drops": [
+        {
+          "itemName": "Fangs of venenatis",
+          "dropRate": 0.00510204081632653,
+          "itemId": 27670,
+          "rarityDisplay": "1/196"
+        },
+        {
+          "itemName": "Dragon 2h sword",
+          "dropRate": 0.00390625,
+          "itemId": 7158,
+          "rarityDisplay": "1/256"
+        },
+        {
+          "itemName": "Dragon pickaxe",
+          "dropRate": 0.00390625,
+          "itemId": 11920,
+          "rarityDisplay": "1/256"
+        },
+        {
+          "itemName": "Voidwaker gem",
+          "dropRate": 0.002777777777777778,
+          "itemId": 27687,
+          "rarityDisplay": "1/360"
+        },
+        {
+          "itemName": "Treasonous ring",
+          "dropRate": 0.001953125,
+          "itemId": 12605,
+          "rarityDisplay": "1/512"
+        },
+        {
+          "itemName": "Venenatis spiderling",
+          "dropRate": 6.666666666666666E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/1,500"
+        }
+      ]
+    },
+    "Vet\u0027ion": {
+      "monsterName": "Vet\u0027ion",
+      "wikiPage": "Vet\u0027ion",
+      "drops": [
+        {
+          "itemName": "Skull of vet\u0027ion",
+          "dropRate": 0.00510204081632653,
+          "itemId": 27673,
+          "rarityDisplay": "1/196"
+        },
+        {
+          "itemName": "Dragon 2h sword",
+          "dropRate": 0.00390625,
+          "itemId": 7158,
+          "rarityDisplay": "1/256"
+        },
+        {
+          "itemName": "Dragon pickaxe",
+          "dropRate": 0.00390625,
+          "itemId": 11920,
+          "rarityDisplay": "1/256"
+        },
+        {
+          "itemName": "Voidwaker blade",
+          "dropRate": 0.002777777777777778,
+          "itemId": 27684,
+          "rarityDisplay": "1/360"
+        },
+        {
+          "itemName": "Ring of the gods",
+          "dropRate": 0.001953125,
+          "itemId": 12601,
+          "rarityDisplay": "1/512"
+        },
+        {
+          "itemName": "Vet\u0027ion jr.",
+          "dropRate": 6.666666666666666E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/1,500"
+        }
+      ]
+    },
+    "Calvar\u0027ion": {
+      "monsterName": "Calvar\u0027ion",
+      "wikiPage": "Calvar\u0027ion",
+      "drops": [
+        {
+          "itemName": "Dragon 2h sword",
+          "dropRate": 0.002793296089385475,
+          "itemId": 7158,
+          "rarityDisplay": "1/358"
+        },
+        {
+          "itemName": "Dragon pickaxe",
+          "dropRate": 0.002793296089385475,
+          "itemId": 11920,
+          "rarityDisplay": "1/358"
+        },
+        {
+          "itemName": "Skull of vet\u0027ion",
+          "dropRate": 0.0016181229773462784,
+          "itemId": 27673,
+          "rarityDisplay": "1/618"
+        },
+        {
+          "itemName": "Ring of the gods",
+          "dropRate": 0.0013966480446927375,
+          "itemId": 12601,
+          "rarityDisplay": "1/716"
+        },
+        {
+          "itemName": "Voidwaker blade",
+          "dropRate": 0.0010964912280701754,
+          "itemId": 27684,
+          "rarityDisplay": "1/912"
+        },
+        {
+          "itemName": "Vet\u0027ion jr.",
+          "dropRate": 3.5714285714285714E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/2,800"
+        }
+      ]
+    },
+    "Vet\u0027ion And Calvar\u0027ion": {
+      "monsterName": "Vet\u0027ion and Calvar\u0027ion",
+      "wikiPage": "Vet\u0027ion and Calvar\u0027ion",
+      "drops": [
+        {
+          "itemName": "Skull of vet\u0027ion",
+          "dropRate": 0.00510204081632653,
+          "itemId": 27673,
+          "rarityDisplay": "1/196"
+        },
+        {
+          "itemName": "Dragon 2h sword",
+          "dropRate": 0.00390625,
+          "itemId": 7158,
+          "rarityDisplay": "1/256"
+        },
+        {
+          "itemName": "Dragon pickaxe",
+          "dropRate": 0.00390625,
+          "itemId": 11920,
+          "rarityDisplay": "1/256"
+        },
+        {
+          "itemName": "Voidwaker blade",
+          "dropRate": 0.002777777777777778,
+          "itemId": 27684,
+          "rarityDisplay": "1/360"
+        },
+        {
+          "itemName": "Ring of the gods",
+          "dropRate": 0.001953125,
+          "itemId": 12601,
+          "rarityDisplay": "1/512"
+        },
+        {
+          "itemName": "Vet\u0027ion jr.",
+          "dropRate": 6.666666666666666E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/1,500"
+        }
+      ]
+    },
+    "Vorkath": {
+      "monsterName": "Vorkath",
+      "wikiPage": "Vorkath",
+      "drops": [
+        {
+          "itemName": "Vorkath\u0027s head",
+          "dropRate": 0.02,
+          "itemId": -1,
+          "rarityDisplay": "1/50"
+        },
+        {
+          "itemName": "Dragonbone necklace",
+          "dropRate": 0.001,
+          "itemId": 22111,
+          "rarityDisplay": "1/1,000"
+        },
+        {
+          "itemName": "Jar of decay",
+          "dropRate": 3.333333333333333E-4,
+          "itemId": 22106,
+          "rarityDisplay": "1/3,000"
+        },
+        {
+          "itemName": "Vorki",
+          "dropRate": 3.333333333333333E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/3,000"
+        },
+        {
+          "itemName": "Draconic visage",
+          "dropRate": 2.0E-4,
+          "itemId": 11286,
+          "rarityDisplay": "1/5,000"
+        },
+        {
+          "itemName": "Skeletal visage",
+          "dropRate": 2.0E-4,
+          "itemId": 22006,
+          "rarityDisplay": "1/5,000"
+        }
+      ]
+    },
+    "Whisperer": {
+      "monsterName": "Whisperer",
+      "wikiPage": "The Whisperer",
+      "drops": [
+        {
+          "itemName": "Bellator vestige",
+          "dropRate": 0.001953125,
+          "itemId": -1,
+          "rarityDisplay": "1/512"
+        },
+        {
+          "itemName": "Chromium ingot",
+          "dropRate": 0.005859375,
+          "itemId": 28276,
+          "rarityDisplay": "3/512"
+        },
+        {
+          "itemName": "Siren\u0027s staff",
+          "dropRate": 0.001953125,
+          "itemId": -1,
+          "rarityDisplay": "1/512"
+        },
+        {
+          "itemName": "Virtus mask",
+          "dropRate": 6.510416666666666E-4,
+          "itemId": 26241,
+          "rarityDisplay": "1/1,536"
+        },
+        {
+          "itemName": "Virtus robe top",
+          "dropRate": 6.510416666666666E-4,
+          "itemId": 26243,
+          "rarityDisplay": "1/1,536"
+        },
+        {
+          "itemName": "Virtus robe bottom",
+          "dropRate": 6.510416666666666E-4,
+          "itemId": 26245,
+          "rarityDisplay": "1/1,536"
+        },
+        {
+          "itemName": "Sirenic tablet",
+          "dropRate": 0.03816793893129771,
+          "itemId": -1,
+          "rarityDisplay": "1/26.2"
+        },
+        {
+          "itemName": "Awakener\u0027s orb",
+          "dropRate": 0.028985507246376812,
+          "itemId": 28334,
+          "rarityDisplay": "1/34.5"
+        },
+        {
+          "itemName": "Shadow quartz",
+          "dropRate": 0.004777830864787386,
+          "itemId": -1,
+          "rarityDisplay": "1/209.3"
+        },
+        {
+          "itemName": "Wisp",
+          "dropRate": 5.0E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/2,000"
+        }
+      ]
+    },
+    "Wintertodt": {
+      "monsterName": "Wintertodt",
+      "wikiPage": "Supply crate (Wintertodt)",
+      "drops": [
+        {
+          "itemName": "Burnt page",
+          "dropRate": 0.022222222222222223,
+          "itemId": 20718,
+          "rarityDisplay": "4/180"
+        },
+        {
+          "itemName": "Warm gloves",
+          "dropRate": 0.006666666666666667,
+          "itemId": -1,
+          "rarityDisplay": "1/150"
+        },
+        {
+          "itemName": "Bruma torch",
+          "dropRate": 0.006666666666666667,
+          "itemId": -1,
+          "rarityDisplay": "1/150"
+        },
+        {
+          "itemName": "Pyromancer hood",
+          "dropRate": 0.006666666666666667,
+          "itemId": -1,
+          "rarityDisplay": "1/150"
+        },
+        {
+          "itemName": "Pyromancer garb",
+          "dropRate": 0.006666666666666667,
+          "itemId": -1,
+          "rarityDisplay": "1/150"
+        },
+        {
+          "itemName": "Pyromancer robe",
+          "dropRate": 0.006666666666666667,
+          "itemId": -1,
+          "rarityDisplay": "1/150"
+        },
+        {
+          "itemName": "Pyromancer boots",
+          "dropRate": 0.006666666666666667,
+          "itemId": -1,
+          "rarityDisplay": "1/150"
+        },
+        {
+          "itemName": "Tome of fire (empty)",
+          "dropRate": 0.001,
+          "itemId": 20716,
+          "rarityDisplay": "1/1,000"
+        },
+        {
+          "itemName": "Phoenix",
+          "dropRate": 2.0E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/5,000"
+        },
+        {
+          "itemName": "Dragon axe",
+          "dropRate": 1.0E-4,
+          "itemId": 6739,
+          "rarityDisplay": "1/10,000"
+        }
+      ]
+    },
+    "Zalcano": {
+      "monsterName": "Zalcano",
+      "wikiPage": "Zalcano",
+      "drops": [
+        {
+          "itemName": "Crystal tool seed",
+          "dropRate": 0.004875,
+          "itemId": 23953,
+          "rarityDisplay": "1/205"
+        },
+        {
+          "itemName": "Zalcano shard",
+          "dropRate": 0.0013333333333333333,
+          "itemId": 23908,
+          "rarityDisplay": "1/750"
+        },
+        {
+          "itemName": "Smolcano",
+          "dropRate": 4.4444444444444447E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/2,250"
+        },
+        {
+          "itemName": "Uncut onyx",
+          "dropRate": 1.25E-4,
+          "itemId": 6571,
+          "rarityDisplay": "1/8,000"
+        }
+      ]
+    },
+    "Zulrah": {
+      "monsterName": "Zulrah",
+      "wikiPage": "Zulrah",
+      "drops": [
+        {
+          "itemName": "Tanzanite fang",
+          "dropRate": 9.765625E-4,
+          "itemId": 12922,
+          "rarityDisplay": "1/1,024"
+        },
+        {
+          "itemName": "Magic fang",
+          "dropRate": 9.765625E-4,
+          "itemId": 12932,
+          "rarityDisplay": "1/1,024"
+        },
+        {
+          "itemName": "Serpentine visage",
+          "dropRate": 9.765625E-4,
+          "itemId": 12927,
+          "rarityDisplay": "1/1,024"
+        },
+        {
+          "itemName": "Uncut onyx",
+          "dropRate": 9.765625E-4,
+          "itemId": 6571,
+          "rarityDisplay": "1/1,024"
+        },
+        {
+          "itemName": "Tanzanite mutagen",
+          "dropRate": 7.629510948348211E-5,
+          "itemId": -1,
+          "rarityDisplay": "1/13,107"
+        },
+        {
+          "itemName": "Magma mutagen",
+          "dropRate": 7.629510948348211E-5,
+          "itemId": -1,
+          "rarityDisplay": "1/13,107"
+        },
+        {
+          "itemName": "Zul-andra teleport",
+          "dropRate": 0.060240963855421686,
+          "itemId": 12938,
+          "rarityDisplay": "1/17"
+        },
+        {
+          "itemName": "Zulrah\u0027s scales",
+          "dropRate": 0.020080321285140562,
+          "itemId": 12934,
+          "rarityDisplay": "5/249"
+        },
+        {
+          "itemName": "Jar of swamp",
+          "dropRate": 3.333333333333333E-4,
+          "itemId": 12936,
+          "rarityDisplay": "1/3,000"
+        },
+        {
+          "itemName": "Pet snakeling",
+          "dropRate": 2.5E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/4,000"
+        }
+      ]
+    },
+    "Chambers Of Xeric": {
+      "monsterName": "Chambers of Xeric",
+      "wikiPage": "Ancient chest",
+      "drops": [
+        {
+          "itemName": "Dexterous prayer scroll",
+          "dropRate": 0.2898550724637681,
+          "itemId": 21034,
+          "rarityDisplay": "1/3"
+        },
+        {
+          "itemName": "Arcane prayer scroll",
+          "dropRate": 0.2898550724637681,
+          "itemId": 21079,
+          "rarityDisplay": "1/3"
+        },
+        {
+          "itemName": "Twisted buckler",
+          "dropRate": 0.057971014492753624,
+          "itemId": 21000,
+          "rarityDisplay": "4/69"
+        },
+        {
+          "itemName": "Dragon hunter crossbow",
+          "dropRate": 0.057971014492753624,
+          "itemId": 21012,
+          "rarityDisplay": "4/69"
+        },
+        {
+          "itemName": "Dinh\u0027s bulwark",
+          "dropRate": 0.043478260869565216,
+          "itemId": 21015,
+          "rarityDisplay": "3/69"
+        },
+        {
+          "itemName": "Ancestral hat",
+          "dropRate": 0.043478260869565216,
+          "itemId": 21018,
+          "rarityDisplay": "3/69"
+        },
+        {
+          "itemName": "Ancestral robe top",
+          "dropRate": 0.043478260869565216,
+          "itemId": 21021,
+          "rarityDisplay": "3/69"
+        },
+        {
+          "itemName": "Ancestral robe bottom",
+          "dropRate": 0.043478260869565216,
+          "itemId": 21024,
+          "rarityDisplay": "3/69"
+        },
+        {
+          "itemName": "Dragon claws",
+          "dropRate": 0.043478260869565216,
+          "itemId": 13652,
+          "rarityDisplay": "3/69"
+        },
+        {
+          "itemName": "Elder maul",
+          "dropRate": 0.028985507246376812,
+          "itemId": 21003,
+          "rarityDisplay": "2/69"
+        },
+        {
+          "itemName": "Kodai insignia",
+          "dropRate": 0.028985507246376812,
+          "itemId": 21043,
+          "rarityDisplay": "2/69"
+        },
+        {
+          "itemName": "Twisted bow",
+          "dropRate": 0.028985507246376812,
+          "itemId": 20997,
+          "rarityDisplay": "2/69"
+        },
+        {
+          "itemName": "Torn prayer scroll",
+          "dropRate": 0.030303030303030304,
+          "itemId": 21047,
+          "rarityDisplay": "1/33"
+        },
+        {
+          "itemName": "Dark relic",
+          "dropRate": 0.030303030303030304,
+          "itemId": -1,
+          "rarityDisplay": "1/33"
+        },
+        {
+          "itemName": "Olmlet",
+          "dropRate": 0.018867924528301886,
+          "itemId": -1,
+          "rarityDisplay": "1/53"
+        },
+        {
+          "itemName": "Twisted ancestral colour kit",
+          "dropRate": 0.013333333333333334,
+          "itemId": -1,
+          "rarityDisplay": "1/75"
+        },
+        {
+          "itemName": "Metamorphic dust",
+          "dropRate": 0.0025,
+          "itemId": -1,
+          "rarityDisplay": "1/400"
+        }
+      ]
+    },
+    "Theatre Of Blood": {
+      "monsterName": "Theatre of Blood",
+      "wikiPage": "Monumental chest",
+      "drops": [
+        {
+          "itemName": "Avernic defender hilt",
+          "dropRate": 0.42105263157894735,
+          "itemId": 22477,
+          "rarityDisplay": "8/19"
+        },
+        {
+          "itemName": "Ghrazi rapier",
+          "dropRate": 0.10526315789473684,
+          "itemId": 22324,
+          "rarityDisplay": "2/19"
+        },
+        {
+          "itemName": "Sanguinesti staff (uncharged)",
+          "dropRate": 0.10526315789473684,
+          "itemId": 22481,
+          "rarityDisplay": "2/19"
+        },
+        {
+          "itemName": "Justiciar faceguard",
+          "dropRate": 0.10526315789473684,
+          "itemId": 22326,
+          "rarityDisplay": "2/19"
+        },
+        {
+          "itemName": "Justiciar chestguard",
+          "dropRate": 0.10526315789473684,
+          "itemId": 22327,
+          "rarityDisplay": "2/19"
+        },
+        {
+          "itemName": "Justiciar legguards",
+          "dropRate": 0.10526315789473684,
+          "itemId": 22328,
+          "rarityDisplay": "2/19"
+        },
+        {
+          "itemName": "Scythe of vitur (uncharged)",
+          "dropRate": 0.05263157894736842,
+          "itemId": 22486,
+          "rarityDisplay": "1/19"
+        },
+        {
+          "itemName": "Vial of blood",
+          "dropRate": 0.06666666666666667,
+          "itemId": 22446,
+          "rarityDisplay": "2/30"
+        },
+        {
+          "itemName": "Holy ornament kit",
+          "dropRate": 0.01,
+          "itemId": -1,
+          "rarityDisplay": "1/100"
+        },
+        {
+          "itemName": "Sanguine ornament kit",
+          "dropRate": 0.006666666666666667,
+          "itemId": -1,
+          "rarityDisplay": "1/150"
+        },
+        {
+          "itemName": "Sanguine dust",
+          "dropRate": 0.0036363636363636364,
+          "itemId": -1,
+          "rarityDisplay": "1/275"
+        },
+        {
+          "itemName": "Lil\u0027 zik",
+          "dropRate": 0.0015384615384615385,
+          "itemId": -1,
+          "rarityDisplay": "1/650"
+        }
+      ]
+    },
+    "Tombs Of Amascut": {
+      "monsterName": "Tombs of Amascut",
+      "wikiPage": "Chest (Tombs of Amascut)",
+      "drops": [
+        {
+          "itemName": "Osmumten\u0027s fang",
+          "dropRate": 0.2916666666666667,
+          "itemId": 26219,
+          "rarityDisplay": "7/24"
+        },
+        {
+          "itemName": "Tumeken\u0027s shadow (uncharged)",
+          "dropRate": 0.041666666666666664,
+          "itemId": 27277,
+          "rarityDisplay": "1/24"
+        },
+        {
+          "itemName": "Elidinis\u0027 ward",
+          "dropRate": 0.125,
+          "itemId": 25985,
+          "rarityDisplay": "3/24"
+        },
+        {
+          "itemName": "Lightbearer",
+          "dropRate": 0.2916666666666667,
+          "itemId": 25975,
+          "rarityDisplay": "7/24"
+        },
+        {
+          "itemName": "Masori mask",
+          "dropRate": 0.08333333333333333,
+          "itemId": 27226,
+          "rarityDisplay": "2/24"
+        },
+        {
+          "itemName": "Masori body",
+          "dropRate": 0.08333333333333333,
+          "itemId": 27229,
+          "rarityDisplay": "2/24"
+        },
+        {
+          "itemName": "Masori chaps",
+          "dropRate": 0.08333333333333333,
+          "itemId": 27232,
+          "rarityDisplay": "2/24"
+        },
+        {
+          "itemName": "Cache of runes",
+          "dropRate": 0.037037037037037035,
+          "itemId": -1,
+          "rarityDisplay": "1/27"
+        },
+        {
+          "itemName": "Thread of elidinis",
+          "dropRate": 0.1,
+          "itemId": -1,
+          "rarityDisplay": "1/10"
+        },
+        {
+          "itemName": "Eye of the corruptor",
+          "dropRate": 0.02,
+          "itemId": -1,
+          "rarityDisplay": "1/50"
+        },
+        {
+          "itemName": "Jewel of the sun",
+          "dropRate": 0.02,
+          "itemId": -1,
+          "rarityDisplay": "1/50"
+        },
+        {
+          "itemName": "Breach of the scarab",
+          "dropRate": 0.02,
+          "itemId": -1,
+          "rarityDisplay": "1/50"
+        },
+        {
+          "itemName": "Jewel of amascut",
+          "dropRate": 0.02,
+          "itemId": -1,
+          "rarityDisplay": "1/50"
+        }
+      ]
+    },
+    "Beginner Treasure Trails": {
+      "monsterName": "Beginner Treasure Trails",
+      "wikiPage": "Reward casket (beginner)",
+      "drops": [
+        {
+          "itemName": "Mole slippers",
+          "dropRate": 0.002777777777777778,
+          "itemId": 23285,
+          "rarityDisplay": "1/360"
+        },
+        {
+          "itemName": "Frog slippers",
+          "dropRate": 0.002777777777777778,
+          "itemId": 23288,
+          "rarityDisplay": "1/360"
+        },
+        {
+          "itemName": "Bear feet",
+          "dropRate": 0.002777777777777778,
+          "itemId": 23291,
+          "rarityDisplay": "1/360"
+        },
+        {
+          "itemName": "Demon feet",
+          "dropRate": 0.002777777777777778,
+          "itemId": 23294,
+          "rarityDisplay": "1/360"
+        },
+        {
+          "itemName": "Jester cape",
+          "dropRate": 0.002777777777777778,
+          "itemId": 23297,
+          "rarityDisplay": "1/360"
+        },
+        {
+          "itemName": "Shoulder parrot",
+          "dropRate": 0.002777777777777778,
+          "itemId": 23300,
+          "rarityDisplay": "1/360"
+        },
+        {
+          "itemName": "Monk\u0027s robe top (t)",
+          "dropRate": 0.002777777777777778,
+          "itemId": 23303,
+          "rarityDisplay": "1/360"
+        },
+        {
+          "itemName": "Monk\u0027s robe (t)",
+          "dropRate": 0.002777777777777778,
+          "itemId": 23306,
+          "rarityDisplay": "1/360"
+        },
+        {
+          "itemName": "Amulet of defence (t)",
+          "dropRate": 0.002777777777777778,
+          "itemId": 23309,
+          "rarityDisplay": "1/360"
+        },
+        {
+          "itemName": "Sandwich lady hat",
+          "dropRate": 0.002777777777777778,
+          "itemId": 23312,
+          "rarityDisplay": "1/360"
+        },
+        {
+          "itemName": "Sandwich lady top",
+          "dropRate": 0.002777777777777778,
+          "itemId": 23315,
+          "rarityDisplay": "1/360"
+        },
+        {
+          "itemName": "Sandwich lady bottom",
+          "dropRate": 0.002777777777777778,
+          "itemId": 23318,
+          "rarityDisplay": "1/360"
+        },
+        {
+          "itemName": "Rune scimitar ornament kit (guthix)",
+          "dropRate": 0.002777777777777778,
+          "itemId": 23321,
+          "rarityDisplay": "1/360"
+        },
+        {
+          "itemName": "Rune scimitar ornament kit (saradomin)",
+          "dropRate": 0.002777777777777778,
+          "itemId": 23324,
+          "rarityDisplay": "1/360"
+        },
+        {
+          "itemName": "Rune scimitar ornament kit (zamorak)",
+          "dropRate": 0.002777777777777778,
+          "itemId": 23327,
+          "rarityDisplay": "1/360"
+        },
+        {
+          "itemName": "Black pickaxe",
+          "dropRate": 0.0012420957542908762,
+          "itemId": 12297,
+          "rarityDisplay": "1/805"
+        }
+      ]
+    },
+    "Hard Treasure Trails": {
+      "monsterName": "Hard Treasure Trails",
+      "wikiPage": "Reward casket (hard)",
+      "drops": [
+        {
+          "itemName": "Armadyl d\u0027hide shield",
+          "dropRate": 1.0256410256410256E-4,
+          "itemId": 23200,
+          "rarityDisplay": "1/9,750"
+        }
+      ]
+    },
+    "Elite Treasure Trails": {
+      "monsterName": "Elite Treasure Trails",
+      "wikiPage": "Reward casket (elite)",
+      "drops": [
+        {
+          "itemName": "Ring of 3rd age",
+          "dropRate": 0.024,
+          "itemId": 23185,
+          "rarityDisplay": "6/250"
+        }
+      ]
+    },
+    "Master Treasure Trails": {
+      "monsterName": "Master Treasure Trails",
+      "wikiPage": "Reward casket (master)",
+      "drops": [
+        {
+          "itemName": "Ring of 3rd age",
+          "dropRate": 0.02631578947368421,
+          "itemId": 23185,
+          "rarityDisplay": "6/228"
+        },
+        {
+          "itemName": "Bloodhound",
+          "dropRate": 0.001,
+          "itemId": -1,
+          "rarityDisplay": "1/1,000"
+        }
+      ]
+    },
+    "Barbarian Assault": {
+      "monsterName": "Barbarian Assault",
+      "wikiPage": "Barbarian Assault",
+      "drops": [
+        {
+          "itemName": "Granite helm",
+          "dropRate": 0.03125,
+          "itemId": 10589,
+          "rarityDisplay": "1/32"
+        },
+        {
+          "itemName": "Pet penance queen",
+          "dropRate": 0.001,
+          "itemId": -1,
+          "rarityDisplay": "1/1,000"
+        }
+      ]
+    },
+    "Unicow": {
+      "monsterName": "Unicow",
+      "wikiPage": "Unicow",
+      "drops": [
+        {
+          "itemName": "Green satchel",
+          "dropRate": 0.15,
+          "itemId": -1,
+          "rarityDisplay": "3/20"
+        },
+        {
+          "itemName": "Tea flask",
+          "dropRate": 0.1,
+          "itemId": -1,
+          "rarityDisplay": "1/10"
+        }
+      ]
+    },
+    "Newtroost": {
+      "monsterName": "Newtroost",
+      "wikiPage": "Newtroost",
+      "drops": [
+        {
+          "itemName": "Tea flask",
+          "dropRate": 0.1,
+          "itemId": -1,
+          "rarityDisplay": "1/10"
+        },
+        {
+          "itemName": "Rune satchel",
+          "dropRate": 0.15,
+          "itemId": -1,
+          "rarityDisplay": "3/20"
+        }
+      ]
+    },
+    "Creature Creation": {
+      "monsterName": "Creature Creation",
+      "wikiPage": "Creature Creation",
+      "drops": [
+        {
+          "itemName": "Green satchel",
+          "dropRate": 0.15,
+          "itemId": -1,
+          "rarityDisplay": "3/20"
+        },
+        {
+          "itemName": "Tea flask",
+          "dropRate": 0.1,
+          "itemId": -1,
+          "rarityDisplay": "1/10"
+        },
+        {
+          "itemName": "Rune satchel",
+          "dropRate": 0.15,
+          "itemId": -1,
+          "rarityDisplay": "3/20"
+        }
+      ]
+    },
+    "Fishing Trawler": {
+      "monsterName": "Fishing Trawler",
+      "wikiPage": "Fishing Trawler",
+      "drops": [
+        {
+          "itemName": "Angler hat",
+          "dropRate": 0.08333333333333333,
+          "itemId": -1,
+          "rarityDisplay": "1/12"
+        },
+        {
+          "itemName": "Angler top",
+          "dropRate": 0.08333333333333333,
+          "itemId": -1,
+          "rarityDisplay": "1/12"
+        },
+        {
+          "itemName": "Angler waders",
+          "dropRate": 0.08333333333333333,
+          "itemId": -1,
+          "rarityDisplay": "1/12"
+        },
+        {
+          "itemName": "Angler boots",
+          "dropRate": 0.08333333333333333,
+          "itemId": -1,
+          "rarityDisplay": "1/12"
+        }
+      ]
+    },
+    "Gnome Restaurant": {
+      "monsterName": "Gnome Restaurant",
+      "wikiPage": "Gnome Restaurant",
+      "drops": [
+        {
+          "itemName": "Gnome goggles",
+          "dropRate": 0.059895833333333336,
+          "itemId": 9472,
+          "rarityDisplay": "1/17"
+        },
+        {
+          "itemName": "Gnome scarf",
+          "dropRate": 0.059895833333333336,
+          "itemId": 9470,
+          "rarityDisplay": "1/17"
+        },
+        {
+          "itemName": "Grand seed pod",
+          "dropRate": 0.044921875,
+          "itemId": 9469,
+          "rarityDisplay": "1/22"
+        },
+        {
+          "itemName": "Mint cake",
+          "dropRate": 0.044921875,
+          "itemId": 9475,
+          "rarityDisplay": "1/22"
+        }
+      ]
+    },
+    "Coffin (Hallowed Sepulchre)": {
+      "monsterName": "Coffin (Hallowed Sepulchre)",
+      "wikiPage": "Coffin (Hallowed Sepulchre)",
+      "drops": [
+        {
+          "itemName": "Mysterious page",
+          "dropRate": 0.1,
+          "itemId": -1,
+          "rarityDisplay": "1/10"
+        }
+      ]
+    },
+    "Hallowed Sepulchre": {
+      "monsterName": "Hallowed Sepulchre",
+      "wikiPage": "Hallowed Sepulchre",
+      "drops": [
+        {
+          "itemName": "Mysterious page",
+          "dropRate": 0.1,
+          "itemId": -1,
+          "rarityDisplay": "1/10"
+        }
+      ]
+    },
+    "Grand Gold Chest": {
+      "monsterName": "Grand Gold Chest",
+      "wikiPage": "Grand Gold Chest",
+      "drops": [
+        {
+          "itemName": "Stone seal",
+          "dropRate": 0.25,
+          "itemId": 9042,
+          "rarityDisplay": "1/4"
+        },
+        {
+          "itemName": "Stone scarab",
+          "dropRate": 0.5,
+          "itemId": 9030,
+          "rarityDisplay": "1/2"
+        },
+        {
+          "itemName": "Stone statuette",
+          "dropRate": 0.25,
+          "itemId": 9038,
+          "rarityDisplay": "1/4"
+        },
+        {
+          "itemName": "Pharaoh\u0027s sceptre",
+          "dropRate": 2.380952380952381E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/4,200"
+        },
+        {
+          "itemName": "Stone scarab",
+          "dropRate": 0.5,
+          "itemId": 9030,
+          "rarityDisplay": "1/2"
+        },
+        {
+          "itemName": "Stone statuette",
+          "dropRate": 0.5,
+          "itemId": 9038,
+          "rarityDisplay": "1/2"
+        },
+        {
+          "itemName": "Pharaoh\u0027s sceptre",
+          "dropRate": 3.5714285714285714E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/2,800"
+        },
+        {
+          "itemName": "Stone scarab",
+          "dropRate": 0.25,
+          "itemId": 9030,
+          "rarityDisplay": "1/4"
+        },
+        {
+          "itemName": "Stone statuette",
+          "dropRate": 0.5,
+          "itemId": 9038,
+          "rarityDisplay": "1/2"
+        },
+        {
+          "itemName": "Gold seal",
+          "dropRate": 0.25,
+          "itemId": 9040,
+          "rarityDisplay": "1/4"
+        },
+        {
+          "itemName": "Pharaoh\u0027s sceptre",
+          "dropRate": 6.25E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/1,600"
+        },
+        {
+          "itemName": "Stone statuette",
+          "dropRate": 0.5,
+          "itemId": 9038,
+          "rarityDisplay": "1/2"
+        },
+        {
+          "itemName": "Gold seal",
+          "dropRate": 0.5,
+          "itemId": 9040,
+          "rarityDisplay": "1/2"
+        },
+        {
+          "itemName": "Pharaoh\u0027s sceptre",
+          "dropRate": 0.0010526315789473684,
+          "itemId": -1,
+          "rarityDisplay": "1/950"
+        },
+        {
+          "itemName": "Stone statuette",
+          "dropRate": 0.25,
+          "itemId": 9038,
+          "rarityDisplay": "1/4"
+        },
+        {
+          "itemName": "Gold seal",
+          "dropRate": 0.5,
+          "itemId": 9040,
+          "rarityDisplay": "1/2"
+        },
+        {
+          "itemName": "Golden scarab",
+          "dropRate": 0.25,
+          "itemId": 9028,
+          "rarityDisplay": "1/4"
+        },
+        {
+          "itemName": "Pharaoh\u0027s sceptre",
+          "dropRate": 0.00125,
+          "itemId": -1,
+          "rarityDisplay": "1/800"
+        },
+        {
+          "itemName": "Gold seal",
+          "dropRate": 0.5,
+          "itemId": 9040,
+          "rarityDisplay": "1/2"
+        },
+        {
+          "itemName": "Golden scarab",
+          "dropRate": 0.5,
+          "itemId": 9028,
+          "rarityDisplay": "1/2"
+        },
+        {
+          "itemName": "Pharaoh\u0027s sceptre",
+          "dropRate": 0.0013333333333333333,
+          "itemId": -1,
+          "rarityDisplay": "1/750"
+        },
+        {
+          "itemName": "Gold seal",
+          "dropRate": 0.25,
+          "itemId": 9040,
+          "rarityDisplay": "1/4"
+        },
+        {
+          "itemName": "Golden scarab",
+          "dropRate": 0.5,
+          "itemId": 9028,
+          "rarityDisplay": "1/2"
+        },
+        {
+          "itemName": "Golden statuette",
+          "dropRate": 0.25,
+          "itemId": 9034,
+          "rarityDisplay": "1/4"
+        },
+        {
+          "itemName": "Pharaoh\u0027s sceptre",
+          "dropRate": 0.0015384615384615385,
+          "itemId": -1,
+          "rarityDisplay": "1/650"
+        },
+        {
+          "itemName": "Golden scarab",
+          "dropRate": 0.5,
+          "itemId": 9028,
+          "rarityDisplay": "1/2"
+        },
+        {
+          "itemName": "Golden statuette",
+          "dropRate": 0.5,
+          "itemId": 9034,
+          "rarityDisplay": "1/2"
+        },
+        {
+          "itemName": "Pharaoh\u0027s sceptre",
+          "dropRate": 0.0015384615384615385,
+          "itemId": -1,
+          "rarityDisplay": "1/650"
+        }
+      ]
+    },
+    "Sarcophagus (Pyramid Plunder)": {
+      "monsterName": "Sarcophagus (Pyramid Plunder)",
+      "wikiPage": "Sarcophagus (Pyramid Plunder)",
+      "drops": [
+        {
+          "itemName": "Pottery scarab",
+          "dropRate": 0.25,
+          "itemId": 9032,
+          "rarityDisplay": "1/4"
+        },
+        {
+          "itemName": "Pottery statuette",
+          "dropRate": 0.5,
+          "itemId": 9036,
+          "rarityDisplay": "1/2"
+        },
+        {
+          "itemName": "Stone seal",
+          "dropRate": 0.25,
+          "itemId": 9042,
+          "rarityDisplay": "1/4"
+        },
+        {
+          "itemName": "Pharaoh\u0027s sceptre",
+          "dropRate": 2.380952380952381E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/4,200"
+        },
+        {
+          "itemName": "Pottery statuette",
+          "dropRate": 0.5,
+          "itemId": 9036,
+          "rarityDisplay": "1/2"
+        },
+        {
+          "itemName": "Stone seal",
+          "dropRate": 0.5,
+          "itemId": 9042,
+          "rarityDisplay": "1/2"
+        },
+        {
+          "itemName": "Pharaoh\u0027s sceptre",
+          "dropRate": 3.5714285714285714E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/2,800"
+        },
+        {
+          "itemName": "Pottery statuette",
+          "dropRate": 0.25,
+          "itemId": 9036,
+          "rarityDisplay": "1/4"
+        },
+        {
+          "itemName": "Stone seal",
+          "dropRate": 0.5,
+          "itemId": 9042,
+          "rarityDisplay": "1/2"
+        },
+        {
+          "itemName": "Stone scarab",
+          "dropRate": 0.25,
+          "itemId": 9030,
+          "rarityDisplay": "1/4"
+        },
+        {
+          "itemName": "Pharaoh\u0027s sceptre",
+          "dropRate": 6.25E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/1,600"
+        },
+        {
+          "itemName": "Stone seal",
+          "dropRate": 0.5,
+          "itemId": 9042,
+          "rarityDisplay": "1/2"
+        },
+        {
+          "itemName": "Stone scarab",
+          "dropRate": 0.5,
+          "itemId": 9030,
+          "rarityDisplay": "1/2"
+        },
+        {
+          "itemName": "Pharaoh\u0027s sceptre",
+          "dropRate": 0.0010526315789473684,
+          "itemId": -1,
+          "rarityDisplay": "1/950"
+        },
+        {
+          "itemName": "Stone seal",
+          "dropRate": 0.25,
+          "itemId": 9042,
+          "rarityDisplay": "1/4"
+        },
+        {
+          "itemName": "Stone scarab",
+          "dropRate": 0.5,
+          "itemId": 9030,
+          "rarityDisplay": "1/2"
+        },
+        {
+          "itemName": "Stone statuette",
+          "dropRate": 0.25,
+          "itemId": 9038,
+          "rarityDisplay": "1/4"
+        },
+        {
+          "itemName": "Pharaoh\u0027s sceptre",
+          "dropRate": 0.00125,
+          "itemId": -1,
+          "rarityDisplay": "1/800"
+        },
+        {
+          "itemName": "Stone scarab",
+          "dropRate": 0.5,
+          "itemId": 9030,
+          "rarityDisplay": "1/2"
+        },
+        {
+          "itemName": "Stone statuette",
+          "dropRate": 0.5,
+          "itemId": 9038,
+          "rarityDisplay": "1/2"
+        },
+        {
+          "itemName": "Pharaoh\u0027s sceptre",
+          "dropRate": 0.0013333333333333333,
+          "itemId": -1,
+          "rarityDisplay": "1/750"
+        },
+        {
+          "itemName": "Stone scarab",
+          "dropRate": 0.25,
+          "itemId": 9030,
+          "rarityDisplay": "1/4"
+        },
+        {
+          "itemName": "Stone statuette",
+          "dropRate": 0.5,
+          "itemId": 9038,
+          "rarityDisplay": "1/2"
+        },
+        {
+          "itemName": "Gold seal",
+          "dropRate": 0.25,
+          "itemId": 9040,
+          "rarityDisplay": "1/4"
+        },
+        {
+          "itemName": "Pharaoh\u0027s sceptre",
+          "dropRate": 0.0015384615384615385,
+          "itemId": -1,
+          "rarityDisplay": "1/650"
+        },
+        {
+          "itemName": "Stone statuette",
+          "dropRate": 0.5,
+          "itemId": 9038,
+          "rarityDisplay": "1/2"
+        },
+        {
+          "itemName": "Gold seal",
+          "dropRate": 0.5,
+          "itemId": 9040,
+          "rarityDisplay": "1/2"
+        },
+        {
+          "itemName": "Pharaoh\u0027s sceptre",
+          "dropRate": 0.0015384615384615385,
+          "itemId": -1,
+          "rarityDisplay": "1/650"
+        }
+      ]
+    },
+    "Pyramid Plunder": {
+      "monsterName": "Pyramid Plunder",
+      "wikiPage": "Pyramid Plunder",
+      "drops": [
+        {
+          "itemName": "Stone seal",
+          "dropRate": 0.25,
+          "itemId": 9042,
+          "rarityDisplay": "1/4"
+        },
+        {
+          "itemName": "Stone scarab",
+          "dropRate": 0.5,
+          "itemId": 9030,
+          "rarityDisplay": "1/2"
+        },
+        {
+          "itemName": "Stone statuette",
+          "dropRate": 0.25,
+          "itemId": 9038,
+          "rarityDisplay": "1/4"
+        },
+        {
+          "itemName": "Pharaoh\u0027s sceptre",
+          "dropRate": 2.380952380952381E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/4,200"
+        },
+        {
+          "itemName": "Gold seal",
+          "dropRate": 0.25,
+          "itemId": 9040,
+          "rarityDisplay": "1/4"
+        },
+        {
+          "itemName": "Golden scarab",
+          "dropRate": 0.25,
+          "itemId": 9028,
+          "rarityDisplay": "1/4"
+        },
+        {
+          "itemName": "Golden statuette",
+          "dropRate": 0.25,
+          "itemId": 9034,
+          "rarityDisplay": "1/4"
+        },
+        {
+          "itemName": "Pottery scarab",
+          "dropRate": 0.25,
+          "itemId": 9032,
+          "rarityDisplay": "1/4"
+        },
+        {
+          "itemName": "Pottery statuette",
+          "dropRate": 0.5,
+          "itemId": 9036,
+          "rarityDisplay": "1/2"
+        }
+      ]
+    },
+    "Gold Key Red": {
+      "monsterName": "Gold key red",
+      "wikiPage": "Gold key red",
+      "drops": [
+        {
+          "itemName": "Zealot\u0027s boots",
+          "dropRate": 0.0078125,
+          "itemId": -1,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Zealot\u0027s helm",
+          "dropRate": 0.0078125,
+          "itemId": -1,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Zealot\u0027s robe bottom",
+          "dropRate": 0.0078125,
+          "itemId": -1,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Zealot\u0027s robe top",
+          "dropRate": 0.0078125,
+          "itemId": -1,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Gold locks",
+          "dropRate": 0.015873015873015872,
+          "itemId": 25454,
+          "rarityDisplay": "1/63"
+        },
+        {
+          "itemName": "Tree wizards\u0027 journal",
+          "dropRate": 0.00911244760342628,
+          "itemId": -1,
+          "rarityDisplay": "1/109.74"
+        },
+        {
+          "itemName": "Bloody notes",
+          "dropRate": 0.00911244760342628,
+          "itemId": -1,
+          "rarityDisplay": "1/109.74"
+        },
+        {
+          "itemName": "Fine cloth",
+          "dropRate": 0.14592453616843862,
+          "itemId": 3470,
+          "rarityDisplay": "21/143.91"
+        },
+        {
+          "itemName": "Flamtaer bag",
+          "dropRate": 0.5,
+          "itemId": -1,
+          "rarityDisplay": "1/2"
+        }
+      ]
+    },
+    "Gold Key Brown": {
+      "monsterName": "Gold key brown",
+      "wikiPage": "Gold key brown",
+      "drops": [
+        {
+          "itemName": "Zealot\u0027s boots",
+          "dropRate": 0.0078125,
+          "itemId": -1,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Zealot\u0027s helm",
+          "dropRate": 0.0078125,
+          "itemId": -1,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Zealot\u0027s robe bottom",
+          "dropRate": 0.0078125,
+          "itemId": -1,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Zealot\u0027s robe top",
+          "dropRate": 0.0078125,
+          "itemId": -1,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Gold locks",
+          "dropRate": 0.016129032258064516,
+          "itemId": 25454,
+          "rarityDisplay": "1/62"
+        },
+        {
+          "itemName": "Tree wizards\u0027 journal",
+          "dropRate": 0.0092824654228163,
+          "itemId": -1,
+          "rarityDisplay": "1/107.73"
+        },
+        {
+          "itemName": "Bloody notes",
+          "dropRate": 0.0092824654228163,
+          "itemId": -1,
+          "rarityDisplay": "1/107.73"
+        },
+        {
+          "itemName": "Fine cloth",
+          "dropRate": 0.15278838808250572,
+          "itemId": 3470,
+          "rarityDisplay": "22/143.99"
+        },
+        {
+          "itemName": "Flamtaer bag",
+          "dropRate": 0.5,
+          "itemId": -1,
+          "rarityDisplay": "1/2"
+        }
+      ]
+    },
+    "Gold Key Crimson": {
+      "monsterName": "Gold key crimson",
+      "wikiPage": "Gold key crimson",
+      "drops": [
+        {
+          "itemName": "Zealot\u0027s boots",
+          "dropRate": 0.0078125,
+          "itemId": -1,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Zealot\u0027s helm",
+          "dropRate": 0.0078125,
+          "itemId": -1,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Zealot\u0027s robe bottom",
+          "dropRate": 0.0078125,
+          "itemId": -1,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Zealot\u0027s robe top",
+          "dropRate": 0.0078125,
+          "itemId": -1,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Gold locks",
+          "dropRate": 0.01639344262295082,
+          "itemId": 25454,
+          "rarityDisplay": "1/61"
+        },
+        {
+          "itemName": "Tree wizards\u0027 journal",
+          "dropRate": 0.009458053532582994,
+          "itemId": -1,
+          "rarityDisplay": "1/105.73"
+        },
+        {
+          "itemName": "Bloody notes",
+          "dropRate": 0.009458053532582994,
+          "itemId": -1,
+          "rarityDisplay": "1/105.73"
+        },
+        {
+          "itemName": "Fine cloth",
+          "dropRate": 0.15963353692393115,
+          "itemId": 3470,
+          "rarityDisplay": "23/144.08"
+        },
+        {
+          "itemName": "Flamtaer bag",
+          "dropRate": 0.5,
+          "itemId": -1,
+          "rarityDisplay": "1/2"
+        }
+      ]
+    },
+    "Gold Key Black": {
+      "monsterName": "Gold key black",
+      "wikiPage": "Gold key black",
+      "drops": [
+        {
+          "itemName": "Zealot\u0027s boots",
+          "dropRate": 0.0078125,
+          "itemId": -1,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Zealot\u0027s helm",
+          "dropRate": 0.0078125,
+          "itemId": -1,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Zealot\u0027s robe bottom",
+          "dropRate": 0.0078125,
+          "itemId": -1,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Zealot\u0027s robe top",
+          "dropRate": 0.0078125,
+          "itemId": -1,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Gold locks",
+          "dropRate": 0.016666666666666666,
+          "itemId": 25454,
+          "rarityDisplay": "1/60"
+        },
+        {
+          "itemName": "Tree wizards\u0027 journal",
+          "dropRate": 0.009640412609659694,
+          "itemId": -1,
+          "rarityDisplay": "1/103.73"
+        },
+        {
+          "itemName": "Bloody notes",
+          "dropRate": 0.009640412609659694,
+          "itemId": -1,
+          "rarityDisplay": "1/103.73"
+        },
+        {
+          "itemName": "Fine cloth",
+          "dropRate": 0.16645859342488556,
+          "itemId": 3470,
+          "rarityDisplay": "24/144.18"
+        },
+        {
+          "itemName": "Flamtaer bag",
+          "dropRate": 0.5,
+          "itemId": -1,
+          "rarityDisplay": "1/2"
+        }
+      ]
+    },
+    "Gold Key Purple": {
+      "monsterName": "Gold key purple",
+      "wikiPage": "Gold key purple",
+      "drops": [
+        {
+          "itemName": "Zealot\u0027s boots",
+          "dropRate": 0.0078125,
+          "itemId": -1,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Zealot\u0027s helm",
+          "dropRate": 0.0078125,
+          "itemId": -1,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Zealot\u0027s robe bottom",
+          "dropRate": 0.0078125,
+          "itemId": -1,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Zealot\u0027s robe top",
+          "dropRate": 0.0078125,
+          "itemId": -1,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Gold locks",
+          "dropRate": 0.01694915254237288,
+          "itemId": 25454,
+          "rarityDisplay": "1/59"
+        },
+        {
+          "itemName": "Tree wizards\u0027 journal",
+          "dropRate": 0.0092824654228163,
+          "itemId": -1,
+          "rarityDisplay": "1/107.73"
+        },
+        {
+          "itemName": "Bloody notes",
+          "dropRate": 0.0092824654228163,
+          "itemId": -1,
+          "rarityDisplay": "1/107.73"
+        },
+        {
+          "itemName": "Fine cloth",
+          "dropRate": 0.17327418907679512,
+          "itemId": 3470,
+          "rarityDisplay": "25/144.28"
+        },
+        {
+          "itemName": "Flamtaer bag",
+          "dropRate": 0.5,
+          "itemId": -1,
+          "rarityDisplay": "1/2"
+        }
+      ]
+    },
+    "Shades Of Mort\u0027ton": {
+      "monsterName": "Shades of Mort\u0027ton",
+      "wikiPage": "Shades of Mort\u0027ton",
+      "drops": [
+        {
+          "itemName": "Zealot\u0027s boots",
+          "dropRate": 0.0078125,
+          "itemId": -1,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Zealot\u0027s helm",
+          "dropRate": 0.0078125,
+          "itemId": -1,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Zealot\u0027s robe bottom",
+          "dropRate": 0.0078125,
+          "itemId": -1,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Zealot\u0027s robe top",
+          "dropRate": 0.0078125,
+          "itemId": -1,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Gold locks",
+          "dropRate": 0.015873015873015872,
+          "itemId": 25454,
+          "rarityDisplay": "1/63"
+        },
+        {
+          "itemName": "Tree wizards\u0027 journal",
+          "dropRate": 0.00911244760342628,
+          "itemId": -1,
+          "rarityDisplay": "1/109.74"
+        },
+        {
+          "itemName": "Bloody notes",
+          "dropRate": 0.00911244760342628,
+          "itemId": -1,
+          "rarityDisplay": "1/109.74"
+        },
+        {
+          "itemName": "Fine cloth",
+          "dropRate": 0.14592453616843862,
+          "itemId": 3470,
+          "rarityDisplay": "21/143.91"
+        },
+        {
+          "itemName": "Flamtaer bag",
+          "dropRate": 0.5,
+          "itemId": -1,
+          "rarityDisplay": "1/2"
+        }
+      ]
+    },
+    "Soul Wars": {
+      "monsterName": "Soul Wars",
+      "wikiPage": "Spoils of war",
+      "drops": [
+        {
+          "itemName": "Lil\u0027 creator",
+          "dropRate": 0.0025,
+          "itemId": -1,
+          "rarityDisplay": "1/400"
+        }
+      ]
+    },
+    "Chaos Druids": {
+      "monsterName": "Chaos Druids",
+      "wikiPage": "Chaos druid",
+      "drops": [
+        {
+          "itemName": "Law rune",
+          "dropRate": 0.0546875,
+          "itemId": 563,
+          "rarityDisplay": "7/128"
+        },
+        {
+          "itemName": "Mithril bolts",
+          "dropRate": 0.03125,
+          "itemId": 9142,
+          "rarityDisplay": "4/128"
+        },
+        {
+          "itemName": "Air rune",
+          "dropRate": 0.0234375,
+          "itemId": 556,
+          "rarityDisplay": "3/128"
+        },
+        {
+          "itemName": "Body rune",
+          "dropRate": 0.015625,
+          "itemId": 559,
+          "rarityDisplay": "2/128"
+        },
+        {
+          "itemName": "Earth rune",
+          "dropRate": 0.015625,
+          "itemId": 557,
+          "rarityDisplay": "2/128"
+        },
+        {
+          "itemName": "Mind rune",
+          "dropRate": 0.015625,
+          "itemId": 558,
+          "rarityDisplay": "2/128"
+        },
+        {
+          "itemName": "Nature rune",
+          "dropRate": 0.0078125,
+          "itemId": 561,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Coins",
+          "dropRate": 0.0390625,
+          "itemId": -1,
+          "rarityDisplay": "5/128"
+        },
+        {
+          "itemName": "Nothing",
+          "dropRate": 0.2578125,
+          "itemId": -1,
+          "rarityDisplay": "1/4"
+        },
+        {
+          "itemName": "Vial of water",
+          "dropRate": 0.078125,
+          "itemId": 227,
+          "rarityDisplay": "10/128"
+        },
+        {
+          "itemName": "Bronze longsword",
+          "dropRate": 0.0078125,
+          "itemId": 1291,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Snape grass",
+          "dropRate": 0.0078125,
+          "itemId": 231,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Unholy mould",
+          "dropRate": 0.0078125,
+          "itemId": -1,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Looting bag",
+          "dropRate": 0.09090909090909091,
+          "itemId": -1,
+          "rarityDisplay": "1/11"
+        },
+        {
+          "itemName": "Ensouled chaos druid head",
+          "dropRate": 0.02857142857142857,
+          "itemId": 13472,
+          "rarityDisplay": "1/35"
+        }
+      ]
+    },
+    "Colosseum": {
+      "monsterName": "Colosseum",
+      "wikiPage": "Rewards Chest (Fortis Colosseum)",
+      "drops": [
+        {
+          "itemName": "Sunfire splinters",
+          "dropRate": 0.14285714285714285,
+          "itemId": 28924,
+          "rarityDisplay": "1/7"
+        },
+        {
+          "itemName": "Echo crystal",
+          "dropRate": 0.002903225806451613,
+          "itemId": 28942,
+          "rarityDisplay": "1/344"
+        },
+        {
+          "itemName": "Sunfire fanatic helm",
+          "dropRate": 0.0016129032258064516,
+          "itemId": 28933,
+          "rarityDisplay": "1/620"
+        },
+        {
+          "itemName": "Sunfire fanatic cuirass",
+          "dropRate": 0.0016129032258064516,
+          "itemId": 28936,
+          "rarityDisplay": "1/620"
+        },
+        {
+          "itemName": "Sunfire fanatic chausses",
+          "dropRate": 0.0016129032258064516,
+          "itemId": 28939,
+          "rarityDisplay": "1/620"
+        },
+        {
+          "itemName": "Tonalztics of ralos (uncharged)",
+          "dropRate": 7.621951219512195E-4,
+          "itemId": 28919,
+          "rarityDisplay": "1/1,312"
+        },
+        {
+          "itemName": "Smol heredit",
+          "dropRate": 0.005,
+          "itemId": -1,
+          "rarityDisplay": "1/200"
+        },
+        {
+          "itemName": "Uncut onyx",
+          "dropRate": 0.022916666666666665,
+          "itemId": 6571,
+          "rarityDisplay": "1/44"
+        }
+      ]
+    },
+    "Cyclopes": {
+      "monsterName": "Cyclopes",
+      "wikiPage": "Cyclops",
+      "drops": [
+        {
+          "itemName": "Bronze defender",
+          "dropRate": 0.02,
+          "itemId": -1,
+          "rarityDisplay": "2/100"
+        },
+        {
+          "itemName": "Iron defender",
+          "dropRate": 0.02,
+          "itemId": -1,
+          "rarityDisplay": "2/100"
+        },
+        {
+          "itemName": "Steel defender",
+          "dropRate": 0.02,
+          "itemId": -1,
+          "rarityDisplay": "2/100"
+        },
+        {
+          "itemName": "Black defender",
+          "dropRate": 0.02,
+          "itemId": -1,
+          "rarityDisplay": "2/100"
+        },
+        {
+          "itemName": "Mithril defender",
+          "dropRate": 0.02,
+          "itemId": -1,
+          "rarityDisplay": "2/100"
+        },
+        {
+          "itemName": "Adamant defender",
+          "dropRate": 0.02,
+          "itemId": -1,
+          "rarityDisplay": "2/100"
+        },
+        {
+          "itemName": "Rune defender",
+          "dropRate": 0.02,
+          "itemId": -1,
+          "rarityDisplay": "2/100"
+        },
+        {
+          "itemName": "Dragon defender",
+          "dropRate": 0.01,
+          "itemId": -1,
+          "rarityDisplay": "1/100"
+        }
+      ]
+    },
+    "Glough\u0027s Experiments": {
+      "monsterName": "Glough\u0027s Experiments",
+      "wikiPage": "Demonic gorilla",
+      "drops": [
+        {
+          "itemName": "Zenyte shard",
+          "dropRate": 0.0033333333333333335,
+          "itemId": 19529,
+          "rarityDisplay": "1/300"
+        },
+        {
+          "itemName": "Ballista limbs",
+          "dropRate": 0.002,
+          "itemId": 19592,
+          "rarityDisplay": "1/500"
+        },
+        {
+          "itemName": "Ballista spring",
+          "dropRate": 0.002,
+          "itemId": 19601,
+          "rarityDisplay": "1/500"
+        },
+        {
+          "itemName": "Light frame",
+          "dropRate": 0.0013333333333333333,
+          "itemId": 19586,
+          "rarityDisplay": "1/750"
+        },
+        {
+          "itemName": "Heavy frame",
+          "dropRate": 6.666666666666666E-4,
+          "itemId": 19589,
+          "rarityDisplay": "1/1,500"
+        },
+        {
+          "itemName": "Monkey tail",
+          "dropRate": 6.666666666666666E-4,
+          "itemId": 19610,
+          "rarityDisplay": "1/1,500"
+        }
+      ]
+    },
+    "Gorak": {
+      "monsterName": "Gorak",
+      "wikiPage": "Gorak",
+      "drops": [
+        {
+          "itemName": "Gorak claws",
+          "dropRate": 0.3333333333333333,
+          "itemId": -1,
+          "rarityDisplay": "1/3"
+        },
+        {
+          "itemName": "Long bone",
+          "dropRate": 0.0025,
+          "itemId": -1,
+          "rarityDisplay": "1/400"
+        },
+        {
+          "itemName": "Curved bone",
+          "dropRate": 1.9950124688279303E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/5012.5"
+        },
+        {
+          "itemName": "Iron halberd",
+          "dropRate": 0.0234375,
+          "itemId": 3192,
+          "rarityDisplay": "3/128"
+        },
+        {
+          "itemName": "Bronze dagger(p+)",
+          "dropRate": 0.015625,
+          "itemId": 5670,
+          "rarityDisplay": "2/128"
+        },
+        {
+          "itemName": "Iron 2h sword",
+          "dropRate": 0.0234375,
+          "itemId": 1309,
+          "rarityDisplay": "3/128"
+        },
+        {
+          "itemName": "Steel thrownaxe",
+          "dropRate": 0.0234375,
+          "itemId": 802,
+          "rarityDisplay": "3/128"
+        },
+        {
+          "itemName": "Steel battleaxe",
+          "dropRate": 0.0078125,
+          "itemId": 1365,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Mithril thrownaxe",
+          "dropRate": 0.0234375,
+          "itemId": 803,
+          "rarityDisplay": "3/128"
+        },
+        {
+          "itemName": "Adamant kiteshield",
+          "dropRate": 0.0078125,
+          "itemId": 1199,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Steel plateskirt",
+          "dropRate": 0.0078125,
+          "itemId": 1083,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Steel platelegs",
+          "dropRate": 0.03125,
+          "itemId": 1069,
+          "rarityDisplay": "4/128"
+        },
+        {
+          "itemName": "Rune chainbody",
+          "dropRate": 0.0078125,
+          "itemId": 1113,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Coins",
+          "dropRate": 0.0390625,
+          "itemId": -1,
+          "rarityDisplay": "5/128"
+        },
+        {
+          "itemName": "Mithril arrow(p++)",
+          "dropRate": 0.015625,
+          "itemId": 5625,
+          "rarityDisplay": "2/128"
+        },
+        {
+          "itemName": "Ring of life",
+          "dropRate": 0.0078125,
+          "itemId": 2570,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Looting bag",
+          "dropRate": 0.3333333333333333,
+          "itemId": -1,
+          "rarityDisplay": "1/3"
+        }
+      ]
+    },
+    "Cave Horror": {
+      "monsterName": "Cave horror",
+      "wikiPage": "Cave horror",
+      "drops": [
+        {
+          "itemName": "Black mask (10)",
+          "dropRate": 0.001953125,
+          "itemId": 8901,
+          "rarityDisplay": "1/512"
+        }
+      ]
+    },
+    "Basilisk Knight": {
+      "monsterName": "Basilisk Knight",
+      "wikiPage": "Basilisk Knight",
+      "drops": [
+        {
+          "itemName": "Mystic hat (light)",
+          "dropRate": 0.00390625,
+          "itemId": 4109,
+          "rarityDisplay": "1/256"
+        },
+        {
+          "itemName": "Basilisk head",
+          "dropRate": 0.001,
+          "itemId": -1,
+          "rarityDisplay": "1/1,000"
+        },
+        {
+          "itemName": "Basilisk jaw",
+          "dropRate": 2.0E-4,
+          "itemId": 24268,
+          "rarityDisplay": "1/5,000"
+        }
+      ]
+    },
+    "Cockatrice": {
+      "monsterName": "Cockatrice",
+      "wikiPage": "Cockatrice",
+      "drops": [
+        {
+          "itemName": "Iron boots",
+          "dropRate": 0.0078125,
+          "itemId": 4121,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Mystic boots (light)",
+          "dropRate": 0.001953125,
+          "itemId": 4117,
+          "rarityDisplay": "1/512"
+        },
+        {
+          "itemName": "Cockatrice head",
+          "dropRate": 0.001,
+          "itemId": -1,
+          "rarityDisplay": "1/1,000"
+        }
+      ]
+    },
+    "Crawling Hand": {
+      "monsterName": "Crawling Hand",
+      "wikiPage": "Crawling Hand",
+      "drops": [
+        {
+          "itemName": "Crawling hand (item)",
+          "dropRate": 0.002,
+          "itemId": -1,
+          "rarityDisplay": "1/500"
+        }
+      ]
+    },
+    "Kurask": {
+      "monsterName": "Kurask",
+      "wikiPage": "Kurask",
+      "drops": [
+        {
+          "itemName": "Leaf-bladed sword",
+          "dropRate": 0.0026041666666666665,
+          "itemId": 11902,
+          "rarityDisplay": "1/384"
+        },
+        {
+          "itemName": "Mystic robe top (light)",
+          "dropRate": 0.001953125,
+          "itemId": 4111,
+          "rarityDisplay": "1/512"
+        },
+        {
+          "itemName": "Leaf-bladed battleaxe",
+          "dropRate": 9.746588693957114E-4,
+          "itemId": 20727,
+          "rarityDisplay": "1/1,026"
+        },
+        {
+          "itemName": "Kurask head",
+          "dropRate": 3.333333333333333E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/3,000"
+        }
+      ]
+    },
+    "Turoth": {
+      "monsterName": "Turoth",
+      "wikiPage": "Turoth",
+      "drops": [
+        {
+          "itemName": "Leaf-bladed sword",
+          "dropRate": 0.002,
+          "itemId": 11902,
+          "rarityDisplay": "1/500"
+        },
+        {
+          "itemName": "Mystic robe bottom (light)",
+          "dropRate": 0.001953125,
+          "itemId": 4113,
+          "rarityDisplay": "1/512"
+        }
+      ]
+    },
+    "Abyssal Demon": {
+      "monsterName": "Abyssal demon",
+      "wikiPage": "Abyssal demon",
+      "drops": [
+        {
+          "itemName": "Abyssal whip",
+          "dropRate": 0.001953125,
+          "itemId": 4151,
+          "rarityDisplay": "1/512"
+        },
+        {
+          "itemName": "Abyssal dagger",
+          "dropRate": 3.125E-5,
+          "itemId": 13265,
+          "rarityDisplay": "1/32,000"
+        },
+        {
+          "itemName": "Abyssal head",
+          "dropRate": 1.6666666666666666E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/6,000"
+        },
+        {
+          "itemName": "Abyssal whip",
+          "dropRate": 0.001953125,
+          "itemId": 4151,
+          "rarityDisplay": "1/512"
+        },
+        {
+          "itemName": "Abyssal dagger",
+          "dropRate": 3.125E-5,
+          "itemId": 13265,
+          "rarityDisplay": "1/32,000"
+        },
+        {
+          "itemName": "Abyssal head",
+          "dropRate": 1.6666666666666666E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/6,000"
+        }
+      ]
+    },
+    "Slayer": {
+      "monsterName": "Slayer",
+      "wikiPage": "Slayer",
+      "drops": [
+        {
+          "itemName": "Black mask (10)",
+          "dropRate": 0.001953125,
+          "itemId": 8901,
+          "rarityDisplay": "1/512"
+        },
+        {
+          "itemName": "Mystic hat (light)",
+          "dropRate": 0.00390625,
+          "itemId": 4109,
+          "rarityDisplay": "1/256"
+        },
+        {
+          "itemName": "Basilisk head",
+          "dropRate": 0.001,
+          "itemId": -1,
+          "rarityDisplay": "1/1,000"
+        },
+        {
+          "itemName": "Basilisk jaw",
+          "dropRate": 2.0E-4,
+          "itemId": 24268,
+          "rarityDisplay": "1/5,000"
+        },
+        {
+          "itemName": "Iron boots",
+          "dropRate": 0.0078125,
+          "itemId": 4121,
+          "rarityDisplay": "1/128"
+        },
+        {
+          "itemName": "Mystic boots (light)",
+          "dropRate": 0.001953125,
+          "itemId": 4117,
+          "rarityDisplay": "1/512"
+        },
+        {
+          "itemName": "Cockatrice head",
+          "dropRate": 0.001,
+          "itemId": -1,
+          "rarityDisplay": "1/1,000"
+        },
+        {
+          "itemName": "Crawling hand (item)",
+          "dropRate": 0.002,
+          "itemId": -1,
+          "rarityDisplay": "1/500"
+        },
+        {
+          "itemName": "Leaf-bladed sword",
+          "dropRate": 0.0026041666666666665,
+          "itemId": 11902,
+          "rarityDisplay": "1/384"
+        },
+        {
+          "itemName": "Mystic robe top (light)",
+          "dropRate": 0.001953125,
+          "itemId": 4111,
+          "rarityDisplay": "1/512"
+        },
+        {
+          "itemName": "Leaf-bladed battleaxe",
+          "dropRate": 9.746588693957114E-4,
+          "itemId": 20727,
+          "rarityDisplay": "1/1,026"
+        },
+        {
+          "itemName": "Kurask head",
+          "dropRate": 3.333333333333333E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/3,000"
+        },
+        {
+          "itemName": "Mystic robe bottom (light)",
+          "dropRate": 0.001953125,
+          "itemId": 4113,
+          "rarityDisplay": "1/512"
+        },
+        {
+          "itemName": "Abyssal whip",
+          "dropRate": 0.001953125,
+          "itemId": 4151,
+          "rarityDisplay": "1/512"
+        },
+        {
+          "itemName": "Abyssal dagger",
+          "dropRate": 3.125E-5,
+          "itemId": 13265,
+          "rarityDisplay": "1/32,000"
+        },
+        {
+          "itemName": "Abyssal head",
+          "dropRate": 1.6666666666666666E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/6,000"
+        }
+      ]
+    },
+    "The Gauntlet": {
+      "monsterName": "The Gauntlet",
+      "wikiPage": "The Gauntlet",
+      "drops": [
+        {
+          "itemName": "Crystal weapon seed",
+          "dropRate": 0.008333333333333333,
+          "itemId": 4207,
+          "rarityDisplay": "1/120"
+        },
+        {
+          "itemName": "Crystal armour seed",
+          "dropRate": 0.008333333333333333,
+          "itemId": 23956,
+          "rarityDisplay": "1/120"
+        },
+        {
+          "itemName": "Enhanced crystal weapon seed",
+          "dropRate": 5.0E-4,
+          "itemId": 25859,
+          "rarityDisplay": "1/2,000"
+        },
+        {
+          "itemName": "Youngllef",
+          "dropRate": 5.0E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/2,000"
+        }
+      ]
+    },
+    "TzTok-Jad": {
+      "monsterName": "TzTok-Jad",
+      "wikiPage": "TzTok-Jad",
+      "drops": [
+        {
+          "itemName": "Tzrek-jad",
+          "dropRate": 0.005,
+          "itemId": -1,
+          "rarityDisplay": "1/200"
+        }
+      ]
+    },
+    "TzKal-Zuk": {
+      "monsterName": "TzKal-Zuk",
+      "wikiPage": "TzKal-Zuk",
+      "drops": [
+        {
+          "itemName": "Jal-nib-rek",
+          "dropRate": 0.01,
+          "itemId": -1,
+          "rarityDisplay": "1/100"
+        }
+      ]
+    },
+    "TzHaar": {
+      "monsterName": "TzHaar",
+      "wikiPage": "TzHaar",
+      "drops": [
+        {
+          "itemName": "Tzrek-jad",
+          "dropRate": 0.005,
+          "itemId": -1,
+          "rarityDisplay": "1/200"
+        },
+        {
+          "itemName": "Jal-nib-rek",
+          "dropRate": 0.01,
+          "itemId": -1,
+          "rarityDisplay": "1/100"
+        }
+      ]
+    },
+    "Undead Druids": {
+      "monsterName": "Undead Druids",
+      "wikiPage": "Undead druid",
+      "drops": [
+        {
+          "itemName": "Air battlestaff",
+          "dropRate": 0.02,
+          "itemId": 1397,
+          "rarityDisplay": "2/100"
+        },
+        {
+          "itemName": "Earth battlestaff",
+          "dropRate": 0.02,
+          "itemId": 1399,
+          "rarityDisplay": "2/100"
+        },
+        {
+          "itemName": "Mask of ranul",
+          "dropRate": 0.001,
+          "itemId": 23522,
+          "rarityDisplay": "1/1,000"
+        },
+        {
+          "itemName": "Air rune",
+          "dropRate": 0.05,
+          "itemId": 556,
+          "rarityDisplay": "5/100"
+        },
+        {
+          "itemName": "Earth rune",
+          "dropRate": 0.05,
+          "itemId": 557,
+          "rarityDisplay": "5/100"
+        },
+        {
+          "itemName": "Blood rune",
+          "dropRate": 0.03,
+          "itemId": 565,
+          "rarityDisplay": "3/100"
+        },
+        {
+          "itemName": "Chaos rune",
+          "dropRate": 0.03,
+          "itemId": 562,
+          "rarityDisplay": "3/100"
+        },
+        {
+          "itemName": "Cosmic rune",
+          "dropRate": 0.03,
+          "itemId": 564,
+          "rarityDisplay": "3/100"
+        },
+        {
+          "itemName": "Death rune",
+          "dropRate": 0.03,
+          "itemId": 560,
+          "rarityDisplay": "3/100"
+        },
+        {
+          "itemName": "Nature rune",
+          "dropRate": 0.03,
+          "itemId": 561,
+          "rarityDisplay": "3/100"
+        },
+        {
+          "itemName": "Mud rune",
+          "dropRate": 0.03,
+          "itemId": 4698,
+          "rarityDisplay": "3/100"
+        },
+        {
+          "itemName": "Law rune",
+          "dropRate": 0.02,
+          "itemId": 563,
+          "rarityDisplay": "2/100"
+        },
+        {
+          "itemName": "Eye of newt",
+          "dropRate": 0.02,
+          "itemId": 221,
+          "rarityDisplay": "2/100"
+        },
+        {
+          "itemName": "Potato cactus",
+          "dropRate": 0.02,
+          "itemId": 3138,
+          "rarityDisplay": "2/100"
+        },
+        {
+          "itemName": "White berries",
+          "dropRate": 0.02,
+          "itemId": 239,
+          "rarityDisplay": "2/100"
+        },
+        {
+          "itemName": "Wine of zamorak",
+          "dropRate": 0.02,
+          "itemId": 245,
+          "rarityDisplay": "2/100"
+        },
+        {
+          "itemName": "Coins",
+          "dropRate": 0.06,
+          "itemId": -1,
+          "rarityDisplay": "6/100"
+        },
+        {
+          "itemName": "Amulet of defence",
+          "dropRate": 0.05,
+          "itemId": 1729,
+          "rarityDisplay": "5/100"
+        },
+        {
+          "itemName": "Amulet of magic",
+          "dropRate": 0.05,
+          "itemId": 1727,
+          "rarityDisplay": "5/100"
+        },
+        {
+          "itemName": "Amulet of strength",
+          "dropRate": 0.05,
+          "itemId": 1725,
+          "rarityDisplay": "5/100"
+        },
+        {
+          "itemName": "Tattered moon page",
+          "dropRate": 0.05,
+          "itemId": -1,
+          "rarityDisplay": "1/20"
+        },
+        {
+          "itemName": "Tattered sun page",
+          "dropRate": 0.05,
+          "itemId": -1,
+          "rarityDisplay": "1/20"
+        },
+        {
+          "itemName": "Tattered temple page",
+          "dropRate": 0.05,
+          "itemId": -1,
+          "rarityDisplay": "1/20"
+        },
+        {
+          "itemName": "Grubby key",
+          "dropRate": 0.013333333333333334,
+          "itemId": 23499,
+          "rarityDisplay": "1/75"
+        },
+        {
+          "itemName": "Zombie champion scroll",
+          "dropRate": 2.0E-4,
+          "itemId": -1,
+          "rarityDisplay": "1/5,000"
+        }
+      ]
+    }
+  },
+  "aliases": {
+    "Clue Scroll (easy)": "Easy Treasure Trails",
+    "Clue Scroll (elite)": "Elite Treasure Trails",
+    "The Whisperer": "Whisperer",
+    "The Mimic": "Mimic",
+    "Spoils Of War": "Soul Wars",
+    "Tombs Of Amascut: Expert Mode": "Tombs Of Amascut",
+    "The Leviathan": "Leviathan",
+    "Barrows": "Barrows Chests",
+    "Theatre Of Blood": "Theatre Of Blood",
+    "Chambers Of Xeric": "Chambers Of Xeric",
+    "Clue Scroll (master)": "Master Treasure Trails",
+    "The Nightmare": "Nightmare",
+    "Clue Scroll (hard)": "Hard Treasure Trails",
+    "Clue Scroll (beginner)": "Beginner Treasure Trails",
+    "Clue Scroll (medium)": "Medium Treasure Trails",
+    "Chambers Of Xeric: Challenge Mode": "Chambers Of Xeric",
+    "Tombs Of Amascut": "Tombs Of Amascut",
+    "The Gauntlet": "The Gauntlet",
+    "Supply Crate (wintertodt)": "Wintertodt",
+    "Hallowed Sack": "Hallowed Sepulchre",
+    "The Corrupted Gauntlet": "The Gauntlet",
+    "Phosani\u0027s Nightmare": "Nightmare",
+    "Theatre Of Blood: Hard Mode": "Theatre Of Blood",
+    "Reward Cart (wintertodt)": "Wintertodt"
+  }
+}

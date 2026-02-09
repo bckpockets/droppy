@@ -1,425 +1,176 @@
 package com.droppy;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import lombok.extern.slf4j.Slf4j;
-import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 @Slf4j
 public class WikiDropFetcher
 {
-    private static final String WIKI_API_BASE = "https://oldschool.runescape.wiki/api.php";
-    private static final String USER_AGENT = "Droppy RuneLite Plugin - Drop Chance Calculator (https://github.com/droppy)";
+    private final Map<String, MonsterDropData> dropData = new ConcurrentHashMap<>();
+    private final Map<String, String> aliases = new HashMap<>();
 
-    private final OkHttpClient httpClient;
-    private final Map<String, MonsterDropData> cache = new ConcurrentHashMap<>();
-
-    private static final Pattern DROPS_LINE_PATTERN = Pattern.compile(
-        "\\{\\{DropsLine\\s*\\|([^}]+)\\}\\}",
-        Pattern.CASE_INSENSITIVE
-    );
-
-    private static final Pattern FRACTION_PATTERN = Pattern.compile(
-        "(\\d+(?:\\.\\d+)?)\\s*/\\s*(\\d+(?:\\.\\d+)?)"
-    );
-
-    private static final Map<String, Double> RARITY_KEYWORDS = new HashMap<>();
-
-    // In-game source name -> wiki page with the actual drop table.
-    // Only needed when the loot event name doesn't match the wiki page.
-    private static final Map<String, String> PAGE_ALIASES = new HashMap<>();
-
-    // Subpages to try when the main page has no {{DropsLine}} entries
-    private static final String[] SUBPAGE_SUFFIXES = {"/Loot", "/Rewards"};
-
-    static
+    public WikiDropFetcher(Gson gson)
     {
-        RARITY_KEYWORDS.put("always", 1.0);
-        RARITY_KEYWORDS.put("common", 1.0 / 16.0);
-        RARITY_KEYWORDS.put("uncommon", 1.0 / 64.0);
-        RARITY_KEYWORDS.put("rare", 1.0 / 128.0);
-        RARITY_KEYWORDS.put("very rare", 1.0 / 512.0);
-
-        // Raids - loot tables are on subpages
-        PAGE_ALIASES.put("chambers of xeric", "Chambers of Xeric");
-        PAGE_ALIASES.put("chambers of xeric: challenge mode", "Chambers of Xeric");
-        PAGE_ALIASES.put("theatre of blood", "Theatre of Blood");
-        PAGE_ALIASES.put("theatre of blood: hard mode", "Theatre of Blood");
-        PAGE_ALIASES.put("tombs of amascut", "Tombs of Amascut");
-        PAGE_ALIASES.put("tombs of amascut: expert mode", "Tombs of Amascut");
-
-        // Gauntlet
-        PAGE_ALIASES.put("the gauntlet", "The Gauntlet");
-        PAGE_ALIASES.put("the corrupted gauntlet", "The Gauntlet");
-
-        // Clue scrolls
-        PAGE_ALIASES.put("clue scroll (beginner)", "Reward casket (beginner)");
-        PAGE_ALIASES.put("clue scroll (easy)", "Reward casket (easy)");
-        PAGE_ALIASES.put("clue scroll (medium)", "Reward casket (medium)");
-        PAGE_ALIASES.put("clue scroll (hard)", "Reward casket (hard)");
-        PAGE_ALIASES.put("clue scroll (elite)", "Reward casket (elite)");
-        PAGE_ALIASES.put("clue scroll (master)", "Reward casket (master)");
+        loadBundledData(gson);
     }
 
-    public WikiDropFetcher(OkHttpClient httpClient)
+    private void loadBundledData(Gson gson)
     {
-        this.httpClient = httpClient;
-    }
-
-    public MonsterDropData fetchMonsterDrops(String monsterName)
-    {
-        String normalizedName = normalizeName(monsterName);
-
-        MonsterDropData cached = cache.get(normalizedName);
-        if (cached != null && !cached.isStale())
+        try (InputStream is = getClass().getResourceAsStream("drops.json"))
         {
-            return cached;
-        }
-
-        try
-        {
-            // Check aliases first (e.g. "Clue Scroll (Hard)" -> "Reward casket (hard)")
-            String alias = PAGE_ALIASES.get(monsterName.toLowerCase().trim());
-            String pageName = alias != null ? alias : normalizedName;
-
-            List<DropEntry> drops = tryFetchDrops(pageName);
-
-            // If main page had no drops, try subpages like /Loot, /Rewards
-            if (drops.isEmpty())
+            if (is == null)
             {
-                for (String suffix : SUBPAGE_SUFFIXES)
+                log.warn("Bundled drops.json not found — run ./gradlew updateDrops to generate it");
+                return;
+            }
+
+            String json = new String(is.readAllBytes());
+            JsonObject root = gson.fromJson(json, JsonObject.class);
+
+            JsonObject aliasObj = root.getAsJsonObject("aliases");
+            if (aliasObj != null)
+            {
+                for (Map.Entry<String, JsonElement> entry : aliasObj.entrySet())
                 {
-                    drops = tryFetchDrops(pageName + suffix);
-                    if (!drops.isEmpty())
-                    {
-                        break;
-                    }
+                    aliases.put(entry.getKey(), entry.getValue().getAsString());
                 }
             }
 
-            if (drops.isEmpty())
+            JsonObject monstersObj = root.getAsJsonObject("monsters");
+            if (monstersObj != null)
             {
-                log.warn("No drops found for: {} (tried {} and subpages)", monsterName, pageName);
-                return null;
+                for (Map.Entry<String, JsonElement> entry : monstersObj.entrySet())
+                {
+                    JsonObject m = entry.getValue().getAsJsonObject();
+                    String monsterName = m.get("monsterName").getAsString();
+                    String wikiPage = m.get("wikiPage").getAsString();
+
+                    List<DropEntry> drops = new ArrayList<>();
+                    JsonArray dropsArr = m.getAsJsonArray("drops");
+                    if (dropsArr != null)
+                    {
+                        for (JsonElement dropEl : dropsArr)
+                        {
+                            JsonObject d = dropEl.getAsJsonObject();
+                            String rarityDisplay = d.has("rarityDisplay") && !d.get("rarityDisplay").isJsonNull()
+                                ? d.get("rarityDisplay").getAsString()
+                                : null;
+                            drops.add(new DropEntry(
+                                d.get("itemName").getAsString(),
+                                d.get("dropRate").getAsDouble(),
+                                d.get("itemId").getAsInt(),
+                                rarityDisplay
+                            ));
+                        }
+                    }
+
+                    dropData.put(entry.getKey(), new MonsterDropData(monsterName, wikiPage, drops));
+                }
             }
 
-            MonsterDropData data = new MonsterDropData(monsterName, pageName, drops);
-            cache.put(normalizedName, data);
+            log.info("Loaded {} monsters and {} aliases from bundled drop data",
+                dropData.size(), aliases.size());
+        }
+        catch (Exception e)
+        {
+            log.error("Failed to load bundled drop data: {}", e.getMessage());
+        }
+
+        // Loot event name -> clog page name
+        addAlias("Barrows", "Barrows Chests");
+        addAlias("The Nightmare", "Nightmare");
+        addAlias("Phosani's Nightmare", "Nightmare");
+        addAlias("The Leviathan", "Leviathan");
+        addAlias("The Whisperer", "Whisperer");
+        addAlias("The Mimic", "Mimic");
+        addAlias("Supply Crate (Wintertodt)", "Wintertodt");
+        addAlias("Reward Cart (Wintertodt)", "Wintertodt");
+        addAlias("Hallowed Sack", "Hallowed Sepulchre");
+        addAlias("Spoils Of War", "Soul Wars");
+
+        // Irregular plurals (NPC name -> clog page name)
+        addAlias("Cyclops", "Cyclopes");
+    }
+
+    private void addAlias(String from, String to)
+    {
+        String normalizedFrom = normalizeName(from);
+        String normalizedTo = normalizeName(to);
+        if (!aliases.containsKey(normalizedFrom))
+        {
+            aliases.put(normalizedFrom, normalizedTo);
+        }
+    }
+
+    public MonsterDropData getDropData(String monsterName)
+    {
+        String normalized = normalizeName(monsterName);
+
+        MonsterDropData data = dropData.get(normalized);
+        if (data != null)
+        {
             return data;
         }
-        catch (Exception e)
+
+        // Check aliases (e.g. "The Corrupted Gauntlet" -> "The Gauntlet")
+        String aliasTarget = aliases.get(normalized);
+        if (aliasTarget != null)
         {
-            log.error("Error fetching drops for {}: {}", monsterName, e.getMessage());
-            return cached;
+            data = dropData.get(aliasTarget);
+            if (data != null)
+            {
+                return data;
+            }
         }
+
+        // Try singular/plural variants
+        // e.g. "Tormented Demon" -> "Tormented Demons"
+        data = dropData.get(normalized + "s");
+        if (data != null)
+        {
+            return data;
+        }
+
+        data = dropData.get(normalized + "es");
+        if (data != null)
+        {
+            return data;
+        }
+
+        if (normalized.endsWith("s"))
+        {
+            data = dropData.get(normalized.substring(0, normalized.length() - 1));
+            if (data != null)
+            {
+                return data;
+            }
+        }
+
+        if (normalized.endsWith("es"))
+        {
+            data = dropData.get(normalized.substring(0, normalized.length() - 2));
+            if (data != null)
+            {
+                return data;
+            }
+        }
+
+        return null;
     }
 
-    private List<DropEntry> tryFetchDrops(String pageName)
+
+    public java.util.Collection<MonsterDropData> getAllMonsterData()
     {
-        try
-        {
-            String wikiText = fetchWikiText(pageName);
-            if (wikiText == null || wikiText.isEmpty())
-            {
-                return List.of();
-            }
-            List<DropEntry> drops = parseDropsFromWikiText(wikiText);
-            return drops;
-        }
-        catch (Exception e)
-        {
-            log.debug("No drops on page {}: {}", pageName, e.getMessage());
-            return List.of();
-        }
-    }
-
-    private String fetchWikiText(String pageName) throws IOException
-    {
-        HttpUrl url = HttpUrl.parse(WIKI_API_BASE).newBuilder()
-            .addQueryParameter("action", "parse")
-            .addQueryParameter("page", pageName)
-            .addQueryParameter("prop", "wikitext")
-            .addQueryParameter("format", "json")
-            .build();
-
-        Request request = new Request.Builder()
-            .url(url)
-            .header("User-Agent", USER_AGENT)
-            .build();
-
-        try (Response response = httpClient.newCall(request).execute())
-        {
-            if (!response.isSuccessful() || response.body() == null)
-            {
-                log.warn("Wiki API returned status {} for page {}", response.code(), pageName);
-                return null;
-            }
-
-            String body = response.body().string();
-            JsonObject json = new JsonParser().parse(body).getAsJsonObject();
-
-            if (json.has("error"))
-            {
-                log.warn("Wiki API error for {}: {}", pageName,
-                    json.getAsJsonObject("error").get("info").getAsString());
-                return null;
-            }
-
-            JsonObject parse = json.getAsJsonObject("parse");
-            if (parse == null)
-            {
-                return null;
-            }
-
-            JsonObject wikitext = parse.getAsJsonObject("wikitext");
-            if (wikitext == null)
-            {
-                return null;
-            }
-
-            JsonElement content = wikitext.get("*");
-            return content != null ? content.getAsString() : null;
-        }
-    }
-
-    public List<String> searchMonsters(String query)
-    {
-        List<String> results = new ArrayList<>();
-
-        try
-        {
-            HttpUrl url = HttpUrl.parse(WIKI_API_BASE).newBuilder()
-                .addQueryParameter("action", "opensearch")
-                .addQueryParameter("search", query)
-                .addQueryParameter("limit", "10")
-                .addQueryParameter("namespace", "0")
-                .addQueryParameter("format", "json")
-                .build();
-
-            Request request = new Request.Builder()
-                .url(url)
-                .header("User-Agent", USER_AGENT)
-                .build();
-
-            try (Response response = httpClient.newCall(request).execute())
-            {
-                if (!response.isSuccessful() || response.body() == null)
-                {
-                    return results;
-                }
-
-                JsonArray arr = new JsonParser().parse(response.body().string()).getAsJsonArray();
-                if (arr.size() >= 2)
-                {
-                    JsonArray names = arr.get(1).getAsJsonArray();
-                    for (JsonElement el : names)
-                    {
-                        results.add(el.getAsString());
-                    }
-                }
-            }
-        }
-        catch (Exception e)
-        {
-            log.error("Error searching monsters: {}", e.getMessage());
-        }
-
-        return results;
-    }
-
-    private List<DropEntry> parseDropsFromWikiText(String wikiText)
-    {
-        List<DropEntry> drops = new ArrayList<>();
-        Matcher matcher = DROPS_LINE_PATTERN.matcher(wikiText);
-
-        while (matcher.find())
-        {
-            String params = matcher.group(1);
-            Map<String, String> paramMap = parseTemplateParams(params);
-
-            String name = paramMap.get("name");
-            String rarity = paramMap.get("rarity");
-
-            if (name == null || name.isEmpty())
-            {
-                continue;
-            }
-
-            double dropRate = parseRarity(rarity);
-            if (dropRate <= 0 || dropRate >= 1.0)
-            {
-                continue;
-            }
-
-            String rarityDisplay = formatRarityDisplay(rarity, dropRate);
-
-            int itemId = -1;
-            if (paramMap.containsKey("id"))
-            {
-                try
-                {
-                    itemId = Integer.parseInt(paramMap.get("id").trim());
-                }
-                catch (NumberFormatException ignored)
-                {
-                }
-            }
-
-            drops.add(new DropEntry(name.trim(), dropRate, itemId, rarityDisplay));
-        }
-
-        return drops;
-    }
-
-    private Map<String, String> parseTemplateParams(String paramString)
-    {
-        Map<String, String> params = new HashMap<>();
-        int depth = 0;
-        StringBuilder current = new StringBuilder();
-
-        for (int i = 0; i < paramString.length(); i++)
-        {
-            char c = paramString.charAt(i);
-            if (c == '{')
-            {
-                depth++;
-                current.append(c);
-            }
-            else if (c == '}')
-            {
-                depth--;
-                current.append(c);
-            }
-            else if (c == '|' && depth == 0)
-            {
-                parseParam(current.toString(), params);
-                current = new StringBuilder();
-            }
-            else
-            {
-                current.append(c);
-            }
-        }
-
-        if (current.length() > 0)
-        {
-            parseParam(current.toString(), params);
-        }
-
-        return params;
-    }
-
-    private void parseParam(String param, Map<String, String> params)
-    {
-        int eqIdx = param.indexOf('=');
-        if (eqIdx > 0)
-        {
-            String key = param.substring(0, eqIdx).trim().toLowerCase();
-            String value = param.substring(eqIdx + 1).trim();
-            params.put(key, value);
-        }
-    }
-
-    private double parseRarity(String rarity)
-    {
-        if (rarity == null || rarity.isEmpty())
-        {
-            return -1;
-        }
-
-        String cleaned = rarity.trim()
-            .replaceAll("<!--.*?-->", "")
-            .replaceAll("\\{\\{.*?\\}\\}", "")
-            .replaceAll("~", "")
-            .trim();
-
-        Matcher fractionMatcher = FRACTION_PATTERN.matcher(cleaned);
-        if (fractionMatcher.find())
-        {
-            double numerator = Double.parseDouble(fractionMatcher.group(1));
-            double denominator = Double.parseDouble(fractionMatcher.group(2));
-            if (denominator > 0)
-            {
-                return numerator / denominator;
-            }
-        }
-
-        String lower = cleaned.toLowerCase();
-        for (Map.Entry<String, Double> entry : RARITY_KEYWORDS.entrySet())
-        {
-            if (lower.contains(entry.getKey()))
-            {
-                return entry.getValue();
-            }
-        }
-
-        return -1;
-    }
-
-    // Format drop rate for display. For complex wiki fractions (like 499/250000),
-    // simplify to 1/X format if numerator is high.
-    private String formatRarityDisplay(String rarity, double dropRate)
-    {
-        if (rarity == null || rarity.isEmpty())
-        {
-            long denom = Math.round(1.0 / dropRate);
-            return "1/" + String.format("%,d", denom);
-        }
-
-        String cleaned = rarity.trim()
-            .replaceAll("<!--.*?-->", "")
-            .replaceAll("\\{\\{.*?\\}\\}", "")
-            .replaceAll("~", "")
-            .trim();
-
-        Matcher fractionMatcher = FRACTION_PATTERN.matcher(cleaned);
-        if (fractionMatcher.find())
-        {
-            String numStr = fractionMatcher.group(1);
-            String denStr = fractionMatcher.group(2);
-
-            try
-            {
-                double num = Double.parseDouble(numStr);
-                double den = Double.parseDouble(denStr);
-                if (num == Math.floor(num) && den == Math.floor(den))
-                {
-                    long n = (long) num;
-                    long d = (long) den;
-
-                    // If numerator is small (1-10), keep original format
-                    if (n <= 10)
-                    {
-                        return String.format("%,d", n) + "/" + String.format("%,d", d);
-                    }
-
-                    // For large numerators (complex wiki calculations), simplify to 1/X
-                    long simpleDenom = Math.round(1.0 / dropRate);
-                    return "1/" + String.format("%,d", simpleDenom);
-                }
-            }
-            catch (NumberFormatException ignored)
-            {
-            }
-
-            return numStr + "/" + denStr;
-        }
-
-        long denom = Math.round(1.0 / dropRate);
-        return "1/" + String.format("%,d", denom);
+        return dropData.values();
     }
 
     private String normalizeName(String name)
@@ -447,18 +198,5 @@ public class WikiDropFetcher
             }
         }
         return sb.toString();
-    }
-
-    // Returns cached data without triggering a fetch. Null if not cached or stale.
-    public MonsterDropData getCachedData(String monsterName)
-    {
-        String normalizedName = normalizeName(monsterName);
-        MonsterDropData cached = cache.get(normalizedName);
-        return (cached != null && !cached.isStale()) ? cached : null;
-    }
-
-    public void clearCache()
-    {
-        cache.clear();
     }
 }

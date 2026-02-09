@@ -12,7 +12,6 @@ import java.awt.Insets;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
-import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -47,7 +46,7 @@ public class DroppyPanel extends PluginPanel
     private static final Color VERY_HIGH_CHANCE_COLOR = ColorScheme.PROGRESS_ERROR_COLOR;
     private static final Color TAB_ACTIVE_COLOR = ColorScheme.BRAND_ORANGE;
     private static final Color TAB_INACTIVE_COLOR = ColorScheme.DARKER_GRAY_COLOR;
-    private static final Color INFO_COLOR = ColorScheme.LIGHT_GRAY_COLOR;
+
 
     private static final String CURRENT_TAB = "CURRENT";
     private static final String SEARCH_TAB = "SEARCH";
@@ -430,7 +429,6 @@ public class DroppyPanel extends PluginPanel
         syncListPanel.repaint();
     }
 
-    // Fuzzy match: handles singular/plural, case differences
     private boolean isSynced(String monster, java.util.Set<String> syncedPages)
     {
         String norm = monster.toLowerCase().trim();
@@ -510,7 +508,6 @@ public class DroppyPanel extends PluginPanel
         }
     }
 
-    // Called when player attacks or gets loot from a monster.
     public void setCurrentMonster(String monsterName)
     {
         if (monsterName == null || monsterName.equals(currentFightMonster))
@@ -520,18 +517,11 @@ public class DroppyPanel extends PluginPanel
 
         currentFightMonster = monsterName;
         currentMonsterTitle.setText(monsterName);
-        currentStatusLabel.setText("Loading drops...");
         currentDropsPanel.removeAll();
-        currentDropsPanel.revalidate();
-        currentDropsPanel.repaint();
 
-        new Thread(() ->
-        {
-            MonsterDropData data = wikiDropFetcher.fetchMonsterDrops(monsterName);
-            SwingUtilities.invokeLater(() -> populateDrops(
-                monsterName, data, currentDropsPanel, currentMonsterTitle,
-                currentKcLabel, currentStatusLabel));
-        }).start();
+        MonsterDropData data = wikiDropFetcher.getDropData(monsterName);
+        populateDrops(monsterName, data, currentDropsPanel,
+            currentMonsterTitle, currentKcLabel, currentStatusLabel);
     }
 
     public void refreshCurrent()
@@ -563,14 +553,15 @@ public class DroppyPanel extends PluginPanel
         String queryLower = query.toLowerCase();
         java.util.List<String> results = new java.util.ArrayList<>();
 
-        // Search collection log pages
-        for (String page : ALL_CLOG_PAGES)
+        for (MonsterDropData data : wikiDropFetcher.getAllMonsterData())
         {
-            if (page.toLowerCase().contains(queryLower))
+            if (data.getMonsterName().toLowerCase().contains(queryLower))
             {
-                results.add(page);
+                results.add(data.getMonsterName());
             }
         }
+
+        results.sort(String::compareToIgnoreCase);
 
         // Limit results
         if (results.size() > 10)
@@ -617,18 +608,11 @@ public class DroppyPanel extends PluginPanel
     private void loadSearchMonster(String monsterName)
     {
         searchedMonster = monsterName;
-        searchStatusLabel.setText("Loading drops for " + monsterName + "...");
         searchDropsPanel.removeAll();
-        searchDropsPanel.revalidate();
-        searchDropsPanel.repaint();
 
-        new Thread(() ->
-        {
-            MonsterDropData data = wikiDropFetcher.fetchMonsterDrops(monsterName);
-            SwingUtilities.invokeLater(() -> populateDrops(
-                monsterName, data, searchDropsPanel, searchMonsterTitle,
-                searchKcLabel, searchStatusLabel));
-        }).start();
+        MonsterDropData data = wikiDropFetcher.getDropData(monsterName);
+        populateDrops(monsterName, data, searchDropsPanel,
+            searchMonsterTitle, searchKcLabel, searchStatusLabel);
     }
 
     public void refreshSearch()
@@ -677,12 +661,6 @@ public class DroppyPanel extends PluginPanel
         int count = 0;
         for (DropEntry drop : data.getDrops())
         {
-            // Only show items that are in the collection log
-            if (!playerDataManager.isClogItem(drop.getItemName()))
-            {
-                continue;
-            }
-
             if (config.showOnlyUnobtained() && playerDataManager.hasItem(drop.getItemName()))
             {
                 continue;
@@ -696,7 +674,7 @@ public class DroppyPanel extends PluginPanel
 
         if (count == 0)
         {
-            statusLabel.setText("Sync collection log to see drops");
+            statusLabel.setText("No drop data available");
         }
         else
         {
@@ -845,41 +823,22 @@ public class DroppyPanel extends PluginPanel
         return row;
     }
 
-    public void onCollectionLogOpened()
-    {
-        // Sync tab handles this now
-    }
-
     public void onCollectionLogSynced(int totalSyncedPages)
     {
         SwingUtilities.invokeLater(() ->
         {
-            // Refresh current tab data without switching to it
             if (currentFightMonster != null)
             {
-                String monster = currentFightMonster;
-                new Thread(() ->
-                {
-                    MonsterDropData data = wikiDropFetcher.fetchMonsterDrops(monster);
-                    SwingUtilities.invokeLater(() -> populateDrops(
-                        monster, data, currentDropsPanel, currentMonsterTitle,
-                        currentKcLabel, currentStatusLabel));
-                }).start();
+                MonsterDropData data = wikiDropFetcher.getDropData(currentFightMonster);
+                populateDrops(currentFightMonster, data, currentDropsPanel,
+                    currentMonsterTitle, currentKcLabel, currentStatusLabel);
             }
-            // Refresh search tab data without switching to it
             if (searchedMonster != null)
             {
-                String monster = searchedMonster;
-                new Thread(() ->
-                {
-                    MonsterDropData data = wikiDropFetcher.fetchMonsterDrops(monster);
-                    SwingUtilities.invokeLater(() -> populateDrops(
-                        monster, data, searchDropsPanel, searchMonsterTitle,
-                        searchKcLabel, searchStatusLabel));
-                }).start();
+                MonsterDropData data = wikiDropFetcher.getDropData(searchedMonster);
+                populateDrops(searchedMonster, data, searchDropsPanel,
+                    searchMonsterTitle, searchKcLabel, searchStatusLabel);
             }
-
-            // Refresh sync tab
             refreshSyncTab();
         });
     }

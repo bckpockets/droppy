@@ -39,3 +39,10 @@ task runClient(type: JavaExec) {
     mainClass = 'com.droppy.DroppyPluginTest'
     jvmArgs = ['-ea']
 }
+
+task updateDrops(type: JavaExec) {
+    description = 'Scrape drop tables from the OSRS Wiki and update bundled drops.json'
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'com.droppy.WikiScraper'
+    jvmArgs = ['-ea']
+}

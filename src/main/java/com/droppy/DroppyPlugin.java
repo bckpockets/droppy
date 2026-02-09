@@ -38,8 +38,6 @@ import net.runelite.client.plugins.loottracker.LootReceived;
 import net.runelite.http.api.loottracker.LootRecordType;
 import net.runelite.client.ui.ClientToolbar;
 import net.runelite.client.ui.NavigationButton;
-import okhttp3.OkHttpClient;
-
 @Slf4j
 @PluginDescriptor(
     name = "Droppy",
@@ -76,9 +74,6 @@ public class DroppyPlugin extends Plugin
     private ItemManager itemManager;
 
     @Inject
-    private OkHttpClient okHttpClient;
-
-    @Inject
     private ChatCommandManager chatCommandManager;
 
     @Inject
@@ -87,6 +82,7 @@ public class DroppyPlugin extends Plugin
     private WikiDropFetcher wikiDropFetcher;
     private PlayerDataManager playerDataManager;
     private CollectionLogManager collectionLogManager;
+    private CollectionLogImporter collectionLogImporter;
     private KillCountManager killCountManager;
     private DroppyPanel panel;
     private NavigationButton navButton;
@@ -96,14 +92,16 @@ public class DroppyPlugin extends Plugin
     {
         log.info("Droppy plugin started");
 
-        wikiDropFetcher = new WikiDropFetcher(okHttpClient);
+        wikiDropFetcher = new WikiDropFetcher(gson);
         playerDataManager = new PlayerDataManager(configManager, gson);
         killCountManager = new KillCountManager(playerDataManager, configManager);
         collectionLogManager = new CollectionLogManager(client, itemManager, playerDataManager);
+        collectionLogImporter = new CollectionLogImporter(gson, playerDataManager);
 
         if (client.getGameState() == GameState.LOGGED_IN)
         {
             playerDataManager.loadPlayerData();
+            tryImportCollectionLog();
         }
 
         panel = new DroppyPanel(config, wikiDropFetcher, playerDataManager,
@@ -129,7 +127,6 @@ public class DroppyPlugin extends Plugin
         chatCommandManager.unregisterCommand(DRY_COMMAND);
         clientToolbar.removeNavigation(navButton);
         playerDataManager.savePlayerData();
-        wikiDropFetcher.clearCache();
     }
 
     @Provides
@@ -144,10 +141,12 @@ public class DroppyPlugin extends Plugin
         if (event.getGameState() == GameState.LOGGED_IN)
         {
             playerDataManager.loadPlayerData();
+            tryImportCollectionLog();
         }
         else if (event.getGameState() == GameState.LOGIN_SCREEN)
         {
             playerDataManager.savePlayerData();
+            collectionLogImporter.resetSession();
         }
     }
 
@@ -155,6 +154,7 @@ public class DroppyPlugin extends Plugin
     public void onProfileChanged(ProfileChanged event)
     {
         playerDataManager.loadPlayerData();
+        tryImportCollectionLog();
     }
 
     @Subscribe
@@ -163,7 +163,6 @@ public class DroppyPlugin extends Plugin
         if (event.getGroupId() == COLLECTION_LOG_GROUP_ID)
         {
             log.debug("Collection log interface opened");
-            SwingUtilities.invokeLater(() -> panel.onCollectionLogOpened());
         }
     }
 
@@ -240,29 +239,44 @@ public class DroppyPlugin extends Plugin
         log.debug("Loot received (loot tracker): {} type={}", name, event.getType());
     }
 
-    // Cross-references loot against cached wiki drop table. Only marks items
-    // as obtained if we know they're actual clog items (from widget scrape).
     private void checkForCollectionLogDrops(String monsterName, Collection<ItemStack> items)
     {
-        MonsterDropData dropData = wikiDropFetcher.getCachedData(monsterName);
+        MonsterDropData dropData = wikiDropFetcher.getDropData(monsterName);
         if (dropData == null)
         {
             return;
         }
 
         Set<Integer> receivedIds = new HashSet<>();
+        Set<String> receivedNames = new HashSet<>();
         for (ItemStack item : items)
         {
             receivedIds.add(item.getId());
+            try
+            {
+                String name = itemManager.getItemComposition(item.getId()).getName();
+                if (name != null)
+                {
+                    receivedNames.add(name.toLowerCase().trim());
+                }
+            }
+            catch (Exception ignored)
+            {
+            }
         }
 
         boolean anyNew = false;
         for (DropEntry drop : dropData.getDrops())
         {
-            if (drop.getItemId() > 0
-                && playerDataManager.isClogItem(drop.getItemName())
-                && receivedIds.contains(drop.getItemId())
-                && !playerDataManager.hasItem(drop.getItemName()))
+            if (playerDataManager.hasItem(drop.getItemName()))
+            {
+                continue;
+            }
+
+            boolean matched = (drop.getItemId() > 0 && receivedIds.contains(drop.getItemId()))
+                || receivedNames.contains(drop.getItemName().toLowerCase().trim());
+
+            if (matched)
             {
                 playerDataManager.recordCollectionLogItem(drop.getItemName(), monsterName);
                 log.info("Collection log drop detected from loot: {} from {}",
@@ -349,13 +363,21 @@ public class DroppyPlugin extends Plugin
         });
     }
 
-    // !dry command handler (runs async via registerCommandAsync)
     private void dryLookup(ChatMessage chatMessage, String message)
     {
         String monsterName = message.substring(DRY_COMMAND.length()).trim();
 
+        String senderName = chatMessage.getName().replaceAll("<[^>]+>", "").trim();
+        boolean isLocalPlayer = client.getLocalPlayer() != null
+            && client.getLocalPlayer().getName() != null
+            && client.getLocalPlayer().getName().equalsIgnoreCase(senderName);
+
         if (monsterName.isEmpty())
         {
+            if (!isLocalPlayer)
+            {
+                return;
+            }
             monsterName = killCountManager.getLastKcMonster();
             if (monsterName == null || monsterName.isEmpty())
             {
@@ -363,45 +385,39 @@ public class DroppyPlugin extends Plugin
             }
         }
 
-        MonsterDropData data = wikiDropFetcher.fetchMonsterDrops(monsterName);
+        MonsterDropData data = wikiDropFetcher.getDropData(monsterName);
         if (data == null || data.getDrops().isEmpty())
         {
             return;
         }
 
         String displayName = data.getMonsterName();
-        int totalKc = killCountManager.getKillCount(displayName);
 
-        // Only show collection log items if the page has been synced.
-        // If not synced, fall back to rare drops (1/50+) to avoid spamming
-        // common junk like bones and coins.
-        boolean pageSynced = playerDataManager.isPageSyncedFuzzy(displayName);
+        // Try both names since NPC name may differ from clog page name
+        int totalKc = killCountManager.getKillCount(monsterName);
+        String kcName = monsterName;
+        if (totalKc == 0 && !monsterName.equalsIgnoreCase(displayName))
+        {
+            int displayKc = killCountManager.getKillCount(displayName);
+            if (displayKc > 0)
+            {
+                totalKc = displayKc;
+                kcName = displayName;
+            }
+        }
 
         List<String> obtainedParts = new ArrayList<>();
         List<String> dryParts = new ArrayList<>();
 
         for (DropEntry drop : data.getDrops())
         {
-            boolean isClog = playerDataManager.isClogItem(drop.getItemName());
-            boolean isRare = drop.getDropRate() <= (1.0 / 50.0);
-
-            // Skip items that aren't clog-relevant
-            if (pageSynced && !isClog)
-            {
-                continue;
-            }
-            if (!pageSynced && !isRare)
-            {
-                continue;
-            }
-
             String rateStr = drop.getRarityDisplay() != null
                 ? drop.getRarityDisplay()
                 : DropChanceCalculator.formatDropRate(drop.getDropRate());
 
             if (playerDataManager.hasItem(drop.getItemName()))
             {
-                int dropKc = playerDataManager.getItemDropKc(displayName, drop.getItemName());
+                int dropKc = playerDataManager.getItemDropKc(kcName, drop.getItemName());
                 if (dropKc > 0)
                 {
                     double chanceAtDrop = DropChanceCalculator.calculateChance(drop.getDropRate(), dropKc);
@@ -416,7 +432,7 @@ public class DroppyPlugin extends Plugin
             }
             else
             {
-                int kc = playerDataManager.getKcSinceLastDrop(displayName, drop.getItemName());
+                int kc = playerDataManager.getKcSinceLastDrop(kcName, drop.getItemName());
                 double chance = DropChanceCalculator.calculateChance(drop.getDropRate(), kc);
 
                 dryParts.add(drop.getItemName() + " " + rateStr
@@ -462,14 +478,32 @@ public class DroppyPlugin extends Plugin
 
         String response = builder.build();
 
+        if (response.length() > 490)
+        {
+            response = response.substring(0, 487) + "...";
+        }
+
+        String finalResponse = response;
         String finalDisplayName = displayName;
         clientThread.invokeLater(() ->
         {
-            chatMessage.getMessageNode().setRuneLiteFormatMessage(response);
+            chatMessage.getMessageNode().setRuneLiteFormatMessage(finalResponse);
             client.refreshChat();
         });
 
-        SwingUtilities.invokeLater(() -> panel.setCurrentMonster(finalDisplayName));
+        if (isLocalPlayer)
+        {
+            SwingUtilities.invokeLater(() -> panel.setCurrentMonster(finalDisplayName));
+        }
+    }
+
+    private void tryImportCollectionLog()
+    {
+        if (client.getLocalPlayer() == null || client.getLocalPlayer().getName() == null)
+        {
+            return;
+        }
+        collectionLogImporter.tryImport(client.getLocalPlayer().getName());
     }
 
     private BufferedImage createPluginIcon()
