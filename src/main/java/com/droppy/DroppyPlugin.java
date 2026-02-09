@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.inject.Inject;
@@ -25,6 +26,7 @@ import net.runelite.api.events.WidgetLoaded;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.chat.ChatColorType;
 import net.runelite.client.chat.ChatCommandManager;
+import net.runelite.client.events.ChatInput;
 import net.runelite.client.chat.ChatMessageBuilder;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
@@ -38,6 +40,7 @@ import net.runelite.client.plugins.loottracker.LootReceived;
 import net.runelite.http.api.loottracker.LootRecordType;
 import net.runelite.client.ui.ClientToolbar;
 import net.runelite.client.ui.NavigationButton;
+import okhttp3.OkHttpClient;
 @Slf4j
 @PluginDescriptor(
     name = "Droppy",
@@ -79,11 +82,18 @@ public class DroppyPlugin extends Plugin
     @Inject
     private Gson gson;
 
+    @Inject
+    private OkHttpClient okHttpClient;
+
+    @Inject
+    private ScheduledExecutorService executor;
+
     private WikiDropFetcher wikiDropFetcher;
     private PlayerDataManager playerDataManager;
     private CollectionLogManager collectionLogManager;
     private CollectionLogImporter collectionLogImporter;
     private KillCountManager killCountManager;
+    private DroppyApiClient apiClient;
     private DroppyPanel panel;
     private NavigationButton navButton;
 
@@ -97,6 +107,12 @@ public class DroppyPlugin extends Plugin
         killCountManager = new KillCountManager(playerDataManager, configManager);
         collectionLogManager = new CollectionLogManager(client, itemManager, playerDataManager);
         collectionLogImporter = new CollectionLogImporter(gson, playerDataManager);
+
+        String apiUrl = config.apiUrl();
+        if (apiUrl != null && !apiUrl.trim().isEmpty())
+        {
+            apiClient = new DroppyApiClient(okHttpClient, gson, apiUrl.trim());
+        }
 
         if (client.getGameState() == GameState.LOGGED_IN)
         {
@@ -117,7 +133,7 @@ public class DroppyPlugin extends Plugin
             .build();
 
         clientToolbar.addNavigation(navButton);
-        chatCommandManager.registerCommandAsync(DRY_COMMAND, this::dryLookup);
+        chatCommandManager.registerCommandAsync(DRY_COMMAND, this::dryOutput, this::dryInput);
     }
 
     @Override
@@ -363,37 +379,16 @@ public class DroppyPlugin extends Plugin
         });
     }
 
-    private void dryLookup(ChatMessage chatMessage, String message)
+    private String buildDryResponse(String monsterName)
     {
-        String monsterName = message.substring(DRY_COMMAND.length()).trim();
-
-        String senderName = chatMessage.getName().replaceAll("<[^>]+>", "").trim();
-        boolean isLocalPlayer = client.getLocalPlayer() != null
-            && client.getLocalPlayer().getName() != null
-            && client.getLocalPlayer().getName().equalsIgnoreCase(senderName);
-
-        if (monsterName.isEmpty())
-        {
-            if (!isLocalPlayer)
-            {
-                return;
-            }
-            monsterName = killCountManager.getLastKcMonster();
-            if (monsterName == null || monsterName.isEmpty())
-            {
-                return;
-            }
-        }
-
         MonsterDropData data = wikiDropFetcher.getDropData(monsterName);
         if (data == null || data.getDrops().isEmpty())
         {
-            return;
+            return null;
         }
 
         String displayName = data.getMonsterName();
 
-        // Try both names since NPC name may differ from clog page name
         int totalKc = killCountManager.getKillCount(monsterName);
         String kcName = monsterName;
         if (totalKc == 0 && !monsterName.equalsIgnoreCase(displayName))
@@ -442,7 +437,6 @@ public class DroppyPlugin extends Plugin
         }
 
         ChatMessageBuilder builder = new ChatMessageBuilder();
-
         int total = obtainedParts.size() + dryParts.size();
 
         builder.append(ChatColorType.HIGHLIGHT)
@@ -477,14 +471,95 @@ public class DroppyPlugin extends Plugin
         }
 
         String response = builder.build();
-
         if (response.length() > 490)
         {
             response = response.substring(0, 487) + "...";
         }
+        return response;
+    }
+
+    private boolean dryInput(ChatInput chatInput, String message)
+    {
+        String monsterName = message.substring(DRY_COMMAND.length()).trim();
+
+        if (monsterName.isEmpty())
+        {
+            monsterName = killCountManager.getLastKcMonster();
+            if (monsterName == null || monsterName.isEmpty())
+            {
+                return false;
+            }
+        }
+
+        String response = buildDryResponse(monsterName);
+        if (response == null)
+        {
+            return false;
+        }
+
+        if (apiClient != null)
+        {
+            String playerName = client.getLocalPlayer() != null
+                ? client.getLocalPlayer().getName() : null;
+            if (playerName != null)
+            {
+                String finalResponse = response;
+                executor.execute(() ->
+                {
+                    try
+                    {
+                        apiClient.submitDry(playerName, finalResponse);
+                    }
+                    finally
+                    {
+                        chatInput.resume();
+                    }
+                });
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private void dryOutput(ChatMessage chatMessage, String message)
+    {
+        String monsterName = message.substring(DRY_COMMAND.length()).trim();
+
+        String senderName = chatMessage.getName().replaceAll("<[^>]+>", "").trim();
+        boolean isLocalPlayer = client.getLocalPlayer() != null
+            && client.getLocalPlayer().getName() != null
+            && client.getLocalPlayer().getName().equalsIgnoreCase(senderName);
+
+        String response;
+
+        if (isLocalPlayer)
+        {
+            if (monsterName.isEmpty())
+            {
+                monsterName = killCountManager.getLastKcMonster();
+                if (monsterName == null || monsterName.isEmpty())
+                {
+                    return;
+                }
+            }
+            response = buildDryResponse(monsterName);
+        }
+        else
+        {
+            if (apiClient == null)
+            {
+                return;
+            }
+            response = apiClient.lookupDry(senderName);
+        }
+
+        if (response == null)
+        {
+            return;
+        }
 
         String finalResponse = response;
-        String finalDisplayName = displayName;
         clientThread.invokeLater(() ->
         {
             chatMessage.getMessageNode().setRuneLiteFormatMessage(finalResponse);
@@ -493,7 +568,13 @@ public class DroppyPlugin extends Plugin
 
         if (isLocalPlayer)
         {
-            SwingUtilities.invokeLater(() -> panel.setCurrentMonster(finalDisplayName));
+            MonsterDropData data = wikiDropFetcher.getDropData(
+                monsterName.isEmpty() ? killCountManager.getLastKcMonster() : monsterName);
+            if (data != null)
+            {
+                String displayName = data.getMonsterName();
+                SwingUtilities.invokeLater(() -> panel.setCurrentMonster(displayName));
+            }
         }
     }
 

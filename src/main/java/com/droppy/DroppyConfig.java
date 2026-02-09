@@ -50,4 +50,15 @@ public interface DroppyConfig extends Config
     {
         return true;
     }
+
+    @ConfigItem(
+        keyName = "apiUrl",
+        name = "Sharing API URL",
+        description = "URL for !dry sharing backend (leave empty to disable sharing)",
+        position = 6
+    )
+    default String apiUrl()
+    {
+        return "https://droppy.ark-dlns-smith.workers.dev";
+    }
 }
