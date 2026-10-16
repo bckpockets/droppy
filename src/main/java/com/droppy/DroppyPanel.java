@@ -688,8 +688,13 @@ public class DroppyPanel extends PluginPanel
     {
         boolean obtained = playerDataManager.hasItem(drop.getItemName());
         int kc = playerDataManager.getKcSinceLastDrop(monsterName, drop.getItemName());
-        double chance = DropChanceCalculator.calculateChance(drop.getDropRate(), kc);
-        String chanceStr = DropChanceCalculator.formatPercent(chance);
+        boolean hasKcChance = DropRateModel.supportsKcChance(monsterName);
+        double chance = hasKcChance
+            ? DropChanceCalculator.calculateChance(DropRateModel.perKillRate(monsterName, drop), kc)
+            : Double.NaN;
+        String chanceStr = hasKcChance
+            ? DropChanceCalculator.formatPercent(chance)
+            : "KC chance varies";
 
         Color chanceColor;
         if (obtained)
@@ -779,9 +784,7 @@ public class DroppyPanel extends PluginPanel
         }
         centerPanel.add(nameLabel);
 
-        String rateText = drop.getRarityDisplay() != null
-            ? drop.getRarityDisplay()
-            : DropChanceCalculator.formatDropRate(drop.getDropRate());
+        String rateText = DropRateModel.rateLabel(monsterName, drop);
         String kcText = kc > 0
             ? " \u2022 " + String.format("%,d", kc) + " kc"
             : "";
@@ -791,19 +794,21 @@ public class DroppyPanel extends PluginPanel
         infoLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         centerPanel.add(infoLabel);
 
-        // Progress bar - full width
-        JProgressBar bar = new JProgressBar(0, 10000);
-        bar.setValue((int) (chance * 10000));
-        bar.setStringPainted(false);
-        bar.setPreferredSize(new Dimension(0, 8));
-        bar.setMaximumSize(new Dimension(Integer.MAX_VALUE, 8));
-        bar.setBackground(new Color(30, 30, 30));
-        bar.setForeground(chanceColor);
-        bar.setAlignmentX(Component.LEFT_ALIGNMENT);
+        if (hasKcChance)
+        {
+            JProgressBar bar = new JProgressBar(0, 10000);
+            bar.setValue((int) (chance * 10000));
+            bar.setStringPainted(false);
+            bar.setPreferredSize(new Dimension(0, 8));
+            bar.setMaximumSize(new Dimension(Integer.MAX_VALUE, 8));
+            bar.setBackground(new Color(30, 30, 30));
+            bar.setForeground(chanceColor);
+            bar.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        centerPanel.add(Box.createVerticalStrut(2));
-        centerPanel.add(bar);
-        centerPanel.add(Box.createVerticalStrut(3));
+            centerPanel.add(Box.createVerticalStrut(2));
+            centerPanel.add(bar);
+            centerPanel.add(Box.createVerticalStrut(3));
+        }
 
         // Percentage below the bar
         JLabel pctLabel = new JLabel(chanceStr);

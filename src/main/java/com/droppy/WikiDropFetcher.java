@@ -68,7 +68,8 @@ public class WikiDropFetcher
                                 d.get("itemName").getAsString(),
                                 d.get("dropRate").getAsDouble(),
                                 d.get("itemId").getAsInt(),
-                                rarityDisplay
+                                rarityDisplay,
+                                d.has("rollsPerKill") ? d.get("rollsPerKill").getAsInt() : 1
                             ));
                         }
                     }

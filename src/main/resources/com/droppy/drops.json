@@ -18,21 +18,21 @@
       "drops": [
         {
           "itemName": "Hydra\u0027s eye",
-          "dropRate": 0.0055248618784530384,
+          "dropRate": 0.005521811154058531,
           "itemId": -1,
-          "rarityDisplay": "1/181"
+          "rarityDisplay": "1/181.1"
         },
         {
           "itemName": "Hydra\u0027s fang",
-          "dropRate": 0.0055248618784530384,
+          "dropRate": 0.005521811154058531,
           "itemId": -1,
-          "rarityDisplay": "1/181"
+          "rarityDisplay": "1/181.1"
         },
         {
           "itemName": "Hydra\u0027s heart",
-          "dropRate": 0.0055248618784530384,
+          "dropRate": 0.005521811154058531,
           "itemId": -1,
-          "rarityDisplay": "1/181"
+          "rarityDisplay": "1/181.1"
         },
         {
           "itemName": "Hydra tail",
@@ -71,13 +71,13 @@
           "rarityDisplay": "1/256"
         },
         {
-          "itemName": "Jar of chemicals",
+          "itemName": "Jar of Chemicals",
           "dropRate": 5.0E-4,
           "itemId": 23064,
           "rarityDisplay": "1/2,000"
         },
         {
-          "itemName": "Ikkle hydra",
+          "itemName": "Ikkle Hydra",
           "dropRate": 3.333333333333333E-4,
           "itemId": -1,
           "rarityDisplay": "1/3,000"
@@ -95,7 +95,7 @@
           "rarityDisplay": "6/10"
         },
         {
-          "itemName": "Pendant of ates (inert)",
+          "itemName": "Pendant of Ates (inert)",
           "dropRate": 0.04,
           "itemId": -1,
           "rarityDisplay": "1/25"
@@ -143,7 +143,7 @@
           "rarityDisplay": "1/600"
         },
         {
-          "itemName": "Araxyte venom sack",
+          "itemName": "Araxyte venom sac",
           "dropRate": 0.0625,
           "itemId": 29784,
           "rarityDisplay": "1/16"
@@ -161,7 +161,7 @@
           "rarityDisplay": "1/250"
         },
         {
-          "itemName": "Jar of venom",
+          "itemName": "Jar of Venom",
           "dropRate": 6.666666666666666E-4,
           "itemId": -1,
           "rarityDisplay": "1/1,500"
@@ -182,151 +182,176 @@
           "itemName": "Ahrim\u0027s hood",
           "dropRate": 4.084967320261438E-4,
           "itemId": 4708,
+          "rollsPerKill": 7,
           "rarityDisplay": "1/2,448"
         },
         {
           "itemName": "Ahrim\u0027s robetop",
           "dropRate": 4.084967320261438E-4,
           "itemId": 4712,
+          "rollsPerKill": 7,
           "rarityDisplay": "1/2,448"
         },
         {
           "itemName": "Ahrim\u0027s robeskirt",
           "dropRate": 4.084967320261438E-4,
           "itemId": 4714,
+          "rollsPerKill": 7,
           "rarityDisplay": "1/2,448"
         },
         {
           "itemName": "Ahrim\u0027s staff",
           "dropRate": 4.084967320261438E-4,
           "itemId": 4710,
+          "rollsPerKill": 7,
           "rarityDisplay": "1/2,448"
         },
         {
           "itemName": "Dharok\u0027s helm",
           "dropRate": 4.084967320261438E-4,
           "itemId": 4716,
+          "rollsPerKill": 7,
           "rarityDisplay": "1/2,448"
         },
         {
           "itemName": "Dharok\u0027s platebody",
           "dropRate": 4.084967320261438E-4,
           "itemId": 4720,
+          "rollsPerKill": 7,
           "rarityDisplay": "1/2,448"
         },
         {
           "itemName": "Dharok\u0027s platelegs",
           "dropRate": 4.084967320261438E-4,
           "itemId": 4722,
+          "rollsPerKill": 7,
           "rarityDisplay": "1/2,448"
         },
         {
           "itemName": "Dharok\u0027s greataxe",
           "dropRate": 4.084967320261438E-4,
           "itemId": 4718,
+          "rollsPerKill": 7,
           "rarityDisplay": "1/2,448"
         },
         {
           "itemName": "Guthan\u0027s helm",
           "dropRate": 4.084967320261438E-4,
           "itemId": 4724,
+          "rollsPerKill": 7,
           "rarityDisplay": "1/2,448"
         },
         {
           "itemName": "Guthan\u0027s platebody",
           "dropRate": 4.084967320261438E-4,
           "itemId": 4728,
+          "rollsPerKill": 7,
           "rarityDisplay": "1/2,448"
         },
         {
           "itemName": "Guthan\u0027s chainskirt",
           "dropRate": 4.084967320261438E-4,
           "itemId": 4730,
+          "rollsPerKill": 7,
           "rarityDisplay": "1/2,448"
         },
         {
           "itemName": "Guthan\u0027s warspear",
           "dropRate": 4.084967320261438E-4,
           "itemId": 4726,
+          "rollsPerKill": 7,
           "rarityDisplay": "1/2,448"
         },
         {
           "itemName": "Karil\u0027s coif",
           "dropRate": 4.084967320261438E-4,
           "itemId": 4732,
+          "rollsPerKill": 7,
           "rarityDisplay": "1/2,448"
         },
         {
           "itemName": "Karil\u0027s leathertop",
           "dropRate": 4.084967320261438E-4,
           "itemId": 4736,
+          "rollsPerKill": 7,
           "rarityDisplay": "1/2,448"
         },
         {
           "itemName": "Karil\u0027s leatherskirt",
           "dropRate": 4.084967320261438E-4,
           "itemId": 4738,
+          "rollsPerKill": 7,
           "rarityDisplay": "1/2,448"
         },
         {
           "itemName": "Karil\u0027s crossbow",
           "dropRate": 4.084967320261438E-4,
           "itemId": 4734,
+          "rollsPerKill": 7,
           "rarityDisplay": "1/2,448"
         },
         {
           "itemName": "Torag\u0027s helm",
           "dropRate": 4.084967320261438E-4,
           "itemId": 4745,
+          "rollsPerKill": 7,
           "rarityDisplay": "1/2,448"
         },
         {
           "itemName": "Torag\u0027s platebody",
           "dropRate": 4.084967320261438E-4,
           "itemId": 4749,
+          "rollsPerKill": 7,
           "rarityDisplay": "1/2,448"
         },
         {
           "itemName": "Torag\u0027s platelegs",
           "dropRate": 4.084967320261438E-4,
           "itemId": 4751,
+          "rollsPerKill": 7,
           "rarityDisplay": "1/2,448"
         },
         {
           "itemName": "Torag\u0027s hammers",
           "dropRate": 4.084967320261438E-4,
           "itemId": 4747,
+          "rollsPerKill": 7,
           "rarityDisplay": "1/2,448"
         },
         {
           "itemName": "Verac\u0027s helm",
           "dropRate": 4.084967320261438E-4,
           "itemId": 4753,
+          "rollsPerKill": 7,
           "rarityDisplay": "1/2,448"
         },
         {
           "itemName": "Verac\u0027s brassard",
           "dropRate": 4.084967320261438E-4,
           "itemId": 4757,
+          "rollsPerKill": 7,
           "rarityDisplay": "1/2,448"
         },
         {
           "itemName": "Verac\u0027s plateskirt",
           "dropRate": 4.084967320261438E-4,
           "itemId": 4759,
+          "rollsPerKill": 7,
           "rarityDisplay": "1/2,448"
         },
         {
           "itemName": "Verac\u0027s flail",
           "dropRate": 4.084967320261438E-4,
           "itemId": 4755,
+          "rollsPerKill": 7,
           "rarityDisplay": "1/2,448"
         },
         {
           "itemName": "Bolt rack",
           "dropRate": 0.12351778656126482,
           "itemId": 4740,
-          "rarityDisplay": "1/8"
+          "rollsPerKill": 7,
+          "rarityDisplay": "125/1,012"
         }
       ]
     },
@@ -335,7 +360,7 @@
       "wikiPage": "Callisto",
       "drops": [
         {
-          "itemName": "Claws of callisto",
+          "itemName": "Claws of Callisto",
           "dropRate": 0.00510204081632653,
           "itemId": 27667,
           "rarityDisplay": "1/196"
@@ -389,7 +414,7 @@
           "rarityDisplay": "1/358"
         },
         {
-          "itemName": "Claws of callisto",
+          "itemName": "Claws of Callisto",
           "dropRate": 0.0016181229773462784,
           "itemId": 27667,
           "rarityDisplay": "1/618"
@@ -419,7 +444,7 @@
       "wikiPage": "Callisto and Artio",
       "drops": [
         {
-          "itemName": "Claws of callisto",
+          "itemName": "Claws of Callisto",
           "dropRate": 0.00510204081632653,
           "itemId": 27667,
           "rarityDisplay": "1/196"
@@ -491,7 +516,7 @@
           "rarityDisplay": "2/130"
         },
         {
-          "itemName": "Jar of souls",
+          "itemName": "Jar of Souls",
           "dropRate": 5.0E-4,
           "itemId": 13245,
           "rarityDisplay": "1/2,000"
@@ -599,7 +624,7 @@
           "rarityDisplay": "1/762"
         },
         {
-          "itemName": "Pet zilyana",
+          "itemName": "Pet Zilyana",
           "dropRate": 2.0E-4,
           "itemId": -1,
           "rarityDisplay": "1/5,000"
@@ -623,7 +648,7 @@
           "rarityDisplay": "3/512"
         },
         {
-          "itemName": "Jar of spirits",
+          "itemName": "Jar of Spirits",
           "dropRate": 0.001,
           "itemId": 25521,
           "rarityDisplay": "1/1,000"
@@ -683,7 +708,7 @@
           "rarityDisplay": "1/128"
         },
         {
-          "itemName": "Pet dagannoth rex",
+          "itemName": "Pet Dagannoth Rex",
           "dropRate": 2.0E-4,
           "itemId": -1,
           "rarityDisplay": "1/5,000"
@@ -713,7 +738,7 @@
           "rarityDisplay": "1/128"
         },
         {
-          "itemName": "Pet dagannoth prime",
+          "itemName": "Pet Dagannoth Prime",
           "dropRate": 2.0E-4,
           "itemId": -1,
           "rarityDisplay": "1/5,000"
@@ -743,7 +768,7 @@
           "rarityDisplay": "1/128"
         },
         {
-          "itemName": "Pet dagannoth supreme",
+          "itemName": "Pet Dagannoth Supreme",
           "dropRate": 2.0E-4,
           "itemId": -1,
           "rarityDisplay": "1/5,000"
@@ -773,7 +798,7 @@
           "rarityDisplay": "1/128"
         },
         {
-          "itemName": "Pet dagannoth rex",
+          "itemName": "Pet Dagannoth Rex",
           "dropRate": 2.0E-4,
           "itemId": -1,
           "rarityDisplay": "1/5,000"
@@ -791,7 +816,7 @@
           "rarityDisplay": "1/128"
         },
         {
-          "itemName": "Pet dagannoth prime",
+          "itemName": "Pet Dagannoth Prime",
           "dropRate": 2.0E-4,
           "itemId": -1,
           "rarityDisplay": "1/5,000"
@@ -809,7 +834,7 @@
           "rarityDisplay": "1/128"
         },
         {
-          "itemName": "Pet dagannoth supreme",
+          "itemName": "Pet Dagannoth Supreme",
           "dropRate": 2.0E-4,
           "itemId": -1,
           "rarityDisplay": "1/5,000"
@@ -845,7 +870,7 @@
           "rarityDisplay": "3/720"
         },
         {
-          "itemName": "Eye of the duke",
+          "itemName": "Eye of the Duke",
           "dropRate": 0.001388888888888889,
           "itemId": -1,
           "rarityDisplay": "1/720"
@@ -941,7 +966,7 @@
           "rarityDisplay": "1/762"
         },
         {
-          "itemName": "Pet general graardor",
+          "itemName": "Pet General Graardor",
           "dropRate": 2.0E-4,
           "itemId": -1,
           "rarityDisplay": "1/5,000"
@@ -953,7 +978,13 @@
       "wikiPage": "Giant Mole",
       "drops": [
         {
-          "itemName": "Baby mole",
+          "itemName": "Immaculate mole skin",
+          "dropRate": 0.02,
+          "itemId": -1,
+          "rarityDisplay": "1/50"
+        },
+        {
+          "itemName": "Baby Mole",
           "dropRate": 3.333333333333333E-4,
           "itemId": -1,
           "rarityDisplay": "1/3,000"
@@ -968,24 +999,28 @@
           "itemName": "Granite gloves",
           "dropRate": 0.002,
           "itemId": 21736,
+          "rollsPerKill": 2,
           "rarityDisplay": "1/500"
         },
         {
           "itemName": "Granite ring",
           "dropRate": 0.002,
           "itemId": 21739,
+          "rollsPerKill": 2,
           "rarityDisplay": "1/500"
         },
         {
           "itemName": "Granite hammer",
           "dropRate": 0.0013333333333333333,
           "itemId": 21742,
+          "rollsPerKill": 2,
           "rarityDisplay": "1/750"
         },
         {
           "itemName": "Black tourmaline core",
           "dropRate": 0.001,
           "itemId": 21730,
+          "rollsPerKill": 2,
           "rarityDisplay": "1/1,000"
         },
         {
@@ -995,7 +1030,7 @@
           "rarityDisplay": "1/3,000"
         },
         {
-          "itemName": "Jar of stone",
+          "itemName": "Jar of Stone",
           "dropRate": 2.0E-4,
           "itemId": 21745,
           "rarityDisplay": "1/5,000"
@@ -1046,10 +1081,10 @@
           "itemName": "Hueycoatl hide",
           "dropRate": 0.03492063492063492,
           "itemId": 30085,
-          "rarityDisplay": "1/29"
+          "rarityDisplay": "11/315"
         },
         {
-          "itemName": "Tome of earth (empty)",
+          "itemName": "Tome of Earth (empty)",
           "dropRate": 0.011111111111111112,
           "itemId": 30066,
           "rarityDisplay": "1/90"
@@ -1103,13 +1138,13 @@
           "rarityDisplay": "1/400"
         },
         {
-          "itemName": "Jar of sand",
+          "itemName": "Jar of Sand",
           "dropRate": 5.0E-4,
           "itemId": 12885,
           "rarityDisplay": "1/2,000"
         },
         {
-          "itemName": "Kalphite princess",
+          "itemName": "Kalphite Princess",
           "dropRate": 3.333333333333333E-4,
           "itemId": -1,
           "rarityDisplay": "1/3,000"
@@ -1133,7 +1168,7 @@
           "rarityDisplay": "1/128"
         },
         {
-          "itemName": "Prince black dragon",
+          "itemName": "Prince Black Dragon",
           "dropRate": 3.333333333333333E-4,
           "itemId": -1,
           "rarityDisplay": "1/3,000"
@@ -1157,13 +1192,13 @@
           "rarityDisplay": "1/400"
         },
         {
-          "itemName": "Jar of dirt",
+          "itemName": "Jar of Dirt",
           "dropRate": 0.001,
           "itemId": 12007,
           "rarityDisplay": "1/1,000"
         },
         {
-          "itemName": "Pet kraken",
+          "itemName": "Pet Kraken",
           "dropRate": 3.333333333333333E-4,
           "itemId": -1,
           "rarityDisplay": "1/3,000"
@@ -1217,7 +1252,7 @@
           "rarityDisplay": "1/762"
         },
         {
-          "itemName": "Pet kree\u0027arra",
+          "itemName": "Pet Kree\u0027arra",
           "dropRate": 2.0E-4,
           "itemId": -1,
           "rarityDisplay": "1/5,000"
@@ -1241,7 +1276,7 @@
           "rarityDisplay": "1/127"
         },
         {
-          "itemName": "Staff of the dead",
+          "itemName": "Staff of the Dead",
           "dropRate": 0.001968503937007874,
           "itemId": 11791,
           "rarityDisplay": "1/508"
@@ -1271,7 +1306,7 @@
           "rarityDisplay": "1/762"
         },
         {
-          "itemName": "Pet k\u0027ril tsutsaroth",
+          "itemName": "Pet K\u0027ril Tsutsaroth",
           "dropRate": 2.0E-4,
           "itemId": -1,
           "rarityDisplay": "1/5,000"
@@ -1349,145 +1384,145 @@
       "wikiPage": "The Mimic",
       "drops": [
         {
-          "itemName": "Ring of 3rd age",
+          "itemName": "Ring of 3rd Age",
           "dropRate": 0.024,
           "itemId": 23185,
           "rarityDisplay": "6/250"
         },
         {
-          "itemName": "3rd age full helmet",
+          "itemName": "3rd Age full helmet",
           "dropRate": 1.7391304347826088E-4,
           "itemId": 10350,
           "rarityDisplay": "1/5,750"
         },
         {
-          "itemName": "3rd age platebody",
+          "itemName": "3rd Age platebody",
           "dropRate": 1.7391304347826088E-4,
           "itemId": 10348,
           "rarityDisplay": "1/5,750"
         },
         {
-          "itemName": "3rd age platelegs",
+          "itemName": "3rd Age platelegs",
           "dropRate": 1.7391304347826088E-4,
           "itemId": 10346,
           "rarityDisplay": "1/5,750"
         },
         {
-          "itemName": "3rd age plateskirt",
+          "itemName": "3rd Age plateskirt",
           "dropRate": 1.7391304347826088E-4,
           "itemId": 23242,
           "rarityDisplay": "1/5,750"
         },
         {
-          "itemName": "3rd age kiteshield",
+          "itemName": "3rd Age kiteshield",
           "dropRate": 1.7391304347826088E-4,
           "itemId": 10352,
           "rarityDisplay": "1/5,750"
         },
         {
-          "itemName": "3rd age range coif",
+          "itemName": "3rd Age range coif",
           "dropRate": 1.7391304347826088E-4,
           "itemId": 10334,
           "rarityDisplay": "1/5,750"
         },
         {
-          "itemName": "3rd age range top",
+          "itemName": "3rd Age range top",
           "dropRate": 1.7391304347826088E-4,
           "itemId": 10330,
           "rarityDisplay": "1/5,750"
         },
         {
-          "itemName": "3rd age range legs",
+          "itemName": "3rd Age range legs",
           "dropRate": 1.7391304347826088E-4,
           "itemId": 10332,
           "rarityDisplay": "1/5,750"
         },
         {
-          "itemName": "3rd age vambraces",
+          "itemName": "3rd Age vambraces",
           "dropRate": 1.7391304347826088E-4,
           "itemId": 10336,
           "rarityDisplay": "1/5,750"
         },
         {
-          "itemName": "3rd age mage hat",
+          "itemName": "3rd Age mage hat",
           "dropRate": 1.7391304347826088E-4,
           "itemId": 10342,
           "rarityDisplay": "1/5,750"
         },
         {
-          "itemName": "3rd age robe top",
+          "itemName": "3rd Age robe top",
           "dropRate": 1.7391304347826088E-4,
           "itemId": 10338,
           "rarityDisplay": "1/5,750"
         },
         {
-          "itemName": "3rd age robe",
+          "itemName": "3rd Age robe",
           "dropRate": 1.7391304347826088E-4,
           "itemId": 10340,
           "rarityDisplay": "1/5,750"
         },
         {
-          "itemName": "3rd age amulet",
+          "itemName": "3rd Age amulet",
           "dropRate": 1.7391304347826088E-4,
           "itemId": 10344,
           "rarityDisplay": "1/5,750"
         },
         {
-          "itemName": "3rd age longsword",
+          "itemName": "3rd Age longsword",
           "dropRate": 1.7391304347826088E-4,
           "itemId": 12426,
           "rarityDisplay": "1/5,750"
         },
         {
-          "itemName": "3rd age bow",
+          "itemName": "3rd Age bow",
           "dropRate": 1.7391304347826088E-4,
           "itemId": 12424,
           "rarityDisplay": "1/5,750"
         },
         {
-          "itemName": "3rd age wand",
+          "itemName": "3rd Age wand",
           "dropRate": 1.7391304347826088E-4,
           "itemId": 12422,
           "rarityDisplay": "1/5,750"
         },
         {
-          "itemName": "3rd age cloak",
+          "itemName": "3rd Age cloak",
           "dropRate": 1.7391304347826088E-4,
           "itemId": 12437,
           "rarityDisplay": "1/5,750"
         },
         {
-          "itemName": "3rd age druidic robe top",
+          "itemName": "3rd Age druidic robe top",
           "dropRate": 1.7391304347826088E-4,
           "itemId": 23336,
           "rarityDisplay": "1/5,750"
         },
         {
-          "itemName": "3rd age druidic robe bottoms",
+          "itemName": "3rd Age druidic robe bottoms",
           "dropRate": 1.7391304347826088E-4,
           "itemId": 23339,
           "rarityDisplay": "1/5,750"
         },
         {
-          "itemName": "3rd age druidic cloak",
+          "itemName": "3rd Age druidic cloak",
           "dropRate": 1.7391304347826088E-4,
           "itemId": 23345,
           "rarityDisplay": "1/5,750"
         },
         {
-          "itemName": "3rd age druidic staff",
+          "itemName": "3rd Age druidic staff",
           "dropRate": 1.7391304347826088E-4,
           "itemId": 23342,
           "rarityDisplay": "1/5,750"
         },
         {
-          "itemName": "3rd age pickaxe",
+          "itemName": "3rd Age pickaxe",
           "dropRate": 1.7391304347826088E-4,
           "itemId": 20014,
           "rarityDisplay": "1/5,750"
         },
         {
-          "itemName": "3rd age axe",
+          "itemName": "3rd Age axe",
           "dropRate": 1.7391304347826088E-4,
           "itemId": 20011,
           "rarityDisplay": "1/5,750"
@@ -1496,31 +1531,31 @@
           "itemName": "Death rune",
           "dropRate": 0.1944,
           "itemId": 560,
-          "rarityDisplay": "1/5"
+          "rarityDisplay": "243/1,250"
         },
         {
           "itemName": "Blood rune",
           "dropRate": 0.1944,
           "itemId": 565,
-          "rarityDisplay": "1/5"
+          "rarityDisplay": "243/1,250"
         },
         {
           "itemName": "Grimy ranarr weed",
           "dropRate": 0.1944,
           "itemId": 207,
-          "rarityDisplay": "1/5"
+          "rarityDisplay": "243/1,250"
         },
         {
-          "itemName": "Wine of zamorak",
+          "itemName": "Wine of Zamorak",
           "dropRate": 0.1944,
           "itemId": 245,
-          "rarityDisplay": "1/5"
+          "rarityDisplay": "243/1,250"
         },
         {
           "itemName": "Raw manta ray",
           "dropRate": 0.1944,
           "itemId": 389,
-          "rarityDisplay": "1/5"
+          "rarityDisplay": "243/1,250"
         }
       ]
     },
@@ -1631,13 +1666,13 @@
           "rarityDisplay": "1/960"
         },
         {
-          "itemName": "Little nightmare",
+          "itemName": "Little Nightmare",
           "dropRate": 0.00125,
           "itemId": -1,
           "rarityDisplay": "1/800"
         },
         {
-          "itemName": "Jar of dreams",
+          "itemName": "Jar of Dreams",
           "dropRate": 5.263157894736842E-4,
           "itemId": 24495,
           "rarityDisplay": "1/1,900"
@@ -1652,7 +1687,7 @@
           "itemName": "Ancient essence",
           "dropRate": 0.6,
           "itemId": 27616,
-          "rarityDisplay": "1/2"
+          "rarityDisplay": "60/100"
         },
         {
           "itemName": "Frozen cache",
@@ -1700,6 +1735,7 @@
           "itemName": "Desiccated page",
           "dropRate": 0.03636363636363636,
           "itemId": -1,
+          "rollsPerKill": 2,
           "rarityDisplay": "2/55"
         },
         {
@@ -1730,6 +1766,7 @@
           "itemName": "Desiccated page",
           "dropRate": 0.03571428571428571,
           "itemId": -1,
+          "rollsPerKill": 2,
           "rarityDisplay": "2/56"
         },
         {
@@ -1760,6 +1797,7 @@
           "itemName": "Desiccated page",
           "dropRate": 0.03636363636363636,
           "itemId": -1,
+          "rollsPerKill": 2,
           "rarityDisplay": "2/55"
         },
         {
@@ -1799,7 +1837,13 @@
           "rarityDisplay": "1/20"
         },
         {
-          "itemName": "Jar of eyes",
+          "itemName": "Pristine spider silk",
+          "dropRate": 0.02,
+          "itemId": -1,
+          "rarityDisplay": "1/50"
+        },
+        {
+          "itemName": "Jar of Eyes",
           "dropRate": 5.0E-4,
           "itemId": 23525,
           "rarityDisplay": "1/2,000"
@@ -1868,7 +1912,7 @@
           "itemName": "Ancient shard",
           "dropRate": 0.75,
           "itemId": -1,
-          "rarityDisplay": "1/1"
+          "rarityDisplay": "75/100"
         },
         {
           "itemName": "Uncut onyx",
@@ -1895,7 +1939,7 @@
           "rarityDisplay": "1/128"
         },
         {
-          "itemName": "Jar of darkness",
+          "itemName": "Jar of Darkness",
           "dropRate": 0.005,
           "itemId": 19701,
           "rarityDisplay": "1/200"
@@ -1916,34 +1960,34 @@
           "itemName": "Echo crystal",
           "dropRate": 0.002903225806451613,
           "itemId": 28942,
-          "rarityDisplay": "1/344"
+          "rarityDisplay": "126/43,400"
         },
         {
           "itemName": "Sunfire fanatic helm",
           "dropRate": 0.0016129032258064516,
           "itemId": 28933,
-          "rarityDisplay": "1/620"
+          "rarityDisplay": "70/43,400"
         },
         {
           "itemName": "Sunfire fanatic cuirass",
           "dropRate": 0.0016129032258064516,
           "itemId": 28936,
-          "rarityDisplay": "1/620"
+          "rarityDisplay": "70/43,400"
         },
         {
           "itemName": "Sunfire fanatic chausses",
           "dropRate": 0.0016129032258064516,
           "itemId": 28939,
-          "rarityDisplay": "1/620"
+          "rarityDisplay": "70/43,400"
         },
         {
-          "itemName": "Tonalztics of ralos (uncharged)",
+          "itemName": "Tonalztics of Ralos (uncharged)",
           "dropRate": 7.621951219512195E-4,
           "itemId": 28919,
-          "rarityDisplay": "1/1,312"
+          "rarityDisplay": "35/45,920"
         },
         {
-          "itemName": "Smol heredit",
+          "itemName": "Smol Heredit",
           "dropRate": 0.005,
           "itemId": -1,
           "rarityDisplay": "1/200"
@@ -1952,7 +1996,7 @@
           "itemName": "Uncut onyx",
           "dropRate": 0.022916666666666665,
           "itemId": 6571,
-          "rarityDisplay": "1/44"
+          "rarityDisplay": "110/4,800"
         }
       ]
     },
@@ -1973,7 +2017,7 @@
           "rarityDisplay": "1/358"
         },
         {
-          "itemName": "Fangs of venenatis",
+          "itemName": "Fangs of Venenatis",
           "dropRate": 0.0016181229773462784,
           "itemId": 27670,
           "rarityDisplay": "1/618"
@@ -2012,10 +2056,10 @@
           "itemName": "Hueycoatl hide",
           "dropRate": 0.03492063492063492,
           "itemId": 30085,
-          "rarityDisplay": "1/29"
+          "rarityDisplay": "11/315"
         },
         {
-          "itemName": "Tome of earth (empty)",
+          "itemName": "Tome of Earth (empty)",
           "dropRate": 0.011111111111111112,
           "itemId": 30066,
           "rarityDisplay": "1/90"
@@ -2063,13 +2107,13 @@
           "rarityDisplay": "1/2,000"
         },
         {
-          "itemName": "Jar of smoke",
+          "itemName": "Jar of Smoke",
           "dropRate": 5.0E-4,
           "itemId": 25524,
           "rarityDisplay": "1/2,000"
         },
         {
-          "itemName": "Pet smoke devil",
+          "itemName": "Pet Smoke Devil",
           "dropRate": 3.333333333333333E-4,
           "itemId": -1,
           "rarityDisplay": "1/3,000"
@@ -2084,7 +2128,7 @@
           "itemName": "Burning claw",
           "dropRate": 0.001996,
           "itemId": 29574,
-          "rarityDisplay": "1/501"
+          "rarityDisplay": "499/250,000"
         },
         {
           "itemName": "Tormented synapse",
@@ -2171,7 +2215,7 @@
       "wikiPage": "Venenatis",
       "drops": [
         {
-          "itemName": "Fangs of venenatis",
+          "itemName": "Fangs of Venenatis",
           "dropRate": 0.00510204081632653,
           "itemId": 27670,
           "rarityDisplay": "1/196"
@@ -2213,7 +2257,7 @@
       "wikiPage": "Venenatis and Spindel",
       "drops": [
         {
-          "itemName": "Fangs of venenatis",
+          "itemName": "Fangs of Venenatis",
           "dropRate": 0.00510204081632653,
           "itemId": 27670,
           "rarityDisplay": "1/196"
@@ -2255,7 +2299,7 @@
       "wikiPage": "Vet\u0027ion",
       "drops": [
         {
-          "itemName": "Skull of vet\u0027ion",
+          "itemName": "Skull of Vet\u0027ion",
           "dropRate": 0.00510204081632653,
           "itemId": 27673,
           "rarityDisplay": "1/196"
@@ -2285,7 +2329,7 @@
           "rarityDisplay": "1/512"
         },
         {
-          "itemName": "Vet\u0027ion jr.",
+          "itemName": "Vet\u0027ion Jr.",
           "dropRate": 6.666666666666666E-4,
           "itemId": -1,
           "rarityDisplay": "1/1,500"
@@ -2309,7 +2353,7 @@
           "rarityDisplay": "1/358"
         },
         {
-          "itemName": "Skull of vet\u0027ion",
+          "itemName": "Skull of Vet\u0027ion",
           "dropRate": 0.0016181229773462784,
           "itemId": 27673,
           "rarityDisplay": "1/618"
@@ -2327,7 +2371,7 @@
           "rarityDisplay": "1/912"
         },
         {
-          "itemName": "Vet\u0027ion jr.",
+          "itemName": "Vet\u0027ion Jr.",
           "dropRate": 3.5714285714285714E-4,
           "itemId": -1,
           "rarityDisplay": "1/2,800"
@@ -2339,7 +2383,7 @@
       "wikiPage": "Vet\u0027ion and Calvar\u0027ion",
       "drops": [
         {
-          "itemName": "Skull of vet\u0027ion",
+          "itemName": "Skull of Vet\u0027ion",
           "dropRate": 0.00510204081632653,
           "itemId": 27673,
           "rarityDisplay": "1/196"
@@ -2369,7 +2413,7 @@
           "rarityDisplay": "1/512"
         },
         {
-          "itemName": "Vet\u0027ion jr.",
+          "itemName": "Vet\u0027ion Jr.",
           "dropRate": 6.666666666666666E-4,
           "itemId": -1,
           "rarityDisplay": "1/1,500"
@@ -2393,7 +2437,7 @@
           "rarityDisplay": "1/1,000"
         },
         {
-          "itemName": "Jar of decay",
+          "itemName": "Jar of Decay",
           "dropRate": 3.333333333333333E-4,
           "itemId": 22106,
           "rarityDisplay": "1/3,000"
@@ -2531,7 +2575,7 @@
           "rarityDisplay": "1/150"
         },
         {
-          "itemName": "Tome of fire (empty)",
+          "itemName": "Tome of Fire (empty)",
           "dropRate": 0.001,
           "itemId": 20716,
           "rarityDisplay": "1/1,000"
@@ -2558,7 +2602,7 @@
           "itemName": "Crystal tool seed",
           "dropRate": 0.004875,
           "itemId": 23953,
-          "rarityDisplay": "1/205"
+          "rarityDisplay": "39/8,000"
         },
         {
           "itemName": "Zalcano shard",
@@ -2588,58 +2632,66 @@
           "itemName": "Tanzanite fang",
           "dropRate": 9.765625E-4,
           "itemId": 12922,
+          "rollsPerKill": 2,
           "rarityDisplay": "1/1,024"
         },
         {
           "itemName": "Magic fang",
           "dropRate": 9.765625E-4,
           "itemId": 12932,
+          "rollsPerKill": 2,
           "rarityDisplay": "1/1,024"
         },
         {
           "itemName": "Serpentine visage",
           "dropRate": 9.765625E-4,
           "itemId": 12927,
+          "rollsPerKill": 2,
           "rarityDisplay": "1/1,024"
         },
         {
           "itemName": "Uncut onyx",
           "dropRate": 9.765625E-4,
           "itemId": 6571,
+          "rollsPerKill": 2,
           "rarityDisplay": "1/1,024"
         },
         {
           "itemName": "Tanzanite mutagen",
           "dropRate": 7.629510948348211E-5,
           "itemId": -1,
+          "rollsPerKill": 2,
           "rarityDisplay": "1/13,107"
         },
         {
           "itemName": "Magma mutagen",
           "dropRate": 7.629510948348211E-5,
           "itemId": -1,
+          "rollsPerKill": 2,
           "rarityDisplay": "1/13,107"
         },
         {
           "itemName": "Zul-andra teleport",
           "dropRate": 0.060240963855421686,
           "itemId": 12938,
-          "rarityDisplay": "1/17"
+          "rollsPerKill": 2,
+          "rarityDisplay": "15/249"
         },
         {
           "itemName": "Zulrah\u0027s scales",
           "dropRate": 0.020080321285140562,
           "itemId": 12934,
+          "rollsPerKill": 2,
           "rarityDisplay": "5/249"
         },
         {
-          "itemName": "Jar of swamp",
+          "itemName": "Jar of Swamp",
           "dropRate": 3.333333333333333E-4,
           "itemId": 12936,
           "rarityDisplay": "1/3,000"
         },
         {
-          "itemName": "Pet snakeling",
+          "itemName": "Pet Snakeling",
           "dropRate": 2.5E-4,
           "itemId": -1,
           "rarityDisplay": "1/4,000"
@@ -2652,86 +2704,88 @@
       "drops": [
         {
           "itemName": "Dexterous prayer scroll",
-          "dropRate": 0.2898550724637681,
+          "dropRate": 0.23333333333333334,
           "itemId": 21034,
-          "rarityDisplay": "1/3"
+          "rarityDisplay": "14/60"
         },
         {
           "itemName": "Arcane prayer scroll",
-          "dropRate": 0.2898550724637681,
+          "dropRate": 0.23333333333333334,
           "itemId": 21079,
-          "rarityDisplay": "1/3"
+          "rarityDisplay": "14/60"
         },
         {
           "itemName": "Twisted buckler",
-          "dropRate": 0.057971014492753624,
+          "dropRate": 0.06666666666666667,
           "itemId": 21000,
-          "rarityDisplay": "4/69"
+          "rarityDisplay": "4/60"
         },
         {
           "itemName": "Dragon hunter crossbow",
-          "dropRate": 0.057971014492753624,
+          "dropRate": 0.06666666666666667,
           "itemId": 21012,
-          "rarityDisplay": "4/69"
+          "rarityDisplay": "4/60"
         },
         {
           "itemName": "Dinh\u0027s bulwark",
-          "dropRate": 0.043478260869565216,
+          "dropRate": 0.05,
           "itemId": 21015,
-          "rarityDisplay": "3/69"
+          "rarityDisplay": "3/60"
         },
         {
           "itemName": "Ancestral hat",
-          "dropRate": 0.043478260869565216,
+          "dropRate": 0.06666666666666667,
           "itemId": 21018,
-          "rarityDisplay": "3/69"
+          "rarityDisplay": "4/60"
         },
         {
           "itemName": "Ancestral robe top",
-          "dropRate": 0.043478260869565216,
+          "dropRate": 0.06666666666666667,
           "itemId": 21021,
-          "rarityDisplay": "3/69"
+          "rarityDisplay": "4/60"
         },
         {
           "itemName": "Ancestral robe bottom",
-          "dropRate": 0.043478260869565216,
+          "dropRate": 0.06666666666666667,
           "itemId": 21024,
-          "rarityDisplay": "3/69"
+          "rarityDisplay": "4/60"
         },
         {
           "itemName": "Dragon claws",
-          "dropRate": 0.043478260869565216,
+          "dropRate": 0.05,
           "itemId": 13652,
-          "rarityDisplay": "3/69"
+          "rarityDisplay": "3/60"
         },
         {
           "itemName": "Elder maul",
-          "dropRate": 0.028985507246376812,
+          "dropRate": 0.03333333333333333,
           "itemId": 21003,
-          "rarityDisplay": "2/69"
+          "rarityDisplay": "2/60"
         },
         {
           "itemName": "Kodai insignia",
-          "dropRate": 0.028985507246376812,
+          "dropRate": 0.03333333333333333,
           "itemId": 21043,
-          "rarityDisplay": "2/69"
+          "rarityDisplay": "2/60"
         },
         {
           "itemName": "Twisted bow",
-          "dropRate": 0.028985507246376812,
+          "dropRate": 0.03333333333333333,
           "itemId": 20997,
-          "rarityDisplay": "2/69"
+          "rarityDisplay": "2/60"
         },
         {
           "itemName": "Torn prayer scroll",
           "dropRate": 0.030303030303030304,
           "itemId": 21047,
+          "rollsPerKill": 2,
           "rarityDisplay": "1/33"
         },
         {
           "itemName": "Dark relic",
           "dropRate": 0.030303030303030304,
           "itemId": -1,
+          "rollsPerKill": 2,
           "rarityDisplay": "1/33"
         },
         {
@@ -2795,7 +2849,7 @@
           "rarityDisplay": "2/19"
         },
         {
-          "itemName": "Scythe of vitur (uncharged)",
+          "itemName": "Scythe of Vitur (uncharged)",
           "dropRate": 0.05263157894736842,
           "itemId": 22486,
           "rarityDisplay": "1/19"
@@ -2804,6 +2858,7 @@
           "itemName": "Vial of blood",
           "dropRate": 0.06666666666666667,
           "itemId": 22446,
+          "rollsPerKill": 3,
           "rarityDisplay": "2/30"
         },
         {
@@ -2825,7 +2880,7 @@
           "rarityDisplay": "1/275"
         },
         {
-          "itemName": "Lil\u0027 zik",
+          "itemName": "Lil\u0027 Zik",
           "dropRate": 0.0015384615384615385,
           "itemId": -1,
           "rarityDisplay": "1/650"
@@ -2882,34 +2937,35 @@
           "itemName": "Cache of runes",
           "dropRate": 0.037037037037037035,
           "itemId": -1,
+          "rollsPerKill": 3,
           "rarityDisplay": "1/27"
         },
         {
-          "itemName": "Thread of elidinis",
+          "itemName": "Thread of Elidinis",
           "dropRate": 0.1,
           "itemId": -1,
           "rarityDisplay": "1/10"
         },
         {
-          "itemName": "Eye of the corruptor",
+          "itemName": "Eye of the Corruptor",
           "dropRate": 0.02,
           "itemId": -1,
           "rarityDisplay": "1/50"
         },
         {
-          "itemName": "Jewel of the sun",
+          "itemName": "Jewel of the Sun",
           "dropRate": 0.02,
           "itemId": -1,
           "rarityDisplay": "1/50"
         },
         {
-          "itemName": "Breach of the scarab",
+          "itemName": "Breach of the Scarab",
           "dropRate": 0.02,
           "itemId": -1,
           "rarityDisplay": "1/50"
         },
         {
-          "itemName": "Jewel of amascut",
+          "itemName": "Jewel of Amascut",
           "dropRate": 0.02,
           "itemId": -1,
           "rarityDisplay": "1/50"
@@ -2993,19 +3049,19 @@
           "rarityDisplay": "1/360"
         },
         {
-          "itemName": "Rune scimitar ornament kit (guthix)",
+          "itemName": "Rune scimitar ornament kit (Guthix)",
           "dropRate": 0.002777777777777778,
           "itemId": 23321,
           "rarityDisplay": "1/360"
         },
         {
-          "itemName": "Rune scimitar ornament kit (saradomin)",
+          "itemName": "Rune scimitar ornament kit (Saradomin)",
           "dropRate": 0.002777777777777778,
           "itemId": 23324,
           "rarityDisplay": "1/360"
         },
         {
-          "itemName": "Rune scimitar ornament kit (zamorak)",
+          "itemName": "Rune scimitar ornament kit (Zamorak)",
           "dropRate": 0.002777777777777778,
           "itemId": 23327,
           "rarityDisplay": "1/360"
@@ -3014,7 +3070,1495 @@
           "itemName": "Black pickaxe",
           "dropRate": 0.0012420957542908762,
           "itemId": 12297,
-          "rarityDisplay": "1/805"
+          "rarityDisplay": "11/8,856"
+        }
+      ]
+    },
+    "Easy Treasure Trails": {
+      "monsterName": "Easy Treasure Trails",
+      "wikiPage": "Reward casket (easy)",
+      "drops": [
+        {
+          "itemName": "Willow comp bow",
+          "dropRate": 0.002777777777777778,
+          "itemId": 10280,
+          "rarityDisplay": "11/3,960"
+        },
+        {
+          "itemName": "Amulet of magic (t)",
+          "dropRate": 0.002777777777777778,
+          "itemId": 10366,
+          "rarityDisplay": "11/3,960"
+        },
+        {
+          "itemName": "Team cape zero",
+          "dropRate": 1.7806267806267807E-4,
+          "itemId": 20211,
+          "rarityDisplay": "1/5,616"
+        },
+        {
+          "itemName": "Team cape i",
+          "dropRate": 1.7806267806267807E-4,
+          "itemId": 20217,
+          "rarityDisplay": "1/5,616"
+        },
+        {
+          "itemName": "Team cape x",
+          "dropRate": 1.7806267806267807E-4,
+          "itemId": 20214,
+          "rarityDisplay": "1/5,616"
+        },
+        {
+          "itemName": "Cape of skulls",
+          "dropRate": 1.7806267806267807E-4,
+          "itemId": 23351,
+          "rarityDisplay": "1/5,616"
+        },
+        {
+          "itemName": "Golden chef\u0027s hat",
+          "dropRate": 3.5612535612535614E-4,
+          "itemId": 20205,
+          "rarityDisplay": "1/2,808"
+        },
+        {
+          "itemName": "Golden apron",
+          "dropRate": 3.5612535612535614E-4,
+          "itemId": 20208,
+          "rarityDisplay": "1/2,808"
+        },
+        {
+          "itemName": "Wooden shield (g)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 20166,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Black full helm (t)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 2587,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Black platebody (t)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 2583,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Black platelegs (t)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 2585,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Black plateskirt (t)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 3472,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Black kiteshield (t)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 2589,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Black full helm (g)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 2595,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Black platebody (g)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 2591,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Black platelegs (g)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 2593,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Black plateskirt (g)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 3473,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Black kiteshield (g)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 2597,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Black shield (h1)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 7332,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Black shield (h2)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 7338,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Black shield (h3)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 7344,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Black shield (h4)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 7350,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Black shield (h5)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 7356,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Black helm (h1)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 10306,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Black helm (h2)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 10308,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Black helm (h3)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 10310,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Black helm (h4)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 10312,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Black helm (h5)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 10314,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Black platebody (h1)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 23366,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Black platebody (h2)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 23369,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Black platebody (h3)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 23372,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Black platebody (h4)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 23375,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Black platebody (h5)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 23378,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Steel full helm (t)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 20193,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Steel platebody (t)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 20184,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Steel platelegs (t)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 20187,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Steel plateskirt (t)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 20190,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Steel kiteshield (t)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 20196,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Steel full helm (g)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 20178,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Steel platebody (g)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 20169,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Steel platelegs (g)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 20172,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Steel plateskirt (g)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 20175,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Steel kiteshield (g)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 20181,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Iron full helm (t)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 12231,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Iron platebody (t)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 12225,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Iron platelegs (t)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 12227,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Iron plateskirt (t)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 12229,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Iron kiteshield (t)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 12233,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Iron full helm (g)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 12241,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Iron platebody (g)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 12235,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Iron platelegs (g)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 12237,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Iron plateskirt (g)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 12239,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Iron kiteshield (g)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 12243,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Bronze full helm (t)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 12221,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Bronze platebody (t)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 12215,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Bronze platelegs (t)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 12217,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Bronze plateskirt (t)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 12219,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Bronze kiteshield (t)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 12223,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Bronze full helm (g)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 12211,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Bronze platebody (g)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 12205,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Bronze platelegs (g)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 12207,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Bronze plateskirt (g)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 12209,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Bronze kiteshield (g)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 12213,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Studded body (g)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 7362,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Studded chaps (g)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 7366,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Studded body (t)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 7364,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Studded chaps (t)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 7368,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Leather body (g)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 23381,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Leather chaps (g)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 23384,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Blue wizard hat (g)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 7394,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Blue wizard robe (g)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 7390,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Blue skirt (g)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 7386,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Blue wizard hat (t)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 7396,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Blue wizard robe (t)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 7392,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Blue skirt (t)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 7388,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Black wizard hat (g)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 12453,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Black wizard robe (g)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 12449,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Black skirt (g)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 12445,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Black wizard hat (t)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 12455,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Black wizard robe (t)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 12451,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Black skirt (t)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 12447,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Monk\u0027s robe top (g)",
+          "dropRate": 7.122507122507122E-5,
+          "itemId": 20199,
+          "rarityDisplay": "1/14,040"
+        },
+        {
+          "itemName": "Monk\u0027s robe (g)",
+          "dropRate": 7.122507122507122E-5,
+          "itemId": 20202,
+          "rarityDisplay": "1/14,040"
+        },
+        {
+          "itemName": "Saradomin robe top",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 10458,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Saradomin robe legs",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 10464,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Guthix robe top",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 10462,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Guthix robe legs",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 10466,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Zamorak robe top",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 10460,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Zamorak robe legs",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 10468,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Ancient robe top",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 12193,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Ancient robe legs",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 12195,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Armadyl robe top",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 12253,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Armadyl robe legs",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 12255,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Bandos robe top",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 12265,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Bandos robe legs",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 12267,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Bob\u0027s red shirt",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 10316,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Bob\u0027s green shirt",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 10320,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Bob\u0027s blue shirt",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 10318,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Bob\u0027s black shirt",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 10322,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Bob\u0027s purple shirt",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 10324,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Highwayman mask",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 2631,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Blue beret",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 2633,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Black beret",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 2635,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Red beret",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 12247,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "White beret",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 2637,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "A powdered wig",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 10392,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Beanie",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 12245,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Imp mask",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 12249,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Goblin mask",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 12251,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Sleeping cap",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 10398,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Flared trousers",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 10394,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Pantaloons",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 10396,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Black cane",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 12375,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Staff of Bob the Cat",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 23363,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Red elegant shirt",
+          "dropRate": 3.5612535612535614E-4,
+          "itemId": 10404,
+          "rarityDisplay": "1/2,808"
+        },
+        {
+          "itemName": "Red elegant blouse",
+          "dropRate": 3.5612535612535614E-4,
+          "itemId": 10424,
+          "rarityDisplay": "1/2,808"
+        },
+        {
+          "itemName": "Red elegant legs",
+          "dropRate": 3.5612535612535614E-4,
+          "itemId": 10406,
+          "rarityDisplay": "1/2,808"
+        },
+        {
+          "itemName": "Red elegant skirt",
+          "dropRate": 3.5612535612535614E-4,
+          "itemId": 10426,
+          "rarityDisplay": "1/2,808"
+        },
+        {
+          "itemName": "Green elegant shirt",
+          "dropRate": 3.5612535612535614E-4,
+          "itemId": 10412,
+          "rarityDisplay": "1/2,808"
+        },
+        {
+          "itemName": "Green elegant blouse",
+          "dropRate": 3.5612535612535614E-4,
+          "itemId": 10432,
+          "rarityDisplay": "1/2,808"
+        },
+        {
+          "itemName": "Green elegant legs",
+          "dropRate": 3.5612535612535614E-4,
+          "itemId": 10414,
+          "rarityDisplay": "1/2,808"
+        },
+        {
+          "itemName": "Green elegant skirt",
+          "dropRate": 3.5612535612535614E-4,
+          "itemId": 10434,
+          "rarityDisplay": "1/2,808"
+        },
+        {
+          "itemName": "Blue elegant shirt",
+          "dropRate": 3.5612535612535614E-4,
+          "itemId": 10408,
+          "rarityDisplay": "1/2,808"
+        },
+        {
+          "itemName": "Blue elegant blouse",
+          "dropRate": 3.5612535612535614E-4,
+          "itemId": 10428,
+          "rarityDisplay": "1/2,808"
+        },
+        {
+          "itemName": "Blue elegant legs",
+          "dropRate": 3.5612535612535614E-4,
+          "itemId": 10410,
+          "rarityDisplay": "1/2,808"
+        },
+        {
+          "itemName": "Blue elegant skirt",
+          "dropRate": 3.5612535612535614E-4,
+          "itemId": 10430,
+          "rarityDisplay": "1/2,808"
+        },
+        {
+          "itemName": "Amulet of power (t)",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 23354,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Ham joint",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 23360,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Rain bow",
+          "dropRate": 7.122507122507123E-4,
+          "itemId": 23357,
+          "rarityDisplay": "1/1,404"
+        },
+        {
+          "itemName": "Black pickaxe",
+          "dropRate": 0.027777777777777776,
+          "itemId": 12297,
+          "rarityDisplay": "11/396"
+        }
+      ]
+    },
+    "Medium Treasure Trails": {
+      "monsterName": "Medium Treasure Trails",
+      "wikiPage": "Reward casket (medium)",
+      "drops": [
+        {
+          "itemName": "Gnomish firelighter",
+          "dropRate": 0.002932551319648094,
+          "itemId": 20275,
+          "rarityDisplay": "10/3,410"
+        },
+        {
+          "itemName": "Yew comp bow",
+          "dropRate": 0.002932551319648094,
+          "itemId": 10282,
+          "rarityDisplay": "10/3,410"
+        },
+        {
+          "itemName": "Strength amulet (t)",
+          "dropRate": 0.002932551319648094,
+          "itemId": 10364,
+          "rarityDisplay": "10/3,410"
+        },
+        {
+          "itemName": "Ranger boots",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 2577,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Wizard boots",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 2579,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Holy sandals",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 12598,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Spiked manacles",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 23389,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Climbing boots (g)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 23413,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Adamant full helm (t)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 2605,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Adamant platebody (t)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 2599,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Adamant platelegs (t)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 2601,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Adamant plateskirt (t)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 3474,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Adamant kiteshield (t)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 2603,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Adamant full helm (g)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 2613,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Adamant platebody (g)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 2607,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Adamant platelegs (g)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 2609,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Adamant plateskirt (g)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 3475,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Adamant kiteshield (g)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 2611,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Adamant shield (h1)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 7334,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Adamant shield (h2)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 7340,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Adamant shield (h3)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 7346,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Adamant shield (h4)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 7352,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Adamant shield (h5)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 7358,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Adamant helm (h1)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 10296,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Adamant helm (h2)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 10298,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Adamant helm (h3)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 10300,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Adamant helm (h4)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 10302,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Adamant helm (h5)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 10304,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Adamant platebody (h1)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 23392,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Adamant platebody (h2)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 23395,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Adamant platebody (h3)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 23398,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Adamant platebody (h4)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 23401,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Adamant platebody (h5)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 23404,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Mithril full helm (g)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 12283,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Mithril platebody (g)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 12277,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Mithril platelegs (g)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 12279,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Mithril plateskirt (g)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 12285,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Mithril kiteshield (g)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 12281,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Mithril full helm (t)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 12293,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Mithril platebody (t)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 12287,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Mithril platelegs (t)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 12289,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Mithril plateskirt (t)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 12295,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Mithril kiteshield (t)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 12291,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Green d\u0027hide body (g)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 7370,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Green d\u0027hide body (t)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 7372,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Green d\u0027hide chaps (g)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 7378,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Green d\u0027hide chaps (t)",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 7380,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Saradomin mitre",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 10452,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Saradomin cloak",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 10446,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Guthix mitre",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 10454,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Guthix cloak",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 10448,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Zamorak mitre",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 10456,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Zamorak cloak",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 10450,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Ancient mitre",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 12203,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Ancient cloak",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 12197,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Ancient stole",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 12201,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Ancient crozier",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 12199,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Armadyl mitre",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 12259,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Armadyl cloak",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 12261,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Armadyl stole",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 12257,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Armadyl crozier",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 12263,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Bandos mitre",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 12271,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Bandos cloak",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 12273,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Bandos stole",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 12269,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Bandos crozier",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 12275,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Red boater",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 7319,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Green boater",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 7323,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Orange boater",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 7321,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Black boater",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 7327,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Blue boater",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 7325,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Pink boater",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 12309,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Purple boater",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 12311,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "White boater",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 12313,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Red headband",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 2645,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Black headband",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 2647,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Brown headband",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 2649,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "White headband",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 12299,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Blue headband",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 12301,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Gold headband",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 12303,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Pink headband",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 12305,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Green headband",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 12307,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Crier hat",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 12319,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Crier coat",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 20240,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Crier bell",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 20243,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Adamant cane",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 12377,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Arceuus banner",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 20251,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Piscarilius banner",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 20260,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Hosidius banner",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 20254,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Shayzien banner",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 20263,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Lovakengj banner",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 20257,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Cabbage round shield",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 20272,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Black unicorn mask",
+          "dropRate": 4.41306266548985E-4,
+          "itemId": 20266,
+          "rarityDisplay": "1/2,266"
+        },
+        {
+          "itemName": "White unicorn mask",
+          "dropRate": 4.41306266548985E-4,
+          "itemId": 20269,
+          "rarityDisplay": "1/2,266"
+        },
+        {
+          "itemName": "Cat mask",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 12361,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Penguin mask",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 12428,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Leprechaun hat",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 12359,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Black leprechaun hat",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 20246,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Wolf mask",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 23407,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Wolf cloak",
+          "dropRate": 8.8261253309797E-4,
+          "itemId": 23410,
+          "rarityDisplay": "1/1,133"
+        },
+        {
+          "itemName": "Purple elegant shirt",
+          "dropRate": 4.41306266548985E-4,
+          "itemId": 10416,
+          "rarityDisplay": "8/18,128"
+        },
+        {
+          "itemName": "Purple elegant blouse",
+          "dropRate": 4.41306266548985E-4,
+          "itemId": 10436,
+          "rarityDisplay": "8/18,128"
+        },
+        {
+          "itemName": "Purple elegant legs",
+          "dropRate": 4.41306266548985E-4,
+          "itemId": 10418,
+          "rarityDisplay": "8/18,128"
+        },
+        {
+          "itemName": "Purple elegant skirt",
+          "dropRate": 4.41306266548985E-4,
+          "itemId": 10438,
+          "rarityDisplay": "8/18,128"
+        },
+        {
+          "itemName": "Black elegant shirt",
+          "dropRate": 4.41306266548985E-4,
+          "itemId": 10400,
+          "rarityDisplay": "8/18,128"
+        },
+        {
+          "itemName": "White elegant blouse",
+          "dropRate": 4.41306266548985E-4,
+          "itemId": 10420,
+          "rarityDisplay": "8/18,128"
+        },
+        {
+          "itemName": "Black elegant legs",
+          "dropRate": 4.41306266548985E-4,
+          "itemId": 10402,
+          "rarityDisplay": "8/18,128"
+        },
+        {
+          "itemName": "White elegant skirt",
+          "dropRate": 4.41306266548985E-4,
+          "itemId": 10422,
+          "rarityDisplay": "8/18,128"
+        },
+        {
+          "itemName": "Pink elegant shirt",
+          "dropRate": 4.41306266548985E-4,
+          "itemId": 12315,
+          "rarityDisplay": "8/18,128"
+        },
+        {
+          "itemName": "Pink elegant blouse",
+          "dropRate": 4.41306266548985E-4,
+          "itemId": 12339,
+          "rarityDisplay": "8/18,128"
+        },
+        {
+          "itemName": "Pink elegant legs",
+          "dropRate": 4.41306266548985E-4,
+          "itemId": 12317,
+          "rarityDisplay": "8/18,128"
+        },
+        {
+          "itemName": "Pink elegant skirt",
+          "dropRate": 4.41306266548985E-4,
+          "itemId": 12341,
+          "rarityDisplay": "8/18,128"
+        },
+        {
+          "itemName": "Gold elegant shirt",
+          "dropRate": 4.41306266548985E-4,
+          "itemId": 12347,
+          "rarityDisplay": "8/18,128"
+        },
+        {
+          "itemName": "Gold elegant blouse",
+          "dropRate": 4.41306266548985E-4,
+          "itemId": 12343,
+          "rarityDisplay": "8/18,128"
+        },
+        {
+          "itemName": "Gold elegant legs",
+          "dropRate": 4.41306266548985E-4,
+          "itemId": 12349,
+          "rarityDisplay": "8/18,128"
+        },
+        {
+          "itemName": "Gold elegant skirt",
+          "dropRate": 4.41306266548985E-4,
+          "itemId": 12345,
+          "rarityDisplay": "8/18,128"
         }
       ]
     },
@@ -3023,10 +4567,802 @@
       "wikiPage": "Reward casket (hard)",
       "drops": [
         {
+          "itemName": "Magic comp bow",
+          "dropRate": 0.003692762186115214,
+          "itemId": 10284,
+          "rarityDisplay": "1/270.8"
+        },
+        {
+          "itemName": "Robin Hood hat",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 2581,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Enchanted hat",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 7400,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Enchanted top",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 7399,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Enchanted robe",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 7398,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Dragon boots ornament kit",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 22231,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Rune full helm (t)",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 2627,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Rune platebody (t)",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 2623,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Rune platelegs (t)",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 2625,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Rune plateskirt (t)",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 3477,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Rune kiteshield (t)",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 2629,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Rune full helm (g)",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 2619,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Rune platebody (g)",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 2615,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Rune platelegs (g)",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 2617,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Rune plateskirt (g)",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 3476,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Rune kiteshield (g)",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 2621,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Rune shield (h1)",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 7336,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Rune shield (h2)",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 7342,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Rune shield (h3)",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 7348,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Rune shield (h4)",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 7354,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Rune shield (h5)",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 7360,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Rune helm (h1)",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 10286,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Rune helm (h2)",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 10288,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Rune helm (h3)",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 10290,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Rune helm (h4)",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 10292,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Rune helm (h5)",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 10294,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Rune platebody (h1)",
+          "dropRate": 1.2307692307692307E-4,
+          "itemId": 23209,
+          "rarityDisplay": "1/8,125"
+        },
+        {
+          "itemName": "Rune platebody (h2)",
+          "dropRate": 1.2307692307692307E-4,
+          "itemId": 23212,
+          "rarityDisplay": "1/8,125"
+        },
+        {
+          "itemName": "Rune platebody (h3)",
+          "dropRate": 1.2307692307692307E-4,
+          "itemId": 23215,
+          "rarityDisplay": "1/8,125"
+        },
+        {
+          "itemName": "Rune platebody (h4)",
+          "dropRate": 1.2307692307692307E-4,
+          "itemId": 23218,
+          "rarityDisplay": "1/8,125"
+        },
+        {
+          "itemName": "Rune platebody (h5)",
+          "dropRate": 1.2307692307692307E-4,
+          "itemId": 23221,
+          "rarityDisplay": "1/8,125"
+        },
+        {
+          "itemName": "Zamorak full helm",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 2657,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Zamorak platebody",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 2653,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Zamorak platelegs",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 2655,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Zamorak plateskirt",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 3478,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Zamorak kiteshield",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 2659,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Guthix full helm",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 2673,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Guthix platebody",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 2669,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Guthix platelegs",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 2671,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Guthix plateskirt",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 3480,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Guthix kiteshield",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 2675,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Saradomin full helm",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 2665,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Saradomin platebody",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 2661,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Saradomin platelegs",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 2663,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Saradomin plateskirt",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 3479,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Saradomin kiteshield",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 2667,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Ancient full helm",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12466,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Ancient platebody",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12460,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Ancient platelegs",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12462,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Ancient plateskirt",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12464,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Ancient kiteshield",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12468,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Armadyl full helm",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12476,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Armadyl platebody",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12470,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Armadyl platelegs",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12472,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Armadyl plateskirt",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12474,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Armadyl kiteshield",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12478,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Bandos full helm",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12486,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Bandos platebody",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12480,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Bandos platelegs",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12482,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Bandos plateskirt",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12484,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Bandos kiteshield",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12488,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Red d\u0027hide body (g)",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12327,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Red d\u0027hide body (t)",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12331,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Red d\u0027hide chaps (g)",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12329,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Red d\u0027hide chaps (t)",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12333,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Blue d\u0027hide body (g)",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 7374,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Blue d\u0027hide body (t)",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 7376,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Blue d\u0027hide chaps (g)",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 7382,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Blue d\u0027hide chaps (t)",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 7384,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Saradomin coif",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 10390,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Saradomin d\u0027hide body",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 10386,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Saradomin chaps",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 10388,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Saradomin bracers",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 10384,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Saradomin d\u0027hide boots",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 19933,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Saradomin d\u0027hide shield",
+          "dropRate": 1.0256410256410256E-4,
+          "itemId": 23191,
+          "rarityDisplay": "1/9,750"
+        },
+        {
+          "itemName": "Guthix coif",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 10382,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Guthix d\u0027hide body",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 10378,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Guthix chaps",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 10380,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Guthix bracers",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 10376,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Guthix d\u0027hide boots",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 19927,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Guthix d\u0027hide shield",
+          "dropRate": 1.0256410256410256E-4,
+          "itemId": 23188,
+          "rarityDisplay": "1/9,750"
+        },
+        {
+          "itemName": "Zamorak coif",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 10374,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Zamorak d\u0027hide body",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 10370,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Zamorak chaps",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 10372,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Zamorak bracers",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 10368,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Zamorak d\u0027hide boots",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 19936,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Zamorak d\u0027hide shield",
+          "dropRate": 1.0256410256410256E-4,
+          "itemId": 23194,
+          "rarityDisplay": "1/9,750"
+        },
+        {
+          "itemName": "Bandos coif",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12504,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Bandos d\u0027hide body",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12500,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Bandos chaps",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12502,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Bandos bracers",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12498,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Bandos d\u0027hide boots",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 19924,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Bandos d\u0027hide shield",
+          "dropRate": 1.0256410256410256E-4,
+          "itemId": 23203,
+          "rarityDisplay": "1/9,750"
+        },
+        {
+          "itemName": "Armadyl coif",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12512,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Armadyl d\u0027hide body",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12508,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Armadyl chaps",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12510,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Armadyl bracers",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12506,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Armadyl d\u0027hide boots",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 19930,
+          "rarityDisplay": "1/1,625"
+        },
+        {
           "itemName": "Armadyl d\u0027hide shield",
           "dropRate": 1.0256410256410256E-4,
           "itemId": 23200,
           "rarityDisplay": "1/9,750"
+        },
+        {
+          "itemName": "Ancient coif",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12496,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Ancient d\u0027hide body",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12492,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Ancient chaps",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12494,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Ancient bracers",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12490,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Ancient d\u0027hide boots",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 19921,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Ancient d\u0027hide shield",
+          "dropRate": 1.0256410256410256E-4,
+          "itemId": 23197,
+          "rarityDisplay": "1/9,750"
+        },
+        {
+          "itemName": "Saradomin stole",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 10470,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Saradomin crozier",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 10440,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Guthix stole",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 10472,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Guthix crozier",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 10442,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Zamorak stole",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 10474,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Zamorak crozier",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 10444,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Zombie head (Treasure Trails)",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 19912,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Cyclops head",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 19915,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Pirate\u0027s hat",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 2651,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Red cavalier",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12323,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "White cavalier",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12321,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Navy cavalier",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12325,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Tan cavalier",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 2639,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Dark cavalier",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 2641,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Black cavalier",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 2643,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Pith helmet",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12516,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Explorer backpack",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12514,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Green dragon mask",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12518,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Blue dragon mask",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12520,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Red dragon mask",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12522,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Black dragon mask",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12524,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Nunchaku",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 19918,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Rune cane",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 12379,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Dual sai",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 23206,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Thieving bag",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 23224,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Rune defender ornament kit",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 23227,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Berserker necklace ornament kit",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 23237,
+          "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Tzhaar-ket-om ornament kit",
+          "dropRate": 6.153846153846154E-4,
+          "itemId": 23232,
+          "rarityDisplay": "1/1,625"
         }
       ]
     },
@@ -3035,7 +5371,355 @@
       "wikiPage": "Reward casket (elite)",
       "drops": [
         {
-          "itemName": "Ring of 3rd age",
+          "itemName": "Dragon full helm ornament kit",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 12538,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Dragon chainbody ornament kit",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 12534,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Dragon legs/skirt ornament kit",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 12536,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Dragon sq shield ornament kit",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 12532,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Dragon scimitar ornament kit",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 20002,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Fury ornament kit",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 12526,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Light infinity colour kit",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 12530,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Dark infinity colour kit",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 12528,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Royal crown",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 12397,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Royal gown top",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 12393,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Royal gown bottom",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 12395,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Royal sceptre",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 12439,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Musketeer hat",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 12351,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Musketeer tabard",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 12441,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Musketeer pants",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 12443,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Black d\u0027hide body (g)",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 12381,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Black d\u0027hide body (t)",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 12385,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Black d\u0027hide chaps (g)",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 12383,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Black d\u0027hide chaps (t)",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 12387,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Rangers\u0027 tunic",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 12596,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Ranger gloves",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 19994,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Holy wraps",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 19997,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Bronze dragon mask",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 12363,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Iron dragon mask",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 12365,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Steel dragon mask",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 12367,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Mithril dragon mask",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 12369,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Adamant dragon mask",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 23270,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Rune dragon mask",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 23273,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Arceuus scarf",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 19943,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Hosidius scarf",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 19946,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Lovakengj scarf",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 19949,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Piscarilius scarf",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 19952,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Shayzien scarf",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 19955,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Katana",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 12357,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Dragon cane",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 12373,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Bucket helm",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 19991,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Blacksmith\u0027s helm",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 19988,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Deerstalker",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 12540,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Afro",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 12430,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Big pirate hat",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 12355,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Top hat",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 12432,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Monocle",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 12353,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Briefcase",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 12335,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Sagacious spectacles",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 12337,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Dark bow tie",
+          "dropRate": 7.843137254901961E-5,
+          "itemId": 19970,
+          "rarityDisplay": "1/12,750"
+        },
+        {
+          "itemName": "Dark tuxedo jacket",
+          "dropRate": 7.843137254901961E-5,
+          "itemId": 19958,
+          "rarityDisplay": "1/12,750"
+        },
+        {
+          "itemName": "Dark tuxedo cuffs",
+          "dropRate": 7.843137254901961E-5,
+          "itemId": 19961,
+          "rarityDisplay": "1/12,750"
+        },
+        {
+          "itemName": "Dark trousers",
+          "dropRate": 7.843137254901961E-5,
+          "itemId": 19964,
+          "rarityDisplay": "1/12,750"
+        },
+        {
+          "itemName": "Dark tuxedo shoes",
+          "dropRate": 7.843137254901961E-5,
+          "itemId": 19967,
+          "rarityDisplay": "1/12,750"
+        },
+        {
+          "itemName": "Light bow tie",
+          "dropRate": 7.843137254901961E-5,
+          "itemId": 19985,
+          "rarityDisplay": "1/12,750"
+        },
+        {
+          "itemName": "Light tuxedo jacket",
+          "dropRate": 7.843137254901961E-5,
+          "itemId": 19973,
+          "rarityDisplay": "1/12,750"
+        },
+        {
+          "itemName": "Light tuxedo cuffs",
+          "dropRate": 7.843137254901961E-5,
+          "itemId": 19976,
+          "rarityDisplay": "1/12,750"
+        },
+        {
+          "itemName": "Light trousers",
+          "dropRate": 7.843137254901961E-5,
+          "itemId": 19979,
+          "rarityDisplay": "1/12,750"
+        },
+        {
+          "itemName": "Light tuxedo shoes",
+          "dropRate": 7.843137254901961E-5,
+          "itemId": 19982,
+          "rarityDisplay": "1/12,750"
+        },
+        {
+          "itemName": "Rangers\u0027 tights",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 23249,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Uri\u0027s hat",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 23255,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Giant boot",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 23252,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Fremennik kilt",
+          "dropRate": 7.84313725490196E-4,
+          "itemId": 23246,
+          "rarityDisplay": "1/1,275"
+        },
+        {
+          "itemName": "Ring of 3rd Age",
           "dropRate": 0.024,
           "itemId": 23185,
           "rarityDisplay": "6/250"
@@ -3047,7 +5731,289 @@
       "wikiPage": "Reward casket (master)",
       "drops": [
         {
-          "itemName": "Ring of 3rd age",
+          "itemName": "Occult ornament kit",
+          "dropRate": 0.0011750881316098707,
+          "itemId": 20065,
+          "rarityDisplay": "1/851"
+        },
+        {
+          "itemName": "Torture ornament kit",
+          "dropRate": 0.0011750881316098707,
+          "itemId": 20062,
+          "rarityDisplay": "1/851"
+        },
+        {
+          "itemName": "Anguish ornament kit",
+          "dropRate": 0.0011750881316098707,
+          "itemId": 22246,
+          "rarityDisplay": "1/851"
+        },
+        {
+          "itemName": "Tormented ornament kit",
+          "dropRate": 0.0011750881316098707,
+          "itemId": 23348,
+          "rarityDisplay": "1/851"
+        },
+        {
+          "itemName": "Dragon defender ornament kit",
+          "dropRate": 0.0011750881316098707,
+          "itemId": 20143,
+          "rarityDisplay": "1/851"
+        },
+        {
+          "itemName": "Dragon kiteshield ornament kit",
+          "dropRate": 3.916960438699569E-5,
+          "itemId": 22239,
+          "rarityDisplay": "1/25,530"
+        },
+        {
+          "itemName": "Dragon platebody ornament kit",
+          "dropRate": 7.833920877399138E-5,
+          "itemId": 22236,
+          "rarityDisplay": "1/12,765"
+        },
+        {
+          "itemName": "Hood of darkness",
+          "dropRate": 0.0011750881316098707,
+          "itemId": 20128,
+          "rarityDisplay": "1/851"
+        },
+        {
+          "itemName": "Robe top of darkness",
+          "dropRate": 0.0011750881316098707,
+          "itemId": 20131,
+          "rarityDisplay": "1/851"
+        },
+        {
+          "itemName": "Gloves of darkness",
+          "dropRate": 0.0011750881316098707,
+          "itemId": 20134,
+          "rarityDisplay": "1/851"
+        },
+        {
+          "itemName": "Robe bottom of darkness",
+          "dropRate": 0.0011750881316098707,
+          "itemId": 20137,
+          "rarityDisplay": "1/851"
+        },
+        {
+          "itemName": "Boots of darkness",
+          "dropRate": 0.0011750881316098707,
+          "itemId": 20140,
+          "rarityDisplay": "1/851"
+        },
+        {
+          "itemName": "Samurai kasa",
+          "dropRate": 0.0011750881316098707,
+          "itemId": 20035,
+          "rarityDisplay": "1/851"
+        },
+        {
+          "itemName": "Samurai shirt",
+          "dropRate": 0.0011750881316098707,
+          "itemId": 20038,
+          "rarityDisplay": "1/851"
+        },
+        {
+          "itemName": "Samurai gloves",
+          "dropRate": 0.0011750881316098707,
+          "itemId": 20041,
+          "rarityDisplay": "1/851"
+        },
+        {
+          "itemName": "Samurai greaves",
+          "dropRate": 0.0011750881316098707,
+          "itemId": 20044,
+          "rarityDisplay": "1/851"
+        },
+        {
+          "itemName": "Samurai boots",
+          "dropRate": 0.0011750881316098707,
+          "itemId": 20047,
+          "rarityDisplay": "1/851"
+        },
+        {
+          "itemName": "Arceuus hood",
+          "dropRate": 0.0011750881316098707,
+          "itemId": 20113,
+          "rarityDisplay": "1/851"
+        },
+        {
+          "itemName": "Hosidius hood",
+          "dropRate": 0.0011750881316098707,
+          "itemId": 20116,
+          "rarityDisplay": "1/851"
+        },
+        {
+          "itemName": "Lovakengj hood",
+          "dropRate": 0.0011750881316098707,
+          "itemId": 20119,
+          "rarityDisplay": "1/851"
+        },
+        {
+          "itemName": "Piscarilius hood",
+          "dropRate": 0.0011750881316098707,
+          "itemId": 20122,
+          "rarityDisplay": "1/851"
+        },
+        {
+          "itemName": "Shayzien hood",
+          "dropRate": 0.0011750881316098707,
+          "itemId": 20125,
+          "rarityDisplay": "1/851"
+        },
+        {
+          "itemName": "Old demon mask",
+          "dropRate": 0.0011750881316098707,
+          "itemId": 20029,
+          "rarityDisplay": "1/851"
+        },
+        {
+          "itemName": "Lesser demon mask",
+          "dropRate": 0.0011750881316098707,
+          "itemId": 20020,
+          "rarityDisplay": "1/851"
+        },
+        {
+          "itemName": "Greater demon mask",
+          "dropRate": 0.0011750881316098707,
+          "itemId": 20023,
+          "rarityDisplay": "1/851"
+        },
+        {
+          "itemName": "Black demon mask",
+          "dropRate": 0.0011750881316098707,
+          "itemId": 20026,
+          "rarityDisplay": "1/851"
+        },
+        {
+          "itemName": "Jungle demon mask",
+          "dropRate": 0.0011750881316098707,
+          "itemId": 20032,
+          "rarityDisplay": "1/851"
+        },
+        {
+          "itemName": "Left eye patch",
+          "dropRate": 0.0011750881316098707,
+          "itemId": 19724,
+          "rarityDisplay": "1/851"
+        },
+        {
+          "itemName": "Bowl wig",
+          "dropRate": 0.0011750881316098707,
+          "itemId": 20110,
+          "rarityDisplay": "1/851"
+        },
+        {
+          "itemName": "Ale of the gods",
+          "dropRate": 0.0011750881316098707,
+          "itemId": 20056,
+          "rarityDisplay": "1/851"
+        },
+        {
+          "itemName": "Obsidian cape (r)",
+          "dropRate": 0.0011750881316098707,
+          "itemId": 20050,
+          "rarityDisplay": "1/851"
+        },
+        {
+          "itemName": "Fancy tiara",
+          "dropRate": 0.0011750881316098707,
+          "itemId": 20008,
+          "rarityDisplay": "1/851"
+        },
+        {
+          "itemName": "Half moon spectacles",
+          "dropRate": 0.0011750881316098707,
+          "itemId": 20053,
+          "rarityDisplay": "1/851"
+        },
+        {
+          "itemName": "Armadyl godsword ornament kit",
+          "dropRate": 2.937720329024677E-4,
+          "itemId": 20068,
+          "rarityDisplay": "1/3,404"
+        },
+        {
+          "itemName": "Bandos godsword ornament kit",
+          "dropRate": 2.937720329024677E-4,
+          "itemId": 20071,
+          "rarityDisplay": "1/3,404"
+        },
+        {
+          "itemName": "Saradomin godsword ornament kit",
+          "dropRate": 2.937720329024677E-4,
+          "itemId": 20074,
+          "rarityDisplay": "1/3,404"
+        },
+        {
+          "itemName": "Zamorak godsword ornament kit",
+          "dropRate": 2.937720329024677E-4,
+          "itemId": 20077,
+          "rarityDisplay": "1/3,404"
+        },
+        {
+          "itemName": "Ankou mask",
+          "dropRate": 7.833920877399138E-5,
+          "itemId": 20095,
+          "rarityDisplay": "1/12,765"
+        },
+        {
+          "itemName": "Ankou top",
+          "dropRate": 7.833920877399138E-5,
+          "itemId": 20098,
+          "rarityDisplay": "1/12,765"
+        },
+        {
+          "itemName": "Ankou gloves",
+          "dropRate": 7.833920877399138E-5,
+          "itemId": 20101,
+          "rarityDisplay": "1/12,765"
+        },
+        {
+          "itemName": "Ankou\u0027s leggings",
+          "dropRate": 7.833920877399138E-5,
+          "itemId": 20104,
+          "rarityDisplay": "1/12,765"
+        },
+        {
+          "itemName": "Ankou socks",
+          "dropRate": 7.833920877399138E-5,
+          "itemId": 20107,
+          "rarityDisplay": "1/12,765"
+        },
+        {
+          "itemName": "Mummy\u0027s head",
+          "dropRate": 7.833920877399138E-5,
+          "itemId": 20080,
+          "rarityDisplay": "1/12,765"
+        },
+        {
+          "itemName": "Mummy\u0027s body",
+          "dropRate": 7.833920877399138E-5,
+          "itemId": 20083,
+          "rarityDisplay": "1/12,765"
+        },
+        {
+          "itemName": "Mummy\u0027s hands",
+          "dropRate": 7.833920877399138E-5,
+          "itemId": 20086,
+          "rarityDisplay": "1/12,765"
+        },
+        {
+          "itemName": "Mummy\u0027s legs",
+          "dropRate": 7.833920877399138E-5,
+          "itemId": 20089,
+          "rarityDisplay": "1/12,765"
+        },
+        {
+          "itemName": "Mummy\u0027s feet",
+          "dropRate": 7.833920877399138E-5,
+          "itemId": 20092,
+          "rarityDisplay": "1/12,765"
+        },
+        {
+          "itemName": "Ring of 3rd Age",
           "dropRate": 0.02631578947368421,
           "itemId": 23185,
           "rarityDisplay": "6/228"
@@ -3071,7 +6037,7 @@
           "rarityDisplay": "1/32"
         },
         {
-          "itemName": "Pet penance queen",
+          "itemName": "Pet Penance Queen",
           "dropRate": 0.001,
           "itemId": -1,
           "rarityDisplay": "1/1,000"
@@ -3176,25 +6142,25 @@
           "itemName": "Gnome goggles",
           "dropRate": 0.059895833333333336,
           "itemId": 9472,
-          "rarityDisplay": "1/17"
+          "rarityDisplay": "23/384"
         },
         {
           "itemName": "Gnome scarf",
           "dropRate": 0.059895833333333336,
           "itemId": 9470,
-          "rarityDisplay": "1/17"
+          "rarityDisplay": "23/384"
         },
         {
           "itemName": "Grand seed pod",
           "dropRate": 0.044921875,
           "itemId": 9469,
-          "rarityDisplay": "1/22"
+          "rarityDisplay": "23/512"
         },
         {
           "itemName": "Mint cake",
           "dropRate": 0.044921875,
           "itemId": 9475,
-          "rarityDisplay": "1/22"
+          "rarityDisplay": "23/512"
         }
       ]
     },
@@ -3995,7 +6961,7 @@
       "wikiPage": "Spoils of war",
       "drops": [
         {
-          "itemName": "Lil\u0027 creator",
+          "itemName": "Lil\u0027 Creator",
           "dropRate": 0.0025,
           "itemId": -1,
           "rarityDisplay": "1/400"
@@ -4058,7 +7024,7 @@
           "itemName": "Nothing",
           "dropRate": 0.2578125,
           "itemId": -1,
-          "rarityDisplay": "1/4"
+          "rarityDisplay": "33/128"
         },
         {
           "itemName": "Vial of water",
@@ -4112,34 +7078,34 @@
           "itemName": "Echo crystal",
           "dropRate": 0.002903225806451613,
           "itemId": 28942,
-          "rarityDisplay": "1/344"
+          "rarityDisplay": "126/43,400"
         },
         {
           "itemName": "Sunfire fanatic helm",
           "dropRate": 0.0016129032258064516,
           "itemId": 28933,
-          "rarityDisplay": "1/620"
+          "rarityDisplay": "70/43,400"
         },
         {
           "itemName": "Sunfire fanatic cuirass",
           "dropRate": 0.0016129032258064516,
           "itemId": 28936,
-          "rarityDisplay": "1/620"
+          "rarityDisplay": "70/43,400"
         },
         {
           "itemName": "Sunfire fanatic chausses",
           "dropRate": 0.0016129032258064516,
           "itemId": 28939,
-          "rarityDisplay": "1/620"
+          "rarityDisplay": "70/43,400"
         },
         {
-          "itemName": "Tonalztics of ralos (uncharged)",
+          "itemName": "Tonalztics of Ralos (uncharged)",
           "dropRate": 7.621951219512195E-4,
           "itemId": 28919,
-          "rarityDisplay": "1/1,312"
+          "rarityDisplay": "35/45,920"
         },
         {
-          "itemName": "Smol heredit",
+          "itemName": "Smol Heredit",
           "dropRate": 0.005,
           "itemId": -1,
           "rarityDisplay": "1/200"
@@ -4148,7 +7114,7 @@
           "itemName": "Uncut onyx",
           "dropRate": 0.022916666666666665,
           "itemId": 6571,
-          "rarityDisplay": "1/44"
+          "rarityDisplay": "110/4,800"
         }
       ]
     },
@@ -4473,6 +7439,12 @@
           "dropRate": 0.001953125,
           "itemId": 4113,
           "rarityDisplay": "1/512"
+        },
+        {
+          "itemName": "Necklace of Fangs",
+          "dropRate": 0.007751937984496124,
+          "itemId": 34401,
+          "rarityDisplay": "1/129"
         }
       ]
     },
@@ -4601,6 +7573,12 @@
           "rarityDisplay": "1/512"
         },
         {
+          "itemName": "Necklace of Fangs",
+          "dropRate": 0.007751937984496124,
+          "itemId": 34401,
+          "rarityDisplay": "1/129"
+        },
+        {
           "itemName": "Abyssal whip",
           "dropRate": 0.001953125,
           "itemId": 4151,
@@ -4655,7 +7633,7 @@
       "wikiPage": "TzTok-Jad",
       "drops": [
         {
-          "itemName": "Tzrek-jad",
+          "itemName": "TzRek-Jad",
           "dropRate": 0.005,
           "itemId": -1,
           "rarityDisplay": "1/200"
@@ -4667,7 +7645,7 @@
       "wikiPage": "TzKal-Zuk",
       "drops": [
         {
-          "itemName": "Jal-nib-rek",
+          "itemName": "Jal-Nib-Rek",
           "dropRate": 0.01,
           "itemId": -1,
           "rarityDisplay": "1/100"
@@ -4679,13 +7657,13 @@
       "wikiPage": "TzHaar",
       "drops": [
         {
-          "itemName": "Tzrek-jad",
+          "itemName": "TzRek-Jad",
           "dropRate": 0.005,
           "itemId": -1,
           "rarityDisplay": "1/200"
         },
         {
-          "itemName": "Jal-nib-rek",
+          "itemName": "Jal-Nib-Rek",
           "dropRate": 0.01,
           "itemId": -1,
           "rarityDisplay": "1/100"
@@ -4709,7 +7687,7 @@
           "rarityDisplay": "2/100"
         },
         {
-          "itemName": "Mask of ranul",
+          "itemName": "Mask of Ranul",
           "dropRate": 0.001,
           "itemId": 23522,
           "rarityDisplay": "1/1,000"
@@ -4787,7 +7765,7 @@
           "rarityDisplay": "2/100"
         },
         {
-          "itemName": "Wine of zamorak",
+          "itemName": "Wine of Zamorak",
           "dropRate": 0.02,
           "itemId": 245,
           "rarityDisplay": "2/100"

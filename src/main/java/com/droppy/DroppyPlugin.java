@@ -421,22 +421,26 @@ public class DroppyPlugin extends Plugin
 
         List<String> obtainedParts = new ArrayList<>();
         List<String> dryParts = new ArrayList<>();
+        boolean hasKcChance = DropRateModel.supportsKcChance(monsterName);
 
         for (DropEntry drop : data.getDrops())
         {
-            String rateStr = drop.getRarityDisplay() != null
-                ? drop.getRarityDisplay()
-                : DropChanceCalculator.formatDropRate(drop.getDropRate());
+            String rateStr = DropRateModel.rateLabel(monsterName, drop);
 
             if (playerDataManager.hasItem(drop.getItemName()))
             {
                 int dropKc = playerDataManager.getItemDropKc(kcName, drop.getItemName());
                 if (dropKc > 0)
                 {
-                    double chanceAtDrop = DropChanceCalculator.calculateChance(drop.getDropRate(), dropKc);
-                    obtainedParts.add(drop.getItemName() + " " + rateStr
-                        + " at " + String.format("%,d", dropKc) + " kc "
-                        + DropChanceCalculator.formatPercent(chanceAtDrop));
+                    String part = drop.getItemName() + " " + rateStr
+                        + " at " + String.format("%,d", dropKc) + " kc";
+                    if (hasKcChance)
+                    {
+                        double chanceAtDrop = DropChanceCalculator.calculateChance(
+                            DropRateModel.perKillRate(monsterName, drop), dropKc);
+                        part += " " + DropChanceCalculator.formatPercent(chanceAtDrop);
+                    }
+                    obtainedParts.add(part);
                 }
                 else
                 {
@@ -446,11 +450,15 @@ public class DroppyPlugin extends Plugin
             else
             {
                 int kc = playerDataManager.getKcSinceLastDrop(kcName, drop.getItemName());
-                double chance = DropChanceCalculator.calculateChance(drop.getDropRate(), kc);
-
-                dryParts.add(drop.getItemName() + " " + rateStr
-                    + " — " + String.format("%,d", kc) + " dry "
-                    + DropChanceCalculator.formatPercent(chance));
+                String part = drop.getItemName() + " " + rateStr
+                    + " — " + String.format("%,d", kc) + " kc";
+                if (hasKcChance)
+                {
+                    double chance = DropChanceCalculator.calculateChance(
+                        DropRateModel.perKillRate(monsterName, drop), kc);
+                    part += " dry " + DropChanceCalculator.formatPercent(chance);
+                }
+                dryParts.add(part);
             }
         }
 

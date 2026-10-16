@@ -82,6 +82,10 @@ public class WikiScraper
         "(\\d+(?:\\.\\d+)?)\\s*/\\s*(\\d+(?:\\.\\d+)?)"
     );
 
+    private static final Pattern EXPRESSION_PATTERN = Pattern.compile(
+        "\\{\\{#expr:[^{}]+\\}\\}", Pattern.CASE_INSENSITIVE
+    );
+
     private static final Pattern PLINK_PATTERN = Pattern.compile(
         "\\{\\{plink\\|([^}|]+)", Pattern.CASE_INSENSITIVE
     );
@@ -90,16 +94,8 @@ public class WikiScraper
         "^===\\s*(.+?)\\s*===$", Pattern.MULTILINE
     );
 
-    private static final Map<String, Double> RARITY_KEYWORDS = new HashMap<>();
-
     static
     {
-        RARITY_KEYWORDS.put("always", 1.0);
-        RARITY_KEYWORDS.put("common", 1.0 / 16.0);
-        RARITY_KEYWORDS.put("uncommon", 1.0 / 64.0);
-        RARITY_KEYWORDS.put("rare", 1.0 / 128.0);
-        RARITY_KEYWORDS.put("very rare", 1.0 / 512.0);
-
         // --- Boss name mismatches ---
         WIKI_PAGES.put("Barrows Chests", List.of("Chest (Barrows)"));
         WIKI_PAGES.put("Crazy Archaeologist", List.of("Crazy archaeologist"));
@@ -188,11 +184,21 @@ public class WikiScraper
 
     private final OkHttpClient httpClient = new OkHttpClient();
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    private final Map<String, String> expressionCache = new HashMap<>();
     private Map<String, Integer> itemIdMapping = new HashMap<>();
 
     public static void main(String[] args) throws Exception
     {
-        new WikiScraper().run();
+        WikiScraper scraper = new WikiScraper();
+        try
+        {
+            scraper.run();
+        }
+        finally
+        {
+            scraper.httpClient.dispatcher().executorService().shutdown();
+            scraper.httpClient.connectionPool().evictAll();
+        }
     }
 
     private void run() throws Exception
@@ -429,6 +435,10 @@ public class WikiScraper
             d.addProperty("itemName", drop.getItemName());
             d.addProperty("dropRate", drop.getDropRate());
             d.addProperty("itemId", drop.getItemId());
+            if (drop.getRollsPerKill() > 1)
+            {
+                d.addProperty("rollsPerKill", drop.getRollsPerKill());
+            }
             if (drop.getRarityDisplay() != null)
             {
                 d.addProperty("rarityDisplay", drop.getRarityDisplay());
@@ -569,7 +579,7 @@ public class WikiScraper
         return filtered;
     }
 
-    private List<DropEntry> parseDropsFromWikiText(String wikiText)
+    List<DropEntry> parseDropsFromWikiText(String wikiText)
     {
         List<DropEntry> drops = new ArrayList<>();
 
@@ -626,7 +636,19 @@ public class WikiScraper
                 }
             }
 
-            drops.add(new DropEntry(name.trim(), dropRate, itemId, rarityDisplay));
+            int rollsPerKill = 1;
+            if (paramMap.containsKey("rolls"))
+            {
+                try
+                {
+                    rollsPerKill = Integer.parseInt(paramMap.get("rolls").trim());
+                }
+                catch (NumberFormatException ignored)
+                {
+                }
+            }
+
+            drops.add(new DropEntry(name.trim(), dropRate, itemId, rarityDisplay, rollsPerKill));
         }
 
         return drops;
@@ -681,14 +703,14 @@ public class WikiScraper
         }
     }
 
-    private double parseRarity(String rarity)
+    double parseRarity(String rarity)
     {
         if (rarity == null || rarity.isEmpty())
         {
             return -1;
         }
 
-        String cleaned = rarity.trim()
+        String cleaned = expandWikiExpressions(rarity).trim()
             .replaceAll("<!--.*?-->", "")
             .replaceAll("\\{\\{.*?\\}\\}", "")
             .replaceAll("~", "")
@@ -699,25 +721,21 @@ public class WikiScraper
         {
             double numerator = Double.parseDouble(fractionMatcher.group(1));
             double denominator = Double.parseDouble(fractionMatcher.group(2));
+            // A range or conditional expression is not one fixed drop rate.
+            if (fractionMatcher.find())
+            {
+                return -1;
+            }
             if (denominator > 0)
             {
                 return numerator / denominator;
             }
         }
 
-        String lower = cleaned.toLowerCase();
-        for (Map.Entry<String, Double> entry : RARITY_KEYWORDS.entrySet())
-        {
-            if (lower.contains(entry.getKey()))
-            {
-                return entry.getValue();
-            }
-        }
-
         return -1;
     }
 
-    private String formatRarityDisplay(String rarity, double dropRate)
+    String formatRarityDisplay(String rarity, double dropRate)
     {
         if (rarity == null || rarity.isEmpty())
         {
@@ -725,7 +743,7 @@ public class WikiScraper
             return "1/" + String.format("%,d", denom);
         }
 
-        String cleaned = rarity.trim()
+        String cleaned = expandWikiExpressions(rarity).trim()
             .replaceAll("<!--.*?-->", "")
             .replaceAll("\\{\\{.*?\\}\\}", "")
             .replaceAll("~", "")
@@ -736,34 +754,66 @@ public class WikiScraper
         {
             String numStr = fractionMatcher.group(1);
             String denStr = fractionMatcher.group(2);
-
-            try
+            double num = Double.parseDouble(numStr);
+            double den = Double.parseDouble(denStr);
+            if (num == Math.floor(num) && den == Math.floor(den))
             {
-                double num = Double.parseDouble(numStr);
-                double den = Double.parseDouble(denStr);
-                if (num == Math.floor(num) && den == Math.floor(den))
-                {
-                    long n = (long) num;
-                    long d = (long) den;
-
-                    if (n <= 10)
-                    {
-                        return String.format("%,d", n) + "/" + String.format("%,d", d);
-                    }
-
-                    long simpleDenom = Math.round(1.0 / dropRate);
-                    return "1/" + String.format("%,d", simpleDenom);
-                }
+                return String.format("%,d", (long) num)
+                    + "/" + String.format("%,d", (long) den);
             }
-            catch (NumberFormatException ignored)
-            {
-            }
-
             return numStr + "/" + denStr;
         }
 
         long denom = Math.round(1.0 / dropRate);
         return "1/" + String.format("%,d", denom);
+    }
+
+    private String expandWikiExpressions(String rarity)
+    {
+        Matcher matcher = EXPRESSION_PATTERN.matcher(rarity);
+        String expanded = rarity;
+        while (matcher.find())
+        {
+            String expression = matcher.group();
+            String value = expressionCache.computeIfAbsent(expression, this::fetchExpandedExpression);
+            expanded = expanded.replace(expression, value);
+        }
+        return expanded;
+    }
+
+    private String fetchExpandedExpression(String expression)
+    {
+        try
+        {
+            HttpUrl url = HttpUrl.parse(WIKI_API_BASE).newBuilder()
+                .addQueryParameter("action", "expandtemplates")
+                .addQueryParameter("prop", "wikitext")
+                .addQueryParameter("text", expression)
+                .addQueryParameter("format", "json")
+                .build();
+            Request request = new Request.Builder()
+                .url(url)
+                .header("User-Agent", USER_AGENT)
+                .build();
+
+            try (Response response = httpClient.newCall(request).execute())
+            {
+                if (response.isSuccessful() && response.body() != null)
+                {
+                    JsonObject result = new JsonParser().parse(response.body().string())
+                        .getAsJsonObject().getAsJsonObject("expandtemplates");
+                    if (result != null && result.has("wikitext"))
+                    {
+                        return result.get("wikitext").getAsString().trim();
+                    }
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println("WARNING: Could not expand wiki rarity expression: " + e.getMessage());
+        }
+        return expression;
     }
 
     private void fetchItemIdMapping()
@@ -821,7 +871,8 @@ public class WikiScraper
                     itemId = mappedId;
                 }
             }
-            resolved.add(new DropEntry(drop.getItemName(), drop.getDropRate(), itemId, drop.getRarityDisplay()));
+            resolved.add(new DropEntry(drop.getItemName(), drop.getDropRate(), itemId,
+                drop.getRarityDisplay(), drop.getRollsPerKill()));
         }
         return resolved;
     }
