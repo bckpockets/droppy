@@ -4,7 +4,7 @@ import java.util.Locale;
 import java.util.Set;
 
 /**
- * Relates a wiki table rate to the KC counted by Droppy. A reward-table weight
+ * Relates a wiki table rate to the KC counted by Dry Drop Tracker. A reward-table weight
  * is not a probability per completion unless the preceding rolls are known.
  */
 public final class DropRateModel

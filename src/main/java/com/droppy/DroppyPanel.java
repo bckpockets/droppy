@@ -146,12 +146,12 @@ public class DroppyPanel extends PluginPanel
         titleBar.setBackground(HEADER_COLOR);
         titleBar.setBorder(new EmptyBorder(10, 10, 6, 10));
 
-        JLabel titleLabel = new JLabel("Droppy");
+        JLabel titleLabel = new JLabel("Dry Drop Tracker");
         titleLabel.setFont(FontManager.getRunescapeBoldFont().deriveFont(16f));
         titleLabel.setForeground(Color.WHITE);
         titleBar.add(titleLabel, BorderLayout.WEST);
 
-        JLabel subtitleLabel = new JLabel("Are you dry or lucky? by SIP YE");
+        JLabel subtitleLabel = new JLabel("by SIP YE");
         subtitleLabel.setFont(FontManager.getRunescapeSmallFont());
         subtitleLabel.setForeground(ColorScheme.LIGHT_GRAY_COLOR);
         titleBar.add(subtitleLabel, BorderLayout.EAST);

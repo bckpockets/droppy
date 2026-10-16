@@ -56,7 +56,7 @@ public class DroppyApiClient
         HttpUrl baseUrl = HttpUrl.parse(apiBase + "/dry");
         if (baseUrl == null)
         {
-            log.debug("Invalid Droppy sharing API URL");
+            log.debug("Invalid Dry Drop Tracker sharing API URL");
             return null;
         }
 

@@ -43,9 +43,9 @@ import net.runelite.client.ui.NavigationButton;
 import okhttp3.OkHttpClient;
 @Slf4j
 @PluginDescriptor(
-    name = "Droppy",
-    description = "Shows your % chance of getting collection log drops based on KC",
-    tags = {"drop", "chance", "probability", "collection", "log", "kc", "calculator", "wiki"}
+    name = "Dry Drop Tracker",
+    description = "Tracks collection log drops and shows KC chance estimates for supported items",
+    tags = {"dry", "drop", "chance", "probability", "collection", "log", "kc", "calculator", "wiki"}
 )
 public class DroppyPlugin extends Plugin
 {
@@ -100,7 +100,7 @@ public class DroppyPlugin extends Plugin
     @Override
     protected void startUp() throws Exception
     {
-        log.info("Droppy plugin started");
+        log.info("Dry Drop Tracker plugin started");
 
         wikiDropFetcher = new WikiDropFetcher(gson);
         playerDataManager = new PlayerDataManager(configManager, gson);
@@ -126,7 +126,7 @@ public class DroppyPlugin extends Plugin
         BufferedImage icon = createPluginIcon();
 
         navButton = NavigationButton.builder()
-            .tooltip("Droppy - Drop Chance Calculator")
+            .tooltip("Dry Drop Tracker")
             .icon(icon)
             .priority(10)
             .panel(panel)
@@ -139,7 +139,7 @@ public class DroppyPlugin extends Plugin
     @Override
     protected void shutDown() throws Exception
     {
-        log.info("Droppy plugin stopped");
+        log.info("Dry Drop Tracker plugin stopped");
         chatCommandManager.unregisterCommand(DRY_COMMAND);
         clientToolbar.removeNavigation(navButton);
         playerDataManager.savePlayerData();

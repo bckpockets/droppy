@@ -27,7 +27,7 @@ import okhttp3.Response;
 public class WikiScraper
 {
     private static final String WIKI_API_BASE = "https://oldschool.runescape.wiki/api.php";
-    private static final String USER_AGENT = "Droppy RuneLite Plugin - Drop Table Scraper (https://github.com/bckpockets/droppy)";
+    private static final String USER_AGENT = "Dry Drop Tracker RuneLite Plugin - Drop Table Scraper (https://github.com/bckpockets/droppy)";
 
     private static final String[] ALL_CLOG_PAGES = {
         // Bosses
