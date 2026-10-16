@@ -63,7 +63,7 @@ public final class DropRateModel
             && !normalized.startsWith("theatre of blood")
             && !normalized.startsWith("tombs of amascut")
             && !normalized.equals("barrows")
-            && !normalized.equals("the corrupted gauntlet");
+            && !normalized.contains("gauntlet");
     }
 
     public static double perKillRate(String source, DropEntry drop)
@@ -103,7 +103,7 @@ public final class DropRateModel
                 return "Rate varies by mode";
             }
             if (normalized.equals("phosani's nightmare")
-                || normalized.equals("the corrupted gauntlet"))
+                || normalized.contains("gauntlet"))
             {
                 return "Rate varies by variant";
             }

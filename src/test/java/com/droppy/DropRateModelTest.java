@@ -16,12 +16,15 @@ public class DropRateModelTest
         assertFalse(DropRateModel.supportsKcChance("Tombs of Amascut"));
         assertFalse(DropRateModel.supportsKcChance("Chambers of Xeric: Challenge Mode"));
         assertFalse(DropRateModel.supportsKcChance("Pyramid Plunder"));
+        assertFalse(DropRateModel.supportsKcChance("The Gauntlet"));
+        assertFalse(DropRateModel.supportsKcChance("Reward Chest (The Gauntlet)"));
         assertFalse(DropRateModel.supportsKcChance("Zalcano"));
         assertFalse(DropRateModel.supportsKcChance("Barbarian Assault"));
         assertFalse(DropRateModel.supportsKcChance("Fishing Trawler"));
         assertTrue(Double.isNaN(DropRateModel.perKillRate("Tombs of Amascut", fang)));
         assertEquals("7/24 (conditional)", DropRateModel.rateLabel("Tombs of Amascut", fang));
         assertEquals("Rate varies by mode", DropRateModel.rateLabel("Chambers of Xeric: Challenge Mode", fang));
+        assertEquals("Rate varies by variant", DropRateModel.rateLabel("The Gauntlet", fang));
     }
 
     @Test

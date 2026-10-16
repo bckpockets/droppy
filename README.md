@@ -38,7 +38,7 @@ just play normally. when you attack something or get loot the panel auto-switche
 - green checkmarks on stuff you already have
 - progress bars that fill up as you go more dry
 
-The percentage is the chance of at least one drop across your tracked KC when a fixed per-kill rate is known. Dry Drop Tracker applies the wiki's roll count when an item gets multiple rolls per kill. Raid rewards, clue caskets, Wintertodt, and other conditional tables show their listed rate without a KC percentage because points, reward rolls, difficulty, or encounter choice can change the real chance. Known exceptions include Vorkath's head and Desert Treasure II vestiges: their current KC percentages do not model their special mechanics.
+The percentage is the chance of at least one drop across your tracked KC when a fixed per-kill rate is known. Dry Drop Tracker applies the wiki's roll count when an item gets multiple rolls per kill. Raid rewards, clue caskets, Wintertodt, and other conditional tables show their listed rate without a KC percentage because points, reward rolls, difficulty, or encounter choice can change the real chance. Gauntlet chest loot under a shared source name cannot distinguish normal from Corrupted rewards, so its rates are shown as variant dependent. Known exceptions include Vorkath's head and Desert Treasure II vestiges: their current KC percentages do not model their special mechanics.
 
 KC tracks automatically from loot drops, same way loot logger works. it also pulls in any existing KC you have from the loot tracker or chat-commands plugins so you don't start from zero
 

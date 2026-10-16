@@ -48,6 +48,8 @@ public class BundledDropDataTest
     {
         WikiDropFetcher fetcher = new WikiDropFetcher(new Gson());
         assertTrue(fetcher.getDropData("Easy Treasure Trails").getDrops().size() >= 100);
+        assertNotNull(fetcher.getDropData("Reward Chest (The Gauntlet)"));
+        assertNotNull(fetcher.getDropData("Corrupted Gauntlet"));
 
         DropEntry fang = find(fetcher, "Zulrah", "Tanzanite fang");
         assertEquals(2, fang.getRollsPerKill());

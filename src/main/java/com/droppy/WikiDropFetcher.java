@@ -97,6 +97,8 @@ public class WikiDropFetcher
         addAlias("Reward Cart (Wintertodt)", "Wintertodt");
         addAlias("Hallowed Sack", "Hallowed Sepulchre");
         addAlias("Spoils Of War", "Soul Wars");
+        addAlias("Reward Chest (The Gauntlet)", "The Gauntlet");
+        addAlias("Corrupted Gauntlet", "The Gauntlet");
 
         // Irregular plurals (NPC name -> clog page name)
         addAlias("Cyclops", "Cyclopes");
