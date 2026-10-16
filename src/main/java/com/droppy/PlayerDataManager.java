@@ -88,19 +88,21 @@ public class PlayerDataManager
 
     public void setKillCount(String monsterName, int kc)
     {
+        if (kc < 0)
+        {
+            return;
+        }
+
         String key = normalize(monsterName);
         int previousKc = killCounts.getOrDefault(key, 0);
+        if (kc <= previousKc)
+        {
+            return;
+        }
         killCounts.put(key, kc);
 
         int delta = kc - previousKc;
-        if (delta > 0)
-        {
-            kcSinceLastDrop.merge(key, delta, Integer::sum);
-        }
-        else if (previousKc == 0 && !kcSinceLastDrop.containsKey(key))
-        {
-            kcSinceLastDrop.put(key, kc);
-        }
+        kcSinceLastDrop.merge(key, delta, Integer::sum);
 
         dirty = true;
     }

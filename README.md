@@ -74,9 +74,9 @@ don't feel like fighting something to see the rates? switch to the search tab an
 runelite settings > Droppy:
 - show only unobtained items (hides stuff you already have)
 - highlight threshold % (default 50)
-- KC milestones
-- auto-switch panel when you start fighting
-- show/hide drop rates
+- track KC from game chat messages
+- detect new collection log items from game chat notifications
+- sharing API URL for `!dry` (leave blank to disable sharing)
 
 ---
 

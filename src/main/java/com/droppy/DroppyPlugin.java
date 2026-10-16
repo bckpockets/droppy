@@ -228,7 +228,17 @@ public class DroppyPlugin extends Plugin
 
         killCountManager.handleLootReceived(npcName);
         checkForCollectionLogDrops(npcName, event.getItems());
-        SwingUtilities.invokeLater(() -> panel.setCurrentMonster(npcName));
+        SwingUtilities.invokeLater(() ->
+        {
+            if (npcName.equalsIgnoreCase(panel.getCurrentFightMonster()))
+            {
+                panel.refreshCurrentForMonster(npcName);
+            }
+            else
+            {
+                panel.setCurrentMonster(npcName);
+            }
+        });
 
         log.debug("Loot received from NPC: {}", npcName);
     }
@@ -250,7 +260,17 @@ public class DroppyPlugin extends Plugin
         }
 
         checkForCollectionLogDrops(name, event.getItems());
-        SwingUtilities.invokeLater(() -> panel.setCurrentMonster(name));
+        SwingUtilities.invokeLater(() ->
+        {
+            if (name.equalsIgnoreCase(panel.getCurrentFightMonster()))
+            {
+                panel.refreshCurrentForMonster(name);
+            }
+            else
+            {
+                panel.setCurrentMonster(name);
+            }
+        });
 
         log.debug("Loot received (loot tracker): {} type={}", name, event.getType());
     }
@@ -281,32 +301,30 @@ public class DroppyPlugin extends Plugin
             }
         }
 
-        boolean anyNew = false;
+        boolean anyMatched = false;
         for (DropEntry drop : dropData.getDrops())
         {
-            if (playerDataManager.hasItem(drop.getItemName()))
-            {
-                continue;
-            }
-
             boolean matched = (drop.getItemId() > 0 && receivedIds.contains(drop.getItemId()))
                 || receivedNames.contains(drop.getItemName().toLowerCase().trim());
 
             if (matched)
             {
+                boolean newlyObtained = !playerDataManager.hasItem(drop.getItemName());
                 playerDataManager.recordCollectionLogItem(drop.getItemName(), monsterName);
-                log.info("Collection log drop detected from loot: {} from {}",
-                    drop.getItemName(), monsterName);
-                anyNew = true;
+                if (newlyObtained)
+                {
+                    log.info("Collection log drop detected from loot: {} from {}",
+                        drop.getItemName(), monsterName);
+                }
+                anyMatched = true;
             }
         }
 
-        if (anyNew)
+        if (anyMatched)
         {
             playerDataManager.savePlayerData();
             SwingUtilities.invokeLater(() ->
             {
-                panel.refreshCurrentForMonster(monsterName);
                 if (monsterName.equalsIgnoreCase(panel.getSearchedMonster()))
                 {
                     panel.refreshSearch();
@@ -551,7 +569,20 @@ public class DroppyPlugin extends Plugin
             {
                 return;
             }
-            response = apiClient.lookupDry(senderName);
+            String remoteSender = senderName;
+            executor.execute(() ->
+            {
+                String remoteResponse = apiClient.lookupDry(remoteSender);
+                if (remoteResponse != null)
+                {
+                    clientThread.invokeLater(() ->
+                    {
+                        chatMessage.getMessageNode().setRuneLiteFormatMessage(remoteResponse);
+                        client.refreshChat();
+                    });
+                }
+            });
+            return;
         }
 
         if (response == null)
