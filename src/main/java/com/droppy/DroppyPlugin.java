@@ -104,7 +104,7 @@ public class DroppyPlugin extends Plugin
 
         wikiDropFetcher = new WikiDropFetcher(gson);
         playerDataManager = new PlayerDataManager(configManager, gson);
-        killCountManager = new KillCountManager(playerDataManager, configManager);
+        killCountManager = new KillCountManager(playerDataManager, configManager, wikiDropFetcher);
         collectionLogManager = new CollectionLogManager(client, itemManager, playerDataManager);
         collectionLogImporter = new CollectionLogImporter(gson, playerDataManager);
 
