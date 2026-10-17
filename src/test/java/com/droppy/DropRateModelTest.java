@@ -21,6 +21,9 @@ public class DropRateModelTest
         assertFalse(DropRateModel.supportsKcChance("Zalcano"));
         assertFalse(DropRateModel.supportsKcChance("Barbarian Assault"));
         assertFalse(DropRateModel.supportsKcChance("Fishing Trawler"));
+        assertFalse(DropRateModel.supportsKcChance("Barrows Chest"));
+        assertFalse(DropRateModel.supportsKcChance("Lunar Chest"));
+        assertFalse(DropRateModel.supportsKcChance("Moons of Peril"));
         assertFalse(DropRateModel.supportsKcChance("Clue scroll (easy)"));
         assertFalse(DropRateModel.supportsKcChance("Reward casket (easy)"));
         assertFalse(DropRateModel.supportsKcChance("Hallowed sack"));

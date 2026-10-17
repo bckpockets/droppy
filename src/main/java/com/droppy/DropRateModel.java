@@ -25,6 +25,7 @@ public final class DropRateModel
         "hallowed sepulchre",
         "nex",
         "nightmare",
+        "moons of peril",
         "phosani's nightmare",
         "pyramid plunder",
         "royal titans",
@@ -69,6 +70,8 @@ public final class DropRateModel
             && !normalized.startsWith("theatre of blood")
             && !normalized.startsWith("tombs of amascut")
             && !normalized.equals("barrows")
+            && !normalized.startsWith("barrows chest")
+            && !normalized.startsWith("lunar chest")
             && !normalized.contains("gauntlet");
     }
 

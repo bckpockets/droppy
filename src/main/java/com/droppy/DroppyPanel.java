@@ -647,7 +647,8 @@ public class DroppyPanel extends PluginPanel
         titleLabel.setText(data.getMonsterName());
 
         int totalKc = killCountManager.getKillCount(monsterName);
-        int kcSinceDrop = playerDataManager.getKcSinceLastDrop(monsterName);
+        String kcSource = killCountManager.canonicalSource(monsterName);
+        int kcSinceDrop = playerDataManager.getKcSinceLastDrop(kcSource);
         if (totalKc > 0)
         {
             kcLabel.setText("Total KC: " + String.format("%,d", totalKc)
@@ -666,7 +667,7 @@ public class DroppyPanel extends PluginPanel
                 continue;
             }
 
-            JPanel row = createDropRow(monsterName, drop);
+            JPanel row = createDropRow(monsterName, kcSource, drop);
             dropsPanel.add(row);
             dropsPanel.add(Box.createVerticalStrut(1));
             count++;
@@ -684,10 +685,10 @@ public class DroppyPanel extends PluginPanel
         dropsPanel.repaint();
     }
 
-    private JPanel createDropRow(String monsterName, DropEntry drop)
+    private JPanel createDropRow(String monsterName, String kcSource, DropEntry drop)
     {
         boolean obtained = playerDataManager.hasItem(drop.getItemName());
-        int kc = playerDataManager.getKcSinceLastDrop(monsterName, drop.getItemName());
+        int kc = playerDataManager.getKcSinceLastDrop(kcSource, drop.getItemName());
         boolean hasKcChance = DropRateModel.supportsKcChance(monsterName, drop);
         double chance = hasKcChance
             ? DropChanceCalculator.calculateChance(DropRateModel.perKillRate(monsterName, drop), kc)

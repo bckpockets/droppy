@@ -310,7 +310,8 @@ public class DroppyPlugin extends Plugin
             if (matched)
             {
                 boolean newlyObtained = !playerDataManager.hasItem(drop.getItemName());
-                playerDataManager.recordCollectionLogItem(drop.getItemName(), monsterName);
+                playerDataManager.recordCollectionLogItem(drop.getItemName(),
+                    killCountManager.canonicalSource(monsterName));
                 if (newlyObtained)
                 {
                     log.info("Collection log drop detected from loot: {} from {}",
@@ -408,14 +409,14 @@ public class DroppyPlugin extends Plugin
         String displayName = data.getMonsterName();
 
         int totalKc = killCountManager.getKillCount(monsterName);
-        String kcName = monsterName;
+        String kcName = killCountManager.canonicalSource(monsterName);
         if (totalKc == 0 && !monsterName.equalsIgnoreCase(displayName))
         {
             int displayKc = killCountManager.getKillCount(displayName);
             if (displayKc > 0)
             {
                 totalKc = displayKc;
-                kcName = displayName;
+                kcName = killCountManager.canonicalSource(displayName);
             }
         }
 

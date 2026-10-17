@@ -42,7 +42,7 @@ The percentage is the chance of at least one drop across your tracked KC when a 
 
 The bundled catalogue includes every item in the 124 collection-log sections on the OSRS Wiki at the time of the last data refresh. Items without a usable numeric rate remain visible as "Rate unavailable" and receive no dry percentage. Ordinary loot outside the collection log is not included. KC imported from RuneLite or other plugins may include attempts before this plugin observed your drops, so a displayed historical dry streak depends on that imported history being complete. Wiki updates, new content, and differences between the Wiki and the in-game log require another data refresh and verification.
 
-KC tracks automatically from loot drops, same way loot logger works. it also pulls in any existing KC you have from the loot tracker or chat-commands plugins so you don't start from zero
+KC tracks automatically from loot and game chat messages. Chat KC is enabled by default and can fill a collection-log source even when its log page has no count. The plugin maps common game names such as Barrows chest and Lunar Chest to their collection-log pages, and keeps regular and Corrupted Gauntlet counts separate. It also imports existing KC from the loot tracker or chat-commands plugins. A count cannot be recovered from older chat messages that the plugin never observed.
 
 ### step 3: flex on your clan
 

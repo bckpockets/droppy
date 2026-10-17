@@ -99,6 +99,8 @@ public class WikiDropFetcher
         addAlias("Spoils Of War", "Soul Wars");
         addAlias("Reward Chest (The Gauntlet)", "The Gauntlet");
         addAlias("Corrupted Gauntlet", "The Corrupted Gauntlet");
+        addAlias("Lunar Chest", "Moons of Peril");
+        addAlias("Barrows Chest", "Barrows Chests");
 
         // Irregular plurals (NPC name -> clog page name)
         addAlias("Cyclops", "Cyclopes");

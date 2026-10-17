@@ -58,6 +58,7 @@ public class BundledDropDataTest
         assertTrue(fetcher.getDropData("Easy Treasure Trails").getDrops().size() >= 100);
         assertNotNull(fetcher.getDropData("Reward Chest (The Gauntlet)"));
         assertNotNull(fetcher.getDropData("Corrupted Gauntlet"));
+        assertEquals("Moons of Peril", fetcher.getDropData("Lunar Chest").getMonsterName());
         assertEquals(1.0 / 2000.0,
             find(fetcher, "The Gauntlet", "Enhanced crystal weapon seed").getDropRate(), 1e-12);
         assertEquals(1.0 / 400.0,

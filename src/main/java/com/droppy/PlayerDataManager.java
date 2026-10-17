@@ -56,8 +56,9 @@ public class PlayerDataManager
         loadSet(CLOG_SYNCED_KEY, syncedPages);
         loadMap(CLOG_ITEMS_KEY, clogItems);
 
+        boolean migrated = migrateLegacySourceHistory();
         loaded = true;
-        dirty = false;
+        dirty = migrated;
 
         log.debug("Loaded player data: {} kc entries, {} obtained items, {} synced pages",
             killCounts.size(), obtainedItems.size(), syncedPages.size());
@@ -251,6 +252,60 @@ public class PlayerDataManager
     public Set<String> getSyncedPages()
     {
         return new HashSet<>(syncedPages);
+    }
+
+    boolean migrateLegacySourceHistory()
+    {
+        boolean changed = false;
+        changed |= moveSourceHistory("barrows", "barrows chests");
+        changed |= moveSourceHistory("barrows chest", "barrows chests");
+        changed |= moveSourceHistory("lunar chest", "moons of peril");
+        changed |= moveSourceHistory("lunar chests", "moons of peril");
+        changed |= moveSourceHistory("gauntlet", "the gauntlet");
+        changed |= moveSourceHistory("gauntlet completion", "the gauntlet");
+        changed |= moveSourceHistory("corrupted gauntlet", "the corrupted gauntlet");
+        changed |= moveSourceHistory("corrupted gauntlet completion", "the corrupted gauntlet");
+        changed |= moveSourceHistory("the leviathan", "leviathan");
+        changed |= moveSourceHistory("the whisperer", "whisperer");
+        changed |= moveSourceHistory("the nightmare", "nightmare");
+        changed |= moveSourceHistory("the mimic", "mimic");
+        if (changed)
+        {
+            dirty = true;
+        }
+        return changed;
+    }
+
+    private boolean moveSourceHistory(String oldSource, String newSource)
+    {
+        boolean changed = false;
+        Integer kills = killCounts.remove(oldSource);
+        if (kills != null)
+        {
+            killCounts.merge(newSource, kills, Math::max);
+            changed = true;
+        }
+        Integer sinceDrop = kcSinceLastDrop.remove(oldSource);
+        if (sinceDrop != null)
+        {
+            kcSinceLastDrop.merge(newSource, sinceDrop, Math::max);
+            changed = true;
+        }
+        String oldPrefix = oldSource + "_";
+        for (String key : new HashSet<>(lastDropKc.keySet()))
+        {
+            if (key.startsWith(oldPrefix))
+            {
+                Integer lastKc = lastDropKc.remove(key);
+                if (lastKc != null)
+                {
+                    lastDropKc.merge(newSource + key.substring(oldSource.length()),
+                        lastKc, Math::max);
+                    changed = true;
+                }
+            }
+        }
+        return changed;
     }
 
 
