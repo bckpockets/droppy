@@ -68,7 +68,8 @@ public class WikiDropFetcher
                                 d.get("itemName").getAsString(),
                                 d.get("dropRate").getAsDouble(),
                                 d.get("itemId").getAsInt(),
-                                rarityDisplay
+                                rarityDisplay,
+                                d.has("rollsPerKill") ? d.get("rollsPerKill").getAsInt() : 1
                             ));
                         }
                     }
@@ -96,6 +97,10 @@ public class WikiDropFetcher
         addAlias("Reward Cart (Wintertodt)", "Wintertodt");
         addAlias("Hallowed Sack", "Hallowed Sepulchre");
         addAlias("Spoils Of War", "Soul Wars");
+        addAlias("Reward Chest (The Gauntlet)", "The Gauntlet");
+        addAlias("Corrupted Gauntlet", "The Corrupted Gauntlet");
+        addAlias("Lunar Chest", "Moons of Peril");
+        addAlias("Barrows Chest", "Barrows Chests");
 
         // Irregular plurals (NPC name -> clog page name)
         addAlias("Cyclops", "Cyclopes");
@@ -121,7 +126,7 @@ public class WikiDropFetcher
             return data;
         }
 
-        // Check aliases (e.g. "The Corrupted Gauntlet" -> "The Gauntlet")
+        // Check loot-event aliases.
         String aliasTarget = aliases.get(normalized);
         if (aliasTarget != null)
         {

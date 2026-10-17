@@ -43,9 +43,9 @@ import net.runelite.client.ui.NavigationButton;
 import okhttp3.OkHttpClient;
 @Slf4j
 @PluginDescriptor(
-    name = "Droppy",
-    description = "Shows your % chance of getting collection log drops based on KC",
-    tags = {"drop", "chance", "probability", "collection", "log", "kc", "calculator", "wiki"}
+    name = "Dry Drop Tracker",
+    description = "Tracks collection log drops and shows KC chance estimates for supported items",
+    tags = {"dry", "drop", "chance", "probability", "collection", "log", "kc", "calculator", "wiki"}
 )
 public class DroppyPlugin extends Plugin
 {
@@ -100,11 +100,11 @@ public class DroppyPlugin extends Plugin
     @Override
     protected void startUp() throws Exception
     {
-        log.info("Droppy plugin started");
+        log.info("Dry Drop Tracker plugin started");
 
         wikiDropFetcher = new WikiDropFetcher(gson);
         playerDataManager = new PlayerDataManager(configManager, gson);
-        killCountManager = new KillCountManager(playerDataManager, configManager);
+        killCountManager = new KillCountManager(playerDataManager, configManager, wikiDropFetcher);
         collectionLogManager = new CollectionLogManager(client, itemManager, playerDataManager);
         collectionLogImporter = new CollectionLogImporter(gson, playerDataManager);
 
@@ -126,7 +126,7 @@ public class DroppyPlugin extends Plugin
         BufferedImage icon = createPluginIcon();
 
         navButton = NavigationButton.builder()
-            .tooltip("Droppy - Drop Chance Calculator")
+            .tooltip("Dry Drop Tracker")
             .icon(icon)
             .priority(10)
             .panel(panel)
@@ -139,7 +139,7 @@ public class DroppyPlugin extends Plugin
     @Override
     protected void shutDown() throws Exception
     {
-        log.info("Droppy plugin stopped");
+        log.info("Dry Drop Tracker plugin stopped");
         chatCommandManager.unregisterCommand(DRY_COMMAND);
         clientToolbar.removeNavigation(navButton);
         playerDataManager.savePlayerData();
@@ -228,7 +228,17 @@ public class DroppyPlugin extends Plugin
 
         killCountManager.handleLootReceived(npcName);
         checkForCollectionLogDrops(npcName, event.getItems());
-        SwingUtilities.invokeLater(() -> panel.setCurrentMonster(npcName));
+        SwingUtilities.invokeLater(() ->
+        {
+            if (npcName.equalsIgnoreCase(panel.getCurrentFightMonster()))
+            {
+                panel.refreshCurrentForMonster(npcName);
+            }
+            else
+            {
+                panel.setCurrentMonster(npcName);
+            }
+        });
 
         log.debug("Loot received from NPC: {}", npcName);
     }
@@ -250,7 +260,17 @@ public class DroppyPlugin extends Plugin
         }
 
         checkForCollectionLogDrops(name, event.getItems());
-        SwingUtilities.invokeLater(() -> panel.setCurrentMonster(name));
+        SwingUtilities.invokeLater(() ->
+        {
+            if (name.equalsIgnoreCase(panel.getCurrentFightMonster()))
+            {
+                panel.refreshCurrentForMonster(name);
+            }
+            else
+            {
+                panel.setCurrentMonster(name);
+            }
+        });
 
         log.debug("Loot received (loot tracker): {} type={}", name, event.getType());
     }
@@ -281,32 +301,31 @@ public class DroppyPlugin extends Plugin
             }
         }
 
-        boolean anyNew = false;
+        boolean anyMatched = false;
         for (DropEntry drop : dropData.getDrops())
         {
-            if (playerDataManager.hasItem(drop.getItemName()))
-            {
-                continue;
-            }
-
             boolean matched = (drop.getItemId() > 0 && receivedIds.contains(drop.getItemId()))
                 || receivedNames.contains(drop.getItemName().toLowerCase().trim());
 
             if (matched)
             {
-                playerDataManager.recordCollectionLogItem(drop.getItemName(), monsterName);
-                log.info("Collection log drop detected from loot: {} from {}",
-                    drop.getItemName(), monsterName);
-                anyNew = true;
+                boolean newlyObtained = !playerDataManager.hasItem(drop.getItemName());
+                playerDataManager.recordCollectionLogItem(drop.getItemName(),
+                    killCountManager.canonicalSource(monsterName));
+                if (newlyObtained)
+                {
+                    log.info("Collection log drop detected from loot: {} from {}",
+                        drop.getItemName(), monsterName);
+                }
+                anyMatched = true;
             }
         }
 
-        if (anyNew)
+        if (anyMatched)
         {
             playerDataManager.savePlayerData();
             SwingUtilities.invokeLater(() ->
             {
-                panel.refreshCurrentForMonster(monsterName);
                 if (monsterName.equalsIgnoreCase(panel.getSearchedMonster()))
                 {
                     panel.refreshSearch();
@@ -390,14 +409,14 @@ public class DroppyPlugin extends Plugin
         String displayName = data.getMonsterName();
 
         int totalKc = killCountManager.getKillCount(monsterName);
-        String kcName = monsterName;
+        String kcName = killCountManager.canonicalSource(monsterName);
         if (totalKc == 0 && !monsterName.equalsIgnoreCase(displayName))
         {
             int displayKc = killCountManager.getKillCount(displayName);
             if (displayKc > 0)
             {
                 totalKc = displayKc;
-                kcName = displayName;
+                kcName = killCountManager.canonicalSource(displayName);
             }
         }
 
@@ -406,19 +425,23 @@ public class DroppyPlugin extends Plugin
 
         for (DropEntry drop : data.getDrops())
         {
-            String rateStr = drop.getRarityDisplay() != null
-                ? drop.getRarityDisplay()
-                : DropChanceCalculator.formatDropRate(drop.getDropRate());
+            boolean hasKcChance = DropRateModel.supportsKcChance(monsterName, drop);
+            String rateStr = DropRateModel.rateLabel(monsterName, drop);
 
             if (playerDataManager.hasItem(drop.getItemName()))
             {
                 int dropKc = playerDataManager.getItemDropKc(kcName, drop.getItemName());
                 if (dropKc > 0)
                 {
-                    double chanceAtDrop = DropChanceCalculator.calculateChance(drop.getDropRate(), dropKc);
-                    obtainedParts.add(drop.getItemName() + " " + rateStr
-                        + " at " + String.format("%,d", dropKc) + " kc "
-                        + DropChanceCalculator.formatPercent(chanceAtDrop));
+                    String part = drop.getItemName() + " " + rateStr
+                        + " at " + String.format("%,d", dropKc) + " kc";
+                    if (hasKcChance)
+                    {
+                        double chanceAtDrop = DropChanceCalculator.calculateChance(
+                            DropRateModel.perKillRate(monsterName, drop), dropKc);
+                        part += " " + DropChanceCalculator.formatPercent(chanceAtDrop);
+                    }
+                    obtainedParts.add(part);
                 }
                 else
                 {
@@ -428,11 +451,15 @@ public class DroppyPlugin extends Plugin
             else
             {
                 int kc = playerDataManager.getKcSinceLastDrop(kcName, drop.getItemName());
-                double chance = DropChanceCalculator.calculateChance(drop.getDropRate(), kc);
-
-                dryParts.add(drop.getItemName() + " " + rateStr
-                    + " — " + String.format("%,d", kc) + " dry "
-                    + DropChanceCalculator.formatPercent(chance));
+                String part = drop.getItemName() + " " + rateStr
+                    + " — " + String.format("%,d", kc) + " kc";
+                if (hasKcChance)
+                {
+                    double chance = DropChanceCalculator.calculateChance(
+                        DropRateModel.perKillRate(monsterName, drop), kc);
+                    part += " dry " + DropChanceCalculator.formatPercent(chance);
+                }
+                dryParts.add(part);
             }
         }
 
@@ -551,7 +578,20 @@ public class DroppyPlugin extends Plugin
             {
                 return;
             }
-            response = apiClient.lookupDry(senderName);
+            String remoteSender = senderName;
+            executor.execute(() ->
+            {
+                String remoteResponse = apiClient.lookupDry(remoteSender);
+                if (remoteResponse != null)
+                {
+                    clientThread.invokeLater(() ->
+                    {
+                        chatMessage.getMessageNode().setRuneLiteFormatMessage(remoteResponse);
+                        client.refreshChat();
+                    });
+                }
+            });
+            return;
         }
 
         if (response == null)

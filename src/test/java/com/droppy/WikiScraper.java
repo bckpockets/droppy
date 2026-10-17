@@ -27,7 +27,7 @@ import okhttp3.Response;
 public class WikiScraper
 {
     private static final String WIKI_API_BASE = "https://oldschool.runescape.wiki/api.php";
-    private static final String USER_AGENT = "Droppy RuneLite Plugin - Drop Table Scraper (https://github.com/bckpockets/droppy)";
+    private static final String USER_AGENT = "Dry Drop Tracker RuneLite Plugin - Drop Table Scraper (https://github.com/bckpockets/droppy)";
 
     private static final String[] ALL_CLOG_PAGES = {
         // Bosses
@@ -82,6 +82,10 @@ public class WikiScraper
         "(\\d+(?:\\.\\d+)?)\\s*/\\s*(\\d+(?:\\.\\d+)?)"
     );
 
+    private static final Pattern EXPRESSION_PATTERN = Pattern.compile(
+        "\\{\\{#expr:[^{}]+\\}\\}", Pattern.CASE_INSENSITIVE
+    );
+
     private static final Pattern PLINK_PATTERN = Pattern.compile(
         "\\{\\{plink\\|([^}|]+)", Pattern.CASE_INSENSITIVE
     );
@@ -90,16 +94,8 @@ public class WikiScraper
         "^===\\s*(.+?)\\s*===$", Pattern.MULTILINE
     );
 
-    private static final Map<String, Double> RARITY_KEYWORDS = new HashMap<>();
-
     static
     {
-        RARITY_KEYWORDS.put("always", 1.0);
-        RARITY_KEYWORDS.put("common", 1.0 / 16.0);
-        RARITY_KEYWORDS.put("uncommon", 1.0 / 64.0);
-        RARITY_KEYWORDS.put("rare", 1.0 / 128.0);
-        RARITY_KEYWORDS.put("very rare", 1.0 / 512.0);
-
         // --- Boss name mismatches ---
         WIKI_PAGES.put("Barrows Chests", List.of("Chest (Barrows)"));
         WIKI_PAGES.put("Crazy Archaeologist", List.of("Crazy archaeologist"));
@@ -163,7 +159,7 @@ public class WikiScraper
         PAGE_ALIASES.put("tombs of amascut", "Tombs of Amascut");
         PAGE_ALIASES.put("tombs of amascut: expert mode", "Tombs of Amascut");
         PAGE_ALIASES.put("the gauntlet", "The Gauntlet");
-        PAGE_ALIASES.put("the corrupted gauntlet", "The Gauntlet");
+        PAGE_ALIASES.put("corrupted gauntlet", "The Corrupted Gauntlet");
         PAGE_ALIASES.put("clue scroll (beginner)", "Beginner Treasure Trails");
         PAGE_ALIASES.put("clue scroll (easy)", "Easy Treasure Trails");
         PAGE_ALIASES.put("clue scroll (medium)", "Medium Treasure Trails");
@@ -188,11 +184,21 @@ public class WikiScraper
 
     private final OkHttpClient httpClient = new OkHttpClient();
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    private final Map<String, String> expressionCache = new HashMap<>();
     private Map<String, Integer> itemIdMapping = new HashMap<>();
 
     public static void main(String[] args) throws Exception
     {
-        new WikiScraper().run();
+        WikiScraper scraper = new WikiScraper();
+        try
+        {
+            scraper.run();
+        }
+        finally
+        {
+            scraper.httpClient.dispatcher().executorService().shutdown();
+            scraper.httpClient.connectionPool().evictAll();
+        }
     }
 
     private void run() throws Exception
@@ -206,6 +212,10 @@ public class WikiScraper
 
         fetchItemIdMapping();
         Map<String, Set<String>> clogItems = fetchCollectionLogItems();
+        if (clogItems.isEmpty())
+        {
+            throw new IOException("Collection log catalogue unavailable; refusing incomplete update");
+        }
 
         // Diagnostic: show which pages don't have matching clog sections
         Set<String> unmatchedPages = new LinkedHashSet<>();
@@ -247,6 +257,35 @@ public class WikiScraper
 
             try
             {
+                if (page.equals("The Gauntlet"))
+                {
+                    String wikiText = fetchWikiText("Reward Chest (The Gauntlet)");
+                    if (wikiText == null)
+                    {
+                        throw new IOException("Gauntlet reward chest page unavailable");
+                    }
+                    Set<String> pageItems = findClogItems(page, clogItems);
+                    List<DropEntry> regular = gauntletDrops(wikiText, "Regular loot table");
+                    List<DropEntry> corrupted = gauntletDrops(wikiText, "Corrupted loot table");
+                    if (pageItems != null)
+                    {
+                        regular = filterToClogItems(regular, pageItems);
+                        corrupted = filterToClogItems(corrupted, pageItems);
+                    }
+                    if (regular.isEmpty() || corrupted.isEmpty())
+                    {
+                        throw new IOException("Gauntlet reward sections have no usable rates");
+                    }
+                    monsters.add(normalizeName(page), buildMonsterJson(page,
+                        "Reward Chest (The Gauntlet)", resolveItemIds(
+                            completeClogDrops(regular, pageItems))));
+                    monsters.add(normalizeName("The Corrupted Gauntlet"),
+                        buildMonsterJson("The Corrupted Gauntlet",
+                            "Reward Chest (The Gauntlet)", resolveItemIds(
+                                completeClogDrops(corrupted, pageItems))));
+                    scraped++;
+                    continue;
+                }
                 List<String> wikiPages = WIKI_PAGES.getOrDefault(page, List.of(page));
                 List<DropEntry> allDrops = new ArrayList<>();
 
@@ -287,6 +326,7 @@ public class WikiScraper
                 if (pageItems != null)
                 {
                     deduped = filterToClogItems(deduped, pageItems);
+                    deduped = completeClogDrops(deduped, pageItems);
                 }
 
                 deduped = resolveItemIds(deduped);
@@ -311,6 +351,20 @@ public class WikiScraper
             }
         }
 
+        // The collection log gains sections between plugin releases. Keep all
+        // slots visible even when no source-specific numeric table is mapped yet.
+        for (Map.Entry<String, Set<String>> section : clogItems.entrySet())
+        {
+            String key = normalizeName(section.getKey());
+            if (!monsters.has(key))
+            {
+                monsters.add(key, buildMonsterJson(section.getKey(), section.getKey(),
+                    completeClogDrops(List.of(), section.getValue())));
+            }
+        }
+
+        verifyClogCoverage(monsters, clogItems);
+
         for (Map.Entry<String, String> entry : PAGE_ALIASES.entrySet())
         {
             aliases.addProperty(
@@ -321,6 +375,9 @@ public class WikiScraper
 
         root.add("monsters", monsters);
         root.add("aliases", aliases);
+        root.addProperty("collectionLogSections", clogItems.size());
+        root.addProperty("collectionLogSlots", clogItems.values().stream()
+            .mapToInt(Set::size).sum());
 
         Path output = Paths.get("src/main/resources/com/droppy/drops.json");
         Files.createDirectories(output.getParent());
@@ -330,6 +387,21 @@ public class WikiScraper
         System.out.println("Done! Scraped " + scraped + " clog pages (" + monsters.size()
             + " total entries), " + failed + " without drops.");
         System.out.println("Output: " + output.toAbsolutePath());
+    }
+
+    List<DropEntry> gauntletDrops(String wikiText, String sectionName)
+    {
+        Pattern heading = Pattern.compile("(?m)^==\\s*" + Pattern.quote(sectionName)
+            + "(?:<[^>]*>)?\\s*==\\s*$", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = heading.matcher(wikiText);
+        if (!matcher.find())
+        {
+            return List.of();
+        }
+        int start = matcher.end();
+        Matcher nextHeading = Pattern.compile("(?m)^==[^=].*?==\\s*$").matcher(wikiText);
+        int end = nextHeading.find(start) ? nextHeading.start() : wikiText.length();
+        return deduplicateDrops(parseDropsFromWikiText(wikiText.substring(start, end)));
     }
 
     private List<DropEntry> scrapeWikiPage(String wikiPage)
@@ -429,6 +501,10 @@ public class WikiScraper
             d.addProperty("itemName", drop.getItemName());
             d.addProperty("dropRate", drop.getDropRate());
             d.addProperty("itemId", drop.getItemId());
+            if (drop.getRollsPerKill() > 1)
+            {
+                d.addProperty("rollsPerKill", drop.getRollsPerKill());
+            }
             if (drop.getRarityDisplay() != null)
             {
                 d.addProperty("rarityDisplay", drop.getRarityDisplay());
@@ -452,6 +528,55 @@ public class WikiScraper
             }
         }
         return result;
+    }
+
+    List<DropEntry> completeClogDrops(List<DropEntry> knownDrops, Set<String> clogItems)
+    {
+        List<DropEntry> complete = new ArrayList<>(knownDrops);
+        if (clogItems == null)
+        {
+            return complete;
+        }
+        Set<String> knownNames = new HashSet<>();
+        for (DropEntry drop : knownDrops)
+        {
+            knownNames.add(drop.getItemName().trim().toLowerCase(java.util.Locale.ROOT));
+        }
+        for (String item : clogItems)
+        {
+            if (knownNames.add(item.trim().toLowerCase(java.util.Locale.ROOT)))
+            {
+                complete.add(new DropEntry(item, -1, -1, null));
+            }
+        }
+        return complete;
+    }
+
+    private void verifyClogCoverage(JsonObject monsters, Map<String, Set<String>> clogItems)
+        throws IOException
+    {
+        for (Map.Entry<String, Set<String>> section : clogItems.entrySet())
+        {
+            JsonObject source = monsters.getAsJsonObject(normalizeName(section.getKey()));
+            if (source == null)
+            {
+                throw new IOException("Missing collection-log section: " + section.getKey());
+            }
+            Set<String> actual = new HashSet<>();
+            for (JsonElement entry : source.getAsJsonArray("drops"))
+            {
+                actual.add(entry.getAsJsonObject().get("itemName").getAsString()
+                    .trim().toLowerCase(java.util.Locale.ROOT));
+            }
+            for (String item : section.getValue())
+            {
+                if (!actual.contains(item.trim().toLowerCase(java.util.Locale.ROOT)))
+                {
+                    throw new IOException("Missing collection-log item: "
+                        + section.getKey() + " / " + item);
+                }
+            }
+        }
     }
 
     private Map<String, Set<String>> fetchCollectionLogItems() throws Exception
@@ -508,7 +633,7 @@ public class WikiScraper
     {
         CLOG_SECTION_NAMES.put("Sol Heredit", List.of("Fortis Colosseum"));
         CLOG_SECTION_NAMES.put("Colosseum", List.of("Fortis Colosseum"));
-        CLOG_SECTION_NAMES.put("TzHaar", List.of("The Fight Caves", "The Inferno"));
+        CLOG_SECTION_NAMES.put("TzHaar", List.of("TzHaar", "The Fight Caves", "The Inferno"));
         CLOG_SECTION_NAMES.put("Spindel", List.of("Venenatis and Spindel"));
     }
 
@@ -569,7 +694,7 @@ public class WikiScraper
         return filtered;
     }
 
-    private List<DropEntry> parseDropsFromWikiText(String wikiText)
+    List<DropEntry> parseDropsFromWikiText(String wikiText)
     {
         List<DropEntry> drops = new ArrayList<>();
 
@@ -626,7 +751,19 @@ public class WikiScraper
                 }
             }
 
-            drops.add(new DropEntry(name.trim(), dropRate, itemId, rarityDisplay));
+            int rollsPerKill = 1;
+            if (paramMap.containsKey("rolls"))
+            {
+                try
+                {
+                    rollsPerKill = Integer.parseInt(paramMap.get("rolls").trim());
+                }
+                catch (NumberFormatException ignored)
+                {
+                }
+            }
+
+            drops.add(new DropEntry(name.trim(), dropRate, itemId, rarityDisplay, rollsPerKill));
         }
 
         return drops;
@@ -681,14 +818,14 @@ public class WikiScraper
         }
     }
 
-    private double parseRarity(String rarity)
+    double parseRarity(String rarity)
     {
         if (rarity == null || rarity.isEmpty())
         {
             return -1;
         }
 
-        String cleaned = rarity.trim()
+        String cleaned = expandWikiExpressions(rarity).trim()
             .replaceAll("<!--.*?-->", "")
             .replaceAll("\\{\\{.*?\\}\\}", "")
             .replaceAll("~", "")
@@ -699,25 +836,21 @@ public class WikiScraper
         {
             double numerator = Double.parseDouble(fractionMatcher.group(1));
             double denominator = Double.parseDouble(fractionMatcher.group(2));
+            // A range or conditional expression is not one fixed drop rate.
+            if (fractionMatcher.find())
+            {
+                return -1;
+            }
             if (denominator > 0)
             {
                 return numerator / denominator;
             }
         }
 
-        String lower = cleaned.toLowerCase();
-        for (Map.Entry<String, Double> entry : RARITY_KEYWORDS.entrySet())
-        {
-            if (lower.contains(entry.getKey()))
-            {
-                return entry.getValue();
-            }
-        }
-
         return -1;
     }
 
-    private String formatRarityDisplay(String rarity, double dropRate)
+    String formatRarityDisplay(String rarity, double dropRate)
     {
         if (rarity == null || rarity.isEmpty())
         {
@@ -725,7 +858,7 @@ public class WikiScraper
             return "1/" + String.format("%,d", denom);
         }
 
-        String cleaned = rarity.trim()
+        String cleaned = expandWikiExpressions(rarity).trim()
             .replaceAll("<!--.*?-->", "")
             .replaceAll("\\{\\{.*?\\}\\}", "")
             .replaceAll("~", "")
@@ -736,34 +869,66 @@ public class WikiScraper
         {
             String numStr = fractionMatcher.group(1);
             String denStr = fractionMatcher.group(2);
-
-            try
+            double num = Double.parseDouble(numStr);
+            double den = Double.parseDouble(denStr);
+            if (num == Math.floor(num) && den == Math.floor(den))
             {
-                double num = Double.parseDouble(numStr);
-                double den = Double.parseDouble(denStr);
-                if (num == Math.floor(num) && den == Math.floor(den))
-                {
-                    long n = (long) num;
-                    long d = (long) den;
-
-                    if (n <= 10)
-                    {
-                        return String.format("%,d", n) + "/" + String.format("%,d", d);
-                    }
-
-                    long simpleDenom = Math.round(1.0 / dropRate);
-                    return "1/" + String.format("%,d", simpleDenom);
-                }
+                return String.format("%,d", (long) num)
+                    + "/" + String.format("%,d", (long) den);
             }
-            catch (NumberFormatException ignored)
-            {
-            }
-
             return numStr + "/" + denStr;
         }
 
         long denom = Math.round(1.0 / dropRate);
         return "1/" + String.format("%,d", denom);
+    }
+
+    private String expandWikiExpressions(String rarity)
+    {
+        Matcher matcher = EXPRESSION_PATTERN.matcher(rarity);
+        String expanded = rarity;
+        while (matcher.find())
+        {
+            String expression = matcher.group();
+            String value = expressionCache.computeIfAbsent(expression, this::fetchExpandedExpression);
+            expanded = expanded.replace(expression, value);
+        }
+        return expanded;
+    }
+
+    private String fetchExpandedExpression(String expression)
+    {
+        try
+        {
+            HttpUrl url = HttpUrl.parse(WIKI_API_BASE).newBuilder()
+                .addQueryParameter("action", "expandtemplates")
+                .addQueryParameter("prop", "wikitext")
+                .addQueryParameter("text", expression)
+                .addQueryParameter("format", "json")
+                .build();
+            Request request = new Request.Builder()
+                .url(url)
+                .header("User-Agent", USER_AGENT)
+                .build();
+
+            try (Response response = httpClient.newCall(request).execute())
+            {
+                if (response.isSuccessful() && response.body() != null)
+                {
+                    JsonObject result = new JsonParser().parse(response.body().string())
+                        .getAsJsonObject().getAsJsonObject("expandtemplates");
+                    if (result != null && result.has("wikitext"))
+                    {
+                        return result.get("wikitext").getAsString().trim();
+                    }
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println("WARNING: Could not expand wiki rarity expression: " + e.getMessage());
+        }
+        return expression;
     }
 
     private void fetchItemIdMapping()
@@ -821,7 +986,8 @@ public class WikiScraper
                     itemId = mappedId;
                 }
             }
-            resolved.add(new DropEntry(drop.getItemName(), drop.getDropRate(), itemId, drop.getRarityDisplay()));
+            resolved.add(new DropEntry(drop.getItemName(), drop.getDropRate(), itemId,
+                drop.getRarityDisplay(), drop.getRollsPerKill()));
         }
         return resolved;
     }

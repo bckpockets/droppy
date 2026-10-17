@@ -15,7 +15,7 @@ public class DropChanceCalculator
             return 1.0;
         }
 
-        return 1.0 - Math.pow(1.0 - dropRate, killCount);
+        return -Math.expm1(killCount * Math.log1p(-dropRate));
     }
 
     public static String formatPercent(double probability)
@@ -36,6 +36,11 @@ public class DropChanceCalculator
             return "<0.01%";
         }
 
+        if (percent >= 99.995)
+        {
+            return ">99.99%";
+        }
+
         // Full precision
         if (percent >= 10.0)
         {
@@ -52,7 +57,8 @@ public class DropChanceCalculator
             return -1;
         }
 
-        return (int) Math.ceil(Math.log(1.0 - targetProbability) / Math.log(1.0 - dropRate));
+        double kills = Math.ceil(Math.log1p(-targetProbability) / Math.log1p(-dropRate));
+        return kills > Integer.MAX_VALUE ? Integer.MAX_VALUE : (int) kills;
     }
 
     public static String expectedKills(double dropRate)

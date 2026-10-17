@@ -10,27 +10,27 @@ import net.runelite.client.config.ConfigManager;
 @Slf4j
 public class KillCountManager
 {
-    // "Your Zulrah kill count is: 150."
-    private static final Pattern KC_PATTERN = Pattern.compile(
-        "Your (.+?) kill count is: ([\\d,]+)",
+    // Mirrors the game's count-message forms handled by RuneLite Chat Commands,
+    // after game colour tags have been removed.
+    private static final Pattern GAME_COUNT_PATTERN = Pattern.compile(
+        "^Your (?<pre>completion count for |subdued |completed )?"
+            + "(?<source>.+?) (?<post>(?:(?:kill|harvest|lap|completion|success|Total Ticket) )?"
+            + "(?:count )?)is: ?(?<kc>[\\d,]+)\\.?$",
         Pattern.CASE_INSENSITIVE
     );
 
-    // "Your completion count for Chambers of Xeric is: 50."
-    private static final Pattern KC_COMPLETION_PATTERN = Pattern.compile(
-        "Your completion count for (.+?) is: ([\\d,]+)",
+    private static final Pattern KC_FOR_PATTERN = Pattern.compile(
+        "^Your kill count for (.+?) is: ?([\\d,]+)\\.?$",
         Pattern.CASE_INSENSITIVE
     );
 
-    // "Your Chambers of Xeric count is: 50."
-    private static final Pattern KC_COUNT_PATTERN = Pattern.compile(
-        "Your (.+?) count is: ([\\d,]+)",
+    private static final Pattern RIFTS_CLOSED_PATTERN = Pattern.compile(
+        "^Amount of Rifts you have closed: ?([\\d,]+)\\.?$",
         Pattern.CASE_INSENSITIVE
     );
 
-    // "Your subdued Wintertodt count is: 100."
-    private static final Pattern KC_SUBDUED_PATTERN = Pattern.compile(
-        "Your subdued (.+?) count is: ([\\d,]+)",
+    private static final Pattern HUNTER_RUMOURS_PATTERN = Pattern.compile(
+        "^You have completed ([\\d,]+) rumours? for the Hunter Guild\\.?$",
         Pattern.CASE_INSENSITIVE
     );
 
@@ -38,9 +38,11 @@ public class KillCountManager
     private static final String LOOT_TRACKER_GROUP = "loottracker";
 
     private static final long CHAT_KC_DEDUP_WINDOW_MS = 2000;
+    private static final long CHEST_KC_DEDUP_WINDOW_MS = 10 * 60 * 1000;
 
     private final PlayerDataManager playerDataManager;
     private final ConfigManager configManager;
+    private final WikiDropFetcher wikiDropFetcher;
 
     private String lastKcMonster;
 
@@ -49,35 +51,41 @@ public class KillCountManager
 
     public KillCountManager(PlayerDataManager playerDataManager, ConfigManager configManager)
     {
+        this(playerDataManager, configManager, null);
+    }
+
+    public KillCountManager(PlayerDataManager playerDataManager, ConfigManager configManager,
+                            WikiDropFetcher wikiDropFetcher)
+    {
         this.playerDataManager = playerDataManager;
         this.configManager = configManager;
+        this.wikiDropFetcher = wikiDropFetcher;
     }
 
     public int getKillCount(String monsterName)
     {
-        int ourKc = playerDataManager.getKillCount(monsterName);
-        if (ourKc > 0)
+        String canonical = canonicalSource(monsterName);
+        if (canonical == null || canonical.isEmpty())
+        {
+            return 0;
+        }
+        int ourKc = playerDataManager.getKillCount(canonical);
+        if (configManager == null)
         {
             return ourKc;
         }
 
-        int chatCmdKc = readFromChatCommands(monsterName);
-        if (chatCmdKc > 0)
+        int chatCmdKc = Math.max(readFromChatCommands(monsterName),
+            canonical.equalsIgnoreCase(monsterName) ? 0 : readFromChatCommands(canonical));
+        int lootTrackerKc = Math.max(readFromLootTracker(monsterName),
+            canonical.equalsIgnoreCase(monsterName) ? 0 : readFromLootTracker(canonical));
+        int bestKc = Math.max(ourKc, Math.max(chatCmdKc, lootTrackerKc));
+        if (bestKc > ourKc)
         {
-            playerDataManager.setKillCount(monsterName, chatCmdKc);
-            log.debug("Imported KC from chat-commands for {}: {}", monsterName, chatCmdKc);
-            return chatCmdKc;
+            playerDataManager.setKillCount(canonical, bestKc);
+            log.debug("Imported higher KC for {}: {}", monsterName, bestKc);
         }
-
-        int lootTrackerKc = readFromLootTracker(monsterName);
-        if (lootTrackerKc > 0)
-        {
-            playerDataManager.setKillCount(monsterName, lootTrackerKc);
-            log.debug("Imported KC from loot tracker for {}: {}", monsterName, lootTrackerKc);
-            return lootTrackerKc;
-        }
-
-        return 0;
+        return bestKc;
     }
 
     private int readFromChatCommands(String monsterName)
@@ -147,22 +155,24 @@ public class KillCountManager
 
     public String handleChatMessage(String message)
     {
-        message = message.replaceAll("<[^>]+>", "").trim();
+        message = message.replaceAll("<[^>]+>", "")
+            .replaceAll("@[a-zA-Z0-9_]+@", "").trim();
 
         String monsterName = null;
         int kc = -1;
 
-        Matcher matcher = KC_PATTERN.matcher(message);
-        if (matcher.find())
+        Matcher matcher = GAME_COUNT_PATTERN.matcher(message);
+        if (matcher.matches()
+            && (matcher.group("pre") != null || !matcher.group("post").isBlank()))
         {
-            monsterName = matcher.group(1).trim();
-            kc = parseKc(matcher.group(2));
+            monsterName = matcher.group("source").trim();
+            kc = parseKc(matcher.group("kc"));
         }
 
         if (monsterName == null)
         {
-            matcher = KC_COMPLETION_PATTERN.matcher(message);
-            if (matcher.find())
+            matcher = KC_FOR_PATTERN.matcher(message);
+            if (matcher.matches())
             {
                 monsterName = matcher.group(1).trim();
                 kc = parseKc(matcher.group(2));
@@ -171,26 +181,27 @@ public class KillCountManager
 
         if (monsterName == null)
         {
-            matcher = KC_SUBDUED_PATTERN.matcher(message);
-            if (matcher.find())
+            matcher = RIFTS_CLOSED_PATTERN.matcher(message);
+            if (matcher.matches())
             {
-                monsterName = matcher.group(1).trim();
-                kc = parseKc(matcher.group(2));
+                monsterName = "Guardians of the Rift";
+                kc = parseKc(matcher.group(1));
             }
         }
 
         if (monsterName == null)
         {
-            matcher = KC_COUNT_PATTERN.matcher(message);
-            if (matcher.find())
+            matcher = HUNTER_RUMOURS_PATTERN.matcher(message);
+            if (matcher.matches())
             {
-                monsterName = matcher.group(1).trim();
-                kc = parseKc(matcher.group(2));
+                monsterName = "Hunter Guild";
+                kc = parseKc(matcher.group(1));
             }
         }
 
         if (monsterName != null && kc >= 0)
         {
+            monsterName = canonicalSource(monsterName);
             lastKcMonster = monsterName;
             playerDataManager.setKillCount(monsterName, kc);
 
@@ -206,10 +217,20 @@ public class KillCountManager
 
     public void handleLootReceived(String sourceName)
     {
+        sourceName = canonicalSource(sourceName);
+        if (sourceName == null || sourceName.isEmpty())
+        {
+            return;
+        }
         lastKcMonster = sourceName;
 
         if (sourceName.equalsIgnoreCase(chatKcMonster)
-            && System.currentTimeMillis() - chatKcTimestamp < CHAT_KC_DEDUP_WINDOW_MS)
+            && System.currentTimeMillis() - chatKcTimestamp
+                < (sourceName.equals("Moons of Peril")
+                    || sourceName.equals("Barrows Chests")
+                    || sourceName.equals("The Gauntlet")
+                    || sourceName.equals("The Corrupted Gauntlet")
+                    ? CHEST_KC_DEDUP_WINDOW_MS : CHAT_KC_DEDUP_WINDOW_MS))
         {
             chatKcMonster = null;
             log.debug("KC increment skipped for {} (chat already set)", sourceName);
@@ -228,7 +249,65 @@ public class KillCountManager
 
     public void setLastKcMonster(String name)
     {
-        this.lastKcMonster = name;
+        this.lastKcMonster = canonicalSource(name);
+    }
+
+    public String canonicalSource(String source)
+    {
+        if (source == null)
+        {
+            return null;
+        }
+        String normalized = source.trim().toLowerCase(java.util.Locale.ROOT);
+        switch (normalized)
+        {
+            case "barrows":
+            case "barrows chest":
+            case "barrows chests":
+                return "Barrows Chests";
+            case "lunar chest":
+            case "lunar chests":
+            case "moons of peril":
+                return "Moons of Peril";
+            case "gauntlet":
+            case "the gauntlet":
+                return "The Gauntlet";
+            case "corrupted gauntlet":
+            case "the corrupted gauntlet":
+                return "The Corrupted Gauntlet";
+            case "the leviathan":
+                return "Leviathan";
+            case "the whisperer":
+                return "Whisperer";
+            case "the nightmare":
+                return "Nightmare";
+            case "the mimic":
+                return "Mimic";
+            default:
+                String trimmed = source.trim();
+                if (wikiDropFetcher != null)
+                {
+                    MonsterDropData data = wikiDropFetcher.getDropData(trimmed);
+                    if (data != null && equivalentSourceName(trimmed, data.getMonsterName()))
+                    {
+                        return data.getMonsterName();
+                    }
+                }
+                return trimmed;
+        }
+    }
+
+    private boolean equivalentSourceName(String observed, String catalogue)
+    {
+        String left = observed.toLowerCase(java.util.Locale.ROOT);
+        String right = catalogue.toLowerCase(java.util.Locale.ROOT);
+        return left.equals(right)
+            || left.equals("the " + right)
+            || right.equals("the " + left)
+            || left.equals(right + "s")
+            || right.equals(left + "s")
+            || left.equals(right + "es")
+            || right.equals(left + "es");
     }
 
     private int parseKc(String kcStr)

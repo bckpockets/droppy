@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 import java.io.IOException;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.MediaType;
+import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -52,8 +53,15 @@ public class DroppyApiClient
 
     public String lookupDry(String playerName)
     {
+        HttpUrl baseUrl = HttpUrl.parse(apiBase + "/dry");
+        if (baseUrl == null)
+        {
+            log.debug("Invalid Dry Drop Tracker sharing API URL");
+            return null;
+        }
+
         Request request = new Request.Builder()
-            .url(apiBase + "/dry?name=" + playerName)
+            .url(baseUrl.newBuilder().addQueryParameter("name", playerName).build())
             .get()
             .build();
 

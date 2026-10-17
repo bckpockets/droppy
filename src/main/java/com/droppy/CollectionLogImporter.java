@@ -137,12 +137,15 @@ public class CollectionLogImporter
                         }
                     }
 
-                    playerDataManager.markPageSynced(pageName);
-                    pagesImported++;
+                    if (!playerDataManager.isPageSynced(pageName))
+                    {
+                        playerDataManager.markPageSynced(pageName);
+                        pagesImported++;
+                    }
                 }
             }
 
-            if (itemsImported > 0 || kcImported > 0)
+            if (itemsImported > 0 || kcImported > 0 || pagesImported > 0)
             {
                 playerDataManager.savePlayerData();
                 log.info("Imported from Collection Log plugin: {} items, {} KC entries, {} pages",
