@@ -58,7 +58,13 @@ public final class DropRateModel
         String normalized = source.toLowerCase(Locale.ROOT).trim();
         return !CONDITIONAL_SOURCES.contains(normalized)
             && !normalized.contains("treasure trails")
+            && !normalized.startsWith("clue scroll (")
+            && !normalized.startsWith("reward casket (")
             && !normalized.contains("wintertodt")
+            && !normalized.equals("hallowed sack")
+            && !normalized.equals("spoils of war")
+            && !normalized.startsWith("sarcophagus (pyramid plunder)")
+            && !normalized.startsWith("gold key ")
             && !normalized.startsWith("chambers of xeric")
             && !normalized.startsWith("theatre of blood")
             && !normalized.startsWith("tombs of amascut")
@@ -68,7 +74,7 @@ public final class DropRateModel
 
     public static double perKillRate(String source, DropEntry drop)
     {
-        if (!supportsKcChance(source))
+        if (!supportsKcChance(source, drop))
         {
             return Double.NaN;
         }
@@ -86,8 +92,31 @@ public final class DropRateModel
         return perRollRate;
     }
 
+    public static boolean supportsKcChance(String source, DropEntry drop)
+    {
+        if (!supportsKcChance(source) || drop == null
+            || drop.getDropRate() <= 0 || drop.getDropRate() > 1)
+        {
+            return false;
+        }
+
+        String item = drop.getItemName().toLowerCase(Locale.ROOT);
+        String normalized = source.toLowerCase(Locale.ROOT).trim();
+        // The 50th Vorkath head is guaranteed. Vestiges require three hidden
+        // progress rolls, so a single independent-roll formula is misleading.
+        return !(normalized.equals("vorkath") && item.equals("vorkath's head"))
+            && !((normalized.equals("vardorvis") || normalized.equals("duke sucellus")
+                || normalized.equals("the leviathan") || normalized.equals("leviathan")
+                || normalized.equals("the whisperer") || normalized.equals("whisperer"))
+                && item.endsWith(" vestige"));
+    }
+
     public static String rateLabel(String source, DropEntry drop)
     {
+        if (drop.getDropRate() <= 0)
+        {
+            return "Rate unavailable";
+        }
         if (isAmoxliatlFrozenTear(source, drop))
         {
             return "Always (quantity varies)";
@@ -103,7 +132,7 @@ public final class DropRateModel
                 return "Rate varies by mode";
             }
             if (normalized.equals("phosani's nightmare")
-                || normalized.contains("gauntlet"))
+                || normalized.equals("reward chest (the gauntlet)"))
             {
                 return "Rate varies by variant";
             }
@@ -113,11 +142,25 @@ public final class DropRateModel
             ? drop.getRarityDisplay()
             : DropChanceCalculator.formatDropRate(drop.getDropRate());
 
-        if (supportsKcChance(source) && drop.getRollsPerKill() > 1)
+        if (source != null && source.equalsIgnoreCase("Vorkath")
+            && drop.getItemName().equalsIgnoreCase("Vorkath's head"))
+        {
+            return rate + " (guaranteed on kill 50)";
+        }
+        if (drop.getItemName().toLowerCase(Locale.ROOT).endsWith(" vestige")
+            && !supportsKcChance(source, drop))
+        {
+            return rate + " (three hidden rolls)";
+        }
+        if (source != null && source.toLowerCase(Locale.ROOT).contains("gauntlet"))
+        {
+            return rate + " per completed run";
+        }
+        if (supportsKcChance(source, drop) && drop.getRollsPerKill() > 1)
         {
             return drop.getRollsPerKill() + " × " + rate + " per kill";
         }
-        if (!supportsKcChance(source))
+        if (!supportsKcChance(source, drop))
         {
             return rate + " (conditional)";
         }

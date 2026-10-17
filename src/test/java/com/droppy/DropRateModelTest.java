@@ -21,10 +21,15 @@ public class DropRateModelTest
         assertFalse(DropRateModel.supportsKcChance("Zalcano"));
         assertFalse(DropRateModel.supportsKcChance("Barbarian Assault"));
         assertFalse(DropRateModel.supportsKcChance("Fishing Trawler"));
+        assertFalse(DropRateModel.supportsKcChance("Clue scroll (easy)"));
+        assertFalse(DropRateModel.supportsKcChance("Reward casket (easy)"));
+        assertFalse(DropRateModel.supportsKcChance("Hallowed sack"));
+        assertFalse(DropRateModel.supportsKcChance("Spoils of war"));
+        assertFalse(DropRateModel.supportsKcChance("Gold key red"));
         assertTrue(Double.isNaN(DropRateModel.perKillRate("Tombs of Amascut", fang)));
         assertEquals("7/24 (conditional)", DropRateModel.rateLabel("Tombs of Amascut", fang));
         assertEquals("Rate varies by mode", DropRateModel.rateLabel("Chambers of Xeric: Challenge Mode", fang));
-        assertEquals("Rate varies by variant", DropRateModel.rateLabel("The Gauntlet", fang));
+        assertEquals("Rate varies by variant", DropRateModel.rateLabel("Reward Chest (The Gauntlet)", fang));
     }
 
     @Test
@@ -38,12 +43,18 @@ public class DropRateModelTest
     }
 
     @Test
-    public void ordinaryBossRateStaysPerKill()
+    public void guaranteedHeadAndHiddenVestigeDoNotUseIndependentRollChance()
     {
         DropEntry head = new DropEntry("Vorkath's head", 1.0 / 50.0, -1, "1/50");
+        DropEntry vestige = new DropEntry("Ultor vestige", 1.0 / 1088.0, -1, "1/1,088");
 
         assertTrue(DropRateModel.supportsKcChance("Vorkath"));
-        assertEquals(1.0 / 50.0, DropRateModel.perKillRate("Vorkath", head), 0);
+        assertFalse(DropRateModel.supportsKcChance("Vorkath", head));
+        assertTrue(Double.isNaN(DropRateModel.perKillRate("Vorkath", head)));
+        assertEquals("1/50 (guaranteed on kill 50)", DropRateModel.rateLabel("Vorkath", head));
+        assertFalse(DropRateModel.supportsKcChance("Vardorvis", vestige));
+        assertTrue(Double.isNaN(DropRateModel.perKillRate("Vardorvis", vestige)));
+        assertEquals("1/1,088 (three hidden rolls)", DropRateModel.rateLabel("Vardorvis", vestige));
     }
 
     @Test

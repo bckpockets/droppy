@@ -22,6 +22,11 @@ public class KillCountManager
         Pattern.CASE_INSENSITIVE
     );
 
+    private static final Pattern GAUNTLET_COMPLETION_PATTERN = Pattern.compile(
+        "Your (Corrupted )?Gauntlet completion count is: ([\\d,]+)",
+        Pattern.CASE_INSENSITIVE
+    );
+
     // "Your Chambers of Xeric count is: 50."
     private static final Pattern KC_COUNT_PATTERN = Pattern.compile(
         "Your (.+?) count is: ([\\d,]+)",
@@ -165,6 +170,17 @@ public class KillCountManager
             if (matcher.find())
             {
                 monsterName = matcher.group(1).trim();
+                kc = parseKc(matcher.group(2));
+            }
+        }
+
+        if (monsterName == null)
+        {
+            matcher = GAUNTLET_COMPLETION_PATTERN.matcher(message);
+            if (matcher.find())
+            {
+                monsterName = matcher.group(1) == null
+                    ? "The Gauntlet" : "The Corrupted Gauntlet";
                 kc = parseKc(matcher.group(2));
             }
         }

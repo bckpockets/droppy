@@ -421,10 +421,10 @@ public class DroppyPlugin extends Plugin
 
         List<String> obtainedParts = new ArrayList<>();
         List<String> dryParts = new ArrayList<>();
-        boolean hasKcChance = DropRateModel.supportsKcChance(monsterName);
 
         for (DropEntry drop : data.getDrops())
         {
+            boolean hasKcChance = DropRateModel.supportsKcChance(monsterName, drop);
             String rateStr = DropRateModel.rateLabel(monsterName, drop);
 
             if (playerDataManager.hasItem(drop.getItemName()))

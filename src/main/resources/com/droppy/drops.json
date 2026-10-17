@@ -9,6 +9,46 @@
           "dropRate": 0.01,
           "itemId": -1,
           "rarityDisplay": "1/100"
+        },
+        {
+          "itemName": "Abyssal orphan",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Abyssal head",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Bludgeon spine",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Bludgeon claw",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Bludgeon axon",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Jar of Miasma",
+          "dropRate": -1.0,
+          "itemId": 13277
+        },
+        {
+          "itemName": "Abyssal dagger",
+          "dropRate": -1.0,
+          "itemId": 13265
+        },
+        {
+          "itemName": "Abyssal whip",
+          "dropRate": -1.0,
+          "itemId": 4151
         }
       ]
     },
@@ -171,6 +211,11 @@
           "dropRate": 3.333333333333333E-4,
           "itemId": -1,
           "rarityDisplay": "1/3,000"
+        },
+        {
+          "itemName": "Coagulated venom",
+          "dropRate": -1.0,
+          "itemId": -1
         }
       ]
     },
@@ -352,6 +397,17 @@
           "itemId": 4740,
           "rollsPerKill": 7,
           "rarityDisplay": "125/1,012"
+        }
+      ]
+    },
+    "Bryophyta": {
+      "monsterName": "Bryophyta",
+      "wikiPage": "Bryophyta",
+      "drops": [
+        {
+          "itemName": "Bryophyta\u0027s essence",
+          "dropRate": -1.0,
+          "itemId": 22372
         }
       ]
     },
@@ -658,6 +714,21 @@
           "dropRate": 2.0E-4,
           "itemId": -1,
           "rarityDisplay": "1/5,000"
+        },
+        {
+          "itemName": "Elysian sigil",
+          "dropRate": -1.0,
+          "itemId": 12819
+        },
+        {
+          "itemName": "Spectral sigil",
+          "dropRate": -1.0,
+          "itemId": 12823
+        },
+        {
+          "itemName": "Arcane sigil",
+          "dropRate": -1.0,
+          "itemId": 12827
         }
       ]
     },
@@ -988,6 +1059,16 @@
           "dropRate": 3.333333333333333E-4,
           "itemId": -1,
           "rarityDisplay": "1/3,000"
+        },
+        {
+          "itemName": "Mole skin",
+          "dropRate": -1.0,
+          "itemId": 7418
+        },
+        {
+          "itemName": "Mole claw",
+          "dropRate": -1.0,
+          "itemId": 7416
         }
       ]
     },
@@ -1034,6 +1115,11 @@
           "dropRate": 2.0E-4,
           "itemId": 21745,
           "rarityDisplay": "1/5,000"
+        },
+        {
+          "itemName": "Granite dust",
+          "dropRate": -1.0,
+          "itemId": -1
         }
       ]
     },
@@ -1202,6 +1288,11 @@
           "dropRate": 3.333333333333333E-4,
           "itemId": -1,
           "rarityDisplay": "1/3,000"
+        },
+        {
+          "itemName": "Trident of the Seas",
+          "dropRate": -1.0,
+          "itemId": -1
         }
       ]
     },
@@ -1676,6 +1767,27 @@
           "dropRate": 5.263157894736842E-4,
           "itemId": 24495,
           "rarityDisplay": "1/1,900"
+        },
+        {
+          "itemName": "Slepey tablet",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Parasitic egg",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Obor": {
+      "monsterName": "Obor",
+      "wikiPage": "Obor",
+      "drops": [
+        {
+          "itemName": "Hill giant club",
+          "dropRate": -1.0,
+          "itemId": 20756
         }
       ]
     },
@@ -1712,6 +1824,11 @@
           "dropRate": 4.0E-4,
           "itemId": -1,
           "rarityDisplay": "1/2,500"
+        },
+        {
+          "itemName": "Charged ice",
+          "dropRate": -1.0,
+          "itemId": -1
         }
       ]
     },
@@ -1817,6 +1934,11 @@
           "dropRate": 0.013333333333333334,
           "itemId": -1,
           "rarityDisplay": "1/75"
+        },
+        {
+          "itemName": "Giantsoul amulet (uncharged)",
+          "dropRate": -1.0,
+          "itemId": -1
         }
       ]
     },
@@ -1997,6 +2119,11 @@
           "dropRate": 0.022916666666666665,
           "itemId": 6571,
           "rarityDisplay": "110/4,800"
+        },
+        {
+          "itemName": "Dizana\u0027s quiver (uncharged)",
+          "dropRate": -1.0,
+          "itemId": -1
         }
       ]
     },
@@ -2805,6 +2932,36 @@
           "dropRate": 0.0025,
           "itemId": -1,
           "rarityDisplay": "1/400"
+        },
+        {
+          "itemName": "Onyx",
+          "dropRate": -1.0,
+          "itemId": 6573
+        },
+        {
+          "itemName": "Xeric\u0027s guard",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Xeric\u0027s warrior",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Xeric\u0027s sentinel",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Xeric\u0027s general",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Xeric\u0027s champion",
+          "dropRate": -1.0,
+          "itemId": -1
         }
       ]
     },
@@ -2884,6 +3041,31 @@
           "dropRate": 0.0015384615384615385,
           "itemId": -1,
           "rarityDisplay": "1/650"
+        },
+        {
+          "itemName": "Sinhaza shroud tier 1",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Sinhaza shroud tier 2",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Sinhaza shroud tier 3",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Sinhaza shroud tier 4",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Sinhaza shroud tier 5",
+          "dropRate": -1.0,
+          "itemId": -1
         }
       ]
     },
@@ -2969,6 +3151,76 @@
           "dropRate": 0.02,
           "itemId": -1,
           "rarityDisplay": "1/50"
+        },
+        {
+          "itemName": "Tumeken\u0027s guardian",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Menaphite ornament kit",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Cursed phalanx",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Masori crafting kit",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Icthlarin\u0027s shroud (tier 1)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Icthlarin\u0027s shroud (tier 2)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Icthlarin\u0027s shroud (tier 3)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Icthlarin\u0027s shroud (tier 4)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Icthlarin\u0027s shroud (tier 5)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Remnant of Akkha",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Remnant of Ba-Ba",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Remnant of Kephri",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Remnant of Zebak",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Ancient remnant",
+          "dropRate": -1.0,
+          "itemId": -1
         }
       ]
     },
@@ -5363,6 +5615,11 @@
           "dropRate": 6.153846153846154E-4,
           "itemId": 23232,
           "rarityDisplay": "1/1,625"
+        },
+        {
+          "itemName": "Amulet of glory (t)",
+          "dropRate": -1.0,
+          "itemId": 10362
         }
       ]
     },
@@ -6026,6 +6283,257 @@
         }
       ]
     },
+    "Shared Treasure Trail Rewards": {
+      "monsterName": "Shared Treasure Trail Rewards",
+      "wikiPage": "Shared Treasure Trail Rewards",
+      "drops": [
+        {
+          "itemName": "Saradomin page 1",
+          "dropRate": -1.0,
+          "itemId": 3827
+        },
+        {
+          "itemName": "Saradomin page 2",
+          "dropRate": -1.0,
+          "itemId": 3828
+        },
+        {
+          "itemName": "Saradomin page 3",
+          "dropRate": -1.0,
+          "itemId": 3829
+        },
+        {
+          "itemName": "Saradomin page 4",
+          "dropRate": -1.0,
+          "itemId": 3830
+        },
+        {
+          "itemName": "Zamorak page 1",
+          "dropRate": -1.0,
+          "itemId": 3831
+        },
+        {
+          "itemName": "Zamorak page 2",
+          "dropRate": -1.0,
+          "itemId": 3832
+        },
+        {
+          "itemName": "Zamorak page 3",
+          "dropRate": -1.0,
+          "itemId": 3833
+        },
+        {
+          "itemName": "Zamorak page 4",
+          "dropRate": -1.0,
+          "itemId": 3834
+        },
+        {
+          "itemName": "Guthix page 1",
+          "dropRate": -1.0,
+          "itemId": 3835
+        },
+        {
+          "itemName": "Guthix page 2",
+          "dropRate": -1.0,
+          "itemId": 3836
+        },
+        {
+          "itemName": "Guthix page 3",
+          "dropRate": -1.0,
+          "itemId": 3837
+        },
+        {
+          "itemName": "Guthix page 4",
+          "dropRate": -1.0,
+          "itemId": 3838
+        },
+        {
+          "itemName": "Bandos page 1",
+          "dropRate": -1.0,
+          "itemId": 12613
+        },
+        {
+          "itemName": "Bandos page 2",
+          "dropRate": -1.0,
+          "itemId": 12614
+        },
+        {
+          "itemName": "Bandos page 3",
+          "dropRate": -1.0,
+          "itemId": 12615
+        },
+        {
+          "itemName": "Bandos page 4",
+          "dropRate": -1.0,
+          "itemId": 12616
+        },
+        {
+          "itemName": "Armadyl page 1",
+          "dropRate": -1.0,
+          "itemId": 12617
+        },
+        {
+          "itemName": "Armadyl page 2",
+          "dropRate": -1.0,
+          "itemId": 12618
+        },
+        {
+          "itemName": "Armadyl page 3",
+          "dropRate": -1.0,
+          "itemId": 12619
+        },
+        {
+          "itemName": "Armadyl page 4",
+          "dropRate": -1.0,
+          "itemId": 12620
+        },
+        {
+          "itemName": "Ancient page 1",
+          "dropRate": -1.0,
+          "itemId": 12621
+        },
+        {
+          "itemName": "Ancient page 2",
+          "dropRate": -1.0,
+          "itemId": 12622
+        },
+        {
+          "itemName": "Ancient page 3",
+          "dropRate": -1.0,
+          "itemId": 12623
+        },
+        {
+          "itemName": "Ancient page 4",
+          "dropRate": -1.0,
+          "itemId": 12624
+        },
+        {
+          "itemName": "Holy blessing",
+          "dropRate": -1.0,
+          "itemId": 20220
+        },
+        {
+          "itemName": "Unholy blessing",
+          "dropRate": -1.0,
+          "itemId": 20223
+        },
+        {
+          "itemName": "Peaceful blessing",
+          "dropRate": -1.0,
+          "itemId": 20226
+        },
+        {
+          "itemName": "War blessing",
+          "dropRate": -1.0,
+          "itemId": 20232
+        },
+        {
+          "itemName": "Honourable blessing",
+          "dropRate": -1.0,
+          "itemId": 20229
+        },
+        {
+          "itemName": "Ancient blessing",
+          "dropRate": -1.0,
+          "itemId": 20235
+        },
+        {
+          "itemName": "Nardah teleport",
+          "dropRate": -1.0,
+          "itemId": 12402
+        },
+        {
+          "itemName": "Mos le\u0027harmless teleport",
+          "dropRate": -1.0,
+          "itemId": 12411
+        },
+        {
+          "itemName": "Mort\u0027ton teleport",
+          "dropRate": -1.0,
+          "itemId": 12406
+        },
+        {
+          "itemName": "Feldip hills teleport",
+          "dropRate": -1.0,
+          "itemId": 12404
+        },
+        {
+          "itemName": "Lunar isle teleport",
+          "dropRate": -1.0,
+          "itemId": 12405
+        },
+        {
+          "itemName": "Digsite teleport",
+          "dropRate": -1.0,
+          "itemId": 12403
+        },
+        {
+          "itemName": "Piscatoris teleport",
+          "dropRate": -1.0,
+          "itemId": 12408
+        },
+        {
+          "itemName": "Pest control teleport",
+          "dropRate": -1.0,
+          "itemId": 12407
+        },
+        {
+          "itemName": "Tai bwo wannai teleport",
+          "dropRate": -1.0,
+          "itemId": 12409
+        },
+        {
+          "itemName": "Lumberyard teleport",
+          "dropRate": -1.0,
+          "itemId": 12642
+        },
+        {
+          "itemName": "Iorwerth camp teleport",
+          "dropRate": -1.0,
+          "itemId": 12410
+        },
+        {
+          "itemName": "Master scroll book",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Red firelighter",
+          "dropRate": -1.0,
+          "itemId": 7329
+        },
+        {
+          "itemName": "Green firelighter",
+          "dropRate": -1.0,
+          "itemId": 7330
+        },
+        {
+          "itemName": "Blue firelighter",
+          "dropRate": -1.0,
+          "itemId": 7331
+        },
+        {
+          "itemName": "Purple firelighter",
+          "dropRate": -1.0,
+          "itemId": 10326
+        },
+        {
+          "itemName": "White firelighter",
+          "dropRate": -1.0,
+          "itemId": 10327
+        },
+        {
+          "itemName": "Charge dragonstone jewellery scroll",
+          "dropRate": -1.0,
+          "itemId": 20238
+        },
+        {
+          "itemName": "Purple sweets",
+          "dropRate": -1.0,
+          "itemId": 10476
+        }
+      ]
+    },
     "Barbarian Assault": {
       "monsterName": "Barbarian Assault",
       "wikiPage": "Barbarian Assault",
@@ -6041,6 +6549,303 @@
           "dropRate": 0.001,
           "itemId": -1,
           "rarityDisplay": "1/1,000"
+        },
+        {
+          "itemName": "Fighter hat",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Ranger hat",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Runner hat",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Healer hat",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Fighter torso",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Penance skirt",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Runner boots",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Penance gloves",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Granite body",
+          "dropRate": -1.0,
+          "itemId": 10564
+        }
+      ]
+    },
+    "Brimhaven Agility Arena": {
+      "monsterName": "Brimhaven Agility Arena",
+      "wikiPage": "Brimhaven Agility Arena",
+      "drops": [
+        {
+          "itemName": "Agility arena ticket",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Brimhaven voucher",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Pirate\u0027s hook",
+          "dropRate": -1.0,
+          "itemId": 2997
+        },
+        {
+          "itemName": "Graceful hood (Agility Arena)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Graceful top (Agility Arena)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Graceful legs (Agility Arena)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Graceful gloves (Agility Arena)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Graceful boots (Agility Arena)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Graceful cape (Agility Arena)",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Castle Wars": {
+      "monsterName": "Castle Wars",
+      "wikiPage": "Castle Wars",
+      "drops": [
+        {
+          "itemName": "Decorative helm (red)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Decorative full helm (red)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Decorative armour (red platebody)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Decorative sword (red)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Decorative shield (red)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Decorative armour (red platelegs)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Decorative armour (red plateskirt)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Decorative boots (red)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Decorative helm (white)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Decorative full helm (white)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Decorative armour (white platebody)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Decorative sword (white)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Decorative shield (white)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Decorative armour (white platelegs)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Decorative armour (white plateskirt)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Decorative boots (white)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Decorative helm (gold)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Decorative full helm (gold)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Decorative armour (gold platebody)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Decorative sword (gold)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Decorative shield (gold)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Decorative armour (gold platelegs)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Decorative armour (gold plateskirt)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Decorative boots (gold)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Castlewars hood (Saradomin)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Castlewars cloak (Saradomin)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Castlewars hood (Zamorak)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Castlewars cloak (Zamorak)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Saradomin banner",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Zamorak banner",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Decorative armour (magic hat)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Decorative armour (magic top)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Decorative armour (magic legs)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Decorative armour (ranged top)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Decorative armour (ranged legs)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Decorative armour (quiver)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Saradomin halo",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Zamorak halo",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Guthix halo",
+          "dropRate": -1.0,
+          "itemId": -1
         }
       ]
     },
@@ -6101,6 +6906,26 @@
           "dropRate": 0.15,
           "itemId": -1,
           "rarityDisplay": "3/20"
+        },
+        {
+          "itemName": "Plain satchel",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Red satchel",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Black satchel",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gold satchel",
+          "dropRate": -1.0,
+          "itemId": -1
         }
       ]
     },
@@ -6164,6 +6989,97 @@
         }
       ]
     },
+    "Guardians Of The Rift": {
+      "monsterName": "Guardians of the Rift",
+      "wikiPage": "Guardians of the Rift",
+      "drops": [
+        {
+          "itemName": "Abyssal protector",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Abyssal pearls",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Catalytic talisman",
+          "dropRate": -1.0,
+          "itemId": 26798
+        },
+        {
+          "itemName": "Abyssal needle",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Abyssal green dye",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Abyssal blue dye",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Abyssal red dye",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Hat of the Eye",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Robe top of the Eye",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Robe bottoms of the Eye",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Boots of the Eye",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Ring of the elements",
+          "dropRate": -1.0,
+          "itemId": 26815
+        },
+        {
+          "itemName": "Abyssal lantern",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Guardian\u0027s eye",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Intricate pouch",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Lost bag",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Tarnished locket",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
     "Coffin (Hallowed Sepulchre)": {
       "monsterName": "Coffin (Hallowed Sepulchre)",
       "wikiPage": "Coffin (Hallowed Sepulchre)",
@@ -6185,6 +7101,375 @@
           "dropRate": 0.1,
           "itemId": -1,
           "rarityDisplay": "1/10"
+        },
+        {
+          "itemName": "Hallowed mark",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Hallowed token",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Hallowed grapple",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Hallowed focus",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Hallowed symbol",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Hallowed hammer",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Hallowed ring",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Dark dye",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Dark acorn",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Strange old lockpick",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Ring of endurance",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Last Man Standing": {
+      "monsterName": "Last Man Standing",
+      "wikiPage": "Last Man Standing",
+      "drops": [
+        {
+          "itemName": "Deadman\u0027s chest#Cosmetic",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Deadman\u0027s legs#Cosmetic",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Deadman\u0027s cape#Cosmetic",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Armadyl halo",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Bandos halo",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Seren halo",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Ancient halo",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Brassica halo",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Animation overrides#Godswords",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Victor\u0027s cape (1)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Victor\u0027s cape (10)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Victor\u0027s cape (50)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Victor\u0027s cape (100)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Victor\u0027s cape (500)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Victor\u0027s cape (1000)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Granite clamp",
+          "dropRate": -1.0,
+          "itemId": 12849
+        },
+        {
+          "itemName": "Ornate maul handle",
+          "dropRate": -1.0,
+          "itemId": 24229
+        },
+        {
+          "itemName": "Steam staff upgrade kit",
+          "dropRate": -1.0,
+          "itemId": 12798
+        },
+        {
+          "itemName": "Lava staff upgrade kit",
+          "dropRate": -1.0,
+          "itemId": 21202
+        },
+        {
+          "itemName": "Dragon pickaxe upgrade kit",
+          "dropRate": -1.0,
+          "itemId": 12800
+        },
+        {
+          "itemName": "Ward upgrade kit",
+          "dropRate": -1.0,
+          "itemId": 12802
+        },
+        {
+          "itemName": "Green dark bow paint",
+          "dropRate": -1.0,
+          "itemId": 12759
+        },
+        {
+          "itemName": "Yellow dark bow paint",
+          "dropRate": -1.0,
+          "itemId": 12761
+        },
+        {
+          "itemName": "White dark bow paint",
+          "dropRate": -1.0,
+          "itemId": 12763
+        },
+        {
+          "itemName": "Blue dark bow paint",
+          "dropRate": -1.0,
+          "itemId": 12757
+        },
+        {
+          "itemName": "Volcanic whip mix",
+          "dropRate": -1.0,
+          "itemId": 12771
+        },
+        {
+          "itemName": "Frozen whip mix",
+          "dropRate": -1.0,
+          "itemId": 12769
+        },
+        {
+          "itemName": "Guthixian icon",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Swift blade",
+          "dropRate": -1.0,
+          "itemId": 24219
+        }
+      ]
+    },
+    "Magic Training Arena": {
+      "monsterName": "Magic Training Arena",
+      "wikiPage": "Magic Training Arena",
+      "drops": [
+        {
+          "itemName": "Beginner wand",
+          "dropRate": -1.0,
+          "itemId": 6908
+        },
+        {
+          "itemName": "Apprentice wand",
+          "dropRate": -1.0,
+          "itemId": 6910
+        },
+        {
+          "itemName": "Teacher wand",
+          "dropRate": -1.0,
+          "itemId": 6912
+        },
+        {
+          "itemName": "Master wand",
+          "dropRate": -1.0,
+          "itemId": 6914
+        },
+        {
+          "itemName": "Infinity hat",
+          "dropRate": -1.0,
+          "itemId": 6918
+        },
+        {
+          "itemName": "Infinity top",
+          "dropRate": -1.0,
+          "itemId": 6916
+        },
+        {
+          "itemName": "Infinity bottoms",
+          "dropRate": -1.0,
+          "itemId": 6924
+        },
+        {
+          "itemName": "Infinity boots",
+          "dropRate": -1.0,
+          "itemId": 6920
+        },
+        {
+          "itemName": "Infinity gloves",
+          "dropRate": -1.0,
+          "itemId": 6922
+        },
+        {
+          "itemName": "Mage\u0027s book",
+          "dropRate": -1.0,
+          "itemId": 6889
+        },
+        {
+          "itemName": "Bones to peaches",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Mahogany Homes": {
+      "monsterName": "Mahogany Homes",
+      "wikiPage": "Mahogany Homes",
+      "drops": [
+        {
+          "itemName": "Supply crate (Mahogany Homes)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Carpenter\u0027s helmet",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Carpenter\u0027s shirt",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Carpenter\u0027s trousers",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Carpenter\u0027s boots",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Amy\u0027s saw",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Plank sack",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Hosidius blueprints",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Pest Control": {
+      "monsterName": "Pest Control",
+      "wikiPage": "Pest Control",
+      "drops": [
+        {
+          "itemName": "Void knight mace",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Void knight top",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Void knight robe",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Void knight gloves",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Void mage helm",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Void melee helm",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Void ranger helm",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Void seal(8)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Elite void top",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Elite void robe",
+          "dropRate": -1.0,
+          "itemId": -1
         }
       ]
     },
@@ -6596,6 +7881,37 @@
         }
       ]
     },
+    "Rogues\u0027 Den": {
+      "monsterName": "Rogues\u0027 Den",
+      "wikiPage": "Rogues\u0027 Den",
+      "drops": [
+        {
+          "itemName": "Rogue mask",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Rogue top",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Rogue trousers",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Rogue boots",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Rogue gloves",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
     "Gold Key Red": {
       "monsterName": "Gold key red",
       "wikiPage": "Gold key red",
@@ -6953,6 +8269,31 @@
           "dropRate": 0.5,
           "itemId": -1,
           "rarityDisplay": "1/2"
+        },
+        {
+          "itemName": "Amulet of the Damned",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Bronze locks",
+          "dropRate": -1.0,
+          "itemId": 25442
+        },
+        {
+          "itemName": "Steel locks",
+          "dropRate": -1.0,
+          "itemId": 25445
+        },
+        {
+          "itemName": "Black locks",
+          "dropRate": -1.0,
+          "itemId": 25448
+        },
+        {
+          "itemName": "Silver locks",
+          "dropRate": -1.0,
+          "itemId": 25451
         }
       ]
     },
@@ -6965,6 +8306,758 @@
           "dropRate": 0.0025,
           "itemId": -1,
           "rarityDisplay": "1/400"
+        },
+        {
+          "itemName": "Soul cape",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Ectoplasmator",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Temple Trekking": {
+      "monsterName": "Temple Trekking",
+      "wikiPage": "Temple Trekking",
+      "drops": [
+        {
+          "itemName": "Lumberjack hat",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Lumberjack top",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Lumberjack legs",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Lumberjack boots",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Tithe Farm": {
+      "monsterName": "Tithe Farm",
+      "wikiPage": "Tithe Farm",
+      "drops": [
+        {
+          "itemName": "Farmer\u0027s strawhat",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Farmer\u0027s jacket",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Farmer\u0027s boro trousers",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Farmer\u0027s boots",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Seed box",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gricoller\u0027s can",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Herb sack",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Trouble Brewing": {
+      "monsterName": "Trouble Brewing",
+      "wikiPage": "Trouble Brewing",
+      "drops": [
+        {
+          "itemName": "Blue naval shirt",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Blue tricorn hat",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Blue navy slacks",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Green naval shirt",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Green tricorn hat",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Green navy slacks",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Red naval shirt",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Red tricorn hat",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Red navy slacks",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Brown naval shirt",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Brown tricorn hat",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Brown navy slacks",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Black naval shirt",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Black tricorn hat",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Black navy slacks",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Purple naval shirt",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Purple tricorn hat",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Purple navy slacks",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Grey naval shirt",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Grey tricorn hat",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Grey navy slacks",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Cutthroat flag",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded smile flag",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Bronze fist flag",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Lucky shot flag",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Treasure flag",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Phasmatys flag",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "The stuff",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Rum (red)",
+          "dropRate": -1.0,
+          "itemId": 8940
+        },
+        {
+          "itemName": "Rum (blue)",
+          "dropRate": -1.0,
+          "itemId": 8941
+        }
+      ]
+    },
+    "Volcanic Mine": {
+      "monsterName": "Volcanic Mine",
+      "wikiPage": "Volcanic Mine",
+      "drops": [
+        {
+          "itemName": "Ash covered tome",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Large water container",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Volcanic mine teleport",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Dragon pickaxe (broken)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Prospector helmet",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Prospector jacket",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Prospector legs",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Prospector boots",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Aerial Fishing": {
+      "monsterName": "Aerial Fishing",
+      "wikiPage": "Aerial Fishing",
+      "drops": [
+        {
+          "itemName": "Golden tench",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Pearl fishing rod",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Pearl fly fishing rod",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Pearl barbarian rod",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Fish sack",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Angler hat",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Angler top",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Angler waders",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Angler boots",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "All Pets": {
+      "monsterName": "All Pets",
+      "wikiPage": "All Pets",
+      "drops": [
+        {
+          "itemName": "Abyssal orphan",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Ikkle Hydra",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Callisto cub",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Hellpuppy",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Pet chaos elemental",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Pet Zilyana",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Pet dark core",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Pet Dagannoth Prime",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Pet Dagannoth Supreme",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Pet Dagannoth Rex",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "TzRek-Jad",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Pet General Graardor",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Baby Mole",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Noon",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Jal-Nib-Rek",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Kalphite Princess",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Prince Black Dragon",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Pet Kraken",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Pet Kree\u0027arra",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Pet K\u0027ril Tsutsaroth",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Scorpia\u0027s offspring",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Skotos",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Pet Smoke Devil",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Venenatis spiderling",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Vet\u0027ion Jr.",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Vorki",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Phoenix",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Pet Snakeling",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Olmlet",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Lil\u0027 Zik",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Bloodhound",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Pet Penance Queen",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Heron",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Rock golem",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Beaver",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Baby chinchompa",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Giant Squirrel",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Tangleroot",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Rocky",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Rift guardian",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Herbi",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Chompy chick",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Sraracha",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Smolcano",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Youngllef",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Little Nightmare",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Lil\u0027 Creator",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Tiny tempor",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Nexling",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Abyssal protector",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Tumeken\u0027s guardian",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Muphin",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Wisp",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Baron",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Butch",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Lil\u0027viathan",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Scurry",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Smol Heredit",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Quetzin",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Nid",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Huberte",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Moxi",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Bran",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Yami",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Dom",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Soup",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gull (pet)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Beef",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Maggot marquess",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Mr McGroot",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Aggy",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Champion\u0027s Challenge": {
+      "monsterName": "Champion\u0027s Challenge",
+      "wikiPage": "Champion\u0027s Challenge",
+      "drops": [
+        {
+          "itemName": "Earth warrior champion scroll",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Ghoul champion scroll",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Giant champion scroll",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Goblin champion scroll",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Hobgoblin champion scroll",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Imp champion scroll",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Jogre champion scroll",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Lesser demon champion scroll",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Skeleton champion scroll",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Zombie champion scroll",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Champion\u0027s cape",
+          "dropRate": -1.0,
+          "itemId": -1
         }
       ]
     },
@@ -7064,6 +9157,107 @@
         }
       ]
     },
+    "Chompy Bird Hunting": {
+      "monsterName": "Chompy Bird Hunting",
+      "wikiPage": "Chompy Bird Hunting",
+      "drops": [
+        {
+          "itemName": "Chompy chick",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Chompy bird hat (ogre bowman)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Chompy bird hat (bowman)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Chompy bird hat (ogre yeoman)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Chompy bird hat (yeoman)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Chompy bird hat (ogre marksman)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Chompy bird hat (marksman)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Chompy bird hat (ogre woodsman)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Chompy bird hat (woodsman)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Chompy bird hat (ogre forester)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Chompy bird hat (forester)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Chompy bird hat (ogre bowmaster)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Chompy bird hat (bowmaster)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Chompy bird hat (ogre expert)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Chompy bird hat (expert)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Chompy bird hat (ogre dragon archer)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Chompy bird hat (dragon archer)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Chompy bird hat (expert ogre dragon archer)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Chompy bird hat (expert dragon archer)",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
     "Colosseum": {
       "monsterName": "Colosseum",
       "wikiPage": "Rewards Chest (Fortis Colosseum)",
@@ -7115,6 +9309,11 @@
           "dropRate": 0.022916666666666665,
           "itemId": 6571,
           "rarityDisplay": "110/4,800"
+        },
+        {
+          "itemName": "Dizana\u0027s quiver (uncharged)",
+          "dropRate": -1.0,
+          "itemId": -1
         }
       ]
     },
@@ -7169,6 +9368,62 @@
           "dropRate": 0.01,
           "itemId": -1,
           "rarityDisplay": "1/100"
+        }
+      ]
+    },
+    "Fossil Island Notes": {
+      "monsterName": "Fossil Island Notes",
+      "wikiPage": "Fossil Island Notes",
+      "drops": [
+        {
+          "itemName": "Scribbled note",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Partial note",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Ancient note",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Ancient writings",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Experimental note",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Paragraph of text",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Musty smelling note",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Hastily scrawled note",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Old writing",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Short note",
+          "dropRate": -1.0,
+          "itemId": -1
         }
       ]
     },
@@ -7319,6 +9574,1601 @@
           "dropRate": 0.3333333333333333,
           "itemId": -1,
           "rarityDisplay": "1/3"
+        }
+      ]
+    },
+    "Miscellaneous": {
+      "monsterName": "Miscellaneous",
+      "wikiPage": "Miscellaneous",
+      "drops": [
+        {
+          "itemName": "Herbi",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Chompy chick",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Dragon warhammer",
+          "dropRate": -1.0,
+          "itemId": 13576
+        },
+        {
+          "itemName": "Big swordfish",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Big shark",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Big bass",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Giant blue krill",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Golden haddock",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Orangefin",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Huge halibut",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Purplefin",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Swift marlin",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Long bone",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Curved bone",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Ecumenical key",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Pharaoh\u0027s sceptre (uncharged)",
+          "dropRate": -1.0,
+          "itemId": 26945
+        },
+        {
+          "itemName": "Dark totem base",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Dark totem middle",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Dark totem top",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Chewed bones",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Dragon full helm",
+          "dropRate": -1.0,
+          "itemId": 11335
+        },
+        {
+          "itemName": "Shield left half",
+          "dropRate": -1.0,
+          "itemId": 2366
+        },
+        {
+          "itemName": "Dragon metal slice",
+          "dropRate": -1.0,
+          "itemId": 22100
+        },
+        {
+          "itemName": "Dragon metal lump",
+          "dropRate": -1.0,
+          "itemId": 22103
+        },
+        {
+          "itemName": "Dragon limbs",
+          "dropRate": -1.0,
+          "itemId": 21918
+        },
+        {
+          "itemName": "Dragon spear",
+          "dropRate": -1.0,
+          "itemId": 1249
+        },
+        {
+          "itemName": "Amulet of eternal glory",
+          "dropRate": -1.0,
+          "itemId": 19707
+        },
+        {
+          "itemName": "Shaman mask",
+          "dropRate": -1.0,
+          "itemId": 21838
+        },
+        {
+          "itemName": "Evil chicken head",
+          "dropRate": -1.0,
+          "itemId": 20439
+        },
+        {
+          "itemName": "Evil chicken wings",
+          "dropRate": -1.0,
+          "itemId": 20436
+        },
+        {
+          "itemName": "Evil chicken legs",
+          "dropRate": -1.0,
+          "itemId": 20442
+        },
+        {
+          "itemName": "Evil chicken feet",
+          "dropRate": -1.0,
+          "itemId": 20433
+        },
+        {
+          "itemName": "Mining gloves",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Superior mining gloves",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Expert mining gloves",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Right skull half",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Left skull half",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Top of sceptre",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Bottom of sceptre",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Mossy key",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Giant key",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Hespori seed",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Fresh crab claw",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Fresh crab shell",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Xeric\u0027s talisman (inert)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Mask of Ranul",
+          "dropRate": -1.0,
+          "itemId": 23522
+        },
+        {
+          "itemName": "Elven signet",
+          "dropRate": -1.0,
+          "itemId": 23943
+        },
+        {
+          "itemName": "Crystal grail",
+          "dropRate": -1.0,
+          "itemId": 24000
+        },
+        {
+          "itemName": "Enhanced crystal teleport seed",
+          "dropRate": -1.0,
+          "itemId": 23959
+        },
+        {
+          "itemName": "Dragonstone full helm",
+          "dropRate": -1.0,
+          "itemId": 24034
+        },
+        {
+          "itemName": "Dragonstone platebody",
+          "dropRate": -1.0,
+          "itemId": 24037
+        },
+        {
+          "itemName": "Dragonstone platelegs",
+          "dropRate": -1.0,
+          "itemId": 24040
+        },
+        {
+          "itemName": "Dragonstone gauntlets",
+          "dropRate": -1.0,
+          "itemId": 24046
+        },
+        {
+          "itemName": "Dragonstone boots",
+          "dropRate": -1.0,
+          "itemId": 24043
+        },
+        {
+          "itemName": "Uncut onyx",
+          "dropRate": -1.0,
+          "itemId": 6571
+        },
+        {
+          "itemName": "Merfolk trident",
+          "dropRate": -1.0,
+          "itemId": 21649
+        },
+        {
+          "itemName": "Orange egg sac",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Blue egg sac",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Broken zombie axe",
+          "dropRate": -1.0,
+          "itemId": 28813
+        },
+        {
+          "itemName": "Broken zombie helmet",
+          "dropRate": -1.0,
+          "itemId": 30324
+        },
+        {
+          "itemName": "Helmet of the moon",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Squid beak",
+          "dropRate": -1.0,
+          "itemId": 31572
+        },
+        {
+          "itemName": "Jeweller\u0027s chisel",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age amulet",
+          "dropRate": -1.0,
+          "itemId": 10344
+        },
+        {
+          "itemName": "3rd Age bow",
+          "dropRate": -1.0,
+          "itemId": 12424
+        },
+        {
+          "itemName": "3rd Age cloak",
+          "dropRate": -1.0,
+          "itemId": 12437
+        },
+        {
+          "itemName": "3rd Age full helmet",
+          "dropRate": -1.0,
+          "itemId": 10350
+        },
+        {
+          "itemName": "3rd Age kiteshield",
+          "dropRate": -1.0,
+          "itemId": 10352
+        },
+        {
+          "itemName": "3rd Age longsword",
+          "dropRate": -1.0,
+          "itemId": 12426
+        },
+        {
+          "itemName": "3rd Age mage hat",
+          "dropRate": -1.0,
+          "itemId": 10342
+        },
+        {
+          "itemName": "3rd Age platebody",
+          "dropRate": -1.0,
+          "itemId": 10348
+        },
+        {
+          "itemName": "3rd Age platelegs",
+          "dropRate": -1.0,
+          "itemId": 10346
+        },
+        {
+          "itemName": "3rd Age plateskirt",
+          "dropRate": -1.0,
+          "itemId": 23242
+        },
+        {
+          "itemName": "3rd Age range coif",
+          "dropRate": -1.0,
+          "itemId": 10334
+        },
+        {
+          "itemName": "3rd Age range legs",
+          "dropRate": -1.0,
+          "itemId": 10332
+        },
+        {
+          "itemName": "3rd Age range top",
+          "dropRate": -1.0,
+          "itemId": 10330
+        },
+        {
+          "itemName": "3rd Age robe",
+          "dropRate": -1.0,
+          "itemId": 10340
+        },
+        {
+          "itemName": "3rd Age robe top",
+          "dropRate": -1.0,
+          "itemId": 10338
+        },
+        {
+          "itemName": "3rd Age vambraces",
+          "dropRate": -1.0,
+          "itemId": 10336
+        },
+        {
+          "itemName": "3rd Age wand",
+          "dropRate": -1.0,
+          "itemId": 12422
+        },
+        {
+          "itemName": "Abyssal dagger",
+          "dropRate": -1.0,
+          "itemId": 13265
+        },
+        {
+          "itemName": "Abyssal head",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Abyssal orphan",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Abyssal protector",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Abyssal whip",
+          "dropRate": -1.0,
+          "itemId": 4151
+        },
+        {
+          "itemName": "Aggy",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Angler boots",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Angler hat",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Angler top",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Angler waders",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Awakener\u0027s orb",
+          "dropRate": -1.0,
+          "itemId": 28334
+        },
+        {
+          "itemName": "Baby chinchompa",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Baby Mole",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Baron",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Beaver",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Beef",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Black pickaxe",
+          "dropRate": -1.0,
+          "itemId": 12297
+        },
+        {
+          "itemName": "Bloodhound",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Bran",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Butch",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Callisto cub",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Chromium ingot",
+          "dropRate": -1.0,
+          "itemId": 28276
+        },
+        {
+          "itemName": "Dom",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Draconic visage",
+          "dropRate": -1.0,
+          "itemId": 11286
+        },
+        {
+          "itemName": "Dragon 2h sword",
+          "dropRate": -1.0,
+          "itemId": 7158
+        },
+        {
+          "itemName": "Dragon axe",
+          "dropRate": -1.0,
+          "itemId": 6739
+        },
+        {
+          "itemName": "Dragon chainbody",
+          "dropRate": -1.0,
+          "itemId": 3140
+        },
+        {
+          "itemName": "Dragon harpoon",
+          "dropRate": -1.0,
+          "itemId": 21028
+        },
+        {
+          "itemName": "Dragon knife",
+          "dropRate": -1.0,
+          "itemId": 22804
+        },
+        {
+          "itemName": "Dragon metal sheet",
+          "dropRate": -1.0,
+          "itemId": 31996
+        },
+        {
+          "itemName": "Dragon pickaxe",
+          "dropRate": -1.0,
+          "itemId": 11920
+        },
+        {
+          "itemName": "Dragon thrownaxe",
+          "dropRate": -1.0,
+          "itemId": 20849
+        },
+        {
+          "itemName": "Frozen tear",
+          "dropRate": -1.0,
+          "itemId": 29895
+        },
+        {
+          "itemName": "Giant Squirrel",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded 2h sword",
+          "dropRate": -1.0,
+          "itemId": 20155
+        },
+        {
+          "itemName": "Gilded axe",
+          "dropRate": -1.0,
+          "itemId": 23279
+        },
+        {
+          "itemName": "Gilded boots",
+          "dropRate": -1.0,
+          "itemId": 12391
+        },
+        {
+          "itemName": "Gilded chainbody",
+          "dropRate": -1.0,
+          "itemId": 20149
+        },
+        {
+          "itemName": "Gilded coif",
+          "dropRate": -1.0,
+          "itemId": 23258
+        },
+        {
+          "itemName": "Gilded d\u0027hide body",
+          "dropRate": -1.0,
+          "itemId": 23264
+        },
+        {
+          "itemName": "Gilded d\u0027hide chaps",
+          "dropRate": -1.0,
+          "itemId": 23267
+        },
+        {
+          "itemName": "Gilded d\u0027hide vambraces",
+          "dropRate": -1.0,
+          "itemId": 23261
+        },
+        {
+          "itemName": "Gilded full helm",
+          "dropRate": -1.0,
+          "itemId": 3486
+        },
+        {
+          "itemName": "Gilded hasta",
+          "dropRate": -1.0,
+          "itemId": 20161
+        },
+        {
+          "itemName": "Gilded kiteshield",
+          "dropRate": -1.0,
+          "itemId": 3488
+        },
+        {
+          "itemName": "Gilded med helm",
+          "dropRate": -1.0,
+          "itemId": 20146
+        },
+        {
+          "itemName": "Gilded pickaxe",
+          "dropRate": -1.0,
+          "itemId": 23276
+        },
+        {
+          "itemName": "Gilded platebody",
+          "dropRate": -1.0,
+          "itemId": 3481
+        },
+        {
+          "itemName": "Gilded platelegs",
+          "dropRate": -1.0,
+          "itemId": 3483
+        },
+        {
+          "itemName": "Gilded plateskirt",
+          "dropRate": -1.0,
+          "itemId": 3485
+        },
+        {
+          "itemName": "Gilded scimitar",
+          "dropRate": -1.0,
+          "itemId": 12389
+        },
+        {
+          "itemName": "Gilded spade",
+          "dropRate": -1.0,
+          "itemId": 23282
+        },
+        {
+          "itemName": "Gilded spear",
+          "dropRate": -1.0,
+          "itemId": 20158
+        },
+        {
+          "itemName": "Gilded sq shield",
+          "dropRate": -1.0,
+          "itemId": 20152
+        },
+        {
+          "itemName": "Glacial temotli",
+          "dropRate": -1.0,
+          "itemId": 29889
+        },
+        {
+          "itemName": "Godsword shard 1",
+          "dropRate": -1.0,
+          "itemId": 11818
+        },
+        {
+          "itemName": "Godsword shard 2",
+          "dropRate": -1.0,
+          "itemId": 11820
+        },
+        {
+          "itemName": "Godsword shard 3",
+          "dropRate": -1.0,
+          "itemId": 11822
+        },
+        {
+          "itemName": "Granite dust",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Granite helm",
+          "dropRate": -1.0,
+          "itemId": 10589
+        },
+        {
+          "itemName": "Gryphon feather",
+          "dropRate": -1.0,
+          "itemId": 31235
+        },
+        {
+          "itemName": "Gull (pet)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Hellpuppy",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Heron",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Huberte",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Hydra tail",
+          "dropRate": -1.0,
+          "itemId": 22988
+        },
+        {
+          "itemName": "Hydra\u0027s eye",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Hydra\u0027s fang",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Hydra\u0027s heart",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Ikkle Hydra",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Jal-Nib-Rek",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Kalphite Princess",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Kraken tentacle",
+          "dropRate": -1.0,
+          "itemId": 12004
+        },
+        {
+          "itemName": "Lil\u0027 Zik",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Lil\u0027viathan",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Lil\u0027 Creator",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Little Nightmare",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Lumberjack hat",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Lumberjack top",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Lumberjack legs",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Lumberjack boots",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Maggot marquess",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Moxi",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Muphin",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Nexling",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Nid",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Noon",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Occult necklace",
+          "dropRate": -1.0,
+          "itemId": 12002
+        },
+        {
+          "itemName": "Olmlet",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Pendant of Ates (inert)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Pet chaos elemental",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Pet Dagannoth Prime",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Pet Dagannoth Rex",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Pet Dagannoth Supreme",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Pet dark core",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Pet General Graardor",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Pet K\u0027ril Tsutsaroth",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Pet Kraken",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Pet Kree\u0027arra",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Pet Penance Queen",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Pet Smoke Devil",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Pet Snakeling",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Pet Zilyana",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Phoenix",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Prince Black Dragon",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Prospector helmet",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Prospector jacket",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Prospector legs",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Prospector boots",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Quetzin",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Rift guardian",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Ring of 3rd Age",
+          "dropRate": -1.0,
+          "itemId": 23185
+        },
+        {
+          "itemName": "Rock golem",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Rocky",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Scorpia\u0027s offspring",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Scurry",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Skotos",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Smolcano",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Smol Heredit",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Soup",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Sraracha",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Tangleroot",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Tiny tempor",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Tumeken\u0027s guardian",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "TzRek-Jad",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Venenatis spiderling",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Vet\u0027ion Jr.",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Virtus mask",
+          "dropRate": -1.0,
+          "itemId": 26241
+        },
+        {
+          "itemName": "Virtus robe top",
+          "dropRate": -1.0,
+          "itemId": 26243
+        },
+        {
+          "itemName": "Virtus robe bottom",
+          "dropRate": -1.0,
+          "itemId": 26245
+        },
+        {
+          "itemName": "Vorki",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Wisp",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Yami",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Youngllef",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Monkey Backpacks": {
+      "monsterName": "Monkey Backpacks",
+      "wikiPage": "Monkey Backpacks",
+      "drops": [
+        {
+          "itemName": "Karamjan monkey (item)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Kruk jr",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Maniacal monkey (item)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Princely monkey",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Skeleton monkey (item)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Zombie monkey (item)",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Motherlode Mine": {
+      "monsterName": "Motherlode Mine",
+      "wikiPage": "Motherlode Mine",
+      "drops": [
+        {
+          "itemName": "Coal bag",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gem bag",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Prospector helmet",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Prospector jacket",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Prospector legs",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Prospector boots",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "My Notes": {
+      "monsterName": "My Notes",
+      "wikiPage": "My Notes",
+      "drops": [
+        {
+          "itemName": "Ancient page",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Random Events": {
+      "monsterName": "Random Events",
+      "wikiPage": "Random Events",
+      "drops": [
+        {
+          "itemName": "Camo top",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Camo bottoms",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Camo helmet",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Lederhosen top",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Lederhosen shorts",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Lederhosen hat",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Zombie shirt",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Zombie trousers",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Zombie mask",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Zombie gloves",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Zombie boots",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Mime mask",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Mime top",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Mime legs",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Mime gloves",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Mime boots",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Frog token",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Stale baguette",
+          "dropRate": -1.0,
+          "itemId": 20590
+        },
+        {
+          "itemName": "Beekeeper\u0027s hat",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Beekeeper\u0027s top",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Beekeeper\u0027s legs",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Beekeeper\u0027s gloves",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Beekeeper\u0027s boots",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Revenants": {
+      "monsterName": "Revenants",
+      "wikiPage": "Template:Revenants/Drops",
+      "drops": [
+        {
+          "itemName": "Viggora\u0027s chainmace (u)",
+          "dropRate": -1.0,
+          "itemId": 22542
+        },
+        {
+          "itemName": "Craw\u0027s bow (u)",
+          "dropRate": -1.0,
+          "itemId": 22547
+        },
+        {
+          "itemName": "Thammaron\u0027s sceptre (u)",
+          "dropRate": -1.0,
+          "itemId": 22552
+        },
+        {
+          "itemName": "Amulet of avarice",
+          "dropRate": -1.0,
+          "itemId": 22557
+        },
+        {
+          "itemName": "Bracelet of ethereum (uncharged)",
+          "dropRate": -1.0,
+          "itemId": 21817
+        },
+        {
+          "itemName": "Ancient crystal",
+          "dropRate": -1.0,
+          "itemId": 21804
+        },
+        {
+          "itemName": "Ancient relic",
+          "dropRate": -1.0,
+          "itemId": 22305
+        },
+        {
+          "itemName": "Ancient effigy",
+          "dropRate": -1.0,
+          "itemId": 22302
+        },
+        {
+          "itemName": "Ancient medallion",
+          "dropRate": -1.0,
+          "itemId": 22299
+        },
+        {
+          "itemName": "Ancient statuette",
+          "dropRate": -1.0,
+          "itemId": 21813
+        },
+        {
+          "itemName": "Ancient totem",
+          "dropRate": -1.0,
+          "itemId": 21810
+        },
+        {
+          "itemName": "Ancient emblem",
+          "dropRate": -1.0,
+          "itemId": 21807
+        },
+        {
+          "itemName": "Revenant cave teleport",
+          "dropRate": -1.0,
+          "itemId": 21802
+        },
+        {
+          "itemName": "Revenant ether",
+          "dropRate": -1.0,
+          "itemId": 21820
+        }
+      ]
+    },
+    "Rooftop Agility": {
+      "monsterName": "Rooftop Agility",
+      "wikiPage": "Rooftop Agility",
+      "drops": [
+        {
+          "itemName": "Mark of Grace",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Graceful hood",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Graceful cape",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Graceful top",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Graceful legs",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Graceful gloves",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Graceful boots",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Shayzien Armour": {
+      "monsterName": "Shayzien Armour",
+      "wikiPage": "Shayzien Armour",
+      "drops": [
+        {
+          "itemName": "Shayzien gloves (1)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Shayzien boots (1)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Shayzien helm (1)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Shayzien greaves (1)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Shayzien platebody (1)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Shayzien gloves (2)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Shayzien boots (2)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Shayzien helm (2)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Shayzien greaves (2)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Shayzien platebody (2)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Shayzien gloves (3)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Shayzien boots (3)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Shayzien helm (3)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Shayzien greaves (3)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Shayzien platebody (3)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Shayzien gloves (4)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Shayzien boots (4)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Shayzien helm (4)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Shayzien greaves (4)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Shayzien platebody (4)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Shayzien gloves (5)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Shayzien boots (5)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Shayzien helm (5)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Shayzien greaves (5)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Shayzien body (5)",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Shooting Stars": {
+      "monsterName": "Shooting Stars",
+      "wikiPage": "Shooting Stars",
+      "drops": [
+        {
+          "itemName": "Celestial ring (uncharged)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Star fragment",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Skilling Pets": {
+      "monsterName": "Skilling Pets",
+      "wikiPage": "Skilling Pets",
+      "drops": [
+        {
+          "itemName": "Heron",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Rock golem",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Beaver",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Baby chinchompa",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Giant Squirrel",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Tangleroot",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Rocky",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Rift guardian",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Soup",
+          "dropRate": -1.0,
+          "itemId": -1
         }
       ]
     },
@@ -7595,12 +11445,402 @@
           "dropRate": 1.6666666666666666E-4,
           "itemId": -1,
           "rarityDisplay": "1/6,000"
+        },
+        {
+          "itemName": "Imbued heart",
+          "dropRate": -1.0,
+          "itemId": 20724
+        },
+        {
+          "itemName": "Eternal gem",
+          "dropRate": -1.0,
+          "itemId": 21270
+        },
+        {
+          "itemName": "Dust battlestaff",
+          "dropRate": -1.0,
+          "itemId": 20736
+        },
+        {
+          "itemName": "Mist battlestaff",
+          "dropRate": -1.0,
+          "itemId": 20730
+        },
+        {
+          "itemName": "Granite maul",
+          "dropRate": -1.0,
+          "itemId": 4153
+        },
+        {
+          "itemName": "Mudskipper hat",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Flippers",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Brine sabre",
+          "dropRate": -1.0,
+          "itemId": 11037
+        },
+        {
+          "itemName": "Granite longsword",
+          "dropRate": -1.0,
+          "itemId": 21646
+        },
+        {
+          "itemName": "Granite boots",
+          "dropRate": -1.0,
+          "itemId": 21643
+        },
+        {
+          "itemName": "Wyvern visage",
+          "dropRate": -1.0,
+          "itemId": 21637
+        },
+        {
+          "itemName": "Granite legs",
+          "dropRate": -1.0,
+          "itemId": 6809
+        },
+        {
+          "itemName": "Granite helm",
+          "dropRate": -1.0,
+          "itemId": 10589
+        },
+        {
+          "itemName": "Draconic visage",
+          "dropRate": -1.0,
+          "itemId": 11286
+        },
+        {
+          "itemName": "Bronze boots",
+          "dropRate": -1.0,
+          "itemId": 4119
+        },
+        {
+          "itemName": "Steel boots",
+          "dropRate": -1.0,
+          "itemId": 4123
+        },
+        {
+          "itemName": "Black boots",
+          "dropRate": -1.0,
+          "itemId": 4125
+        },
+        {
+          "itemName": "Mithril boots",
+          "dropRate": -1.0,
+          "itemId": 4127
+        },
+        {
+          "itemName": "Adamant boots",
+          "dropRate": -1.0,
+          "itemId": 4129
+        },
+        {
+          "itemName": "Rune boots",
+          "dropRate": -1.0,
+          "itemId": 4131
+        },
+        {
+          "itemName": "Dragon boots",
+          "dropRate": -1.0,
+          "itemId": 11840
+        },
+        {
+          "itemName": "Uncharged trident",
+          "dropRate": -1.0,
+          "itemId": 11908
+        },
+        {
+          "itemName": "Kraken tentacle",
+          "dropRate": -1.0,
+          "itemId": 12004
+        },
+        {
+          "itemName": "Dark bow",
+          "dropRate": -1.0,
+          "itemId": 11235
+        },
+        {
+          "itemName": "Occult necklace",
+          "dropRate": -1.0,
+          "itemId": 12002
+        },
+        {
+          "itemName": "Dragon chainbody",
+          "dropRate": -1.0,
+          "itemId": 3140
+        },
+        {
+          "itemName": "Dragon thrownaxe",
+          "dropRate": -1.0,
+          "itemId": 20849
+        },
+        {
+          "itemName": "Dragon harpoon",
+          "dropRate": -1.0,
+          "itemId": 21028
+        },
+        {
+          "itemName": "Dragon sword",
+          "dropRate": -1.0,
+          "itemId": 21009
+        },
+        {
+          "itemName": "Dragon knife",
+          "dropRate": -1.0,
+          "itemId": 22804
+        },
+        {
+          "itemName": "Broken dragon hasta",
+          "dropRate": -1.0,
+          "itemId": 22963
+        },
+        {
+          "itemName": "Drake\u0027s tooth",
+          "dropRate": -1.0,
+          "itemId": 22960
+        },
+        {
+          "itemName": "Drake\u0027s claw",
+          "dropRate": -1.0,
+          "itemId": 22957
+        },
+        {
+          "itemName": "Hydra tail",
+          "dropRate": -1.0,
+          "itemId": 22988
+        },
+        {
+          "itemName": "Hydra\u0027s fang",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Hydra\u0027s eye",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Hydra\u0027s heart",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Mystic gloves (light)",
+          "dropRate": -1.0,
+          "itemId": 4115
+        },
+        {
+          "itemName": "Mystic hat (dark)",
+          "dropRate": -1.0,
+          "itemId": 4099
+        },
+        {
+          "itemName": "Mystic robe top (dark)",
+          "dropRate": -1.0,
+          "itemId": 4101
+        },
+        {
+          "itemName": "Mystic robe bottom (dark)",
+          "dropRate": -1.0,
+          "itemId": 4103
+        },
+        {
+          "itemName": "Mystic gloves (dark)",
+          "dropRate": -1.0,
+          "itemId": 4105
+        },
+        {
+          "itemName": "Mystic boots (dark)",
+          "dropRate": -1.0,
+          "itemId": 4107
+        },
+        {
+          "itemName": "Mystic hat (dusk)",
+          "dropRate": -1.0,
+          "itemId": 23047
+        },
+        {
+          "itemName": "Mystic robe top (dusk)",
+          "dropRate": -1.0,
+          "itemId": 23050
+        },
+        {
+          "itemName": "Mystic robe bottom (dusk)",
+          "dropRate": -1.0,
+          "itemId": 23053
+        },
+        {
+          "itemName": "Mystic gloves (dusk)",
+          "dropRate": -1.0,
+          "itemId": 23056
+        },
+        {
+          "itemName": "Mystic boots (dusk)",
+          "dropRate": -1.0,
+          "itemId": 23059
+        },
+        {
+          "itemName": "Aquanite tendon",
+          "dropRate": -1.0,
+          "itemId": 32876
+        },
+        {
+          "itemName": "Dagon\u0027hai hat",
+          "dropRate": -1.0,
+          "itemId": 24288
+        },
+        {
+          "itemName": "Dagon\u0027hai robe top",
+          "dropRate": -1.0,
+          "itemId": 24291
+        },
+        {
+          "itemName": "Dagon\u0027hai robe bottom",
+          "dropRate": -1.0,
+          "itemId": 24294
+        },
+        {
+          "itemName": "Blood shard",
+          "dropRate": -1.0,
+          "itemId": 24777
+        },
+        {
+          "itemName": "Ancient ceremonial mask",
+          "dropRate": -1.0,
+          "itemId": 26225
+        },
+        {
+          "itemName": "Ancient ceremonial top",
+          "dropRate": -1.0,
+          "itemId": 26221
+        },
+        {
+          "itemName": "Ancient ceremonial legs",
+          "dropRate": -1.0,
+          "itemId": 26223
+        },
+        {
+          "itemName": "Ancient ceremonial gloves",
+          "dropRate": -1.0,
+          "itemId": 26227
+        },
+        {
+          "itemName": "Ancient ceremonial boots",
+          "dropRate": -1.0,
+          "itemId": 26229
+        },
+        {
+          "itemName": "Warped sceptre (uncharged)",
+          "dropRate": -1.0,
+          "itemId": 28583
+        },
+        {
+          "itemName": "Sulphur blades",
+          "dropRate": -1.0,
+          "itemId": 29084
+        },
+        {
+          "itemName": "Teleport anchoring scroll",
+          "dropRate": -1.0,
+          "itemId": 29455
+        },
+        {
+          "itemName": "Aranea boots",
+          "dropRate": -1.0,
+          "itemId": 29806
+        },
+        {
+          "itemName": "Glacial temotli",
+          "dropRate": -1.0,
+          "itemId": 29889
+        },
+        {
+          "itemName": "Pendant of Ates (inert)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Frozen tear",
+          "dropRate": -1.0,
+          "itemId": 29895
+        },
+        {
+          "itemName": "Earthbound tecpatl",
+          "dropRate": -1.0,
+          "itemId": 30957
+        },
+        {
+          "itemName": "Antler guard",
+          "dropRate": -1.0,
+          "itemId": 31081
+        },
+        {
+          "itemName": "Alchemist\u0027s signet",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Broken antler",
+          "dropRate": -1.0,
+          "itemId": 31086
+        },
+        {
+          "itemName": "Dragon metal sheet",
+          "dropRate": -1.0,
+          "itemId": 31996
+        },
+        {
+          "itemName": "Horn of Plenty (empty)",
+          "dropRate": -1.0,
+          "itemId": 31243
+        },
+        {
+          "itemName": "Gryphon feather",
+          "dropRate": -1.0,
+          "itemId": 31235
+        },
+        {
+          "itemName": "Venator tooth",
+          "dropRate": -1.0,
+          "itemId": 33663
+        },
+        {
+          "itemName": "Venator fang",
+          "dropRate": -1.0,
+          "itemId": 33661
+        },
+        {
+          "itemName": "Air diamond",
+          "dropRate": -1.0,
+          "itemId": 34404
+        },
+        {
+          "itemName": "Water sapphire",
+          "dropRate": -1.0,
+          "itemId": 34410
+        },
+        {
+          "itemName": "Earth emerald",
+          "dropRate": -1.0,
+          "itemId": 34416
+        },
+        {
+          "itemName": "Fire ruby",
+          "dropRate": -1.0,
+          "itemId": 34422
         }
       ]
     },
     "The Gauntlet": {
       "monsterName": "The Gauntlet",
-      "wikiPage": "The Gauntlet",
+      "wikiPage": "Reward Chest (The Gauntlet)",
       "drops": [
         {
           "itemName": "Crystal weapon seed",
@@ -7625,6 +11865,46 @@
           "dropRate": 5.0E-4,
           "itemId": -1,
           "rarityDisplay": "1/2,000"
+        },
+        {
+          "itemName": "Gauntlet cape",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "The Corrupted Gauntlet": {
+      "monsterName": "The Corrupted Gauntlet",
+      "wikiPage": "Reward Chest (The Gauntlet)",
+      "drops": [
+        {
+          "itemName": "Crystal weapon seed",
+          "dropRate": 0.02,
+          "itemId": 4207,
+          "rarityDisplay": "1/50"
+        },
+        {
+          "itemName": "Crystal armour seed",
+          "dropRate": 0.02,
+          "itemId": 23956,
+          "rarityDisplay": "1/50"
+        },
+        {
+          "itemName": "Enhanced crystal weapon seed",
+          "dropRate": 0.0025,
+          "itemId": 25859,
+          "rarityDisplay": "1/400"
+        },
+        {
+          "itemName": "Youngllef",
+          "dropRate": 0.00125,
+          "itemId": -1,
+          "rarityDisplay": "1/800"
+        },
+        {
+          "itemName": "Gauntlet cape",
+          "dropRate": -1.0,
+          "itemId": -1
         }
       ]
     },
@@ -7667,6 +11947,66 @@
           "dropRate": 0.01,
           "itemId": -1,
           "rarityDisplay": "1/100"
+        },
+        {
+          "itemName": "Obsidian cape",
+          "dropRate": -1.0,
+          "itemId": 6568
+        },
+        {
+          "itemName": "Toktz-ket-xil",
+          "dropRate": -1.0,
+          "itemId": 6524
+        },
+        {
+          "itemName": "Tzhaar-ket-om",
+          "dropRate": -1.0,
+          "itemId": 6528
+        },
+        {
+          "itemName": "Toktz-xil-ak",
+          "dropRate": -1.0,
+          "itemId": 6523
+        },
+        {
+          "itemName": "Toktz-xil-ek",
+          "dropRate": -1.0,
+          "itemId": 6525
+        },
+        {
+          "itemName": "Toktz-mej-tal",
+          "dropRate": -1.0,
+          "itemId": 6526
+        },
+        {
+          "itemName": "Toktz-xil-ul",
+          "dropRate": -1.0,
+          "itemId": 6522
+        },
+        {
+          "itemName": "Obsidian helmet",
+          "dropRate": -1.0,
+          "itemId": 21298
+        },
+        {
+          "itemName": "Obsidian platebody",
+          "dropRate": -1.0,
+          "itemId": 21301
+        },
+        {
+          "itemName": "Obsidian platelegs",
+          "dropRate": -1.0,
+          "itemId": 21304
+        },
+        {
+          "itemName": "Fire cape",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Infernal cape",
+          "dropRate": -1.0,
+          "itemId": -1
         }
       ]
     },
@@ -7825,6 +12165,1993 @@
           "rarityDisplay": "1/5,000"
         }
       ]
+    },
+    "Elder Chaos Druids": {
+      "monsterName": "Elder Chaos Druids",
+      "wikiPage": "Elder Chaos Druids",
+      "drops": [
+        {
+          "itemName": "Elder chaos top",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Elder chaos robe",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Elder chaos hood",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Tempoross": {
+      "monsterName": "Tempoross",
+      "wikiPage": "Tempoross",
+      "drops": [
+        {
+          "itemName": "Tiny tempor",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Big harpoonfish",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Spirit angler headband",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Spirit angler top",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Spirit angler waders",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Spirit angler boots",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Tome of Water (empty)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Soaked page",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Tackle box",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Fish barrel",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Dragon harpoon",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Spirit flakes",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Lost Schematics": {
+      "monsterName": "Lost Schematics",
+      "wikiPage": "Lost Schematics",
+      "drops": [
+        {
+          "itemName": "Salvaging station schematic",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gale catcher schematic",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Eternal brazier schematic",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Rosewood cargo hold schematic",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Rosewood hull schematic",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Rosewood \u0026 cotton sails schematic",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Dragon helm schematic",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Dragon keel schematic",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Dragon salvaging hook schematic",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Dragon cannon schematic",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Ballistic attractor schematic",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Bosun\u0027s workbench schematic",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Boat Paints": {
+      "monsterName": "Boat Paints",
+      "wikiPage": "Boat Paints",
+      "drops": [
+        {
+          "itemName": "Barracuda paint",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Shark paint",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Inky paint",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Angler\u0027s paint",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Salvor\u0027s paint",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Armadylean paint",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Zamorakian paint",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Guthixian paint",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Saradominist paint",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Merchant\u0027s paint",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Sandy paint",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "The Mad Angel": {
+      "monsterName": "The Mad Angel",
+      "wikiPage": "The Mad Angel",
+      "drops": [
+        {
+          "itemName": "Aggy",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Hallowfell",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Ardeaglais teleport",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Granite dust",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Jar of Light",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Hard Treasure Trail Rewards (Rare)": {
+      "monsterName": "Hard Treasure Trail Rewards (Rare)",
+      "wikiPage": "Hard Treasure Trail Rewards (Rare)",
+      "drops": [
+        {
+          "itemName": "3rd Age range coif",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age range top",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age range legs",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age vambraces",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age robe top",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age robe",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age mage hat",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age amulet",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age plateskirt",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age platelegs",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age platebody",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age full helmet",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age kiteshield",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded platebody",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded platelegs",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded plateskirt",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded full helm",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded kiteshield",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded med helm",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded chainbody",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded sq shield",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded 2h sword",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded spear",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded hasta",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Camdozaal": {
+      "monsterName": "Camdozaal",
+      "wikiPage": "Camdozaal",
+      "drops": [
+        {
+          "itemName": "Barronite mace",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Barronite head",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Barronite handle",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Barronite guard",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Ancient globe",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Ancient ledger",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Ancient astroscope",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Ancient treatise",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Ancient carcanet",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Imcando hammer",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Fortis Colosseum": {
+      "monsterName": "Fortis Colosseum",
+      "wikiPage": "Fortis Colosseum",
+      "drops": [
+        {
+          "itemName": "Smol Heredit",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Dizana\u0027s quiver (uncharged)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Sunfire fanatic cuirass",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Sunfire fanatic chausses",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Sunfire fanatic helm",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Echo crystal",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Tonalztics of Ralos (uncharged)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Sunfire splinters",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Uncut onyx",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Scroll Cases": {
+      "monsterName": "Scroll Cases",
+      "wikiPage": "Scroll Cases",
+      "drops": [
+        {
+          "itemName": "Minor beginner scroll case",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Major beginner scroll case",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Minor easy scroll case",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Major easy scroll case",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Minor medium scroll case",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Major medium scroll case",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Minor hard scroll case",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Major hard scroll case",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Minor elite scroll case",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Major elite scroll case",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Minor master scroll case",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Major master scroll case",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Mimic scroll case",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Mastering Mixology": {
+      "monsterName": "Mastering Mixology",
+      "wikiPage": "Mastering Mixology",
+      "drops": [
+        {
+          "itemName": "Prescription goggles",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Alchemist labcoat",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Alchemist pants",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Alchemist gloves",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Alchemist\u0027s amulet",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Reagent pouch",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Chugging barrel (disassembled)",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "The Leviathan": {
+      "monsterName": "The Leviathan",
+      "wikiPage": "The Leviathan",
+      "drops": [
+        {
+          "itemName": "Lil\u0027viathan",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Leviathan\u0027s lure",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Virtus mask",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Virtus robe top",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Virtus robe bottom",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Venator vestige",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Smoke quartz",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Scarred tablet",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Chromium ingot",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Awakener\u0027s orb",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Hunter Guild": {
+      "monsterName": "Hunter Guild",
+      "wikiPage": "Hunter Guild",
+      "drops": [
+        {
+          "itemName": "Quetzin",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Huntsman\u0027s kit",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Guild hunter headwear",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Guild hunter top",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Guild hunter legs",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Guild hunter boots",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Giants\u0027 Foundry": {
+      "monsterName": "Giants\u0027 Foundry",
+      "wikiPage": "Giants\u0027 Foundry",
+      "drops": [
+        {
+          "itemName": "Smiths tunic",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Smiths trousers",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Smiths boots",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Smiths gloves",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Colossal blade",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Double ammo mould",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Kovac\u0027s grog",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Smithing catalyst",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Ore pack (Giants\u0027 Foundry)",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Master Treasure Trail Rewards (Rare)": {
+      "monsterName": "Master Treasure Trail Rewards (Rare)",
+      "wikiPage": "Master Treasure Trail Rewards (Rare)",
+      "drops": [
+        {
+          "itemName": "3rd Age pickaxe",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age axe",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age longsword",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age wand",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age cloak",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age bow",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age range coif",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age range top",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age range legs",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age vambraces",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age robe top",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age robe",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age mage hat",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age amulet",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age plateskirt",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age platelegs",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age platebody",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age full helmet",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age kiteshield",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age druidic robe bottoms",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age druidic robe top",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age druidic staff",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age druidic cloak",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded scimitar",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded boots",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded platebody",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded platelegs",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded plateskirt",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded full helm",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded kiteshield",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded med helm",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded chainbody",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded sq shield",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded 2h sword",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded spear",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded hasta",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded coif",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded d\u0027hide vambraces",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded d\u0027hide body",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded d\u0027hide chaps",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded pickaxe",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded axe",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded spade",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Bucket helm (g)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Ring of coins",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "The Inferno": {
+      "monsterName": "The Inferno",
+      "wikiPage": "The Inferno",
+      "drops": [
+        {
+          "itemName": "Jal-Nib-Rek",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Infernal cape",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Shellbane Gryphon": {
+      "monsterName": "Shellbane Gryphon",
+      "wikiPage": "Shellbane Gryphon",
+      "drops": [
+        {
+          "itemName": "Gull (pet)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Jar of Feathers",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Belle\u0027s folly (tarnished)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gryphon feather",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "The Fight Caves": {
+      "monsterName": "The Fight Caves",
+      "wikiPage": "The Fight Caves",
+      "drops": [
+        {
+          "itemName": "TzRek-Jad",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Fire cape",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Maggot King": {
+      "monsterName": "Maggot King",
+      "wikiPage": "Maggot King",
+      "drops": [
+        {
+          "itemName": "Maggot marquess",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Crimson kisten",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Elder venator fang",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Yama": {
+      "monsterName": "Yama",
+      "wikiPage": "Yama",
+      "drops": [
+        {
+          "itemName": "Yami",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Chasm teleport scroll",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Oathplate shards",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Oathplate helm",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Oathplate chest",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Oathplate legs",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Soulflame horn",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Rite of vile transference",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Forgotten lockbox",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Dossier",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Barrel of demonic tallow (full)",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Elite Treasure Trail Rewards (Rare)": {
+      "monsterName": "Elite Treasure Trail Rewards (Rare)",
+      "wikiPage": "Elite Treasure Trail Rewards (Rare)",
+      "drops": [
+        {
+          "itemName": "3rd Age longsword",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age wand",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age cloak",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age bow",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age range coif",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age range top",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age range legs",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age vambraces",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age robe top",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age robe",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age mage hat",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age amulet",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age plateskirt",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age platelegs",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age platebody",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age full helmet",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "3rd Age kiteshield",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded scimitar",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded boots",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded platebody",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded platelegs",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded plateskirt",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded full helm",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded kiteshield",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded med helm",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded chainbody",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded sq shield",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded 2h sword",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded spear",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded hasta",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded coif",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded d\u0027hide vambraces",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded d\u0027hide body",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded d\u0027hide chaps",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded pickaxe",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded axe",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gilded spade",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Ring of nature",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Lava dragon mask",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Moons Of Peril": {
+      "monsterName": "Moons of Peril",
+      "wikiPage": "Moons of Peril",
+      "drops": [
+        {
+          "itemName": "Eclipse Moon chestplate",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Eclipse Moon tassets",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Eclipse Moon helm",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Eclipse atlatl",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Blue Moon chestplate",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Blue Moon tassets",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Blue Moon helm",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Blue Moon spear",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Blood Moon chestplate",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Blood Moon tassets",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Blood Moon helm",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Dual macuahuitl",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Atlatl dart",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Ocean Encounters": {
+      "monsterName": "Ocean Encounters",
+      "wikiPage": "Ocean Encounters",
+      "drops": [
+        {
+          "itemName": "Tiny pearl",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Small pearl",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Shiny pearl",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Bright pearl",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Big pearl",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Huge pearl",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Enormous pearl",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Shimmering pearl",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Glistening pearl",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Brilliant pearl",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Radiant pearl",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Doom Of Mokhaiotl": {
+      "monsterName": "Doom of Mokhaiotl",
+      "wikiPage": "Doom of Mokhaiotl",
+      "drops": [
+        {
+          "itemName": "Dom",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Avernic treads",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Eye of Ayak (uncharged)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Mokhaiotl cloth",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Mokhaiotl waystone",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Demon tear",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Barracuda Trials": {
+      "monsterName": "Barracuda Trials",
+      "wikiPage": "Barracuda Trials",
+      "drops": [
+        {
+          "itemName": "Stormy key",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Barrel stand",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Ralph\u0027s fabric roll",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Fetid key",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Captured wind mote",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gurtob\u0027s fabric roll",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Serrated key",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Heart of Ithell",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Gwyna\u0027s fabric roll",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Vale Totems": {
+      "monsterName": "Vale Totems",
+      "wikiPage": "Vale Totems",
+      "drops": [
+        {
+          "itemName": "Fletching knife",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Bow string spool",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Ent branch",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Greenman mask",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "The Nightmare": {
+      "monsterName": "The Nightmare",
+      "wikiPage": "The Nightmare",
+      "drops": [
+        {
+          "itemName": "Little Nightmare",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Inquisitor\u0027s mace",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Inquisitor\u0027s great helm",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Inquisitor\u0027s hauberk",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Inquisitor\u0027s plateskirt",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Nightmare staff",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Volatile orb",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Harmonised orb",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Eldritch orb",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Jar of Dreams",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Slepey tablet",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Parasitic egg",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "The Whisperer": {
+      "monsterName": "The Whisperer",
+      "wikiPage": "The Whisperer",
+      "drops": [
+        {
+          "itemName": "Wisp",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Siren\u0027s staff",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Virtus mask",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Virtus robe top",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Virtus robe bottom",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Bellator vestige",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Shadow quartz",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Sirenic tablet",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Chromium ingot",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Awakener\u0027s orb",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Sea Treasures": {
+      "monsterName": "Sea Treasures",
+      "wikiPage": "Sea Treasures",
+      "drops": [
+        {
+          "itemName": "Medallion fragment",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Sailors\u0027 amulet",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Rusty locket",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Mouldy block",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Dull knife",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Broken compass",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Rusty coin",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Broken sextant",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Mouldy doll",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Smashed mirror",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Colossal Wyrm Agility": {
+      "monsterName": "Colossal Wyrm Agility",
+      "wikiPage": "Colossal Wyrm Agility",
+      "drops": [
+        {
+          "itemName": "Colossal wyrm teleport scroll",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Calcified acorn",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Graceful hood (Varlamore)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Graceful top (Varlamore)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Graceful legs (Varlamore)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Graceful gloves (Varlamore)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Graceful boots (Varlamore)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Graceful cape (Varlamore)",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Sailing Miscellaneous": {
+      "monsterName": "Sailing Miscellaneous",
+      "wikiPage": "Sailing Miscellaneous",
+      "drops": [
+        {
+          "itemName": "Dragon metal sheet",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Dragon nails",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Dragon cannonball",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Echo pearl",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Swift albatross feather",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Narwhal horn",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Ray barbs",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Broken dragon hook",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Bottled storm",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Dragon cannon barrel",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Boat bottle (empty)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Facility bottle (empty)",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Brutus": {
+      "monsterName": "Brutus",
+      "wikiPage": "Brutus",
+      "drops": [
+        {
+          "itemName": "Beef",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Mooleta",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Bottomless milk bucket (empty)",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Cow slippers",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
+    },
+    "Forestry": {
+      "monsterName": "Forestry",
+      "wikiPage": "Forestry",
+      "drops": [
+        {
+          "itemName": "Fox whistle",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Golden pheasant egg",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Lumberjack hat",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Lumberjack top",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Lumberjack legs",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Lumberjack boots",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Forestry hat",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Forestry top",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Forestry legs",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Forestry boots",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Twitcher\u0027s gloves",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Funky shaped log",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Log basket",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Log brace",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Clothes pouch blueprint",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Cape pouch",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Felling axe handle",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Pheasant hat",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Pheasant legs",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Pheasant boots",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Pheasant cape",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Petal garland",
+          "dropRate": -1.0,
+          "itemId": -1
+        },
+        {
+          "itemName": "Sturdy beehive parts",
+          "dropRate": -1.0,
+          "itemId": -1
+        }
+      ]
     }
   },
   "aliases": {
@@ -7837,6 +14164,7 @@
     "The Leviathan": "Leviathan",
     "Barrows": "Barrows Chests",
     "Theatre Of Blood": "Theatre Of Blood",
+    "Corrupted Gauntlet": "The Corrupted Gauntlet",
     "Chambers Of Xeric": "Chambers Of Xeric",
     "Clue Scroll (master)": "Master Treasure Trails",
     "The Nightmare": "Nightmare",
@@ -7848,9 +14176,10 @@
     "The Gauntlet": "The Gauntlet",
     "Supply Crate (wintertodt)": "Wintertodt",
     "Hallowed Sack": "Hallowed Sepulchre",
-    "The Corrupted Gauntlet": "The Gauntlet",
     "Phosani\u0027s Nightmare": "Nightmare",
     "Theatre Of Blood: Hard Mode": "Theatre Of Blood",
     "Reward Cart (wintertodt)": "Wintertodt"
-  }
+  },
+  "collectionLogSections": 124,
+  "collectionLogSlots": 2038
 }

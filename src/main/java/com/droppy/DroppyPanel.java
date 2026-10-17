@@ -651,7 +651,7 @@ public class DroppyPanel extends PluginPanel
         if (totalKc > 0)
         {
             kcLabel.setText("Total KC: " + String.format("%,d", totalKc)
-                + "  |  Since drop: " + String.format("%,d", kcSinceDrop));
+                + "  |  Since any logged drop: " + String.format("%,d", kcSinceDrop));
         }
         else
         {
@@ -688,13 +688,13 @@ public class DroppyPanel extends PluginPanel
     {
         boolean obtained = playerDataManager.hasItem(drop.getItemName());
         int kc = playerDataManager.getKcSinceLastDrop(monsterName, drop.getItemName());
-        boolean hasKcChance = DropRateModel.supportsKcChance(monsterName);
+        boolean hasKcChance = DropRateModel.supportsKcChance(monsterName, drop);
         double chance = hasKcChance
             ? DropChanceCalculator.calculateChance(DropRateModel.perKillRate(monsterName, drop), kc)
             : Double.NaN;
         String chanceStr = hasKcChance
             ? DropChanceCalculator.formatPercent(chance)
-            : "KC chance varies";
+            : (drop.getDropRate() <= 0 ? "Chance unavailable" : "KC chance varies");
 
         Color chanceColor;
         if (obtained)

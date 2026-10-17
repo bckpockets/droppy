@@ -98,7 +98,7 @@ public class WikiDropFetcher
         addAlias("Hallowed Sack", "Hallowed Sepulchre");
         addAlias("Spoils Of War", "Soul Wars");
         addAlias("Reward Chest (The Gauntlet)", "The Gauntlet");
-        addAlias("Corrupted Gauntlet", "The Gauntlet");
+        addAlias("Corrupted Gauntlet", "The Corrupted Gauntlet");
 
         // Irregular plurals (NPC name -> clog page name)
         addAlias("Cyclops", "Cyclopes");
@@ -124,7 +124,7 @@ public class WikiDropFetcher
             return data;
         }
 
-        // Check aliases (e.g. "The Corrupted Gauntlet" -> "The Gauntlet")
+        // Check loot-event aliases.
         String aliasTarget = aliases.get(normalized);
         if (aliasTarget != null)
         {

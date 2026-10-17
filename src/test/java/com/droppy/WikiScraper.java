@@ -159,7 +159,7 @@ public class WikiScraper
         PAGE_ALIASES.put("tombs of amascut", "Tombs of Amascut");
         PAGE_ALIASES.put("tombs of amascut: expert mode", "Tombs of Amascut");
         PAGE_ALIASES.put("the gauntlet", "The Gauntlet");
-        PAGE_ALIASES.put("the corrupted gauntlet", "The Gauntlet");
+        PAGE_ALIASES.put("corrupted gauntlet", "The Corrupted Gauntlet");
         PAGE_ALIASES.put("clue scroll (beginner)", "Beginner Treasure Trails");
         PAGE_ALIASES.put("clue scroll (easy)", "Easy Treasure Trails");
         PAGE_ALIASES.put("clue scroll (medium)", "Medium Treasure Trails");
@@ -212,6 +212,10 @@ public class WikiScraper
 
         fetchItemIdMapping();
         Map<String, Set<String>> clogItems = fetchCollectionLogItems();
+        if (clogItems.isEmpty())
+        {
+            throw new IOException("Collection log catalogue unavailable; refusing incomplete update");
+        }
 
         // Diagnostic: show which pages don't have matching clog sections
         Set<String> unmatchedPages = new LinkedHashSet<>();
@@ -253,6 +257,35 @@ public class WikiScraper
 
             try
             {
+                if (page.equals("The Gauntlet"))
+                {
+                    String wikiText = fetchWikiText("Reward Chest (The Gauntlet)");
+                    if (wikiText == null)
+                    {
+                        throw new IOException("Gauntlet reward chest page unavailable");
+                    }
+                    Set<String> pageItems = findClogItems(page, clogItems);
+                    List<DropEntry> regular = gauntletDrops(wikiText, "Regular loot table");
+                    List<DropEntry> corrupted = gauntletDrops(wikiText, "Corrupted loot table");
+                    if (pageItems != null)
+                    {
+                        regular = filterToClogItems(regular, pageItems);
+                        corrupted = filterToClogItems(corrupted, pageItems);
+                    }
+                    if (regular.isEmpty() || corrupted.isEmpty())
+                    {
+                        throw new IOException("Gauntlet reward sections have no usable rates");
+                    }
+                    monsters.add(normalizeName(page), buildMonsterJson(page,
+                        "Reward Chest (The Gauntlet)", resolveItemIds(
+                            completeClogDrops(regular, pageItems))));
+                    monsters.add(normalizeName("The Corrupted Gauntlet"),
+                        buildMonsterJson("The Corrupted Gauntlet",
+                            "Reward Chest (The Gauntlet)", resolveItemIds(
+                                completeClogDrops(corrupted, pageItems))));
+                    scraped++;
+                    continue;
+                }
                 List<String> wikiPages = WIKI_PAGES.getOrDefault(page, List.of(page));
                 List<DropEntry> allDrops = new ArrayList<>();
 
@@ -293,6 +326,7 @@ public class WikiScraper
                 if (pageItems != null)
                 {
                     deduped = filterToClogItems(deduped, pageItems);
+                    deduped = completeClogDrops(deduped, pageItems);
                 }
 
                 deduped = resolveItemIds(deduped);
@@ -317,6 +351,20 @@ public class WikiScraper
             }
         }
 
+        // The collection log gains sections between plugin releases. Keep all
+        // slots visible even when no source-specific numeric table is mapped yet.
+        for (Map.Entry<String, Set<String>> section : clogItems.entrySet())
+        {
+            String key = normalizeName(section.getKey());
+            if (!monsters.has(key))
+            {
+                monsters.add(key, buildMonsterJson(section.getKey(), section.getKey(),
+                    completeClogDrops(List.of(), section.getValue())));
+            }
+        }
+
+        verifyClogCoverage(monsters, clogItems);
+
         for (Map.Entry<String, String> entry : PAGE_ALIASES.entrySet())
         {
             aliases.addProperty(
@@ -327,6 +375,9 @@ public class WikiScraper
 
         root.add("monsters", monsters);
         root.add("aliases", aliases);
+        root.addProperty("collectionLogSections", clogItems.size());
+        root.addProperty("collectionLogSlots", clogItems.values().stream()
+            .mapToInt(Set::size).sum());
 
         Path output = Paths.get("src/main/resources/com/droppy/drops.json");
         Files.createDirectories(output.getParent());
@@ -336,6 +387,21 @@ public class WikiScraper
         System.out.println("Done! Scraped " + scraped + " clog pages (" + monsters.size()
             + " total entries), " + failed + " without drops.");
         System.out.println("Output: " + output.toAbsolutePath());
+    }
+
+    List<DropEntry> gauntletDrops(String wikiText, String sectionName)
+    {
+        Pattern heading = Pattern.compile("(?m)^==\\s*" + Pattern.quote(sectionName)
+            + "(?:<[^>]*>)?\\s*==\\s*$", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = heading.matcher(wikiText);
+        if (!matcher.find())
+        {
+            return List.of();
+        }
+        int start = matcher.end();
+        Matcher nextHeading = Pattern.compile("(?m)^==[^=].*?==\\s*$").matcher(wikiText);
+        int end = nextHeading.find(start) ? nextHeading.start() : wikiText.length();
+        return deduplicateDrops(parseDropsFromWikiText(wikiText.substring(start, end)));
     }
 
     private List<DropEntry> scrapeWikiPage(String wikiPage)
@@ -464,6 +530,55 @@ public class WikiScraper
         return result;
     }
 
+    List<DropEntry> completeClogDrops(List<DropEntry> knownDrops, Set<String> clogItems)
+    {
+        List<DropEntry> complete = new ArrayList<>(knownDrops);
+        if (clogItems == null)
+        {
+            return complete;
+        }
+        Set<String> knownNames = new HashSet<>();
+        for (DropEntry drop : knownDrops)
+        {
+            knownNames.add(drop.getItemName().trim().toLowerCase(java.util.Locale.ROOT));
+        }
+        for (String item : clogItems)
+        {
+            if (knownNames.add(item.trim().toLowerCase(java.util.Locale.ROOT)))
+            {
+                complete.add(new DropEntry(item, -1, -1, null));
+            }
+        }
+        return complete;
+    }
+
+    private void verifyClogCoverage(JsonObject monsters, Map<String, Set<String>> clogItems)
+        throws IOException
+    {
+        for (Map.Entry<String, Set<String>> section : clogItems.entrySet())
+        {
+            JsonObject source = monsters.getAsJsonObject(normalizeName(section.getKey()));
+            if (source == null)
+            {
+                throw new IOException("Missing collection-log section: " + section.getKey());
+            }
+            Set<String> actual = new HashSet<>();
+            for (JsonElement entry : source.getAsJsonArray("drops"))
+            {
+                actual.add(entry.getAsJsonObject().get("itemName").getAsString()
+                    .trim().toLowerCase(java.util.Locale.ROOT));
+            }
+            for (String item : section.getValue())
+            {
+                if (!actual.contains(item.trim().toLowerCase(java.util.Locale.ROOT)))
+                {
+                    throw new IOException("Missing collection-log item: "
+                        + section.getKey() + " / " + item);
+                }
+            }
+        }
+    }
+
     private Map<String, Set<String>> fetchCollectionLogItems() throws Exception
     {
         Map<String, Set<String>> clogItems = new HashMap<>();
@@ -518,7 +633,7 @@ public class WikiScraper
     {
         CLOG_SECTION_NAMES.put("Sol Heredit", List.of("Fortis Colosseum"));
         CLOG_SECTION_NAMES.put("Colosseum", List.of("Fortis Colosseum"));
-        CLOG_SECTION_NAMES.put("TzHaar", List.of("The Fight Caves", "The Inferno"));
+        CLOG_SECTION_NAMES.put("TzHaar", List.of("TzHaar", "The Fight Caves", "The Inferno"));
         CLOG_SECTION_NAMES.put("Spindel", List.of("Venenatis and Spindel"));
     }
 

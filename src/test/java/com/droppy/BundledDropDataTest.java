@@ -1,8 +1,11 @@
 package com.droppy;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import org.junit.Test;
 
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -25,7 +28,8 @@ public class BundledDropDataTest
         {
             for (DropEntry drop : source.getDrops())
             {
-                assertTrue(drop.getDropRate() > 0 && drop.getDropRate() < 1);
+                assertTrue(drop.getDropRate() == -1
+                    || (drop.getDropRate() > 0 && drop.getDropRate() < 1));
                 assertTrue(drop.getRollsPerKill() >= 1);
 
                 if (drop.getRarityDisplay() != null)
@@ -37,6 +41,10 @@ public class BundledDropDataTest
                     assertEquals(source.getMonsterName() + ": " + drop,
                         displayedRate, drop.getDropRate(), 1e-12);
                     checked++;
+                }
+                else
+                {
+                    assertEquals(-1.0, drop.getDropRate(), 0);
                 }
             }
         }
@@ -50,6 +58,12 @@ public class BundledDropDataTest
         assertTrue(fetcher.getDropData("Easy Treasure Trails").getDrops().size() >= 100);
         assertNotNull(fetcher.getDropData("Reward Chest (The Gauntlet)"));
         assertNotNull(fetcher.getDropData("Corrupted Gauntlet"));
+        assertEquals(1.0 / 2000.0,
+            find(fetcher, "The Gauntlet", "Enhanced crystal weapon seed").getDropRate(), 1e-12);
+        assertEquals(1.0 / 400.0,
+            find(fetcher, "The Corrupted Gauntlet", "Enhanced crystal weapon seed").getDropRate(), 1e-12);
+        assertEquals("The Corrupted Gauntlet",
+            fetcher.getDropData("Corrupted Gauntlet").getMonsterName());
 
         DropEntry fang = find(fetcher, "Zulrah", "Tanzanite fang");
         assertEquals(2, fang.getRollsPerKill());
@@ -59,6 +73,20 @@ public class BundledDropDataTest
         assertEquals(2, gloves.getRollsPerKill());
 
         assertNotNull(find(fetcher, "Alchemical Hydra", "Hydra's eye"));
+        assertEquals(-1.0, find(fetcher, "Brutus", "Mooleta").getDropRate(), 0);
+    }
+
+    @Test
+    public void bundledCatalogueRecordsCurrentCollectionLogCoverage() throws Exception
+    {
+        try (InputStream input = getClass().getResourceAsStream("drops.json"))
+        {
+            assertNotNull(input);
+            JsonObject root = new Gson().fromJson(
+                new String(input.readAllBytes(), StandardCharsets.UTF_8), JsonObject.class);
+            assertTrue(root.get("collectionLogSections").getAsInt() >= 124);
+            assertTrue(root.get("collectionLogSlots").getAsInt() >= 2038);
+        }
     }
 
     private static DropEntry find(WikiDropFetcher fetcher, String sourceName, String itemName)

@@ -1,5 +1,8 @@
 package com.droppy;
 
+import java.util.LinkedHashMap;
+import java.util.Locale;
+import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
 import net.runelite.api.widgets.Widget;
@@ -73,6 +76,7 @@ public class CollectionLogManager
 
     private void parseKillCounts(String pageTitle, Widget[] headerChildren)
     {
+        Map<String, Integer> counters = new LinkedHashMap<>();
         for (int i = 2; i < headerChildren.length; i++)
         {
             String text = headerChildren[i].getText();
@@ -95,14 +99,79 @@ public class CollectionLogManager
             try
             {
                 int kcValue = Integer.parseInt(kcValueStr);
-                playerDataManager.setKillCount(pageTitle, kcValue);
-                log.debug("Collection log KC for {} ({}): {}", pageTitle, kcType, kcValue);
+                counters.put(kcType, kcValue);
             }
             catch (NumberFormatException e)
             {
                 log.debug("Could not parse KC value '{}' for {}", kcValueStr, pageTitle);
             }
         }
+
+        for (Map.Entry<String, Integer> counter : counters.entrySet())
+        {
+            String source = sourceForCounter(pageTitle, counter.getKey());
+            if (source == null && counters.size() == 1
+                && !isMultiSourcePage(pageTitle))
+            {
+                source = pageTitle;
+            }
+            if (source != null)
+            {
+                playerDataManager.setKillCount(source, counter.getValue());
+                log.debug("Collection log KC for {} ({}): {}",
+                    source, counter.getKey(), counter.getValue());
+            }
+        }
+    }
+
+    static String sourceForCounter(String pageTitle, String counterLabel)
+    {
+        String page = pageTitle.toLowerCase(Locale.ROOT);
+        String label = counterLabel.toLowerCase(Locale.ROOT);
+        if (page.equals("the gauntlet"))
+        {
+            if (label.contains("corrupted")) return "The Corrupted Gauntlet";
+            if (label.contains("regular") || label.contains("gauntlet")) return "The Gauntlet";
+            return null;
+        }
+        if (page.contains("callisto") && page.contains("artio"))
+        {
+            if (label.contains("artio")) return "Artio";
+            if (label.contains("callisto")) return "Callisto";
+        }
+        if (page.equals("dagannoth kings"))
+        {
+            if (label.contains("rex")) return "Dagannoth Rex";
+            if (label.contains("prime")) return "Dagannoth Prime";
+            if (label.contains("supreme")) return "Dagannoth Supreme";
+        }
+        if (page.contains("venenatis") && page.contains("spindel"))
+        {
+            if (label.contains("spindel")) return "Spindel";
+            if (label.contains("venenatis")) return "Venenatis";
+        }
+        if (page.contains("vet'ion") && page.contains("calvar'ion"))
+        {
+            if (label.contains("calvar'ion")) return "Calvar'ion";
+            if (label.contains("vet'ion")) return "Vet'ion";
+        }
+        if (page.equals("royal titans"))
+        {
+            if (label.contains("branda")) return "Branda the Fire Queen";
+            if (label.contains("eldric")) return "Eldric the Ice King";
+        }
+        return null;
+    }
+
+    private static boolean isMultiSourcePage(String pageTitle)
+    {
+        String page = pageTitle.toLowerCase(Locale.ROOT);
+        return page.equals("the gauntlet")
+            || page.equals("dagannoth kings")
+            || page.equals("callisto and artio")
+            || page.equals("venenatis and spindel")
+            || page.equals("vet'ion and calvar'ion")
+            || page.equals("royal titans");
     }
 
     private void parseItems(String pageTitle)
