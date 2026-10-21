@@ -92,6 +92,7 @@ public class DroppyPanel extends PluginPanel
     private final PlayerDataManager playerDataManager;
     private final KillCountManager killCountManager;
     private final ItemManager itemManager;
+    private final Runnable importCollectionLog;
 
     private JButton currentTabBtn;
     private JButton searchTabBtn;
@@ -101,6 +102,7 @@ public class DroppyPanel extends PluginPanel
 
     // Sync tab
     private JPanel syncListPanel;
+    private JLabel importStatusLabel;
 
     // Current tab
     private JPanel currentDropsPanel;
@@ -120,13 +122,15 @@ public class DroppyPanel extends PluginPanel
 
     public DroppyPanel(DroppyConfig config, WikiDropFetcher wikiDropFetcher,
                        PlayerDataManager playerDataManager,
-                       KillCountManager killCountManager, ItemManager itemManager)
+                       KillCountManager killCountManager, ItemManager itemManager,
+                       Runnable importCollectionLog)
     {
         this.config = config;
         this.wikiDropFetcher = wikiDropFetcher;
         this.playerDataManager = playerDataManager;
         this.killCountManager = killCountManager;
         this.itemManager = itemManager;
+        this.importCollectionLog = importCollectionLog;
 
         setLayout(new BorderLayout());
         setBackground(BACKGROUND_COLOR);
@@ -362,6 +366,18 @@ public class DroppyPanel extends PluginPanel
         helpLabel.setForeground(ColorScheme.LIGHT_GRAY_COLOR);
         helpLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         headerPanel.add(helpLabel);
+
+        JButton importButton = new JButton("Import Collection Log JSON...");
+        importButton.setAlignmentX(Component.LEFT_ALIGNMENT);
+        importButton.addActionListener(e -> importCollectionLog.run());
+        headerPanel.add(Box.createVerticalStrut(6));
+        headerPanel.add(importButton);
+
+        importStatusLabel = new JLabel("Optional: import history from the Collection Log plugin");
+        importStatusLabel.setFont(FontManager.getRunescapeSmallFont());
+        importStatusLabel.setForeground(ColorScheme.LIGHT_GRAY_COLOR);
+        importStatusLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        headerPanel.add(importStatusLabel);
 
         panel.add(headerPanel, BorderLayout.NORTH);
 
@@ -847,5 +863,10 @@ public class DroppyPanel extends PluginPanel
             }
             refreshSyncTab();
         });
+    }
+
+    public void setImportStatus(String status)
+    {
+        SwingUtilities.invokeLater(() -> importStatusLabel.setText(status));
     }
 }

@@ -30,6 +30,8 @@ this is the important part. Dry Drop Tracker needs to read your clog to know wha
 
 you only gotta do this once per source. it saves to your runelite profile. after that, new drops get picked up automatically when you get them
 
+If you use the separate **Collection Log** RuneLite plugin, you can import its saved history: open Dry Drop Tracker's **Sync** tab, click **Import Collection Log JSON...**, and select that plugin's `collectionlog-<username>.json` file from `.runelite/collectionlog/data/<username>/`. The file must belong to the character you're logged in as. The import is optional and only reads the file you select; use the button again to import later changes.
+
 ### step 2: go kill stuff
 
 just play normally. when you attack something or get loot the panel auto-switches to show that monster's drop table with:
