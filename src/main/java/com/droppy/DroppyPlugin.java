@@ -1,6 +1,7 @@
 package com.droppy;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.google.inject.Provides;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.inject.Inject;
@@ -40,6 +42,7 @@ import net.runelite.client.plugins.loottracker.LootReceived;
 import net.runelite.http.api.loottracker.LootRecordType;
 import net.runelite.client.ui.ClientToolbar;
 import net.runelite.client.ui.NavigationButton;
+import net.runelite.client.util.Filepath;
 import okhttp3.OkHttpClient;
 @Slf4j
 @PluginDescriptor(
@@ -96,6 +99,7 @@ public class DroppyPlugin extends Plugin
     private DroppyApiClient apiClient;
     private DroppyPanel panel;
     private NavigationButton navButton;
+    private final AtomicBoolean importRunning = new AtomicBoolean();
 
     @Override
     protected void startUp() throws Exception
@@ -117,11 +121,10 @@ public class DroppyPlugin extends Plugin
         if (client.getGameState() == GameState.LOGGED_IN)
         {
             playerDataManager.loadPlayerData();
-            tryImportCollectionLog();
         }
 
         panel = new DroppyPanel(config, wikiDropFetcher, playerDataManager,
-            killCountManager, itemManager);
+            killCountManager, itemManager, this::chooseCollectionLogImport);
 
         BufferedImage icon = createPluginIcon();
 
@@ -157,12 +160,10 @@ public class DroppyPlugin extends Plugin
         if (event.getGameState() == GameState.LOGGED_IN)
         {
             playerDataManager.loadPlayerData();
-            tryImportCollectionLog();
         }
         else if (event.getGameState() == GameState.LOGIN_SCREEN)
         {
             playerDataManager.savePlayerData();
-            collectionLogImporter.resetSession();
         }
     }
 
@@ -170,7 +171,6 @@ public class DroppyPlugin extends Plugin
     public void onProfileChanged(ProfileChanged event)
     {
         playerDataManager.loadPlayerData();
-        tryImportCollectionLog();
     }
 
     @Subscribe
@@ -618,13 +618,89 @@ public class DroppyPlugin extends Plugin
         }
     }
 
-    private void tryImportCollectionLog()
+    private void chooseCollectionLogImport()
     {
-        if (client.getLocalPlayer() == null || client.getLocalPlayer().getName() == null)
+        if (!importRunning.compareAndSet(false, true))
         {
             return;
         }
-        collectionLogImporter.tryImport(client.getLocalPlayer().getName());
+        clientThread.invokeLater(() ->
+        {
+            if (client.getGameState() != GameState.LOGGED_IN || client.getLocalPlayer() == null
+                || client.getLocalPlayer().getName() == null)
+            {
+                panel.setImportStatus("Log in before importing Collection Log data");
+                importRunning.set(false);
+                return;
+            }
+            String username = client.getLocalPlayer().getName();
+            SwingUtilities.invokeLater(() ->
+            {
+                List<Filepath> selected;
+                try
+                {
+                    selected = new Filepath.Chooser()
+                        .setIsOpen()
+                        .setAcceptsFiles()
+                        .setDialogTitle("Select Collection Log plugin JSON")
+                        .addExtensionFilter("JSON files", "json")
+                        .showDialog(panel);
+                }
+                catch (Exception e)
+                {
+                    panel.setImportStatus("Could not open file chooser");
+                    importRunning.set(false);
+                    return;
+                }
+                if (selected == null || selected.isEmpty())
+                {
+                    importRunning.set(false);
+                    return;
+                }
+                panel.setImportStatus("Importing Collection Log data...");
+                Filepath file = selected.get(0);
+                executor.execute(() ->
+                {
+                    try
+                    {
+                        JsonObject data = collectionLogImporter.readFile(file, username);
+                        clientThread.invokeLater(() ->
+                        {
+                            try
+                            {
+                                if (client.getGameState() != GameState.LOGGED_IN
+                                    || client.getLocalPlayer() == null
+                                    || !username.equals(client.getLocalPlayer().getName()))
+                                {
+                                    panel.setImportStatus("Account changed; import cancelled");
+                                    return;
+                                }
+                                CollectionLogImporter.ImportResult result = collectionLogImporter.importData(data);
+                                panel.onCollectionLogSynced(playerDataManager.getSyncedPageCount());
+                                panel.setImportStatus(String.format("Imported %d items, %d KC entries, %d pages",
+                                    result.items, result.killCounts, result.pages));
+                            }
+                            catch (Exception e)
+                            {
+                                log.warn("Could not import Collection Log data", e);
+                                panel.setImportStatus("Could not import Collection Log data");
+                            }
+                            finally
+                            {
+                                importRunning.set(false);
+                            }
+                        });
+                    }
+                    catch (Exception e)
+                    {
+                        log.debug("Could not read Collection Log data", e);
+                        panel.setImportStatus(e instanceof IllegalArgumentException
+                            ? e.getMessage() : "Could not read Collection Log JSON");
+                        importRunning.set(false);
+                    }
+                });
+            });
+        });
     }
 
     private BufferedImage createPluginIcon()
